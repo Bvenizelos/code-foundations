@@ -49,7 +49,7 @@ The dispatch prompt's `## Done-When Items (DW-IDs)` list is the contract. You ma
 
 Tests are written after the implementation to validate it — but they still gate the phase. Every DW item ends with passing test(s) that exercise it; a DW item with no test is an uncovered gap, not done. Assert on the DW item's intended behavior (input → expected output), not on whatever the code happens to return — a test that merely mirrors the implementation validates nothing.
 
-The DW items are the floor, not the ceiling — and if the dispatch prompt carries a `## Test Coverage Level`, that level is the contract the reviewer holds you to, not only the DW list. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
+The DW items are the floor, not the ceiling — and the dispatch prompt's `## Test Coverage Level` is the contract the reviewer holds you to (100% = a unit test for every new or changed routine plus the Test Plan's integration tests; Targeted = the named layers), not only the DW list. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
 
 ### Test Anchoring
 

@@ -391,3 +391,21 @@ skills/planning/SKILL.md	heading	Test Coverage	references/plan-schema.md § Plan
 skills/planning/SKILL.md	heading	Assumptions	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
 skills/planning/SKILL.md	heading	Decision Log	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
 skills/planning/SKILL.md	heading	Execution Log	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+# --- Phase 9: build.md rewritten for size — every decision rule kept; subsection headings folded into their phase sections
+commands/build.md	heading	Phase 1: LOAD (Read Plan File)	renamed "Phase 1: LOAD"
+commands/build.md	heading	Locate Plan	LOAD paragraph "Locate the plan"
+commands/build.md	heading	Worktree Gate (immediately after the plan is located — it needs the plan filename)	LOAD paragraph "Worktree gate — immediately"
+commands/build.md	heading	Parse Plan Structure	LOAD paragraph "Parse the plan"
+commands/build.md	heading	Verify Plan is Ready	LOAD "Plan status" table
+commands/build.md	heading	Update Plan Status	SETUP opening line
+commands/build.md	heading	Phase 3: EXECUTE (Implement Sections)	renamed "Phase 3: EXECUTE"
+commands/build.md	heading	The Orchestrator Dispatches; Agents Do the Work	EXECUTE opening paragraph "You dispatch; agents do the work"
+commands/build.md	heading	Agent Types Per Sub-Phase	EXECUTE agent table
+commands/build.md	heading	Parallel Waves (2-3 phases)	renamed "Parallel Waves (2–3 phases)"
+commands/build.md	heading	Sub-Phase N.1: BUILD (Discovery + Design + Implementation)	renamed "Sub-Phase N.1: BUILD"
+commands/build.md	heading	Sub-Phase N.2: REVIEW (Blocking — Full gate and security-sensitive phases only)	renamed "Sub-Phase N.2: REVIEW (blocking — Full gate and security-sensitive phases only)"
+commands/build.md	heading	Commit After Phase (Orchestrator Handles Directly)	renamed "Commit After Phase"
+commands/build.md	heading	Phase 5: REPORT (Update Plan + Summarize)	renamed "Phase 5: REPORT"
+commands/build.md	heading	Update Plan File	REPORT paragraph (status fields)
+commands/build.md	heading	Final Commit	REPORT paragraph (chore(build) commit)
+commands/build.md	heading	Summary Output (Trust Report)	REPORT paragraph (trust report per trust-report.md)

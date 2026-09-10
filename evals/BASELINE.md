@@ -84,3 +84,6 @@ Resolution table: every cell matched expected.md (cadence 2, coverage 100%, mode
 | cc-debugging | 12/20 | 14/20 |
 | cc-routine-and-class-design | 18/20 | 18/20 |
 Descriptions are byte-identical (validator check H); differences are probe noise. Cost $0.93.
+
+## Build-workflow smoke #2 (after the Phase 9 diet of build.md, fresh Explore agent, key hidden)
+Resolution table, tasks, batch predictions, VERIFY decision: every value matched expected.md again. 22 ambiguities reported; 4 introduced by the rewrite fixed in Phase 9 (header lines always printed; bare `none` goes in Notes; Minimal row "same batch" → "next batch REVIEW"; the Invariant now defers to Wave Derivation's full co-scheduling rule). The other 18 are pre-existing structural gaps recorded for the owner (plan outside .code-foundations/plans, `<plan-name>` never defined, worktree-gate vs wave-worktree roots, `fable` never defined in build.md, no typecheck/lint on a project that has none, manual items already covered by the suite, batch task naming, File-scope base directory, etc.).

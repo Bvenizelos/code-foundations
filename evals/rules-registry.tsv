@@ -6,7 +6,7 @@ references/dispatch-templates.md	intent-framing
 commands/build.md	floored at sonnet
 commands/build.md	THREE independent REVIEW agents
 commands/build.md	un-reviewed set
-commands/build.md	silently retry
+commands/build.md	re-dispatch at most 3 times, then stop and escalate
 commands/build.md	Security-sensitive:** yes
 references/commit-format.md	deferred (batch pending)
 references/gate-failure-protocol.md	Batch Failures
@@ -118,11 +118,11 @@ agents/build-agent.md	next reader is you, ten minutes from now
 agents/post-gate-agent.md	cover every requirement and every finding
 # --- Phase 6
 commands/build.md	name validation only
-commands/build.md	An unknown name → stop and ask the user
-commands/build.md	nothing here edits the plan file
+commands/build.md	Unknown name → stop and ask the user
+commands/build.md	validates names and edits nothing
 commands/build.md	This never blocks
 commands/build.md	### The Resolution Table
-commands/build.md	Wave width cap: 3
+commands/build.md	Width cap 3
 commands/build.md	A phase without `File scope` never shares a wave
 commands/build.md	Waves are derived here, never stored in the plan
 commands/build.md	clamped to 1–5
@@ -131,39 +131,36 @@ CLAUDE.md	warns (never stops)
 references/dispatch-templates.md	lists at least one skill
 commands/build.md	| Security |
 commands/build.md	no `## Additional Skills` block
-commands/build.md	reprint the table; the change applies to phases not yet dispatched
-commands/build.md	below 1 → 1
+commands/build.md	including Wave Derivation (gate is a wave input)
 commands/build.md	rejected like unknown names
 # --- Phase 7
-commands/build.md	An un-reviewed phase must not reach the trust report
+commands/build.md	Nothing reaches the trust report unreviewed
 commands/build.md	Delta rule
-commands/build.md	tests, typecheck, and lint
+commands/build.md	tests, typecheck, lint
 commands/build.md	Test Plan items the suite does not cover
 commands/build.md	per-DW evidence only; technical debt noted
-commands/build.md	VERIFY reports it, it does not re-gate it
+commands/build.md	VERIFY reports it
 references/trust-report.md	Suite on HEAD
 references/trust-report.md	not run:
 references/trust-report.md	Review shape
 references/trust-report.md	Coverage:
 README.md	one suite (tests + typecheck + lint) on integrated HEAD
 agents/post-gate-agent.md	ANY gap against the dispatch prompt's Test Coverage Level
-references/dispatch-templates.md	with its definition
-commands/build.md	**VERIFY is done when**
+agents/post-gate-agent.md	The levels: **100%**
+commands/build.md	**Done when** the set is empty
 references/trust-report.md	SKIP execution-log entry
 references/gate-failure-protocol.md	does not proceed past its trailing-batch step
 agents/post-gate-agent.md	**(f)** a gap against the prompt's Test Coverage Level
-references/dispatch-templates.md	The reviewer fails a gap against 100% or Targeted
-commands/build.md	re-enters the un-reviewed set
+references/dispatch-templates.md	## Test Coverage Level
+commands/build.md	absent a security flag → the un-reviewed set
 references/gate-failure-protocol.md	| VERIFY |
 commands/build.md	review it the way that phase is reviewed
-commands/build.md	count together
-agents/build-agent.md	that level is the contract the reviewer holds you to
+commands/build.md	counted together with the phase's own gate
+agents/build-agent.md	is the contract the reviewer holds you to
 agents/post-gate-agent.md	or a named absence
 references/dispatch-templates.md	notes only, no rationale
-references/dispatch-templates.md	it applies to each ### Phase block above
 agents/post-gate-agent.md	except the two named absences
 references/commit-format.md	verify-fix (review pending)
-commands/build.md	absent a security flag re-enters
 references/trust-report.md	Per-phase adds nothing beyond per-DW evidence
 # --- Phase 8
 references/plan-schema.md	FABLE_KEYWORDS

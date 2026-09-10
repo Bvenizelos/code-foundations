@@ -84,7 +84,7 @@ Every DW item must be *covered* by execution evidence from Step 0. Coverage mean
 - **an automated test** that ran in Step 0 (test names reference DW-IDs, e.g. `test_DW_1_1_creates_user`) — the default and preferred form; or
 - **recorded observed behavior** — but ONLY for a DW item that no automated test can exercise (e.g. a desk-checkable spec assertion). Record what you ran/walked and what you observed.
 
-**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Then verify coverage against the dispatch prompt's `## Test Coverage Level` (the prompt carries the level's definition): a gap against that level — a new or changed routine in a listed implementation file with no unit test under `100%`, a named layer left untested under `Targeted` — is a FAIL, not a note (`Per-phase` and `None` add nothing beyond the per-DW rule).
+**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Then verify coverage against the dispatch prompt's `## Test Coverage Level`. The levels: **100%** — every new or changed routine in the listed implementation files (the change notes name them) has a unit test, plus the Test Plan's integration tests; **Targeted** — the layers the user named are tested; **Per-phase** and **None** — nothing beyond the per-DW rule above. A gap against 100% or Targeted — a new or changed routine with no unit test, a named layer left untested — is a FAIL, not a note.
 
 ### Step 3 — Dead Code
 

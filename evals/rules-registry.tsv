@@ -20,3 +20,26 @@ skills/cc-debugging/SKILL.md	STABILIZE
 skills/cc-defensive-programming/SKILL.md	Internal team API
 skills/cc-defensive-programming/checklists.md	SM-3
 skills/cc-defensive-programming/checklists.md	SA-1
+# --- Phase 1: checklist tail items carried into body sections (and remedies merged into body items)
+skills/cc-defensive-programming/checklists.md	catch-log-continue
+skills/cc-defensive-programming/checklists.md	distinguish 'no result' from 'operation failed'
+skills/aposd-simplifying-complexity/checklists.md	observability escape hatch
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	failed items silently skipped
+skills/cc-pseudocode-programming/checklists.md	how callers learn about it
+skills/cc-routine-and-class-design/checklists.md	distinct sentinel
+# --- prose anchors and authoring-standard doctrine the plan promises to keep
+references/dispatch-templates.md	Effort Alignment
+references/plan-integration.md	Effort Alignment
+CLAUDE.md	Effort Alignment
+docs/code-standards.md	deliberately inline
+docs/code-standards.md	deliberately duplicated
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	empty `default`/`else`
+skills/cc-refactoring-guidance/checklists.md	extract the common abstraction
+skills/cc-refactoring-guidance/checklists.md	move the method to the class whose data it uses
+skills/cc-refactoring-guidance/checklists.md	Extract methods, invert conditions
+skills/cc-refactoring-guidance/checklists.md	Introduce a parameter object
+skills/cc-routine-and-class-design/checklists.md	add delegation methods
+# --- SKILL.md "Red Flag → Fix" doctrine tables that now carry former checklist tail rows (some rows also map to body items); check J pins the headings, these rows pin them as canonical homes
+skills/code-clarity-and-docs/SKILL.md	## Red Flags (Code Clarity)
+skills/performance-optimization/SKILL.md	## Red Flags
+skills/aposd-simplifying-complexity/SKILL.md	## Red Flags

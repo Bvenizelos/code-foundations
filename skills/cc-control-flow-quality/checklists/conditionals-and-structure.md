@@ -4,29 +4,6 @@ Source: Code Complete 2nd Edition, Chapters 14-15, 19
 
 ---
 
-## Emergency Minimum (Crisis Mode)
-
-**Use ONLY when production is down.** Return within 24 hours to apply full checklist.
-
-- [ ] EM-1: "Nesting depth" - Fix does not add 4th+ nesting level → Red flag: 4+ levels = unreadable
-- [ ] EM-2: "Loop exits" - All loops have reachable termination conditions → Red flag: infinite loop risk
-- [ ] EM-3: "Variable names" - Any new variables have meaningful names (no `temp`, `fix`, `x`)
-- [ ] EM-4: "Crisis comment" - One-line comment explaining WHY this fix was made
-
----
-
-## NEVER Skip (regardless of circumstances)
-
-These items must be checked even under maximum time pressure:
-
-- [ ] NS-1: "Is nesting limited to three levels or less?" (Ch 16) → Red flag: 4+ levels
-- [ ] NS-2: "Does the loop end under all possible conditions?" (Ch 16) → Red flag: missing exit
-- [ ] NS-3: "Does the loop index have a meaningful name?" (Ch 16) (Good: customerIndex, Bad: i in outer loop)
-- [ ] NS-4: "Is the termination condition obvious?" (Ch 16)
-- [ ] NS-5: "Does recursive code include a path to stop recursion?" (Ch 17) → Red flag: unbounded recursion
-
----
-
 ## Organizing Sequential Code (Ch 14)
 
 - [ ] SC-1: "Are dependencies among statements made obvious through code structure?"
@@ -64,7 +41,7 @@ These items must be checked even under maximum time pressure:
 - [ ] CS-2: "Are actions for each case simple (calling routines if necessary)?"
 - [ ] CS-3: "Does the case test a real variable (not a manufactured one)?"
 - [ ] CS-4: "Is the default clause used legitimately?"
-- [ ] CS-5: "Is the default clause used to detect and report unexpected cases?"
+- [ ] CS-5: "Is the default clause (or a final `else`) used to detect and report unexpected cases?" → Red flag: an empty `default`/`else` that lets unexpected values pass silently — log or throw
 - [ ] CS-6: "Does each case end with a break (in C, C++, Java)?" → Red flag: fall-through without comment
 
 ---

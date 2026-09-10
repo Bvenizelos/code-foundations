@@ -121,20 +121,3 @@ Quick checks for common bugs:
 | Single hypothesis | 30-60 min | Generate new hypotheses |
 | Systematic debugging | 2-4 hours | Take break, talk to colleague |
 | Same bug, multiple days | N/A | Consider brute-force rewrite |
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Shotgun debugging?" - Random code changes without hypothesis → Use scientific method: stabilize, hypothesize, experiment
-- [ ] RF-2: "Superstitious debugging?" - Trying same failed approach repeatedly → Switch techniques, use different tools
-- [ ] RF-3: "Symptom fixing?" - Special-case workarounds instead of root cause → Understand the problem before fixing
-- [ ] RF-4: "Panic debugging?" - Rushing, making multiple changes at once → Take a break, make one change at a time
-- [ ] RF-5: "Compiler blame?" - Assuming bug is in compiler/library/hardware → Assume errors are your fault first
-- [ ] RF-6: "No reproduction case?" - Can't reproduce error reliably → Stabilize error with minimal test case
-- [ ] RF-7: "Circular debugging?" - Revisiting same code without new data → Keep notepad of attempts, generate more hypotheses
-- [ ] RF-8: "Unfixed clusters?" - Fixed one bug without checking for similar defects → Search for related bugs in vicinity
-- [ ] RF-9: "No regression test?" - Fixed bug without adding test → Add unit test that exposes the defect
-- [ ] RF-10: "Incomplete diagnosis?" - Fixing without understanding program vicinity → Study hundreds of lines, not just error location
-
----

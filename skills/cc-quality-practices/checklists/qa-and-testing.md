@@ -4,22 +4,6 @@ Source: Code Complete 2nd Edition, Chapters 20-22
 
 ---
 
-## Quick Reference: Which Checklist When?
-
-| Situation | Use Checklist |
-|-----------|---------------|
-| Starting a project | A Quality-Assurance Plan |
-| Setting up code review | Effective Inspections |
-| Pairing on code | Effective Pair Programming |
-| Writing tests | Test Cases |
-| Bug won't reproduce | Techniques for Finding Defects (see debugging.md) |
-| Compiler errors confusing | Techniques for Syntax Errors (see debugging.md) |
-| Found the bug, fixing it | Techniques for Fixing Defects (see debugging.md) |
-| Stuck debugging | Brute-Force Debugging Techniques (see debugging.md) |
-| Reviewing overall approach | General Debugging Approach (see debugging.md) |
-
----
-
 ## A Quality-Assurance Plan (p.603-644)
 
 Use when: Starting a project or reviewing QA strategy

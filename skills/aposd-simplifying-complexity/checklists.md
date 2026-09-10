@@ -46,6 +46,7 @@ Source: A Philosophy of Software Design (Ousterhout), Chapters 8, 10, 18
 - [ ] VG-2: "For Mask: Does the caller have ANY useful response to this error?"
 - [ ] VG-3: "For Aggregate: Do callers handle these errors identically?"
 - [ ] VG-4: "For Crash: Is this (a) application-level, (b) truly unrecoverable, AND (c) crash acceptable?"
+- [ ] VG-5: "For Mask or Define out: is the masked error still observable when it actually occurs (log, metric, health check)?" → Every masked error needs an observability escape hatch so operators can tell when masking hides a real problem
 
 ---
 
@@ -81,17 +82,3 @@ Source: A Philosophy of Software Design (Ousterhout), Chapters 8, 10, 18
 - [ ] TC-6: Callers do less work than before?
 - [ ] TC-7: Error handling consolidated or eliminated?
 - [ ] TC-8: Reader needs less context to understand?
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Scattered exceptions?" - Same error handled in many places → Aggregate to single handler
-- [ ] RF-2: "Configuration explosion?" - Many parameters exported → Compute automatically, provide defaults
-- [ ] RF-3: "Caller doing module's work?" - Logic outside that belongs inside → Pull complexity down
-- [ ] RF-4: "Over-defensive code?" - Checks for impossible conditions → Define errors out
-- [ ] RF-5: "Generic containers?" - `Pair<X,Y>` obscures meaning → Create named structure
-- [ ] RF-6: "Comment-dependent understanding?" - Code unreadable without comments → Refactor for obviousness
-- [ ] RF-7: "Error masked without observability?" - Applying Mask or Define-out but no logging, metrics, or alternate signal when the error actually occurs → Every masked error needs an observability escape hatch (log, metric, health check) so operators can detect when masking hides a real problem
-
----

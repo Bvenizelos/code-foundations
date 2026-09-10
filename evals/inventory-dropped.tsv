@@ -1,0 +1,148 @@
+# file	kind	id	now carried by (item/section/file) — or "dropped: <reason>"   (validator check J)
+# --- Phase 1
+references/aposd-foundations.md	heading	Complexity Definition	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Three Symptoms of Complexity	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Two Causes of Complexity	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Key Relationships	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Counterintuitive Insight	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Quick Reference	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Cross-References to Code Complete	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Why This Exists	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Action Types	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Decision Flow	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Confidence Anchors	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Output Format	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Fix	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Investigate	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Plan	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Decide	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Epistemic Humility	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Workflow	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Tag → Reviewer Mapping	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Output Format	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Multi-Tag Examples	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Tag Selection Guidelines	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+skills/cc-defensive-programming/checklists.md	heading	Priority Groups	dropped: restated the tier headings (Critical/High/Standard) above
+skills/cc-defensive-programming/checklists.md	heading	Quick Reference: Priority by Situation	dropped: situation→tier routing with human-time bounds; tiers stay as headings
+skills/cc-defensive-programming/checklists.md	heading	Red Flags	body items (mapping per RF row below)
+skills/cc-defensive-programming/checklists.md	item	RF-1	GC-1
+skills/cc-defensive-programming/checklists.md	item	RF-2	EC-3
+skills/cc-defensive-programming/checklists.md	item	RF-3	GH-3
+skills/cc-defensive-programming/checklists.md	item	RF-4	EH-2
+skills/cc-defensive-programming/checklists.md	item	RF-5	SO-4
+skills/cc-defensive-programming/checklists.md	item	RF-6	SO-1
+skills/cc-defensive-programming/checklists.md	item	RF-7	SM-3
+skills/cc-defensive-programming/checklists.md	item	RF-8	SA-1
+skills/cc-defensive-programming/checklists.md	item	RF-9	GC-3
+skills/cc-defensive-programming/checklists.md	item	RF-10	SO-2
+skills/cc-defensive-programming/checklists.md	item	RF-11	EC-4 (new, carried verbatim)
+skills/cc-defensive-programming/checklists.md	item	RF-12	EC-5 (new, carried verbatim)
+skills/aposd-simplifying-complexity/checklists.md	heading	Red Flags	SKILL.md § Red Flags table (identical 7 rows) + body items below
+skills/aposd-simplifying-complexity/checklists.md	item	RF-1	ER-3 + SKILL.md Red Flags
+skills/aposd-simplifying-complexity/checklists.md	item	RF-2	CP-1..CP-3
+skills/aposd-simplifying-complexity/checklists.md	item	RF-3	PD-1..PD-4
+skills/aposd-simplifying-complexity/checklists.md	item	RF-4	ER-1 / DO-1
+skills/aposd-simplifying-complexity/checklists.md	item	RF-5	OP-1
+skills/aposd-simplifying-complexity/checklists.md	item	RF-6	OT-3 / OP-4
+skills/aposd-simplifying-complexity/checklists.md	item	RF-7	VG-5 (new, carried verbatim)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Red Flags	body items below
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-1	LI-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-2	LT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-3	LX-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-4	LX-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-5	conditionals-and-structure.md IT-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-6	RC-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-7	conditionals-and-structure.md CI-13
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-8	GT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-9	AA-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-10	conditionals-and-structure.md CS-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-11	LI-9 (new, carried verbatim)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-12	conditionals-and-structure.md CS-5
+skills/cc-debugging/checklists.md	heading	Red Flags	body items below
+skills/cc-debugging/checklists.md	item	RF-1	GA-2 / GA-5
+skills/cc-debugging/checklists.md	item	RF-2	GA-6
+skills/cc-debugging/checklists.md	item	RF-3	FF-6
+skills/cc-debugging/checklists.md	item	RF-4	FF-4 / FF-8
+skills/cc-debugging/checklists.md	item	RF-5	GA-3
+skills/cc-debugging/checklists.md	item	RF-6	FD-2
+skills/cc-debugging/checklists.md	item	RF-7	FD-9
+skills/cc-debugging/checklists.md	item	RF-8	FF-11
+skills/cc-debugging/checklists.md	item	RF-9	FF-10
+skills/cc-debugging/checklists.md	item	RF-10	FF-2
+skills/cc-pseudocode-programming/checklists.md	heading	Quick Reference: PPP Process Steps	SKILL.md APPLIER steps 1-12 (same 12 steps)
+skills/cc-pseudocode-programming/checklists.md	heading	Warning Signs That PPP Would Help	dropped: symptom list (when to reach for the skill), not rules — the planner assigns the skill; four of eight symptoms survive in SKILL.md's intro + four questions (can't-name / mysterious / no-alternative / compile-debug loop), the other four (coded into a corner, lost train of thought, forgot a part, staring at screen) are intentionally dropped
+skills/cc-pseudocode-programming/checklists.md	heading	Minimum Viable PPP (Time-Constrained)	dropped: human-time bounds (banned by code-standards); its 4 checks are SKILL.md's four questions
+skills/cc-pseudocode-programming/checklists.md	heading	Red Flags	body items below
+skills/cc-pseudocode-programming/checklists.md	item	RF-1	DQ-1 + SKILL.md four questions
+skills/cc-pseudocode-programming/checklists.md	item	RF-2	SKILL.md intro (compile-debug loops) / UN-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-3	UN-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-4	DQ-1
+skills/cc-pseudocode-programming/checklists.md	item	RF-5	PQ-4
+skills/cc-pseudocode-programming/checklists.md	item	RF-6	IM-3
+skills/cc-pseudocode-programming/checklists.md	item	RF-7	IM-1
+skills/cc-pseudocode-programming/checklists.md	item	RF-8	IM-4
+skills/cc-pseudocode-programming/checklists.md	item	RF-9	DQ-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-10	DQ-3
+skills/cc-pseudocode-programming/checklists.md	item	RF-11	DQ-5 (new, carried verbatim)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Quick Reference: Which Checklist When?	dropped: routing table restating each section's "Use when" line; debugging rows → Skill(cc-debugging) handoff in SKILL.md
+skills/cc-refactoring-guidance/checklists.md	heading	Red Flags	body items below
+skills/cc-refactoring-guidance/checklists.md	item	RF-1	SR-1
+skills/cc-refactoring-guidance/checklists.md	item	RF-2	RP-5
+skills/cc-refactoring-guidance/checklists.md	item	RF-3	RP-3
+skills/cc-refactoring-guidance/checklists.md	item	RF-4	CS-7
+skills/cc-refactoring-guidance/checklists.md	item	RF-5	CS-1
+skills/cc-refactoring-guidance/checklists.md	item	RF-6	CS-9
+skills/cc-refactoring-guidance/checklists.md	item	RF-7	SR-7
+skills/cc-refactoring-guidance/checklists.md	item	RF-8	CS-3
+skills/cc-refactoring-guidance/checklists.md	item	RF-9	CS-6
+skills/cc-refactoring-guidance/checklists.md	item	RF-10	CS-11
+skills/cc-routine-and-class-design/checklists.md	heading	Red Flags	body items below
+skills/cc-routine-and-class-design/checklists.md	item	RF-1	CQ-3 / CQ-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-2	CQ-6
+skills/cc-routine-and-class-design/checklists.md	item	RF-3	CQ-7
+skills/cc-routine-and-class-design/checklists.md	item	RF-4	CQ-8
+skills/cc-routine-and-class-design/checklists.md	item	RF-5	RP-6
+skills/cc-routine-and-class-design/checklists.md	item	RF-6	RP-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-7	PP-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-8	PP-7
+skills/cc-routine-and-class-design/checklists.md	item	RF-9	CQ-9
+skills/cc-routine-and-class-design/checklists.md	item	RF-10	DP-1
+skills/cc-routine-and-class-design/checklists.md	item	RF-11	PP-9 (new, carried verbatim)
+skills/code-clarity-and-docs/checklists.md	heading	Red Flags	body items + SKILL.md § Red Flags (Code Clarity) table
+skills/code-clarity-and-docs/checklists.md	item	RF-1	CQ-3
+skills/code-clarity-and-docs/checklists.md	item	RF-2	SKILL.md Red Flags table
+skills/code-clarity-and-docs/checklists.md	item	RF-3	SKILL.md Red Flags table / NP-*
+skills/code-clarity-and-docs/checklists.md	item	RF-4	NM-1
+skills/code-clarity-and-docs/checklists.md	item	RF-5	IC-2 / IC-4
+skills/code-clarity-and-docs/checklists.md	item	RF-6	IC-4
+skills/code-clarity-and-docs/checklists.md	item	RF-7	PC-1
+skills/code-clarity-and-docs/checklists.md	item	RF-8	PC-2 / DD-5
+skills/code-clarity-and-docs/checklists.md	item	RF-9	RR-5
+skills/code-clarity-and-docs/checklists.md	item	RF-10	CL-2
+skills/code-clarity-and-docs/checklists.md	item	RF-11	DD-3
+skills/code-clarity-and-docs/checklists.md	item	RF-12	AI-7 / DD-6
+skills/code-clarity-and-docs/checklists.md	item	RF-13	CL-5
+skills/performance-optimization/checklists.md	heading	Red Flags	body items + SKILL.md § Red Flags table
+skills/performance-optimization/checklists.md	item	RF-1	M-2
+skills/performance-optimization/checklists.md	item	RF-2	M-3 / DT-8
+skills/performance-optimization/checklists.md	item	RF-3	AM-3 / AM-4
+skills/performance-optimization/checklists.md	item	RF-4	DT-4
+skills/performance-optimization/checklists.md	item	RF-5	SO-5 / SS-6
+skills/performance-optimization/checklists.md	item	RF-6	M-4 / AM-1
+skills/performance-optimization/checklists.md	item	RF-7	SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-8	SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-9	SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-10	SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-11	DT-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Emergency Minimum (Crisis Mode)	dropped: crisis block with a human-time bound (banned by code-standards); EM-1→loops LI-6, EM-2→loops LT-1, EM-3→code-clarity-and-docs naming items, EM-4→dropped (crisis-comment habit, not a control-flow rule)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	NEVER Skip (regardless of circumstances)	dropped: shouting block; NS-1→loops LI-6, NS-2→loops LT-1, NS-3→loops LX-4, NS-4→loops LT-3, NS-5→loops RC-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-1	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-2	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-3	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-4	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-1	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-2	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-3	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-4	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-5	see NEVER Skip heading row
+skills/cc-defensive-programming/checklists.md	heading	Critical (Crisis Triage)	renamed to `### Critical` (the crisis set was defined only by the deleted Priority Groups tail)

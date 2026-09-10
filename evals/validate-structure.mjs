@@ -12,6 +12,8 @@
 //   G. no stated item counts ("Total items: N", "All N items")
 //   H. every description: in skills/commands/agents is byte-identical to evals/descriptions-baseline.tsv
 //   I. evals/rules-registry.tsv: each (file, phrase) — the phrase must appear verbatim in that file (relocated rules keep a home)
+//   J. evals/inventory-baseline.tsv (extracted from `main` by evals/inventory.mjs — not written by the cutter): every checklist item ID
+//      and ##/### heading either still exists in the same file, or is accounted for in evals/inventory-dropped.tsv
 // Usage: node evals/validate-structure.mjs   (from repo root)
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative, dirname, basename } from 'node:path';
@@ -139,6 +141,25 @@ if (existsSync(join(ROOT, 'evals/rules-registry.tsv'))) {
     const [file, phrase] = line.split('\t');
     if (!text[file]) { fail('I', `rules-registry: file ${file} missing`); continue; }
     if (!text[file].includes(phrase)) fail('I', `rules-registry: ${file} no longer contains "${phrase}"`);
+  }
+}
+
+// J. pre-cut inventory — a dropped item or section the cutter never noticed fails here
+if (existsSync(join(ROOT, 'evals/inventory-baseline.tsv'))) {
+  const dropped = new Set();
+  if (existsSync(join(ROOT, 'evals/inventory-dropped.tsv')))
+    for (const line of readFileSync(join(ROOT, 'evals/inventory-dropped.tsv'), 'utf8').split('\n')) {
+      if (!line.trim() || line.startsWith('#')) continue;
+      const [file, kind, id] = line.split('\t'); dropped.add(`${file}\t${kind}\t${id}`);
+      if (!line.split('\t')[3]?.trim()) fail('J', `inventory-dropped: ${file} ${id} has no "carried by" note`);
+    }
+  for (const line of readFileSync(join(ROOT, 'evals/inventory-baseline.tsv'), 'utf8').split('\n')) {
+    if (!line.trim() || line.startsWith('#')) continue;
+    const [file, kind, id] = line.split('\t');
+    if (dropped.has(line)) { if (text[file] && (kind === 'item' ? new RegExp(`^- \\[ \\] ${id}:`, 'm') : new RegExp(`^#{2,3} ${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm')).test(text[file])) fail('J', `inventory-dropped lists ${file} ${id} but it still exists`); continue; }
+    if (!text[file]) { fail('J', `${file} (${kind} ${id}) was deleted without an inventory-dropped entry`); continue; }
+    const present = kind === 'item' ? new RegExp(`^- \\[ \\] ${id}:`, 'm').test(text[file]) : new RegExp(`^#{2,3} ${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm').test(text[file]);
+    if (!present) fail('J', `${file}: ${kind} "${id}" gone and not in inventory-dropped.tsv`);
   }
 }
 

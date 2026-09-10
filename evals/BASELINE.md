@@ -60,3 +60,9 @@ Descriptions are untouched by the lightening; these are re-run at the end as a r
 
 ## CHECKER eval harness check (evals/checker-eval, pre-trim skill, sonnet, with_skill ×2)
 9/9 expectations passed on both runs (all 7 planted violations reported, clean function not flagged, skill invoked). Cost $0.56. The A/B against the trimmed skill runs after Phase 4 with `old_skill` = a worktree of the pre-trim commit.
+
+## old_skill arm proof (iteration-2, after the eval prompt was neutralised to carry no output-shape instruction)
+`old_skill_path` = a `git worktree` of `main` at the pre-trim commit: accepted by the harness, skill invoked, 9/9 expectations. Cost $0.32. This is the comparator arm for the Phase 4 A/B.
+
+## inventory (validator check J)
+`evals/inventory.mjs main` extracted 1,696 checklist item IDs and section headings from the pre-cut tree into `evals/inventory-baseline.tsv`; every one must survive in place or be accounted for in `evals/inventory-dropped.tsv`.

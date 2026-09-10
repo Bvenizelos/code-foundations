@@ -3,7 +3,7 @@
   "evals": [
     {
       "id": "checker-planted-violations",
-      "prompt": "Use the cc-defensive-programming skill in CHECKER mode to audit order_service.py (load the skill before you start). Report every defensive-programming violation you find with its line number and which rule it breaks. Do not edit the file.",
+      "prompt": "Use the cc-defensive-programming skill in CHECKER mode to audit order_service.py (load the skill before you start). Do not edit the file.",
       "files": ["fixtures/order_service.py"],
       "expected_output": "A checker report that flags the empty except in load_config, the executable assertion in evict, the unvalidated external input in handle_create_order, the assertion used for runtime input validation, the shell string concatenation in export_invoice, the None-returning catch in fetch_price, and the stack trace leak in render_error — and does NOT flag compute_total.",
       "expectations": [

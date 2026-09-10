@@ -11,11 +11,6 @@ Subagent dispatch prompts used by the orchestrator (`commands/build.md`) when di
 | `§ REVIEW` | **Blocking** REVIEW — Full gate phases and security-sensitive phases at any gate |
 | `§ BATCH_REVIEW` | **Deferred** REVIEW — the primary review path for Standard and Minimal phases, covering the whole un-reviewed set in one dispatch |
 
-Keeping these here instead of inline in `build.md`:
-- Keeps the orchestrator's hot path lean
-- Lets templates evolve without touching orchestration logic
-- Makes the dispatch surface a single auditable file
-
 **Substitution rules (orchestrator):**
 - `[bracketed]` placeholders → phase-specific values. Each placeholder names its source (plan section, agent report, project config); conditional blocks (`[if plan phase has ...]`) are emitted only when the condition holds, with items pasted verbatim.
 - `## Additional Skills` blocks: for EACH skill assigned to the phase, emit one `Skill(<plugin:name>)` line — this plugin's own skills as `Skill(code-foundations:<name>)`, skills from other installed plugins as `Skill(<plugin>:<name>)`. All assigned skills are real, model-invocable skills; the build subagent invokes them via the Skill tool (an explicit `Skill(...)` line in the dispatch prompt invokes the skill even though subagents don't inherit the register). The Skill tool loads the SKILL.md body, and each skill self-loads its own checklists via `${CLAUDE_SKILL_DIR}` once invoked — so emit NO separate checklist `Read()` lines. Do not Read-inject SKILL.md text; that was the old workaround for non-invocable skills.
@@ -93,11 +88,6 @@ Agent tool:
 
     ## Output Files
     - Discovery + Design: .code-foundations/build/<plan-name>-phase-N-discovery.md
-
-    Match the discovery file's length to what this phase actually needs. It is
-    a working artifact for the implementation that follows it, not a deliverable:
-    record the files, the gaps, the DW mapping, and the design decisions, and
-    skip filler sections, restated plan text, and summaries of your own process.
 ```
 
 ---
@@ -158,7 +148,7 @@ Use for **blocking** REVIEW sub-phases — Full gate phases, and security-sensit
 
 **Debiasing rules (do not violate):** the reviewer must receive NO intent-framing. Do NOT include the plan's Context/problem statement, progress summaries ("Completed Phase…"), the discovery file, or any account of what the build agent did or intended. Requirements + files + commands only.
 
-**Security-sensitive (3-sample):** if the phase is marked `**Security-sensitive:** yes` in the plan, dispatch THREE independent copies of this prompt as three Agent calls **in a single message** (they run concurrently — independence is contextual, not temporal) on **fable**, and take the majority verdict. The copies are identical EXCEPT for the per-sample review path: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md`. Without this the three samples race and overwrite a single review file. Each sample writes its own scratch artifacts (coverage output, temp files) under a sample-unique directory and runs no mutating commands (no `lint --fix`, no dependency installs). If the suite uses shared mutable resources (DB, ports, docker services, on-disk fixtures), run the three samples sequentially instead. For a non-sampled (single) review, drop the `-sample-K` suffix (review → `<plan-name>-phase-N-review.md`).
+**Security-sensitive (3-sample):** the procedure (three identical Agent calls on fable in one message, majority verdict, sequential fallback for shared mutable resources) is in `commands/build.md` → Sub-Phase N.2: REVIEW. The template's part: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md` — otherwise the samples race and overwrite one file — and each sample writes its scratch artifacts under a sample-unique directory and runs no mutating commands (no `lint --fix`, no dependency installs). A single (non-sampled) review drops the `-sample-K` suffix.
 
 ```
 Agent tool:
@@ -214,18 +204,6 @@ Agent tool:
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
     [repeat the Skill() line for each skill; also include skills from BUILD's "Skills Loaded" output not already listed]
-
-    ## Reporting bar
-    Report every issue you find, including ones you are uncertain about or
-    consider low-severity, each with a confidence level and an estimated
-    severity. Do not filter for importance at this stage — the verdict rules
-    are the filter, and they sort demonstrated defects (FAIL) from everything
-    else (Notes). It is better to surface a finding that lands in Notes than
-    to silently drop a real bug.
-
-    Match the review file's length to the evidence: cover every requirement
-    and every finding, and skip filler sections, restated requirements, and
-    summaries of what you are about to say.
 
     ## Output
     Write review to: [review path — `.code-foundations/build/<plan-name>-phase-N-review.md`,
@@ -304,15 +282,6 @@ Agent tool:
     ## Additional Skills
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name -- this plugin's own skills as code-foundations:<name>])
-
-    ## Reporting bar
-    Report every issue you find, including ones you are uncertain about or
-    consider low-severity, each with a confidence level and an estimated
-    severity. Do not filter for importance at this stage — the verdict rules
-    are the filter. Attribute each finding to the phase whose files it lives in.
-
-    Match the review file's length to the evidence: cover every requirement
-    and every finding, and skip filler sections and restated requirements.
 
     ## Output
     Write review to: .code-foundations/build/<plan-name>-batch-phases-X-Y-review.md

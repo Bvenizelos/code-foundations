@@ -73,12 +73,7 @@ Before writing any implementation (in Full mode, discovery's Files Found / Curre
 
 ## Mode Detection
 
-Check the dispatch prompt for mode:
-
-| Prompt says | Mode | What to do |
-|------------|------|-----------|
-| "minimal gate" | **Minimal** | Skip Phase 1, go directly to Phase 2 (Implementation) |
-| Everything else | **Full** | Run all phases below |
+A dispatch prompt that says "minimal gate" runs in **Minimal** mode: skip Phase 1 and go straight to Phase 2 (Implementation). Everything else is **Full** mode: run both phases.
 
 ---
 
@@ -201,8 +196,6 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 
 ## Output
 
-**Full mode** (discovery + design + implementation):
-
 ```markdown
 ## BUILD Complete
 
@@ -219,7 +212,7 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 - Files changed: [list with what was done]
 
 ### Deviations from Design
-[List any places where implementation differs from discovery design notes and WHY, or "None"]
+[Where the implementation differs from the discovery design notes or from an existing codebase pattern, and WHY — or "None"]
 
 ### Skills Loaded
 [List skills loaded, or "None assigned"]
@@ -230,28 +223,6 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 ### Status: DONE | SKIP | UPDATE_PLAN | BLOCKED
 ```
 
-**Minimal mode** (no discovery — Discovery+Design fields collapse, no discovery artifact):
-
-```markdown
-## BUILD Complete
-
-### Discovery + Design
-- Recommendation: N/A (minimal gate — no discovery)
-- Code standards: [applied | not found]
-
-### Implementation
-- DW items covered: [count/total]
-- Tests written: [count]
-- All tests PASSING: YES/NO
-- Files changed: [list with what was done]
-
-### Skills Loaded
-[List skills loaded, or "None assigned"]
-
-### Artifacts
-- none (minimal gate)
-
-### Status: DONE | UPDATE_PLAN | BLOCKED
-```
+**Minimal mode** uses the same template with these substitutions: Recommendation reads `N/A (minimal gate — no discovery)`; Files found and Gaps identified are omitted; Deviations from Design is kept only if you diverged from an existing codebase pattern (Pattern Reuse), otherwise omitted; Artifacts reads `none (minimal gate)`; Status omits SKIP — SKIP is discovery's recommendation and Minimal mode has no discovery, so Minimal returns DONE | UPDATE_PLAN | BLOCKED.
 
 **Status DONE requires ALL DW items COVERED, ALL tests PASSING, and test anchoring intact.**

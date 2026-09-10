@@ -96,3 +96,23 @@ references/cc-foundations.md	without using "and"
 references/cc-foundations.md	Fan-out
 skills/cc-routine-and-class-design/SKILL.md	cc-foundations.md
 skills/cc-refactoring-guidance/SKILL.md	cc-foundations.md
+# --- Phase 5
+agents/build-agent.md	SKIP is discovery
+agents/build-agent.md	"minimal gate"
+agents/post-gate-agent.md	grouped by criterion rather than one row per checklist ID
+agents/post-gate-agent.md	does not govern this table
+agents/post-gate-agent.md	Batch reviews repeat the body per phase
+references/dispatch-templates.md	-sample-K
+references/dispatch-templates.md	no mutating commands
+references/dispatch-templates.md	Independently verify the implementation
+references/dispatch-templates.md	Cross-Phase Coherence
+# --- Phase 5: rules that now live only in post-gate-agent (removed from the prompts)
+agents/post-gate-agent.md	confidence level and an estimated severity
+agents/post-gate-agent.md	Attribute every finding to the phase whose files it lives in
+agents/post-gate-agent.md	not on the batch's overall feel
+agents/post-gate-agent.md	closing formality
+agents/post-gate-agent.md	no summaries of what you are about to say
+agents/build-agent.md	Minimal returns DONE | UPDATE_PLAN | BLOCKED
+references/dispatch-templates.md	no dependency installs
+agents/build-agent.md	next reader is you, ten minutes from now
+agents/post-gate-agent.md	cover every requirement and every finding

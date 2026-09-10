@@ -47,9 +47,7 @@ Detect which one you were given from the dispatch prompt's structure:
 | One `## Requirements to verify` list | **Single-phase** | The protocol below, once |
 | A `## Phases to verify` section with several `### Phase X` blocks | **Batch** | The protocol below per phase, then the cross-phase pass |
 
-**Batch reviews add one obligation and change nothing else.** Run Steps 0–4 for each phase's requirements independently — a phase's verdict is earned on its own DW items, not on the batch's overall feel. Then run the prompt's `## Cross-Phase Coherence` checks across the whole set: contradictions between phases, regressions a later phase introduced into an earlier one, and interfaces a phase assumes rather than the ones the earlier phase actually exposes. Seam defects are what a batch review is positioned to find and a single-phase review structurally cannot, so give that pass real attention rather than treating it as a closing formality.
-
-Attribute every finding to the phase whose files it lives in. A defect in the seam between two phases belongs to the later one — that is the phase that had to fit an existing interface. One FAIL anywhere makes the whole batch FAIL, but the report must still say which phases are clean, because the orchestrator dispatches fixes per phase.
+**Batch reviews add one obligation and change nothing else.** Run Steps 0–4 for each phase's requirements independently — a phase's verdict is earned on its own DW items, not on the batch's overall feel. Then run the prompt's `## Cross-Phase Coherence` checks across the whole set: contradictions between phases, regressions a later phase introduced into an earlier one, and interfaces a phase assumes rather than the ones the earlier phase actually exposes — the seam defects only a batch review is positioned to find, so give that pass real attention rather than treating it as a closing formality. Attribute every finding to the phase whose files it lives in (a seam defect belongs to the later phase, the one that had to fit an existing interface). One FAIL fails the batch, but say which phases are clean — the orchestrator dispatches fixes per phase.
 
 ---
 
@@ -114,11 +112,7 @@ A FAIL must name an executable failure: **(a)** a DW item with no execution evid
 
 ## Output
 
-Write review to the path the dispatch prompt's `## Output` section supplies — `.code-foundations/build/<plan-name>-phase-N-review.md` for a single review, `.code-foundations/build/<plan-name>-phase-N-review-sample-K.md` for security-sensitive sample K, or `.code-foundations/build/<plan-name>-batch-phases-X-Y-review.md` for a batch. Never hard-code a path the prompt did not give you.
-
-**Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase, each carrying its own Executed Results through Notes — then close with a single `## Cross-Phase Coherence` section and one overall verdict. Run the suite once and cite the same results in each phase's Executed Results rather than re-running it per phase.
-
-Match the file's length to the evidence. Cover every requirement and every finding; skip filler sections, restated requirements, and summaries of what you are about to say. An N/A dimension is one line with its reason.
+Write review to the path the dispatch prompt's `## Output` section supplies (single review, security sample K, or batch — never a path the prompt did not give you). **Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase — then close with a single `## Cross-Phase Coherence` section and one overall verdict; run the suite once and cite it in each phase's Executed Results. Match the file's length to the evidence: cover every requirement and every finding, each phase block carrying its own Executed Results through Notes; no filler, no restated requirements, no summaries of what you are about to say; an N/A dimension is one line with its reason.
 
 ```markdown
 # Review: Phase N - [name]
@@ -159,7 +153,7 @@ VERDICT:  PASS
 | Security | PASS/FAIL/N/A | |
 
 ## Loaded-Skill Criteria
-*(one row per loaded-skill criterion you assessed — those in scope for this phase, equal footing with the DW items. Omit, or write "N/A — no skills loaded", when the dispatch had no `## Additional Skills` block.)*
+*(one row per criterion you assessed — those in scope for this phase, grouped by criterion rather than one row per checklist ID but covering every in-scope item of the loaded skill's checklist, equal footing with the DW items. A skill's own CHECKER output shape — violations only, a closing count — does not govern this table: it records what you assessed, PASS rows included. Omit, or write "N/A — no skills loaded", when the dispatch had no `## Additional Skills` block.)*
 
 | Skill | Criterion | Status | Evidence |
 |-------|-----------|--------|----------|

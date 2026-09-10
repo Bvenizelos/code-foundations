@@ -367,3 +367,5 @@ references/pattern-reuse-gate.md	heading	Example 3: Fixing a Bug	dropped: exampl
 references/pattern-reuse-gate.md	heading	Integration Points	dropped: the four call sites now state the rule inline (cc-defensive-programming APPLIER, cc-refactoring-guidance § Before refactoring, planning 1a, commands/debug.md)
 references/pattern-reuse-gate.md	heading	Workflow Position	dropped: ASCII "YOU ARE HERE" diagram
 references/cc-foundations.md	note	Debugging Performance figures	the ~50%-of-fixes-wrong figure moved to cc-debugging Step 6; the 20:1 debugger-variation figure is dropped (a motivational statistic, not a rule)
+# --- Phase 5: agents + dispatch templates
+agents/build-agent.md	heading	Status: DONE | UPDATE_PLAN | BLOCKED	merged into the single Output template ("SKIP is a Full-mode status only — Minimal returns DONE | UPDATE_PLAN | BLOCKED")

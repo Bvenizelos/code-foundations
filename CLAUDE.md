@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Code-foundations is a Claude Code plugin providing software engineering skills based on *Code Complete* (McConnell) and *A Philosophy of Software Design* (Ousterhout). It includes a build workflow with gated phases (BUILD, REVIEW, orchestrator commit) and an experimental code review system.
+Code-foundations is a Claude Code plugin providing software engineering skills based on *Code Complete* (McConnell) and *A Philosophy of Software Design* (Ousterhout). It includes a build workflow with gated phases (BUILD, REVIEW, orchestrator commit).
 
 ## Architecture
 
@@ -20,11 +20,12 @@ Code-foundations is a Claude Code plugin providing software engineering skills b
 
 ### Directory Structure
 
-- `skills/` - Individual skill definitions (SKILL.md; checklists.md where build's checklist-resolution step consumes it)
+- `skills/` - Individual skill definitions (SKILL.md; checklists.md where present — self-loaded by the skill when invoked)
 - `commands/` - User-invocable commands (slash commands)
 - `agents/` - Agent templates (build-agent, post-gate-agent)
 - `references/` - Shared reference materials (cc-foundations.md, dispatch-templates.md, etc.)
 - `docs/` - `code-standards.md` (this repo's own authoring standards, consumed by the code-standards skill)
+- `evals/` - The regression suite every doctrine edit is checked against: `node evals/validate-structure.mjs` (orphans, paths, anchors, frontmatter, descriptions, the rules registry, the pre-cut inventory), `evals/wordcount.sh`, `evals/dispatch-load.sh`, the CHECKER A/B eval, and the build-workflow smoke fixture. See `evals/README.md`
 
 ### Development Workflows
 
@@ -162,7 +163,7 @@ phase passes all gates including REVIEW PASS (Full gate).
 ```
 skills/<skill-name>/
 ├── SKILL.md         # Main skill definition with YAML frontmatter (required)
-└── checklists.md    # Checklists loaded by build's checklist-resolution step (where present)
+└── checklists.md    # The skill's ID'd checklist, self-loaded by the skill when invoked (where present)
 ```
 
 Some skills have a `references/` subdirectory (e.g. `gof-design-patterns/references/` for the
@@ -195,7 +196,7 @@ shared vocabulary (cohesion spectrum, coupling criteria, key metrics); the rest 
 ### Plugin Structure
 
 - `.claude-plugin/plugin.json` - Plugin manifest with name, version, description
-- Version follows semver (e.g., 4.1.0)
+- Version follows semver (e.g., 6.4.0)
 
 ### Marketplace
 

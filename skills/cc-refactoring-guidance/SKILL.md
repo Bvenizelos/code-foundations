@@ -18,7 +18,7 @@ Refactoring is behavior-preserving change to *working* code. Three rules govern 
 | First-attempt success | <50% for any change | Yourdon 1986b |
 | Review effect on 1-line changes | 55% → 2% error rate | Freedman and Weinberg 1982 |
 
-Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`. The full 40-item refactoring checklist: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`.
+Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`. The refactoring checklist: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`.
 
 **Definitions:**
 - **small** = ONE structural change (one rename, one extract, one inline). If you describe it with "and", it's not small.

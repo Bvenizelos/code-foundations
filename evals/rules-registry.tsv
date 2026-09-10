@@ -178,3 +178,7 @@ commands/build.md	never invent a command
 references/dispatch-templates.md	fable > opus > sonnet > haiku
 commands/plan.md	omitting it is allowed
 references/plan-integration.md	references/plan-schema.md
+# --- Phase 10
+docs/code-standards.md	no `## Priority Groups`
+docs/code-standards.md	node evals/validate-structure.mjs
+CLAUDE.md	evals/validate-structure.mjs

@@ -87,3 +87,110 @@ Descriptions are byte-identical (validator check H); differences are probe noise
 
 ## Build-workflow smoke #2 (after the Phase 9 diet of build.md, fresh Explore agent, key hidden)
 Resolution table, tasks, batch predictions, VERIFY decision: every value matched expected.md again. 22 ambiguities reported; 4 introduced by the rewrite fixed in Phase 9 (header lines always printed; bare `none` goes in Notes; Minimal row "same batch" → "next batch REVIEW"; the Invariant now defers to Wave Derivation's full co-scheduling rule). The other 18 are pre-existing structural gaps recorded for the owner (plan outside .code-foundations/plans, `<plan-name>` never defined, worktree-gate vs wave-worktree roots, `fable` never defined in build.md, no typecheck/lint on a project that has none, manual items already covered by the suite, batch task naming, File-scope base directory, etc.).
+
+# AFTER — feat/lighten final (Phase 10)
+
+## Word counts (evals/wordcount.sh — changed files)
+```
+  before    after   delta  file
+    1831     2026    +195  agents/build-agent.md
+    2025     2174    +149  agents/post-gate-agent.md
+    1542     1622     +80  CLAUDE.md
+    5118     3087   -2031  commands/build.md
+     225      244     +19  commands/debug.md
+    2135     1776    -359  commands/plan.md
+    1073     1237    +164  docs/code-standards.md
+    1006     1026     +20  README.md
+     387        0    -387  references/aposd-foundations.md
+     395        0    -395  references/assessment-framework.md
+     883      390    -493  references/cc-foundations.md
+     701      743     +42  references/commit-format.md
+    2580     2225    -355  references/dispatch-templates.md
+     993     1065     +72  references/gate-failure-protocol.md
+     682        0    -682  references/pattern-reuse-gate.md
+     913      805    -108  references/plan-integration.md
+       0     1151   +1151  references/plan-schema.md
+     416        0    -416  references/triage-tags.md
+     434      555    +121  references/trust-report.md
+     738      723     -15  skills/aposd-designing-deep-modules/SKILL.md
+     647      669     +22  skills/aposd-reviewing-module-design/checklists.md
+     965     1025     +60  skills/aposd-reviewing-module-design/SKILL.md
+     711      605    -106  skills/aposd-simplifying-complexity/checklists.md
+    1316     1359     +43  skills/aposd-simplifying-complexity/SKILL.md
+     538        0    -538  skills/aposd-verifying-correctness/checklists.md
+     823      859     +36  skills/aposd-verifying-correctness/SKILL.md
+     655      645     -10  skills/ca-architecture-boundaries/SKILL.md
+     747      568    -179  skills/cc-control-flow-quality/checklists/conditionals-and-structure.md
+    1040      811    -229  skills/cc-control-flow-quality/checklists/loops-and-advanced.md
+     960      937     -23  skills/cc-control-flow-quality/SKILL.md
+    1447     1209    -238  skills/cc-debugging/checklists.md
+     793      773     -20  skills/cc-debugging/SKILL.md
+    1139      861    -278  skills/cc-defensive-programming/checklists.md
+    1072     1018     -54  skills/cc-defensive-programming/SKILL.md
+     999      386    -613  skills/cc-pseudocode-programming/checklists.md
+     717      619     -98  skills/cc-pseudocode-programming/SKILL.md
+       0     1286   +1286  skills/cc-quality-practices/checklists.md
+    1809        0   -1809  skills/cc-quality-practices/checklists/debugging.md
+    1393        0   -1393  skills/cc-quality-practices/checklists/qa-and-testing.md
+     551      579     +28  skills/cc-quality-practices/SKILL.md
+     757      600    -157  skills/cc-refactoring-guidance/checklists.md
+     804      788     -16  skills/cc-refactoring-guidance/SKILL.md
+    1109      922    -187  skills/cc-routine-and-class-design/checklists.md
+    1076     1051     -25  skills/cc-routine-and-class-design/SKILL.md
+    1157      999    -158  skills/code-clarity-and-docs/checklists.md
+    1240     1210     -30  skills/code-clarity-and-docs/SKILL.md
+     772      743     -29  skills/code-standards/SKILL.md
+    1235     1205     -30  skills/performance-optimization/checklists.md
+    1075     1041     -34  skills/performance-optimization/SKILL.md
+    4714     3789    -925  skills/planning/SKILL.md
+    1030     1010     -20  skills/welc-legacy-code/SKILL.md
+   91464    82512   -8952  TOTAL (-9.8%)
+```
+
+## Dispatch-relevant set (core minus skills/gof-design-patterns/references/**)
+baseline 63901 → now 54949 (-14.0%)
+
+## Dispatch load
+```
+  2026  agents/build-agent.md
+   473  references/dispatch-templates.md (§ FULL_BUILD only)
+  1018  skills/cc-defensive-programming/SKILL.md
+   861  skills/cc-defensive-programming/checklists.md
+  1051  skills/cc-routine-and-class-design/SKILL.md
+   390  references/cc-foundations.md
+   922  skills/cc-routine-and-class-design/checklists.md
+------
+  6741  TOTAL loaded words for BUILD dispatch with skills: cc-defensive-programming cc-routine-and-class-design
+  4481  TOTAL loaded words for BUILD dispatch with skills: cc-debugging
+```
+
+## Per-section: commands/build.md (main → HEAD)
+| section | main | HEAD | delta |
+|---|---:|---:|---:|
+| (preamble) | 58 | 58 | +0 |
+| Invariants | 224 | 143 | -81 |
+| Phase 1: LOAD | 468 | 281 | -187 |
+| Phase 2: SETUP | 1961 | 1108 | -853 |
+| Phase 3: EXECUTE | 1831 | 1080 | -751 |
+| Phase 4: VERIFY | 379 | 320 | -59 |
+| Phase 5: REPORT | 126 | 57 | -69 |
+| Error Handling | 32 | 18 | -14 |
+| Integration with /code-foundations:plan | 39 | 22 | -17 |
+| **total** | **5118** | **3087** | **-2031** |
+
+## Per-section: references/dispatch-templates.md (main → HEAD)
+| section | main | HEAD | delta |
+|---|---:|---:|---:|
+| (preamble) | 38 | 38 | +0 |
+| Contents | 407 | 291 | -116 |
+| § FULL_BUILD | 502 | 473 | -29 |
+| § MINIMAL_BUILD | 272 | 319 | +47 |
+| § REVIEW | 714 | 576 | -138 |
+| § BATCH_REVIEW | 647 | 528 | -119 |
+| **total** | **2580** | **2225** | **-355** |
+
+## Final gates
+- validate_skill: 19/19 valid, 0 errors (gof warnings pre-existing)
+- validate-structure.mjs: OK — 77 files, 19 skills, 0 problems
+- descriptions byte-identical (check H); rules registry 165 rows; inventory-dropped 400 rows accounting for the pre-cut inventory
+- CHECKER A/B: not re-run after Phase 4 — the skill directories are unchanged since (Phases 5–9 touched agents, commands, references, docs only)

@@ -14,6 +14,7 @@ BUILD's failure status is **BLOCKED**; REVIEW's is **FAIL**. Both route here, bo
 | BUILD | BLOCKED — design/implementation obstacle | Re-dispatch build agent with the obstacle named |
 | REVIEW (blocking) | FAIL — findings in the review file | Re-dispatch the **build agent** with a `## Review Findings to Fix` block pasted from the review's Issues section (the orchestrator never edits code itself), then re-dispatch REVIEW |
 | REVIEW (batch) | FAIL — findings against committed phases | See Batch Failures below — the fix goes forward, not back |
+| VERIFY | suite red on integrated HEAD | Attribute each failing test to the phase whose files it exercises; re-dispatch that phase's build agent with the failures; commit the fix forward; review it the way that phase is reviewed (blocking REVIEW for Full / security-sensitive, the un-reviewed set for Standard / Minimal). Same cap: a phase's attempts at its own gate and at VERIFY count together |
 
 **The failed task stays `in_progress` until it passes.** It is never marked completed on FAIL/BLOCKED, and the next sub-phase never starts until the current task completes — `blockedBy` enforcement prevents skipping.
 
@@ -57,7 +58,7 @@ A batch REVIEW runs against code that is already committed, so there is no gate 
 2. **Fix serially in plan order, one dispatch per affected phase.** Re-dispatch that phase's build agent (its plan `**Model:**`) with a `## Review Findings to Fix` block carrying **only that phase's** findings. The orchestrator never edits code itself. Serial, not parallel: batch findings frequently interact, and a fix for phase X can resolve or move a finding in phase Y.
 3. **Commit each fix forward** — `fix(phase-N): address batch review findings`, with the standard trailers and `Review: batch fail->pass (attempt K)`. Append a dated fix line to that phase's execution-log entry rather than editing the original entry.
 4. **Re-dispatch the batch review over the entire original set**, not just the fixed phases. A fix is itself un-reviewed code, and the covered phases still have to cohere with each other afterward.
-5. **The un-reviewed set stays non-empty until a batch PASS clears it.** No Full phase opens and VERIFY does not start while it holds anything.
+5. **The un-reviewed set stays non-empty until a batch PASS clears it.** No Full phase opens, and VERIFY does not proceed past its trailing-batch step, while it holds anything.
 
 **Retry cap:** 3 batch attempts, same as any other gate. Count the batch as a unit — three failing batch rounds, not three per phase. On the 3rd, stop and escalate with the standard template, adding one line naming which phases keep recurring in the findings.
 

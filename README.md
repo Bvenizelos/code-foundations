@@ -106,8 +106,8 @@ User: "/code-foundations:build .code-foundations/plans/2026-01-30-notifications.
   ┌────────────────────────────────────────────────────────────┐
   │  BATCH REVIEW  Post-gate-agent over every un-reviewed      │
   │                phase at once + cross-phase coherence       │
-  │       ⛔ Also fires before any Full phase and before the   │
-  │          final VERIFY — nothing ships unreviewed           │
+  │       ⛔ Also fires before any Full phase, and at VERIFY   │
+  │          if anything is left — nothing ships unreviewed    │
   └────────────────────────────────────────────────────────────┘
 ```
 
@@ -117,9 +117,9 @@ User: "/code-foundations:build .code-foundations/plans/2026-01-30-notifications.
 |-------|----------|-------------------|
 | BUILD | Baseline discipline (agent definition) + per-phase skills | DW→test traceability, stub → implement → validate, test anchoring, scope clamp, plus assigned skill checklists |
 | REVIEW | Debiased review protocol (agent definition) + per-phase skills | Execute-first verification, per-requirement evidence + trace, anti-overcorrection verdict |
-| VERIFY | `performance-optimization`, `cc-refactoring-guidance` | Performance regressions, refactoring opportunities, build + tests + lint |
+| VERIFY | — (no skills) | Trailing batch REVIEW over any un-reviewed phases, one suite (tests + typecheck + lint) on integrated HEAD, Test Plan items the suite doesn't cover |
 
-Gate policy is adaptive, and what it adapts is review *timing* — every phase is reviewed. Full (BUILD + blocking REVIEW, always runs alone) and security-sensitive phases (3-sample majority vote on fable) hold their commit until the reviewer returns PASS. Standard and Minimal phases commit on a green suite and are covered by a **batch REVIEW** that fires every `Review cadence` phases (default 3), before any Full phase, and once before the final VERIFY. Batching costs a window of un-reviewed HEAD and buys reviewer context: seeing several phases together surfaces cross-phase incoherence that isolated reviews structurally cannot. A batch FAIL is fixed forward against the committed code.
+Gate policy is adaptive, and what it adapts is review *timing* — every phase is reviewed. Full (BUILD + blocking REVIEW, always runs alone) and security-sensitive phases (3-sample majority vote on fable) hold their commit until the reviewer returns PASS. Standard and Minimal phases commit on a green suite and are covered by a **batch REVIEW** that fires every `Review cadence` phases (default 3), before any Full phase, and at VERIFY if anything is still un-reviewed. Batching costs a window of un-reviewed HEAD and buys reviewer context: seeing several phases together surfaces cross-phase incoherence that isolated reviews structurally cannot. A batch FAIL is fixed forward against the committed code.
 
 Skills assigned per phase during plan's SAVE step — gates load only those skills; each agent carries its own protocol. Independent Standard/Minimal phases (no dependency, disjoint `File scope`) build in parallel waves, each in its own worktree, integrated by cherry-pick in plan order.
 

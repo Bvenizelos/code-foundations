@@ -19,7 +19,7 @@ The two instructions above are not in tension. Reporting is wide; failing is nar
 
 ## First — Load Phase Skills
 
-**If the dispatch prompt includes `## Additional Skills`:** invoke EVERY `Skill(...)` line in that section, via the Skill tool, before reviewing. Each invoked skill carries domain criteria — a checklist where it defines one, its inline guidance otherwise. **A loaded skill's criteria are acceptance criteria for this review, on equal footing with the Done-When items**: the skill was assigned because its dimension is in scope for this phase, so a *demonstrated* violation of its criteria is a FAIL, not a Note — "no Done-When item asked for it" does not excuse it, because the skill is the ask. Apply the criteria in Step 4 and record each assessed criterion in the review output's **Loaded-Skill Criteria** section. (Criteria that are matters of degree or taste rather than demonstrable defects stay Notes — see Anti-Overcorrection; the demonstration bar in Step 4 still governs every FAIL.)
+**If the dispatch prompt includes `## Additional Skills`:** invoke EVERY `Skill(...)` line in that section, via the Skill tool, before reviewing. Each invoked skill carries domain criteria — a checklist where it defines one, its inline guidance otherwise. **A loaded skill's criteria are acceptance criteria for this review, on equal footing with the Done-When items**: the skill was assigned because its dimension is in scope for this phase, so a *demonstrated* violation of its criteria is a FAIL, not a Note — "no Done-When item asked for it" does not excuse it, because the skill is the ask. Apply the criteria in Step 4 and record each assessed criterion in the review output's **Loaded-Skill Criteria** section. (Criteria that are matters of degree or taste rather than demonstrable defects stay Notes — see Anti-Overcorrection; the demonstration bar in Step 4 governs every FAIL except the two named absences, (a) missing execution evidence and (f) a coverage-level gap.)
 
 **If there is no `## Additional Skills` section:** this protocol is sufficient. Do not load skills on your own initiative.
 
@@ -84,7 +84,7 @@ Every DW item must be *covered* by execution evidence from Step 0. Coverage mean
 - **an automated test** that ran in Step 0 (test names reference DW-IDs, e.g. `test_DW_1_1_creates_user`) — the default and preferred form; or
 - **recorded observed behavior** — but ONLY for a DW item that no automated test can exercise (e.g. a desk-checkable spec assertion). Record what you ran/walked and what you observed.
 
-**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Verify coverage matches the dispatch prompt's Test Coverage level.
+**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Then verify coverage against the dispatch prompt's `## Test Coverage Level` (the prompt carries the level's definition): a gap against that level — a new or changed routine in a listed implementation file with no unit test under `100%`, a named layer left untested under `Targeted` — is a FAIL, not a note (`Per-phase` and `None` add nothing beyond the per-DW rule).
 
 ### Step 3 — Dead Code
 
@@ -106,7 +106,7 @@ Do NOT FAIL for:
 - stylistic or "could be better" design opinions
 - missing defensive code no requirement asked for — **unless it violates a loaded skill's criterion** (the skill is the requirement; this exclusion covers only undemonstrated "could add validation" suggestions, never a demonstrated violation of a loaded skill's criteria)
 
-A FAIL must name an executable failure: **(a)** a DW item with no execution evidence, **(b)** a test that fails when run, **(c)** a defect demonstrated via TRACE, **(d)** a prompt-listed edge case the implementation does not handle, or **(e)** a demonstrated violation of a loaded skill's criterion. Design/clarity observations and *unlisted* edge cases go under **Notes (non-blocking)**.
+A FAIL must name an executable failure or a named absence: **(a)** a DW item with no execution evidence, **(b)** a test that fails when run, **(c)** a defect demonstrated via TRACE, **(d)** a prompt-listed edge case the implementation does not handle, **(e)** a demonstrated violation of a loaded skill's criterion, or **(f)** a gap against the prompt's Test Coverage Level, named as the file and routine that lack the required test. Design/clarity observations and *unlisted* edge cases go under **Notes (non-blocking)**.
 
 ---
 
@@ -136,9 +136,8 @@ VERDICT:  PASS
 **All requirements met:** YES / NO
 
 ## Test-DW Coverage
-- [x] All DW items have corresponding tests (ran in Step 0)
-- [x] Test coverage matches the stated level
-[gaps if any]
+- [ ] All DW items have corresponding tests (ran in Step 0)
+- [ ] Test coverage matches the stated level — [level]; gaps: [file:routine with no required test, or "none"]
 
 ## Dead Code
 [FAIL findings or "None found"; minor findings under Notes]
@@ -175,6 +174,7 @@ VERDICT:  PASS
 
 - ANY DW item without execution evidence → FAIL
 - ANY DW item with neither an automated test nor recorded observed behavior (per Step 2) → FAIL
+- ANY gap against the dispatch prompt's Test Coverage Level (per Step 2) → FAIL
 - ANY test that fails when run → FAIL
 - ANY correctness defect demonstrated via TRACE or a test → FAIL
 - ANY demonstrated violation of a loaded skill's criterion → FAIL, even if no Done-When item named it

@@ -82,7 +82,8 @@ Three-stage pattern for feature development:
     opus only as explicit override); REVIEW one tier below BUILD (floored at sonnet — never haiku), security REVIEW on fable
   → Per-phase commits: after REVIEW passes (Full, security-sensitive) or on a green suite
     (Standard, Minimal — review deferred to a batch every `Review cadence` phases)
-  → Final verification + report
+  → VERIFY: trailing batch REVIEW if anything is un-reviewed, one suite on integrated HEAD (delta rule),
+    Test Plan items the suite doesn't cover, then the trust report
 ```
 
 **When to use each:**
@@ -103,7 +104,7 @@ BUILD:   baseline discipline (DW→test traceability, stub → implement → val
 REVIEW:  debiased review protocol (execute-first, per-DW evidence + trace, anti-overcorrection)
          Blocking for Full gates and security-sensitive phases (3-sample majority vote);
          deferred into a batch REVIEW for Standard and Minimal, which fires every N phases
-         (Review cadence, default 3), before any Full phase, and once before VERIFY
+         (Review cadence, default 3), before any Full phase, and at VERIFY if anything is un-reviewed
 COMMIT:  Orchestrator commits directly — after REVIEW passes for blocking phases,
          on a green suite for deferred ones
 ```
@@ -118,8 +119,8 @@ forces an immediate 3-sample REVIEW at any gate — never deferred.
 
 **Review cadence:** the plan header carries `**Review cadence:** N` (default 3, clamped to 1–5).
 Standard and Minimal phases commit on a green suite and join an un-reviewed set; a batch REVIEW
-covers the whole set at once when N accumulate, before any Full phase opens, and once before
-VERIFY. Batch REVIEW runs against committed code, so a FAIL is fixed forward (a `fix(phase-N)`
+covers the whole set at once when N accumulate, before any Full phase opens, and at VERIFY if
+anything is still un-reviewed. Batch REVIEW runs against committed code, so a FAIL is fixed forward (a `fix(phase-N)`
 commit answering the findings, then a re-run over the whole set) rather than gating a commit —
 see `references/gate-failure-protocol.md` → Batch Failures. Reviewing several phases together is
 also what buys the cross-phase coherence check that isolated per-phase reviews can't produce.

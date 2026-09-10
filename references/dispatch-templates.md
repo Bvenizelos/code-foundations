@@ -63,6 +63,14 @@ Agent tool:
     - [ ] DW-N.2: [done-when item 2]
     - [ ] DW-N.X: [done-when item N...]
 
+    ## Test Coverage Level
+    [paste the plan's level with its definition — 100%: every implementation file listed for this phase has unit tests for its new or
+    changed routines, plus the integration tests the plan's Test Plan names; Targeted:
+    <the layers the user named> are tested; Per-phase: whatever this phase's Done-when
+    items and Edge cases require — the per-DW rule, nothing more; None: no requirement
+    beyond the per-DW evidence.
+    The reviewer fails a gap against 100% or Targeted.]
+
     [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
     Invoke EVERY Skill() below, in order, BEFORE starting work:
@@ -135,6 +143,14 @@ Agent tool:
     - [ ] DW-N.2: [done-when item 2]
     - [ ] DW-N.X: [done-when item N...]
 
+    ## Test Coverage Level
+    [paste the plan's level with its definition — 100%: every implementation file listed for this phase has unit tests for its new or
+    changed routines, plus the integration tests the plan's Test Plan names; Targeted:
+    <the layers the user named> are tested; Per-phase: whatever this phase's Done-when
+    items and Edge cases require — the per-DW rule, nothing more; None: no requirement
+    beyond the per-DW evidence.
+    The reviewer fails a gap against 100% or Targeted.]
+
     ## Inputs
     - Plan file: .code-foundations/plans/<plan-name>.md
     - Phase: N - [name]
@@ -146,7 +162,7 @@ Agent tool:
 
 Use for **blocking** REVIEW sub-phases — Full gate phases, and security-sensitive phases at any gate. Standard and Minimal phases go through `§ BATCH_REVIEW` instead. Always uses `code-foundations:post-gate-agent`.
 
-**Debiasing rules (do not violate):** the reviewer must receive NO intent-framing. Do NOT include the plan's Context/problem statement, progress summaries ("Completed Phase…"), the discovery file, or any account of what the build agent did or intended. Requirements + files + commands only.
+**Debiasing rules (do not violate):** the reviewer must receive NO intent-framing. Do NOT include the plan's Context/problem statement, progress summaries ("Completed Phase…"), the discovery file, or any account of what the build agent did or intended (per-file change notes — which routines were added or changed — are not intent). Requirements + files + commands only.
 
 **Security-sensitive (3-sample):** the procedure (three identical Agent calls on fable in one message, majority verdict, sequential fallback for shared mutable resources) is in `commands/build.md` → Sub-Phase N.2: REVIEW. The template's part: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md` — otherwise the samples race and overwrite one file — and each sample writes its scratch artifacts under a sample-unique directory and runs no mutating commands (no `lint --fix`, no dependency installs). A single (non-sampled) review drops the `-sample-K` suffix.
 
@@ -184,10 +200,16 @@ Agent tool:
     [paste the phase's Edge cases verbatim]
 
     ## Test Coverage Level
-    [paste the plan's Test Coverage level, e.g. "100%"]
+    [paste the plan's level with its definition — 100%: every implementation file listed for this phase has unit tests for its new or
+    changed routines, plus the integration tests the plan's Test Plan names; Targeted:
+    <the layers the user named> are tested; Per-phase: whatever this phase's Done-when
+    items and Edge cases require — the per-DW rule, nothing more; None: no requirement
+    beyond the per-DW evidence. A gap against 100% or Targeted is a FAIL.]
 
     ## Files to review
-    [implementation + test file paths from the BUILD agent's report — paths only, no commentary]
+    [implementation + test file paths from the BUILD agent's report, each with its
+    "what was done" note (new file / routines added or changed) — paths and change
+    notes only, no rationale; "new or changed routines" under 100% means these]
 
     ## How to run the suite
     [exact test command + typecheck/lint commands for this project]
@@ -219,7 +241,7 @@ The primary review path for Standard and Minimal phases. Inserted dynamically wh
 
 Same debiasing rules as § REVIEW: no plan Context, no progress narrative, no discovery files.
 
-**Model:** the highest resolved REVIEW model among the covered phases (each phase's BUILD model downgraded one tier, floored at sonnet, per the orchestrator's Model Resolution). When the batch fires ahead of a Full phase, take the higher of that value and the upcoming Full phase's resolved REVIEW model.
+**Model:** the highest resolved REVIEW model among the covered phases (each phase's BUILD model downgraded one tier, floored at sonnet, per the orchestrator's Model Resolution; ranking fable > opus > sonnet > haiku). When the batch fires ahead of a Full phase, take the higher of that value and the upcoming Full phase's resolved REVIEW model.
 
 **One structural difference from § REVIEW:** this review runs against **committed** code. Say nothing about that in the prompt — a reviewer told the code already shipped reviews it more leniently, and the whole point of the debiasing rules is that the reviewer knows nothing about the code's history. The orchestrator handles the consequences (fix-forward) on its side.
 
@@ -249,7 +271,8 @@ Agent tool:
     Requirements (fill the template per item; PASS requires execution evidence):
     - DW-X.1: [item]
       PREMISE: ___  EVIDENCE (file:line): ___  TRACE (input→output): ___  VERDICT: ___
-    Files: [implementation + test file paths]
+    Files: [implementation + test file paths, each with the BUILD report's "what was done"
+    note — new or changed routines are the ones it names]
 
     [if the phase has **Edge cases:** in the plan, include them here — same
     verdict standing as the DW items, exactly as in § REVIEW:]
@@ -260,10 +283,14 @@ Agent tool:
     Requirements:
     - DW-Y.1: [item]
       PREMISE: ___  EVIDENCE (file:line): ___  TRACE (input→output): ___  VERDICT: ___
-    Files: [implementation + test file paths]
+    Files: [paths with their "what was done" notes, as for Phase X]
 
     ## Test Coverage Level
-    [paste the plan's Test Coverage level, e.g. "100%"]
+    [paste the plan's level with its definition, once — it applies to each ### Phase block above, "this phase" meaning that block — 100%: every implementation file listed for this phase has unit tests for its new or
+    changed routines, plus the integration tests the plan's Test Plan names; Targeted:
+    <the layers the user named> are tested; Per-phase: whatever this phase's Done-when
+    items and Edge cases require — the per-DW rule, nothing more; None: no requirement
+    beyond the per-DW evidence. A gap against 100% or Targeted is a FAIL.]
 
     ## How to run the suite
     [exact test command + typecheck/lint commands]

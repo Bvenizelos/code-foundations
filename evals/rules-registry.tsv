@@ -134,3 +134,34 @@ commands/build.md	no `## Additional Skills` block
 commands/build.md	reprint the table; the change applies to phases not yet dispatched
 commands/build.md	below 1 → 1
 commands/build.md	rejected like unknown names
+# --- Phase 7
+commands/build.md	An un-reviewed phase must not reach the trust report
+commands/build.md	Delta rule
+commands/build.md	tests, typecheck, and lint
+commands/build.md	Test Plan items the suite does not cover
+commands/build.md	per-DW evidence only; technical debt noted
+commands/build.md	VERIFY reports it, it does not re-gate it
+references/trust-report.md	Suite on HEAD
+references/trust-report.md	not run:
+references/trust-report.md	Review shape
+references/trust-report.md	Coverage:
+README.md	one suite (tests + typecheck + lint) on integrated HEAD
+agents/post-gate-agent.md	ANY gap against the dispatch prompt's Test Coverage Level
+references/dispatch-templates.md	with its definition
+commands/build.md	**VERIFY is done when**
+references/trust-report.md	SKIP execution-log entry
+references/gate-failure-protocol.md	does not proceed past its trailing-batch step
+agents/post-gate-agent.md	**(f)** a gap against the prompt's Test Coverage Level
+references/dispatch-templates.md	The reviewer fails a gap against 100% or Targeted
+commands/build.md	re-enters the un-reviewed set
+references/gate-failure-protocol.md	| VERIFY |
+commands/build.md	review it the way that phase is reviewed
+commands/build.md	count together
+agents/build-agent.md	that level is the contract the reviewer holds you to
+agents/post-gate-agent.md	or a named absence
+references/dispatch-templates.md	notes only, no rationale
+references/dispatch-templates.md	it applies to each ### Phase block above
+agents/post-gate-agent.md	except the two named absences
+references/commit-format.md	verify-fix (review pending)
+commands/build.md	absent a security flag re-enters
+references/trust-report.md	Per-phase adds nothing beyond per-DW evidence

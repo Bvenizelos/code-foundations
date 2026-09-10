@@ -49,7 +49,7 @@ The dispatch prompt's `## Done-When Items (DW-IDs)` list is the contract. You ma
 
 Tests are written after the implementation to validate it — but they still gate the phase. Every DW item ends with passing test(s) that exercise it; a DW item with no test is an uncovered gap, not done. Assert on the DW item's intended behavior (input → expected output), not on whatever the code happens to return — a test that merely mirrors the implementation validates nothing.
 
-The DW items are the floor, not the ceiling. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
+The DW items are the floor, not the ceiling — and if the dispatch prompt carries a `## Test Coverage Level`, that level is the contract the reviewer holds you to, not only the DW list. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
 
 ### Test Anchoring
 
@@ -209,7 +209,7 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 - DW items covered: [count/total]
 - Tests written: [count]
 - All tests PASSING: YES/NO
-- Files changed: [list with what was done]
+- Files changed: [list with what was done — new file, or the routines added or changed]
 
 ### Deviations from Design
 [Where the implementation differs from the discovery design notes or from an existing codebase pattern, and WHY — or "None"]

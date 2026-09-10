@@ -16,8 +16,7 @@ Each of these exists because its absence has a specific failure mode:
 - **Load plan before coding** — no plan means no checklist, and unlisted tasks get forgotten
 - **One wave at a time** — phases run in parallel only when the plan declares them independent (`Depends on` + disjoint `File scope`) and each runs in its own phase worktree; same-tree parallel execution contaminates test evidence and causes merge conflicts. The commit is the phase boundary — nothing downstream starts before it exists
 - **Every phase gets reviewed, but not every phase blocks on it** — Full-gate and security-sensitive phases review immediately, before their commit; Standard and Minimal phases commit on green tests and are covered by a later batch REVIEW. Nothing ships unreviewed; the review just arrives after the commit instead of before it
-- **The batch never goes stale** — it fires at the cadence, before any Full phase, and once before VERIFY. An un-reviewed phase cannot reach the trust report
-- **Independent verification on complex work only** — self-review is blind, but over-verifying trivial work injects noise
+- **The batch never goes stale** — it fires at the cadence, before any Full phase, and at VERIFY if anything is still un-reviewed. An un-reviewed phase cannot reach the trust report
 - **Mark complete only when gates pass** — premature completion ships unverified work
 - **Update the execution log** — it debugs failed builds and anchors later phases
 
@@ -47,7 +46,7 @@ Extract from the plan file:
 9. **Dependencies** - `**Depends on:**` per phase (required) and optional `**File scope:**` globs — these drive wave derivation
 10. **Assumptions** - Assumptions table with `Verify Before Phase` timing
 11. **Security-sensitive flags** - Optional `**Security-sensitive:** yes` per phase (forces an immediate 3-sample REVIEW majority vote — never deferred into a batch)
-12. **Review cadence** - `**Review cadence:** N` in the plan header (how many un-reviewed phases may accumulate before a batch REVIEW fires). Missing or unparseable → default to 3; clamped to 1–5; each is noted on SETUP's resolution-table cadence line
+12. **Review cadence** - `**Review cadence:** N` in the plan header (how many un-reviewed phases may accumulate before a batch REVIEW fires). Missing or unparseable → default to 3; clamped to 1–5; a default or a clamp is noted on SETUP's resolution-table cadence line
 13. **Skills per phase** - `**Skills:**` (required; validated by name in SETUP)
 
 **Required fields:** every phase must carry `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a skill list, `none -- [reason]`, or a bare `none`). If any is missing, stop and tell the user to re-run `/code-foundations:plan` — plans are ephemeral per-feature artifacts and the planner always emits these fields; a plan without them wasn't produced by the pipeline. **If Test Coverage is missing:** default to "100% coverage" and inform user.
@@ -103,7 +102,7 @@ The gate controls how much rigor the BUILD gets and **whether REVIEW blocks the 
 | **Full** | BUILD → REVIEW → commit | **Blocking** — commit waits for PASS | High-risk work where errors cascade; the home of security 3-sample REVIEW |
 | **Standard** | BUILD → commit | **Deferred** — covered by the next batch REVIEW | Medium work; tests gate the commit, the batch catches what tests can't |
 | **Minimal** | BUILD (minimal) → commit | **Deferred** — same batch | Trivial docs/config work; no discovery phase |
-| **Batch** | REVIEW over all un-reviewed committed phases | — | Fires at the cadence, before any Full phase, and once before VERIFY |
+| **Batch** | REVIEW over all un-reviewed committed phases | — | Fires at the cadence, before any Full phase, and at VERIFY if the set is non-empty |
 
 **Security-sensitive overrides the gate's timing:** a phase carrying `**Security-sensitive:** yes` reviews immediately (3-sample, before its commit) whatever its gate says. Deferral is safe because the commit is a rollback boundary, not a correctness claim; batching buys reviewer context (cross-phase incoherence that isolated reviews cannot see) at the cost of fixing forward on committed code when a batch FAILs (Gate Failure Protocol → Batch Failures).
 
@@ -152,7 +151,7 @@ Plan-level facts go on the two header lines (cadence with any default/clamp; Tes
 
 ### Create Phase Tasks Upfront
 
-For each phase N (using its resolved gate level and model):
+For each phase N (using its resolved gate level and model), via `TaskCreate` (`blockedBy` is the task tool's dependency field):
 
 - **Blocking-review phases — 2 tasks.** A phase reviews immediately when its gate is **Full** OR it carries `**Security-sensitive:** yes`. Create `Phase N.1: BUILD - [phase name]` (description: "Discovery + design + implementation. Model: [from plan].") and `Phase N.2: REVIEW - [phase name]` (description: "Blocking post-gate review. Model: [REVIEW model]. Must return PASS."), N.2 blockedBy N.1.
 - **Deferred-review phases — 1 task.** Standard and Minimal gates (absent a security flag) get only `Phase N.1: BUILD - [phase name]` (description notes the gate and "review deferred to batch"). The commit follows a green suite; the batch covers it later.
@@ -308,7 +307,7 @@ The primary review path for Standard and Minimal phases. It runs against **commi
 | The next phase to open has a **Full** gate | Full phases are high-risk; they should build on reviewed ground rather than on an un-reviewed stack |
 | VERIFY is next and the set is non-empty | The trailing sweep — no phase reaches the trust report unreviewed |
 
-Dispatch with `§ BATCH_REVIEW` from the dispatch templates (model rule is in the template header). Cover **every** phase in the un-reviewed set in one dispatch — the cross-phase coherence check is the point, and splitting it forfeits that.
+Triggers coalesce: however many hold at one boundary, one batch fires. Insert it as a task and make the next phase's BUILD task blockedBy it — the DAG edges alone would let a Full phase start on an un-reviewed stack. Dispatch with `§ BATCH_REVIEW` from the dispatch templates (model rule is in the template header). Cover **every** phase in the un-reviewed set in one dispatch — the cross-phase coherence check is the point, and splitting it forfeits that.
 
 **After the batch:**
 
@@ -331,36 +330,15 @@ When a REVIEW task returns FAIL or a BUILD task returns BLOCKED, **read `${CLAUD
 
 ---
 
-## Phase 4: VERIFY (Full Test Suite)
+## Phase 4: VERIFY (Close the Review Set, One Suite on HEAD)
 
-### Trailing Batch REVIEW (first — before anything else in VERIFY)
+1. **Trailing batch REVIEW.** If the un-reviewed set is non-empty, fire it now (see Batch REVIEW) and clear it. An un-reviewed phase must not reach the trust report — the report's whole claim is that a human can trust what the trailers say was verified.
+2. **One suite on integrated HEAD** — tests, typecheck, and lint, the same commands the reviewers run. **Delta rule:** skip it iff a full-suite run already executed **in the build worktree** on the code that is now HEAD (the trailing batch REVIEW, the final phase's blocking REVIEW — which ran on the tree that was then committed unchanged — or the wave-integration run) AND `git status` is clean apart from the plan file and `.code-foundations/` artifacts (execution-log appends don't invalidate test evidence) — then cite that run in the trust report. Anything else (final phase was Minimal, post-review fixes touched source) → run it once now. Red (a failing test, typecheck error, or lint error) → attribute each failure to the phase whose files it exercises, re-dispatch that phase's build agent with the failures (the orchestrator never edits code), commit the fix as `fix(phase-N): verification fixes` with the standard trailers (`Review:` per commit-format.md), then review it the way that phase is reviewed — a Full or security-sensitive phase gets its blocking REVIEW again (§ REVIEW, review path `<plan>-phase-N-review-verify.md`, or `-verify-sample-K.md` per sample when security-sensitive, 3-sample on fable) and on PASS continues at step 2 (the re-review's own suite run qualifies under the delta rule); a Standard or Minimal phase absent a security flag re-enters the un-reviewed set → return to step 1. These re-dispatches need no task bookkeeping — the execution log's fix line is the record. The last edit in a build must not be the one nobody reviewed. The Gate Failure Protocol's caps apply, and a phase's attempts at its own gate and at VERIFY count together (see its VERIFY row). Lint warnings are reported as they are — no attempt to separate new from pre-existing. A project with no runnable suite gets `not run: [reason]` in the trust report; never invent a command.
+3. **Test Plan items the suite does not cover** (integration or manual steps): run what can be run; record the rest under the trust report's Manual Testing Steps.
 
-If the un-reviewed set is non-empty, fire the trailing batch REVIEW now (see Batch REVIEW). VERIFY runs the suite; it does not review. An un-reviewed phase must not reach the trust report, because the report's whole claim is that a human can trust what the trailers say was verified.
+The plan's **Test Coverage** level is enforced per phase and per batch by the reviewers (`agents/post-gate-agent.md` Step 2 fails a gap against the level the prompt carries); VERIFY reports it, it does not re-gate it. `Coverage: None` means no requirement beyond per-DW evidence, and gets one line in the report: "Coverage: None — per-DW evidence only; technical debt noted."
 
-### Load Skills
-
-1. `Skill(code-foundations:performance-optimization)` — catch obvious performance regressions (O(n²), N+1 queries, unnecessary allocations)
-2. `Skill(code-foundations:cc-refactoring-guidance)` — identify refactoring opportunities introduced during implementation
-
-### Test Coverage Check
-
-Verify against the plan's **Test Coverage** level: **100%** (unit tests for all new code + integration), **Targeted** (the layers the user named), **None** (skip, warn: technical debt), or **Per-phase** (check each phase's test notes). **If coverage falls short:** FAIL verification, require tests before proceeding.
-
-### Run Test Plan + Clean Build
-
-Execute each item from the plan's Test Plan section, then run a clean build and linter. No new warnings or lint errors — if uncertain whether a warning is pre-existing, disambiguate with `git stash && build && git stash pop`. Fix everything new before proceeding.
-
-**Suite re-run delta rule:** skip the redundant full-suite re-run iff a full-suite run already executed **in the build worktree** after the last integration (the trailing batch REVIEW, a final blocking REVIEW, or the wave-integration run) AND no source has changed since — `git status` clean apart from the plan file and `.code-foundations/` artifacts (execution-log appends don't invalidate test evidence). Cite that run's output as the trust-report evidence. Anything else (final phase was Minimal, post-review fixes touched source) → run the suite once now. The Test Plan items, coverage check, and clean-build warning delta always run — no earlier step disambiguates pre-existing vs new warnings.
-
-### Verification Gate
-
-| Condition | Action |
-|-----------|--------|
-| All tests pass, coverage met, build clean, no unsanctioned skips (SKIPs via BUILD status are fine when their log entries exist) | Proceed to REPORT |
-| Tests fail | Debug, fix, re-verify |
-| Build warnings/errors introduced | Fix, rebuild, re-verify |
-| Tests missing (but required by coverage level) | Write tests, then re-verify |
-| Coverage = None | Warn "Skipping tests per plan. Technical debt noted." and proceed |
+**VERIFY is done when** the un-reviewed set is empty, the suite on HEAD is green (run or cited) or recorded as not run with its reason, and every Test Plan item is run or recorded. A retry cap exhausted in step 2 → stop and escalate (Error Handling). Any change VERIFY made is committed by REPORT's Final Commit.
 
 ---
 
@@ -376,7 +354,7 @@ If VERIFY made any changes (debug fixes, added tests) or the plan file changed, 
 
 ### Summary Output (Trust Report)
 
-The summary is a **trust report**, not a status dashboard — engineers need to verify what the AI built. Gate metadata lives in commit trailers; **use `${CLAUDE_PLUGIN_ROOT}/references/trust-report.md`** for the trailer-dump commands and report template (Build & Test Summary, Manual Testing Steps, Follow-up, Merge Instructions).
+The summary is a **trust report**, not a status dashboard — engineers need to verify what the AI built. Gate metadata lives in commit trailers; **use `${CLAUDE_PLUGIN_ROOT}/references/trust-report.md`** for the trailer-dump commands and report template (Build & Test Summary — suite on HEAD, coverage, review shape — Manual Testing Steps, Follow-up, Merge Instructions).
 
 ---
 

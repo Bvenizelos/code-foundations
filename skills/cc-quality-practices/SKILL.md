@@ -33,10 +33,7 @@ Internal quality enables external quality: poor maintainability blocks fixing de
 
 ### CHECKER
 
-Execute the quality, review, and testing checklists against the code or process. Checklists:
-
-- `Read(${CLAUDE_SKILL_DIR}/checklists/qa-and-testing.md)` — QA plan, inspections, test cases, data-flow.
-- `Read(${CLAUDE_SKILL_DIR}/checklists/debugging.md)` — finding, fixing, brute-force, general approach.
+Execute the quality, review, and testing checklists against the code or process: `Read(${CLAUDE_SKILL_DIR}/checklists.md)` — QA plan, inspections, pair programming, test cases, data-flow. For debugging checklists (finding, fixing, syntax errors, brute force) invoke `Skill(code-foundations:cc-debugging)` — they live there, not here.
 
 Output one row per item: `| Item | Status | Evidence | Location |`, status ∈ VIOLATION (fails item) / WARNING (partial) / PASS.
 
@@ -68,7 +65,7 @@ Inspection roles and meeting mechanics apply when designing a review process for
 
 1. PLANNING — moderator distributes materials with line numbers + checklist.
 2. PREPARATION — each reviewer works alone using the checklist (where ~90% of defects are found).
-3. MEETING — reader paraphrases the code; scribe records defects.
+3. MEETING — reader (not the author) paraphrases the code; scribe records defects.
 4. REPORT — moderator lists each defect with type and severity.
 5. REWORK — author fixes defects.
 6. FOLLOW-UP — moderator verifies all fixes complete.

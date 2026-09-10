@@ -43,3 +43,7 @@ skills/cc-routine-and-class-design/checklists.md	add delegation methods
 skills/code-clarity-and-docs/SKILL.md	## Red Flags (Code Clarity)
 skills/performance-optimization/SKILL.md	## Red Flags
 skills/aposd-simplifying-complexity/SKILL.md	## Red Flags
+# --- Phase 2
+skills/cc-quality-practices/SKILL.md	they live there, not here
+skills/cc-debugging/checklists.md	then brute force, once quick guesses fail
+skills/cc-debugging/checklists.md	/*"/**/

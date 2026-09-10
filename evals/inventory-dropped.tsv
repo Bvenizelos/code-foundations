@@ -146,3 +146,169 @@ skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-
 skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-4	see NEVER Skip heading row
 skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-5	see NEVER Skip heading row
 skills/cc-defensive-programming/checklists.md	heading	Critical (Crisis Triage)	renamed to `### Critical` (the crisis set was defined only by the deleted Priority Groups tail)
+# --- Phase 2: cc-quality-practices/checklists/debugging.md deleted — its debugging items duplicate cc-debugging/checklists.md; its two tables and five QA/inspection red flags map as noted; qa-and-testing.md moved to checklists.md
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Finding Defects (p.559)	cc-debugging § Techniques for Finding Defects
+skills/cc-quality-practices/checklists/debugging.md	heading	Gather Data	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Narrow the Search	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Use Tools and Techniques	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Get Help	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Time Management	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Syntax Errors (p.557-558)	cc-debugging § Techniques for Syntax Errors
+skills/cc-quality-practices/checklists/debugging.md	heading	Common Misleading Errors	dropped: textbook compiler-message table; rows 1 and 3 (line-number distrust, fix the first error) are SE-1/SE-3; rows 2 and 4 (typo/scope, error in the imported file) are dropped as textbook knowledge
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Fixing Defects (p.560)	cc-debugging § Techniques for Fixing Defects
+skills/cc-quality-practices/checklists/debugging.md	heading	Before Fixing	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	The Fix	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	After Fixing	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Brute-Force Debugging Techniques (p.552-553)	cc-debugging § Brute-Force Techniques Checklist
+skills/cc-quality-practices/checklists/debugging.md	heading	Code Review Approaches	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Build Configuration	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Testing Approaches	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Instrumentation	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Environment	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	General Debugging Approach (p.560)	cc-debugging § General Approach to Debugging
+skills/cc-quality-practices/checklists/debugging.md	heading	Mindset	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Method	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Verification	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Tools	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Inspection Roles Reference	cc-quality-practices SKILL.md § When advising a human team's review process (moderator/reader/scribe/author roles inline) + checklists.md EI-3 (author never moderates) + EI-8 (author does not defend) + SKILL.md step 3 (reader is not the author)
+skills/cc-quality-practices/checklists/debugging.md	heading	Red Flags	mapped per RF row
+skills/cc-quality-practices/checklists/debugging.md	item	FD-1	cc-debugging FD-1
+skills/cc-quality-practices/checklists/debugging.md	item	FD-2	cc-debugging FD-2
+skills/cc-quality-practices/checklists/debugging.md	item	FD-3	cc-debugging FD-5
+skills/cc-quality-practices/checklists/debugging.md	item	FD-4	cc-debugging FD-6
+skills/cc-quality-practices/checklists/debugging.md	item	FD-5	cc-debugging FD-7
+skills/cc-quality-practices/checklists/debugging.md	item	FD-6	cc-debugging FD-3
+skills/cc-quality-practices/checklists/debugging.md	item	FD-7	cc-debugging FD-10
+skills/cc-quality-practices/checklists/debugging.md	item	FD-8	cc-debugging FD-11
+skills/cc-quality-practices/checklists/debugging.md	item	FD-9	cc-debugging FD-12
+skills/cc-quality-practices/checklists/debugging.md	item	FD-10	cc-debugging FD-13
+skills/cc-quality-practices/checklists/debugging.md	item	FD-11	cc-debugging FD-4
+skills/cc-quality-practices/checklists/debugging.md	item	FD-12	cc-debugging FD-14
+skills/cc-quality-practices/checklists/debugging.md	item	FD-13	cc-debugging FD-15
+skills/cc-quality-practices/checklists/debugging.md	item	FD-14	cc-debugging FD-8
+skills/cc-quality-practices/checklists/debugging.md	item	FD-15	cc-debugging FD-9
+skills/cc-quality-practices/checklists/debugging.md	item	FD-16	cc-debugging FD-16
+skills/cc-quality-practices/checklists/debugging.md	item	FD-17	cc-debugging FD-17
+skills/cc-quality-practices/checklists/debugging.md	item	FD-18	cc-debugging FD-18
+skills/cc-quality-practices/checklists/debugging.md	item	SE-1	cc-debugging SE-1 (reworded to cover lines before and after)
+skills/cc-quality-practices/checklists/debugging.md	item	SE-2	cc-debugging SE-2
+skills/cc-quality-practices/checklists/debugging.md	item	SE-3	cc-debugging SE-3
+skills/cc-quality-practices/checklists/debugging.md	item	SE-4	cc-debugging SE-4
+skills/cc-quality-practices/checklists/debugging.md	item	SE-5	cc-debugging SE-5 (the `/*"/**/` unbalanced-quote trick carried into it)
+skills/cc-quality-practices/checklists/debugging.md	item	FX-1	cc-debugging FF-1
+skills/cc-quality-practices/checklists/debugging.md	item	FX-2	cc-debugging FF-2
+skills/cc-quality-practices/checklists/debugging.md	item	FX-3	cc-debugging FF-3
+skills/cc-quality-practices/checklists/debugging.md	item	FX-4	cc-debugging FF-4
+skills/cc-quality-practices/checklists/debugging.md	item	FX-5	cc-debugging FF-5
+skills/cc-quality-practices/checklists/debugging.md	item	FX-6	cc-debugging FF-6
+skills/cc-quality-practices/checklists/debugging.md	item	FX-7	cc-debugging FF-7
+skills/cc-quality-practices/checklists/debugging.md	item	FX-8	cc-debugging FF-8
+skills/cc-quality-practices/checklists/debugging.md	item	FX-9	cc-debugging GA-2 (no trial-and-error) / FF-7 (change only for good reason) / SKILL.md intro (every action tests a hypothesis)
+skills/cc-quality-practices/checklists/debugging.md	item	FX-10	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	FX-11	cc-debugging FF-10
+skills/cc-quality-practices/checklists/debugging.md	item	FX-12	cc-debugging FF-11
+skills/cc-quality-practices/checklists/debugging.md	item	BF-1	cc-debugging BF-1
+skills/cc-quality-practices/checklists/debugging.md	item	BF-2	cc-debugging BF-2
+skills/cc-quality-practices/checklists/debugging.md	item	BF-3	cc-debugging BF-3
+skills/cc-quality-practices/checklists/debugging.md	item	BF-4	cc-debugging BF-4
+skills/cc-quality-practices/checklists/debugging.md	item	BF-5	cc-debugging BF-5
+skills/cc-quality-practices/checklists/debugging.md	item	BF-6	cc-debugging BF-10
+skills/cc-quality-practices/checklists/debugging.md	item	BF-7	cc-debugging BF-11
+skills/cc-quality-practices/checklists/debugging.md	item	BF-8	cc-debugging BF-6
+skills/cc-quality-practices/checklists/debugging.md	item	BF-9	cc-debugging BF-7
+skills/cc-quality-practices/checklists/debugging.md	item	BF-10	cc-debugging BF-8
+skills/cc-quality-practices/checklists/debugging.md	item	BF-11	cc-debugging BF-9
+skills/cc-quality-practices/checklists/debugging.md	item	BF-12	cc-debugging BF-12
+skills/cc-quality-practices/checklists/debugging.md	item	BF-13	cc-debugging BF-13
+skills/cc-quality-practices/checklists/debugging.md	item	BF-14	cc-debugging BF-14
+skills/cc-quality-practices/checklists/debugging.md	item	GD-1	cc-debugging GA-1
+skills/cc-quality-practices/checklists/debugging.md	item	GD-2	cc-debugging GA-2
+skills/cc-quality-practices/checklists/debugging.md	item	GD-3	cc-debugging GA-3
+skills/cc-quality-practices/checklists/debugging.md	item	GD-4	cc-debugging GA-4
+skills/cc-quality-practices/checklists/debugging.md	item	GD-5	cc-debugging GA-5
+skills/cc-quality-practices/checklists/debugging.md	item	GD-6	cc-debugging GA-6
+skills/cc-quality-practices/checklists/debugging.md	item	GD-7	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	GD-8	cc-debugging FF-11 / SKILL.md Step 7 SEARCH
+skills/cc-quality-practices/checklists/debugging.md	item	GD-9	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-10	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-11	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-12	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-13	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	RF-1	cc-quality-practices checklists.md QA-5
+skills/cc-quality-practices/checklists/debugging.md	item	RF-2	cc-quality-practices checklists.md EI-3
+skills/cc-quality-practices/checklists/debugging.md	item	RF-3	cc-quality-practices checklists.md EI-2
+skills/cc-quality-practices/checklists/debugging.md	item	RF-4	cc-quality-practices checklists.md TC-9..TC-13
+skills/cc-quality-practices/checklists/debugging.md	item	RF-5	cc-quality-practices checklists.md TC-5
+skills/cc-quality-practices/checklists/debugging.md	item	RF-6	cc-debugging GA-2
+skills/cc-quality-practices/checklists/debugging.md	item	RF-7	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	RF-8	cc-debugging BF-5 / GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	RF-9	cc-debugging FD-18
+skills/cc-quality-practices/checklists/debugging.md	item	RF-10	cc-debugging FF-10
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	A Quality-Assurance Plan (p.603-644)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Inspections (p.485-492)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Before the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	During the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	After the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-9	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-10	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-11	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Pair Programming (p.483-484)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Cases (p.532-533)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Requirements and Design Coverage	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Code Coverage	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Boundary Testing	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Dirty Tests (aim for 5:1 ratio vs clean tests)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-9	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-10	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-11	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-12	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-13	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Clean Tests	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-14	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-15	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-16	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-17	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Quality	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-18	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-19	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-20	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Data-Flow Anomaly Patterns (p.509-510)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-debugging/checklists.md	heading	Debugging Time Limits	dropped: human-time bounds (banned by code-standards); row 1 (cap quick-and-dirty, go systematic, then brute force) is FD-18; row 2 (stalled hypothesis → generate new ones) is FD-8/GA-6; row 3 (stalled → break, talk to someone) is FD-16/FD-17; row 4 (days on one bug → consider rewrite) is BF-2/BF-3/FD-19

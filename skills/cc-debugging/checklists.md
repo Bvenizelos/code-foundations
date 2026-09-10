@@ -23,18 +23,18 @@ Source: Code Complete 2nd Edition, Chapter 23 (pp. 559-560)
 - [ ] FD-15: "Did you check for common defects?" (off-by-one, null pointer, etc.)
 - [ ] FD-16: "Did you talk to someone else about the problem?" (confessional debugging)
 - [ ] FD-17: "Did you take a break from the problem?" → Fresh eyes prevent tunnel vision
-- [ ] FD-18: "Did you set a maximum time for quick and dirty debugging?" (Good: 15-30 min limit, Bad: Hours of random changes)
+- [ ] FD-18: "Is every change after the first few guesses backed by a recorded hypothesis — the systematic method, and then brute force, once quick guesses fail?" → Red flag: a run of unrecorded changes
 - [ ] FD-19: "Did you make a list of brute-force techniques and use them?"
 
 ---
 
 ## Techniques for Syntax Errors
 
-- [ ] SE-1: "Did you distrust line numbers in compiler messages?" → Error often 1-5 lines earlier
+- [ ] SE-1: "Did you distrust line numbers in compiler messages?" → Check the lines before and after the reported one; the real error is usually earlier, occasionally later
 - [ ] SE-2: "Did you read between the lines of compiler messages?" (Good: Understand root cause, Bad: Trust cryptic message literally)
 - [ ] SE-3: "Did you fix only the first error and recompile?" → Later errors often spurious cascades
 - [ ] SE-4: "Did you divide and conquer?" (remove part of code, compile again)
-- [ ] SE-5: "Did you use a syntax-directed editor to find misplaced comments and quotation marks?"
+- [ ] SE-5: "Did you check for misplaced comments and quotation marks?" (syntax-directed editor, or insert `/*"/**/` to locate the unbalanced one)
 
 ---
 
@@ -111,13 +111,3 @@ Quick checks for common bugs:
 - [ ] CD-11: "Resource leaks?" (memory, file handles, connections)
 - [ ] CD-12: "Logic inversion?" (wrong branch taken) → Red flag: Inverted conditional logic
 
----
-
-## Debugging Time Limits
-
-| Phase | Max Time | Action If Exceeded |
-|-------|----------|-------------------|
-| Quick-and-dirty | 15-30 min | Switch to systematic |
-| Single hypothesis | 30-60 min | Generate new hypotheses |
-| Systematic debugging | 2-4 hours | Take break, talk to colleague |
-| Same bug, multiple days | N/A | Consider brute-force rewrite |

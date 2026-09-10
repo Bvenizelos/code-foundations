@@ -177,7 +177,7 @@ When verifying, output:
 |-------|-------|------|
 | **aposd-designing-deep-modules** | Design quality | FIRST—during design |
 | **aposd-verifying-correctness** | Actual correctness | BEFORE "done" |
-| **cc-quality-practices** | Testing/debugging | Throughout |
+| **cc-quality-practices** | Testing | Throughout |
 
 **Order:** Design → Implement → Verify (this skill) → Done
 

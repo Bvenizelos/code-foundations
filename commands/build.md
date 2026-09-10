@@ -47,9 +47,10 @@ Extract from the plan file:
 9. **Dependencies** - `**Depends on:**` per phase (required) and optional `**File scope:**` globs — these drive wave derivation
 10. **Assumptions** - Assumptions table with `Verify Before Phase` timing
 11. **Security-sensitive flags** - Optional `**Security-sensitive:** yes` per phase (forces an immediate 3-sample REVIEW majority vote — never deferred into a batch)
-12. **Review cadence** - `**Review cadence:** N` in the plan header (how many un-reviewed phases may accumulate before a batch REVIEW fires). Missing or unparseable → default to 3 and say so once
+12. **Review cadence** - `**Review cadence:** N` in the plan header (how many un-reviewed phases may accumulate before a batch REVIEW fires). Missing or unparseable → default to 3; clamped to 1–5; each is noted on SETUP's resolution-table cadence line
+13. **Skills per phase** - `**Skills:**` (required; validated by name in SETUP)
 
-**Required fields:** every phase must carry `**Model:**`, `**Gate:**`, and `**Depends on:**`. If any is missing, stop and tell the user to re-run `/code-foundations:plan` — plans are ephemeral per-feature artifacts and the planner always emits these fields; a plan without them wasn't produced by the pipeline. **If Test Coverage is missing:** default to "100% coverage" and inform user.
+**Required fields:** every phase must carry `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a skill list, `none -- [reason]`, or a bare `none`). If any is missing, stop and tell the user to re-run `/code-foundations:plan` — plans are ephemeral per-feature artifacts and the planner always emits these fields; a plan without them wasn't produced by the pipeline. **If Test Coverage is missing:** default to "100% coverage" and inform user.
 
 ### Verify Plan is Ready
 
@@ -64,26 +65,21 @@ Extract from the plan file:
 
 ---
 
-## Phase 2: SETUP (Initialize Tracking)
+## Phase 2: SETUP (Resolve, Print One Table)
 
 ### Update Plan Status
 
 Set in the plan file: `**Status:** in-progress`, `**Started:** YYYY-MM-DD HH:MM`, `**Current Phase:** 1`.
 
-### Skill Resolution (One-Time Task)
+### Skill Resolution (name validation only)
 
-Before creating phase tasks, resolve skills for all phases. Skills do NOT affect gate policy — every phase carries at least one skill, so skill presence cannot discriminate gate level (gate is keyed off the plan's `**Gate:**` field). Resolving skills first still matters: every phase needs a validated, invocable skill set before dispatch.
+The planner matched skills to phases with the phase bodies in hand; build validates names, it does not re-match, and nothing here edits the plan file.
 
-1. `TaskCreate(subject: "SETUP: Skill Resolution", description: "Validate and resolve skill assignments for all phases.")`
-2. Scan your available-skills register — every skill in context: the internal code-foundations skills (now `user-invocable: false`, so model-discoverable) plus any external plugin skills. Read each candidate's description and trigger conditions. Exclude workflow commands and pipeline skills (plan, build, debug, research, code-standards, clarify, planning).
-3. For each phase, check the plan's `**Skills:**` field:
-   - **Specific skills listed** → validate each is a real available skill (internal or external). If a name doesn't match any available skill, STOP and ask the user before proceeding.
-   - **`none -- [reason]`** → compare phase goal and scope against every available skill's description. If a skill's triggers match the phase work, add it. Every phase MUST have at least one skill — skills exist for code, documentation, design, and more.
-   - **Field missing** → flag as plan defect. Add skills by matching phase goal/scope against available skill descriptions.
-4. Update the plan file's `**Skills:**` fields with the validated set, each recorded by its **invocable name**: internal skills may stay bare (`cc-debugging`) or qualified (`code-foundations:cc-debugging`); external skills MUST keep their plugin prefix (`oberskills:skill-craft`). Dispatch emits one `Skill(<plugin:name>)` per skill (bare internal names get the `code-foundations:` prefix), and each skill self-loads its own checklists when invoked — so there are no checklist paths to resolve here.
-5. `TaskUpdate(status: "completed")`
-
-**Re-read the plan file after Skill Resolution completes** — step 4 modified it, and every subsequent step (gate policy detection, wave derivation, phase task creation, dispatch) must use the updated plan state, not the stale version from LOAD. Skipping this re-read is how dispatches go out with the pre-resolution skill set.
+1. Each name in a phase's `**Skills:**` list must match a skill in your available-skills register — internal (bare `cc-debugging` or qualified `code-foundations:cc-debugging`) or external (plugin-qualified, e.g. `oberskills:skill-craft`). Workflow commands and pipeline skills (plan, build, debug, research, code-standards, clarify, planning) are rejected like unknown names.
+2. **An unknown name → stop and ask the user** before proceeding. (A missing field already stopped the build at LOAD.)
+3. `none -- [reason]` is accepted as planned — the planner's CHECK required the reason. A bare `none` is accepted too and noted in the resolution table. Such a phase dispatches with **no `## Additional Skills` block**; each agent's own protocol is sufficient.
+4. Dispatch emits one `Skill(<plugin:name>)` line per listed skill (bare internal names get the `code-foundations:` prefix); each skill self-loads its own checklists, so there are no checklist paths to resolve.
+5. Skill presence does not affect the gate.
 
 ### Model Resolution
 
@@ -96,81 +92,63 @@ Every phase's `**Model:**` field is required (see LOAD). BUILD uses it directly;
 | sonnet | sonnet (floor) |
 | haiku | sonnet (floor) |
 
-**Why the sonnet floor (never haiku):** the model-tier benchmark (round 2, 2026-07) found haiku's planted-defect recall unreliable on REVIEW-shaped tasks — it missed *every* planted defect (0/5) on one review task where higher tiers caught them. A reviewer that misses defects is false insurance, so REVIEW never runs below sonnet even when BUILD does. For a sonnet-built phase the reviewer is the same tier; independence is preserved the way it always has been here — by the intent-stripped dispatch (no plan context, no progress narrative; see § REVIEW debiasing), not by the tier gap.
+The floor exists because haiku's planted-defect recall proved unreliable on REVIEW-shaped tasks (model-tier benchmark round 2, 2026-07: 0/5 on one review task) — a reviewer that misses defects is false insurance. For a sonnet-built phase the reviewer is the same tier; independence comes from the intent-stripped dispatch (see § REVIEW debiasing), not the tier gap. **Exception:** security-sensitive phases run their 3-sample REVIEW on **fable** regardless of the BUILD model.
 
-**Exception:** security-sensitive phases run their 3-sample REVIEW on **fable** regardless of the BUILD model — for security, verification rigor beats cost asymmetry.
+### Gate Policy
 
-### Gate Policy Detection
-
-Determine the gate level for each phase. The gate controls two things: how much rigor the BUILD gets, and **whether REVIEW blocks the commit or is deferred into a batch**. Every phase is still reviewed — the question is only when.
+The gate controls how much rigor the BUILD gets and **whether REVIEW blocks the commit or is deferred into a batch**. Every phase is still reviewed — the question is only when.
 
 | Level | Sub-Phases | Review timing | When |
 |---|---|---|---|
-| **Full** | BUILD → REVIEW → commit | **Blocking** — commit waits for PASS | High-risk work where errors cascade; the heavyweight tier, and the home of security 3-sample REVIEW |
-| **Standard** | BUILD → commit | **Deferred** — covered by the next batch REVIEW | Medium work; tests gate the commit, the batch catches what tests can't (missed edge cases, gaps, gotchas) |
+| **Full** | BUILD → REVIEW → commit | **Blocking** — commit waits for PASS | High-risk work where errors cascade; the home of security 3-sample REVIEW |
+| **Standard** | BUILD → commit | **Deferred** — covered by the next batch REVIEW | Medium work; tests gate the commit, the batch catches what tests can't |
 | **Minimal** | BUILD (minimal) → commit | **Deferred** — same batch | Trivial docs/config work; no discovery phase |
 | **Batch** | REVIEW over all un-reviewed committed phases | — | Fires at the cadence, before any Full phase, and once before VERIFY |
 
-**Security-sensitive overrides the gate's timing.** A phase carrying `**Security-sensitive:** yes` reviews immediately (3-sample, before its commit) whatever its gate says. Security defects that sit un-reviewed across three more phases are exactly the ones that get expensive.
+**Security-sensitive overrides the gate's timing:** a phase carrying `**Security-sensitive:** yes` reviews immediately (3-sample, before its commit) whatever its gate says. Deferral is safe because the commit is a rollback boundary, not a correctness claim; batching buys reviewer context (cross-phase incoherence that isolated reviews cannot see) at the cost of fixing forward on committed code when a batch FAILs (Gate Failure Protocol → Batch Failures).
 
-**Why deferral is safe and blocking is not free.** The commit is a rollback boundary, not a correctness claim — a green suite is enough to earn one. Batching trades a small window of un-reviewed HEAD for reviewer context: a reviewer seeing three related phases at once catches cross-phase incoherence that three isolated per-phase reviews structurally cannot. The cost is real and worth naming: a batch FAIL means fixing forward on committed code instead of gating before commit (see Gate Failure Protocol → Batch Failures).
-
-**Resolution order** (first match wins):
-
-1. **Pipeline override (topmost):** `**Pipeline:** full` forces Full. `**Pipeline:** direct` forces Minimal.
-2. **Plan-declared gate:** use the phase's `**Gate:**` field verbatim — `Full`, `Standard`, or `Minimal`. The planner sets this at SAVE with the risk context in hand; the decision is visible and reviewable in the plan file. The field is required — a phase without it stops the build at LOAD.
-
-Skill presence does NOT affect the gate — every phase carries skills (see Skill Resolution), so skills cannot discriminate gate level.
-
-**State the resolved gate level when creating tasks:** "Phase N gate: [Full/Standard/Minimal] (reason: plan `**Gate:**` field | pipeline override)"
+**Resolution order** (first match wins): 1. `**Pipeline:** full` forces Full, `**Pipeline:** direct` forces Minimal. 2. The phase's `**Gate:**` field verbatim — `Full`, `Standard`, or `Minimal` (required; a phase without it stops the build at LOAD).
 
 ### Review Cadence
 
-Gate is per phase; cadence is per plan. Read `**Review cadence:** N` from the plan header — how many deferred-review phases may accumulate before a batch REVIEW fires. **Default 3** when absent.
-
-| N | Behavior |
-|---|---|
-| 1 | Every Standard/Minimal phase reviews right after its commit — closest to blocking, one phase per batch |
-| 2–3 | The intended range. 3 is the default |
-| 4–5 | Looser. The ceiling is reviewer recall, not policy: a batch review must run the suite and verify every DW item across every covered phase, and per-item recall degrades as the item count climbs |
-| >5 or unparseable | Clamp to 5, say so once, continue |
-
-**State the cadence once at SETUP:** "Review cadence: N (batch REVIEW every N un-reviewed phases, before each Full phase, and before VERIFY)."
+Gate is per phase; cadence is per plan. Read `**Review cadence:** N` from the plan header — how many deferred-review phases may accumulate before a batch REVIEW fires. Missing or unparseable → 3 (as LOAD says); below 1 → 1; above 5 → 5; each noted on the table's cadence line. 1 reviews every Standard/Minimal phase right after its commit; 2–3 is the intended range; 4–5 is looser, bounded by reviewer recall (a batch must verify every DW item across every covered phase).
 
 ### Effort Alignment
 
-BUILD-agent depth is derived from the phase's `**Model:**` — the same field that already encodes how much thinking the work needs — and applied through the dispatch's depth-steering wording (the Agent tool has no `effort` parameter; see § FULL_BUILD / § MINIMAL_BUILD / § REVIEW and `references/plan-integration.md`):
+BUILD-agent depth is derived from the phase's `**Model:**` — the field that already encodes how much thinking the work needs — and applied through the dispatch's depth-steering wording (the Agent tool has no `effort` parameter; see § FULL_BUILD / § MINIMAL_BUILD / § REVIEW and `references/plan-integration.md`):
 
 | Phase Model | BUILD depth | REVIEW depth |
 |---|---|---|
 | fable / opus / sonnet | Think carefully | Think carefully |
-| haiku | Answer directly | Think carefully — REVIEW never drops below (mirrors Model Resolution's sonnet floor; a reviewer that skims misses defects) |
+| haiku | Answer directly | Think carefully — REVIEW never drops below (mirrors the sonnet floor; a reviewer that skims misses defects) |
 
-**Mismatch stop — ask the user (only when Model and Gate disagree).** Normally a phase's `**Model:**` (effort) and `**Gate:**` (rigor) agree, and build proceeds silently with the depth above. When they *don't*, the phase's effort doesn't match its risk — STOP and ask the user to reconcile before dispatching that phase, the same way an unknown skill stops at Skill Resolution. Only these two combinations trigger it:
-
-| Mismatch | Reads as | Ask |
-|---|---|---|
-| **haiku + Full gate** | mechanical effort on high-risk work | "Phase N is haiku (mechanical) but Full gate (high-risk). Raise the model, lower the gate, or proceed as-is?" |
-| **fable / opus + Minimal gate** | heavyweight effort on work trivial enough to skip discovery | "Phase N is [fable/opus] (judgment-heavy) but Minimal gate (no discovery, deferred review). Lower the model, raise the gate, or proceed as-is?" |
-
-`sonnet` matches any gate and `Standard` matches any model — neither ever triggers the stop. **Proceed-as-is is always a valid answer** (the plan is the user's); the stop only surfaces the tension so it's a conscious choice, never silent. If the user adjusts the model or gate, apply it as a one-run override (announced like the gate/model resolutions) — a gate change re-enters Wave Derivation below with the new value. Run this check per phase; batch the questions if several phases mismatch.
+Model and Gate normally agree. Two combinations don't — **haiku + Full** (mechanical effort on high-risk work) and **fable / opus + Minimal** (judgment-heavy effort with no discovery pass). For those, print a one-line warning in the resolution table's Notes column and continue — the table is the one channel. **This never blocks** — the plan is the user's, and the warning makes the tension visible without a stop. The depth table still applies as written: a haiku Full phase answers directly and its blocking REVIEW (sonnet floor, 3-sample if security-sensitive) is the backstop; a fable Minimal phase still thinks carefully because § MINIMAL_BUILD steers depth from the Model like § FULL_BUILD does. If the user asks at any point to change a phase's model or gate, edit the plan file, re-run the resolutions above, and reprint the table; the change applies to phases not yet dispatched (gate is a wave input, so waves are re-derived).
 
 ### Wave Derivation
 
 Derive the execution order from the plan's dependency DAG, not from file order:
 
 1. **Topological layers:** group phases by `**Depends on:**` — a phase's layer is one past its deepest dependency.
-2. **Co-scheduling rule** — two phases in the same layer share a wave only when ALL hold:
-   - neither transitively depends on the other,
-   - both declare `**File scope:**` and the globs are pairwise disjoint,
-   - **both gates are Standard or Minimal, and neither phase is security-sensitive** (both of those review immediately and always run alone — high-risk by definition, and serial execution keeps the un-reviewed-set accounting well-defined),
-   - the test suite does not use shared mutable resources (fixed ports, docker services, global test DBs, on-disk fixtures — evident from the test command or the plan's Notes). If it does, serialize: correct beats concurrent.
-
-   (Seam consumption needs no separate check — a phase consuming another's Produces depends on it, which the dependency check already covers; the planner's CHECK enforces that invariant.)
-3. **Wave width cap: 3** (foreground fan-out + orchestrator context budget). Wider layers split into consecutive waves in plan order. A Full-gate phase inside a layer forms its own single-phase wave, placed in plan order relative to the grouped waves.
+2. **Co-scheduling rule** — two phases in the same layer share a wave only when ALL hold: neither transitively depends on the other; both declare `**File scope:**` and the globs are pairwise disjoint; **both gates are Standard or Minimal and neither phase is security-sensitive** (those review immediately and always run alone, which also keeps the un-reviewed-set accounting well-defined); the test suite uses no shared mutable resources (fixed ports, docker services, global test DBs, on-disk fixtures — evident from the test command or the plan's Notes). If it does, serialize: correct beats concurrent. (Seam consumption needs no separate check — a phase consuming another's Produces depends on it.)
+3. **Wave width cap: 3** (foreground fan-out + orchestrator context budget). Wider layers split into consecutive waves in plan order. A Full-gate phase inside a layer forms its own single-phase wave, placed in plan order.
 4. Any doubt about independence → serialize within the layer in plan order. A phase without `File scope` never shares a wave.
 
-**State the derived waves aloud before creating tasks:** "Wave 1: Phase 1. Wave 2: Phases 2, 3 in parallel (disjoint scopes). Wave 3: Phase 4." Waves are derived here, never stored in the plan — plan edits would leave stored wave numbers stale.
+Waves are derived here, never stored in the plan — plan edits would leave stored wave numbers stale.
+
+### The Resolution Table (the only SETUP narration)
+
+Print one table once every resolution above is done, then say nothing else about SETUP:
+
+```
+Review cadence: 3 (defaulted)        Test Coverage: 100% (defaulted)
+| Phase | Model | REVIEW model | Gate | Security | Review timing | Skills | Wave | Notes |
+|-------|-------|--------------|------|----------|---------------|--------|------|-------|
+| 1 | sonnet | sonnet | Standard | — | deferred (batch) | cc-defensive-programming | 1 | |
+| 2 | sonnet | fable | Standard | yes | blocking (3-sample) | cc-defensive-programming | 2 (alone) | security-sensitive overrides gate timing |
+| 3 | haiku | sonnet | Full | — | blocking | none -- docs only | 3 (alone) | ⚠ haiku + Full: mechanical effort on high-risk work |
+```
+
+Plan-level facts go on the two header lines (cadence with any default/clamp; Test Coverage with any default — this is where LOAD's "inform user" lands). A `Security: yes` phase sets three cells whatever its gate says: REVIEW model fable, Review timing blocking (3-sample), Wave alone; a Full phase is also `(alone)`. Notes carries the Effort Alignment warnings, a bare `none`, and any pipeline override — the things a reader would otherwise have to infer.
 
 ### Create Phase Tasks Upfront
 

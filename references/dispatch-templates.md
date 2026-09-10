@@ -13,7 +13,7 @@ Subagent dispatch prompts used by the orchestrator (`commands/build.md`) when di
 
 **Substitution rules (orchestrator):**
 - `[bracketed]` placeholders → phase-specific values. Each placeholder names its source (plan section, agent report, project config); conditional blocks (`[if plan phase has ...]`) are emitted only when the condition holds, with items pasted verbatim.
-- `## Additional Skills` blocks: for EACH skill assigned to the phase, emit one `Skill(<plugin:name>)` line — this plugin's own skills as `Skill(code-foundations:<name>)`, skills from other installed plugins as `Skill(<plugin>:<name>)`. All assigned skills are real, model-invocable skills; the build subagent invokes them via the Skill tool (an explicit `Skill(...)` line in the dispatch prompt invokes the skill even though subagents don't inherit the register). The Skill tool loads the SKILL.md body, and each skill self-loads its own checklists via `${CLAUDE_SKILL_DIR}` once invoked — so emit NO separate checklist `Read()` lines. Do not Read-inject SKILL.md text; that was the old workaround for non-invocable skills.
+- `## Additional Skills` blocks: emitted only when the phase's `**Skills:**` lists at least one skill (a `none` / `none -- [reason]` phase gets no block — each agent's own protocol is sufficient); for EACH listed skill, emit one `Skill(<plugin:name>)` line — this plugin's own skills as `Skill(code-foundations:<name>)`, skills from other installed plugins as `Skill(<plugin>:<name>)`. All assigned skills are real, model-invocable skills; the build subagent invokes them via the Skill tool (an explicit `Skill(...)` line in the dispatch prompt invokes the skill even though subagents don't inherit the register). The Skill tool loads the SKILL.md body, and each skill self-loads its own checklists via `${CLAUDE_SKILL_DIR}` once invoked — so emit NO separate checklist `Read()` lines. Do not Read-inject SKILL.md text; that was the old workaround for non-invocable skills.
 - **Skills propagate BUILD → REVIEW:** if the BUILD agent's `### Skills Loaded` output reports skills beyond the plan's assignment, add those as `Skill(<plugin:name>)` lines to the REVIEW dispatch's `## Additional Skills` block too. The reviewer needs the same skill context to verify against.
 - Test/typecheck/lint command placeholders → resolve from project config (package.json scripts, Makefile, Cargo.toml, etc.) — exact runnable commands, not descriptions.
 - **Wave mode (parallel phases only):** when a phase runs in its own phase worktree (build.md → Parallel Waves), every path in the prompt is rooted at that worktree and the BUILD prompt gains: "Work ONLY inside `<worktree-root>`; run all commands from there. End with exactly ONE commit: `wip(phase-N): <name>` — squash if you made more. Report the worktree path and wip sha in your output." Serial phases omit this. No REVIEW template needs a wave variant — wave members are deferred-review phases by construction, and their batch REVIEW runs later against the integrated build worktree.
@@ -63,7 +63,7 @@ Agent tool:
     - [ ] DW-N.2: [done-when item 2]
     - [ ] DW-N.X: [done-when item N...]
 
-    [if plan phase has **Skills:** field, include:]
+    [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
     Invoke EVERY Skill() below, in order, BEFORE starting work:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
@@ -102,7 +102,7 @@ Agent tool:
 - model: [from plan's **Model:** field — required; a plan without it stops the build at LOAD]
 - description: "BUILD Phase N (minimal)"
 - prompt: |
-    Answer directly without deliberating — this is trivial, mechanical work.
+    [Depth per build's Effort Alignment: if the phase Model is haiku, open with "Answer directly without deliberating — this is trivial, mechanical work."; otherwise open with "This task involves multi-step reasoning. Think carefully before responding."]
 
     Build Phase N of the build plan. This phase uses minimal gate
     policy — skip discovery, implement directly from the plan
@@ -116,7 +116,7 @@ Agent tool:
     [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary]. Phase 2: ..."]
     Current: Phase N of M
 
-    [if plan phase has **Skills:** field, include:]
+    [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
     Invoke EVERY Skill() below, in order, BEFORE starting work:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
@@ -199,7 +199,7 @@ Agent tool:
     Phase N consumes [interface X] defined in [file:line]. Treat its contract
     as given; do not re-review it, but flag if this phase misuses it.
 
-    [if plan phase has **Skills:** field OR BUILD agent reported additional skills, include:]
+    [if the phase's **Skills:** lists at least one skill (not `none -- [reason]`) OR the BUILD agent reported additional skills, include:]
     ## Additional Skills
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
@@ -277,8 +277,8 @@ Agent tool:
     - Each phase uses the interfaces the earlier phases actually expose, not
       the ones it assumes they expose
 
-    [if any covered phase has a **Skills:** field OR its BUILD agent reported
-    additional skills, include the union across all covered phases:]
+    [if any covered phase lists at least one skill (not `none -- [reason]`) OR its
+    BUILD agent reported additional skills, include the union across all covered phases:]
     ## Additional Skills
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name -- this plugin's own skills as code-foundations:<name>])

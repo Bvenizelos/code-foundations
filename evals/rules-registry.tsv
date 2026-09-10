@@ -116,3 +116,21 @@ agents/build-agent.md	Minimal returns DONE | UPDATE_PLAN | BLOCKED
 references/dispatch-templates.md	no dependency installs
 agents/build-agent.md	next reader is you, ten minutes from now
 agents/post-gate-agent.md	cover every requirement and every finding
+# --- Phase 6
+commands/build.md	name validation only
+commands/build.md	An unknown name → stop and ask the user
+commands/build.md	nothing here edits the plan file
+commands/build.md	This never blocks
+commands/build.md	### The Resolution Table
+commands/build.md	Wave width cap: 3
+commands/build.md	A phase without `File scope` never shares a wave
+commands/build.md	Waves are derived here, never stored in the plan
+commands/build.md	clamped to 1–5
+references/plan-integration.md	it never stops for it
+CLAUDE.md	warns (never stops)
+references/dispatch-templates.md	lists at least one skill
+commands/build.md	| Security |
+commands/build.md	no `## Additional Skills` block
+commands/build.md	reprint the table; the change applies to phases not yet dispatched
+commands/build.md	below 1 → 1
+commands/build.md	rejected like unknown names

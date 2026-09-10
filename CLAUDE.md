@@ -109,8 +109,8 @@ COMMIT:  Orchestrator commits directly — after REVIEW passes for blocking phas
 ```
 
 **Gate policy:** each phase in the plan carries a `**Gate:**` field (Full | Standard | Minimal) —
-required, like `**Model:**` and `**Depends on:**`; build stops and asks for a re-plan when any is
-missing (there are no legacy plans). The gate decides review **timing**, not whether a review
+required, like `**Model:**`, `**Depends on:**`, and `**Skills:**`; build stops and asks for a re-plan when any
+is missing (there are no legacy plans). The gate decides review **timing**, not whether a review
 happens — every phase is reviewed. Full = BUILD + blocking REVIEW + COMMIT (the commit waits for
 PASS; always runs alone, never in a wave). Standard = BUILD + COMMIT, review deferred to the next
 batch. Minimal = BUILD (no discovery) + COMMIT, same deferral. `**Security-sensitive:** yes`
@@ -137,7 +137,7 @@ the structural guard: unconfirmed plans can't build.
 all-serial plans, default when any phase carries `File scope` (wave-eligible). Subagent depth is
 separate: BUILD/REVIEW agents are steered by dispatch wording (the Agent tool has no effort knob) —
 derived from each phase's `Model`, REVIEW never below "think carefully"; build's Effort Alignment
-stops to ask when a phase's `Model` (effort) and `Gate` (rigor) disagree.
+warns (never stops) when a phase's `Model` (effort) and `Gate` (rigor) disagree.
 
 Skills are **workflow-internal** (all 19 carry `user-invocable: false`; `planning` additionally keeps
 `disable-model-invocation: true` so the model can't run the planning pipeline ad-hoc). They are

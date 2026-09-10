@@ -369,3 +369,7 @@ references/pattern-reuse-gate.md	heading	Workflow Position	dropped: ASCII "YOU A
 references/cc-foundations.md	note	Debugging Performance figures	the ~50%-of-fixes-wrong figure moved to cc-debugging Step 6; the 20:1 debugger-variation figure is dropped (a motivational statistic, not a rule)
 # --- Phase 5: agents + dispatch templates
 agents/build-agent.md	heading	Status: DONE | UPDATE_PLAN | BLOCKED	merged into the single Output template ("SKIP is a Full-mode status only — Minimal returns DONE | UPDATE_PLAN | BLOCKED")
+# --- Phase 6: build.md SETUP collapse
+commands/build.md	heading	Phase 2: SETUP (Initialize Tracking)	renamed "SETUP (Resolve, Print One Table)" — same section
+commands/build.md	heading	Skill Resolution (One-Time Task)	renamed "Skill Resolution (name validation only)"; the re-matching steps and the plan-file edit (and therefore the re-read warning) are dropped deliberately — the planner's DECOMPOSE matched with the phase bodies in hand; unknown-name stop kept
+commands/build.md	heading	Gate Policy Detection	renamed "Gate Policy" — same table, rationale compressed to one sentence; the "State the resolved gate level" narration is replaced by the Resolution Table

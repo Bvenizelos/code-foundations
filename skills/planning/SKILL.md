@@ -180,7 +180,7 @@ On "adjust"-type replies: revise, re-present the updated skeleton the same way.
 
 ### Write the Skeleton to the File
 
-After "Looks right": `mkdir -p .code-foundations/plans` and create the plan file at `.code-foundations/plans/YYYY-MM-DD-<topic-slug>.md` (see Step 7 schema). The header carries `# Plan:`, `**Created:**`, `**Status:** draft`, `**Complexity:**`; then Context + Constraints + Chosen Approach, then one header per phase carrying name, goal, Depends on / Unlocks, Produces, Skills, Difficulty. The file is built **progressively** across DECOMPOSE -> DETAIL -> CROSS-CUT -> SAVE — recoverable if interrupted. Do not commit it.
+After "Looks right": `mkdir -p .code-foundations/plans` and create the plan file at `.code-foundations/plans/YYYY-MM-DD-<topic-slug>.md` (schema: `${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md`). The header carries `# Plan:`, `**Created:**`, `**Status:** draft`, `**Complexity:**`; then Context + Constraints + Chosen Approach, then one header per phase carrying name, goal, Depends on / Unlocks, Produces, Skills, Difficulty. The file is built **progressively** across DECOMPOSE -> DETAIL -> CROSS-CUT -> SAVE — recoverable if interrupted. Do not commit it.
 
 ---
 
@@ -284,119 +284,17 @@ The file already exists from DECOMPOSE, with bodies and cross-cut sections fille
 
 `.code-foundations/plans/YYYY-MM-DD-<topic-slug>.md`
 
-### Model Detection + Gate Assignment + Skill Validation
+### Model, Gate, Cadence, Dependencies, Skills — assign by the shared rules
 
-**Model detection per phase — every phase carries `**Model:**`; build stops on a plan that omits it:**
-
-Rules are evaluated **top-down, first match wins**, against the phase's name + Goal (keywords) and its DW list + File hints (counts); an "area" is a distinct top-level directory in File hints:
-
-```
-FABLE_KEYWORDS = [refactor, architect, migrate, redesign, rewrite, overhaul,
-                  new abstraction, novel pattern, system design]
-HAIKU_KEYWORDS = [config, rename, typo, bump, cleanup, delete, remove,
-                  backfill, data fix, sql update, doc update]
-
-1. **Security-sensitive:** yes OR any FABLE_KEYWORD
-   OR (DW items >= 6 AND file hints >= 4 areas)                  -> fable
-2. DW items <= 2 AND file hints <= 1 area AND any HAIKU_KEYWORD  -> haiku
-3. Otherwise                                                     -> sonnet
-```
-
-(The fable rule sits first so a security-sensitive "auth config cleanup" can never fall through to haiku on its mechanical keywords.)
-
-**Why Sonnet is the default, not omit:** Omit means inherit the user's session model — and the session may be running fable, which then propagates to every subagent. Most code-touching phases (test, fix, validate, implement, wire, helper, hook, integration) are well-specified translation work that Sonnet 5 runs faster and cheaper without measurable quality loss. Reserve Fable 5 for the keyword-flagged judgment-heavy phases, where its depth pays. (`opus` stays valid only as an explicit user-requested override — e.g. when fable is unavailable.)
-
-**Gate assignment per phase — every phase carries `**Gate:**`; build stops on a plan that omits it:**
-
-Build consumes the `**Gate:**` field verbatim — `Full`, `Standard`, or `Minimal` (see `commands/build.md` resolution order, rule 2). The planner sets it here with the risk context in hand. Mirror build.md's risk rules:
-
-| Risk signal in the phase | Gate |
-|---|---|
-| Security / auth / payment work (matches `**Security-sensitive:**`) | Full |
-| Multi-file change introducing new cross-phase seams | Full |
-| Docs-only or config-only change | Minimal |
-| (none of the above) | Standard |
-
-**What the gate now decides is review *timing*, not review *existence*.** Every phase gets reviewed. Full-gate and security-sensitive phases block their commit on a passing REVIEW; Standard and Minimal phases commit on a green suite and are covered by a later batch REVIEW (build.md → Batch REVIEW). So the per-phase question is no longer "is this worth reviewing" — it is "would a defect here be cheaper to catch before the commit than three phases later." That is what pushes a phase to Full: cascading blast radius, a seam every later phase builds on, or security exposure.
-
-Skill presence does NOT decide the gate — every phase carries skills, so skills cannot discriminate gate level. Gate is keyed off the risk of the work itself, exactly as build resolves it.
-
-**Review cadence — one field in the plan header, not per phase:**
-
-Set `**Review cadence:** N` — how many un-reviewed phases may accumulate before a batch REVIEW fires. **Default 3; write it explicitly even when you take the default**, so the choice is visible to the user at CONFIRM instead of buried in build's fallback.
-
-| Signal in the plan | Cadence |
-|---|---|
-| Phases tightly coupled — a defect in one propagates fast through the others | 1–2 |
-| Ordinary mixed plan | 3 (default) |
-| Phases genuinely independent (disjoint `File scope`, few shared seams) | 4–5 |
-
-Above 5 build clamps it: a batch reviewer must verify every DW item across every covered phase, and per-item recall degrades as that list grows. The cadence is the one knob that trades review latency against reviewer context, so pick it from the plan's coupling, not from how risky the feature feels overall — per-phase risk is what `**Gate:**` is for.
-
-**Dependency + file-scope validation:**
-
-1. Every phase has `**Depends on:**` (`none` or `Phase X` refs) — build derives its execution waves from these edges; a missing field stops the build.
-2. Every referenced phase exists; a phase consuming another's `Produces` depends on it.
-3. Phases with no dependency path between them and disjoint `**File scope:**` globs will run their BUILDs in parallel — verify the declared scopes are genuinely disjoint. A phase without `File scope` never runs in parallel (that's the opt-out, not an error). Note build adds its own co-scheduling conditions (only Standard/Minimal gates share a wave, width ≤ 3, no shared mutable test resources) — don't promise parallelism in the plan summary for Full-gate phases.
-
-**Skill validation (every phase carries `**Skills:**`):**
-
-Skills were matched at DECOMPOSE and refined during DETAIL. Validate the final set:
-
-1. Every phase has `**Skills:**` populated — `none -- [reason]` valid, omission NOT valid
-2. Every skill name matches a real available skill present in your available-skills register — internal (code-foundations) or external (another plugin) (reject typos/nonexistent names)
-3. No workflow commands or pipeline skills (plan, build, debug, research, code-standards, clarify, planning)
-4. Code-writing phases with `none` justify why no skill's triggers match — on any gap, re-run the DECOMPOSE matching procedure for that phase
+`Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` — it holds the model keyword rules (fable / sonnet default / haiku; opus only as an explicit override), the gate risk table (Full / Standard / Minimal — the gate decides review timing, not review existence), the review-cadence table, the dependency and file-scope validation, and the skills validation (every phase populated, real names, no pipeline skills, `none` justified). Apply them to every phase now, with the risk context in hand. Skill presence does not decide the gate.
 
 ### Plan File Schema
 
-```markdown
-# Plan: [Topic]
-**Created:** YYYY-MM-DD
-**Status:** draft   <- flipped to `ready` at CONFIRM; build refuses a draft plan
-**Complexity:** [simple/medium/complex]
-**Review cadence:** 3   <- un-reviewed phases allowed before a batch REVIEW fires; 1-5
----
-## Context
-[Problem statement from Step 1]
-## Constraints
-- [constraints]
-
-[Medium/Complex only]
-## Chosen Approach
-**[Name]** -- [Rationale]. **Fallback:** [1 sentence]
-## Rejected Approaches
-- **[Name]:** [1 sentence why rejected]
-[/Medium/Complex only]
-
----
-## Implementation Phases
-(Use phase template from Step 5)
----
-## Test Coverage
-**Level:** [100% / Targeted: <layers the user named> / Per-phase / None]
-## Test Plan
-- [ ] [tests] [Medium/Complex only] + Integration + Manual [/Medium/Complex only]
-
-[Medium/Complex only]
-## Assumptions
-| Assumption | Confidence | Verify Before Phase | Fallback If Wrong |
-
-## Decision Log
-| Decision | Alternatives Considered | Rationale | Phase |
-[/Medium/Complex only]
-
----
-## Notes
-- [edge cases, gotchas, open questions]
----
-## Execution Log
-_To be filled during /code-foundations:build_
-```
+`references/plan-schema.md` § Plan file schema, used whole (the `[Medium/Complex only]` sections included for Medium and Complex plans).
 
 ### Save
 
-The file was created at DECOMPOSE (`mkdir -p .code-foundations/plans` already done). Ensure every phase has `**Model:**`, `**Gate:**`, `**Skills:**`, and `**Depends on:**` populated, the header carries `**Status:** draft` and `**Review cadence:**`, and the schema is complete — build hard-requires these fields and stops with "re-run /code-foundations:plan" when any is missing. **Do not commit** — the plan is a working document, not a deliverable. Building handles worktree visibility by copying the plan file after worktree creation.
+The file was created at DECOMPOSE (`mkdir -p .code-foundations/plans` already done). Ensure every phase has `**Model:**`, `**Gate:**`, `**Skills:**`, and `**Depends on:**` populated, the header carries `**Status:** draft` and `**Review cadence:**`, and the schema is complete — build hard-requires these fields. **Do not commit** — the plan is a working document; build copies it into its worktree.
 
 ---
 

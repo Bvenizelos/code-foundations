@@ -165,3 +165,19 @@ agents/post-gate-agent.md	except the two named absences
 references/commit-format.md	verify-fix (review pending)
 commands/build.md	absent a security flag re-enters
 references/trust-report.md	Per-phase adds nothing beyond per-DW evidence
+# --- Phase 8
+references/plan-schema.md	FABLE_KEYWORDS
+references/plan-schema.md	sonnet is the default, never omit
+references/plan-schema.md	Docs-only or config-only change
+references/plan-schema.md	Default 3; write it explicitly
+references/plan-schema.md	never runs in parallel
+references/plan-schema.md	No workflow commands or pipeline skills
+references/plan-schema.md	Skill presence does not decide the gate
+commands/plan.md	references/plan-schema.md
+skills/planning/SKILL.md	references/plan-schema.md
+commands/build.md	Triggers coalesce
+commands/build.md	blockedBy it
+commands/build.md	never invent a command
+references/dispatch-templates.md	fable > opus > sonnet > haiku
+commands/plan.md	omitting it is allowed
+references/plan-integration.md	references/plan-schema.md

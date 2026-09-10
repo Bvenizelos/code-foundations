@@ -61,20 +61,14 @@ Parallelism also exists *within* one build: phases with no dependency between th
 
 ## Plan File Model Syntax
 
-Every phase carries a `**Model:**` field. The ladder: **fable** (judgment-heavy: novel architecture, security-sensitive design, cross-cutting refactors) → **sonnet** (the default — Sonnet 5 handles well-specified implementation fast and cheap) → **haiku** (mechanical: config edits, renames, doc moves). **opus** stays a valid override for when fable is unavailable or the user asks for it.
+Every phase carries `**Model:**` (fable / sonnet / haiku; opus only as an explicit override) — the assignment rules and the REVIEW downgrade (one tier below, floored at sonnet, fable for security-sensitive samples) live in `references/plan-schema.md` and `commands/build.md` Model Resolution.
 
 ```markdown
 ### Phase 1: Simple Config
 **Model:** haiku
-- [ ] Update config file
-
 ### Phase 2: Complex Engine
 **Model:** fable
-- [ ] Build query parser
-- [ ] Implement optimizer
 ```
-
-`**Model:**` is required on every phase — there are no legacy plans; build stops and asks for a re-plan when the field is missing. REVIEW runs one tier below BUILD, floored at sonnet (fable→sonnet, opus→sonnet, sonnet→sonnet — never haiku) — prover-verifier asymmetry, intentional; the sonnet floor exists because haiku's planted-defect recall proved unreliable on REVIEW-shaped tasks (round-2 model-tier benchmark, 0/5 on one review task). The one deliberate exception: security-sensitive REVIEW samples run on **fable** regardless of the BUILD model — for security, verification rigor beats cost asymmetry.
 
 Model facts worth knowing when assigning (as of 2026-07 — re-verify via the claude-api skill when this feels stale):
 

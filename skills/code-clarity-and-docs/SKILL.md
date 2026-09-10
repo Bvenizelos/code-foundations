@@ -202,12 +202,3 @@ Check any AI config files that exist in the project (`CLAUDE.md`, `AGENTS.md`, e
 ---
 
 Detailed checklists for code review: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Code written or changed | Audit using this skill + `${CLAUDE_SKILL_DIR}/checklists.md` |
-| Docs verified | Done (pre-commit gate) |

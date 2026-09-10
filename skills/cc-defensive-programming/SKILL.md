@@ -37,7 +37,7 @@ Security-critical code (authentication, authorization, cryptographic operations,
 
 ### CHECKER
 
-Execute the defensive-programming, assertion, and exception checklists against the code: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. Output one row per item: `| Item | Status | Evidence | Location |`, status ∈ VIOLATION (missing validation, empty catch, side-effecting assertion) / WARNING (inconsistent handling, missing docs) / PASS.
+Execute the defensive-programming, assertion, and exception checklists against the code: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. VIOLATION = missing validation, empty catch, side-effecting assertion; WARNING = inconsistent handling, missing docs. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.
 
 ### APPLIER
 
@@ -107,16 +107,3 @@ Synchronous exception propagation assumes a synchronous call stack; these patter
 ## Offensive programming (development builds)
 
 Make errors loud during development so they're found early; make them unobtrusive with graceful recovery in production. Techniques: make asserts abort, fill allocated memory and freed objects with junk, fail hard on default/else clauses, email error logs to yourself.
-
-## Evidence
-
-- "Garbage in, garbage out" is obsolete — production software must validate or reject [McConnell p.188].
-- Error handling is an architectural decision, enforced consistently [McConnell p.197].
-- Bugs cost ~100x more to fix in production than at design time [IBM Systems Sciences Institute].
-- Mars Climate Orbiter was lost to a unit mismatch [NASA 1999] — nine months of success does not mean code is safe.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Validation complete | `Skill(code-foundations:cc-control-flow-quality)` |

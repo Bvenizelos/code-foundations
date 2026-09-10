@@ -129,10 +129,10 @@ skills/performance-optimization/checklists.md	item	RF-3	AM-3 / AM-4
 skills/performance-optimization/checklists.md	item	RF-4	DT-4
 skills/performance-optimization/checklists.md	item	RF-5	SO-5 / SS-6
 skills/performance-optimization/checklists.md	item	RF-6	M-4 / AM-1
-skills/performance-optimization/checklists.md	item	RF-7	SKILL.md Red Flags table
-skills/performance-optimization/checklists.md	item	RF-8	SKILL.md Red Flags table
-skills/performance-optimization/checklists.md	item	RF-9	SKILL.md Red Flags table
-skills/performance-optimization/checklists.md	item	RF-10	SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-7	DS-1 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-8	DS-2 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-9	DS-3 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-10	AM-3 / AM-4 (back out anything that is neither faster nor simpler) + SKILL.md Red Flags table
 skills/performance-optimization/checklists.md	item	RF-11	DT-6
 skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Emergency Minimum (Crisis Mode)	dropped: crisis block with a human-time bound (banned by code-standards); EM-1→loops LI-6, EM-2→loops LT-1, EM-3→code-clarity-and-docs naming items, EM-4→dropped (crisis-comment habit, not a control-flow rule)
 skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	NEVER Skip (regardless of circumstances)	dropped: shouting block; NS-1→loops LI-6, NS-2→loops LT-1, NS-3→loops LX-4, NS-4→loops LT-3, NS-5→loops RC-1
@@ -312,3 +312,41 @@ skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-6	moved to skil
 skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-7	moved to skills/cc-quality-practices/checklists.md (same item)
 skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-8	moved to skills/cc-quality-practices/checklists.md (same item)
 skills/cc-debugging/checklists.md	heading	Debugging Time Limits	dropped: human-time bounds (banned by code-standards); row 1 (cap quick-and-dirty, go systematic, then brute force) is FD-18; row 2 (stalled hypothesis → generate new ones) is FD-8/GA-6; row 3 (stalled → break, talk to someone) is FD-16/FD-17; row 4 (days on one bug → consider rewrite) is BF-2/BF-3/FD-19
+# --- Phase 3: Chain/Evidence sections (excluded from the inventory by design) removed; aposd-verifying-correctness's checklist folded into its SKILL.md with the same IDs inline (the other two APOSD checklists stay — their SKILL.md tables are teaching tables, not checkable items)
+skills/aposd-verifying-correctness/checklists.md	heading	1. Requirements Coverage	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	RC-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	2. Concurrency Safety	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	CS-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	3. Error Handling	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	EH-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	4. Resource Management	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	RM-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	5. Boundary Conditions	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	BC-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	6. Security (if applicable)	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	SE-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/SKILL.md	heading	Relationship to Other Skills	dropped: the description's "not for X (use Y)" clauses carry the disambiguation; Design → Implement → Verify ordering is the planner's
+skills/performance-optimization/SKILL.md	heading	Quick Reference	dropped: restated the four thresholds already stated with sources under § Measure First and § 7-Step Decision Tree
+# note (Phase 3): performance-optimization DS-4 is a new checklist item promoting the pre-existing SKILL.md Red Flags row "Repeated Special Cases" — not a pre-cut ID, recorded here for the audit trail

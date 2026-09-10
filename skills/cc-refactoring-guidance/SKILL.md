@@ -69,7 +69,7 @@ If tests fail after a refactoring: don't debug extensively — back out the chan
 
 ### TRANSFORMER
 
-Transform code smells into clean code while preserving all observable behavior (same tests pass before and after): setup/takedown smell → encapsulated interface; tramp data → direct access or restructure; duplicated code → extracted routine; speculative "design ahead" code → remove it. Behavior changes are fixing, not refactoring — fix first.
+Transform code smells into clean code while preserving all observable behavior (same tests pass before and after): setup/takedown smell → encapsulated interface; tramp data → direct access or restructure; duplicated code → extracted routine; speculative "design ahead" code → remove it. Behavior changes are fixing, not refactoring — fix first. To assess whether the result is a better module design, hand off to `Skill(code-foundations:aposd-reviewing-module-design)`.
 
 ## Recovering from a violation
 
@@ -82,11 +82,3 @@ If you skipped review on a small change:
 - After merge: note it and move on.
 
 Fixing a violation post-commit still costs less than the bugs it would otherwise cause.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Refactoring complete | `Skill(code-foundations:cc-control-flow-quality)` |
-| Structure changed | `Skill(code-foundations:cc-routine-and-class-design)` |
-| Reviewing a refactoring | `Skill(code-foundations:aposd-reviewing-module-design)` |

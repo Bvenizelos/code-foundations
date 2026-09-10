@@ -152,9 +152,3 @@ A routine in the 10–20 range is acceptable only when all of: it's a flat dispa
 ## Modern equivalents
 
 The same flatten-the-structure principle applies beyond Code Complete's era: async/await replaces callback nesting, and exhaustiveness-checked pattern matching is the valid high-McCabe flat dispatch.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Control flow verified | `Skill(code-foundations:code-clarity-and-docs)` |

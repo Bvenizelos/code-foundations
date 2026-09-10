@@ -31,13 +31,13 @@ Shared thresholds (parameters 7±2, inheritance depth, routine length, cohesion 
 
 ### CHECKER
 
-Execute the design checklists against routines and classes: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. Output one row per item: `| Item | Status | Evidence | Location |`.
+Execute the design checklists against routines and classes: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.
 
 | Severity | Criteria |
 |---|---|
 | VIOLATION | Fails a checklist item (e.g. 10+ params); breaks LSP/encapsulation (empty override, protected base data) |
 | WARNING | Near a limit needing justification (8–9 params, 3-level inheritance); a subjective abstraction concern |
-| PASS | Meets or exceeds the requirement |
+| PASS | Meets or exceeds the requirement — counted in `M pass`, not listed |
 
 ### APPLIER
 
@@ -117,18 +117,3 @@ A routine performs one and only one operation. If you need "and" or "then" to na
 - **Mixin/trait** — single focused responsibility, fewer than 3 per class; prefer containment, which makes the relationship explicit.
 - **Singleton** — extra scrutiny: does the state truly need to be global? Would DI be cleaner?
 - **Event handlers/callbacks** — one event type with one response; for async, evaluate the complete operation, not just what runs before `await`.
-
-## Evidence
-
-- High cohesion → fewer faults: 50% fault-free vs 18% [Card et al. 1986, N=450].
-- Deep inheritance correlates with more faults [Basili 1996].
-- Information hiding reduces faults ~4x [Korson/Vaishnavi 1986].
-- High coupling → ~7x errors, ~20x fix cost [Selby 1991].
-
-This is maintenance data, not shipping data: the gap appears during modification, not first commit.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Design verified | `Skill(code-foundations:cc-defensive-programming)` |

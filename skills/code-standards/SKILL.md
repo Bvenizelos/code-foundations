@@ -115,12 +115,3 @@ Nine sections. Contrastive sections (DO/DON'T) come first — they resist confir
 9. **Exemplar Files** — Pointers to "gold standard" files for common tasks
 
 See the templates file for detailed format per section.
-
----
-
-## Chain
-
-| From | To |
-|------|-----|
-| plan (codebase scan step) | Returns `docs/code-standards.md` path |
-| build-agent (discovery phase) | Reads the file directly |

@@ -25,10 +25,10 @@ For each dimension: detect if it applies, then verify.
 **Detect:** Were requirements stated? (explicit list, user request, spec)
 
 **If YES, verify:**
-- [ ] List each requirement explicitly
-- [ ] For each: point to code that implements it
-- [ ] Any requirement without code? → **Not done**
-- [ ] Any code without requirement? → Scope creep or missing requirement
+- [ ] RC-1: List each requirement explicitly
+- [ ] RC-2: For each: point to code that implements it
+- [ ] RC-3: Any requirement without code? → **Not done**
+- [ ] RC-4: Any code without requirement? → Scope creep or missing requirement
 
 **Red flag:** "I think I covered everything" without explicit mapping
 
@@ -44,10 +44,10 @@ For each dimension: detect if it applies, then verify.
 - Web handlers, queue workers, background tasks
 
 **If YES, verify:**
-- [ ] All shared mutable state identified
-- [ ] Each access point protected (lock, atomic, queue, immutable)
-- [ ] No time-of-check to time-of-use (TOCTOU) gaps
-- [ ] Lock ordering consistent (if multiple locks)
+- [ ] CS-1: All shared mutable state identified
+- [ ] CS-2: Each access point protected (lock, atomic, queue, immutable)
+- [ ] CS-3: No time-of-check to time-of-use (TOCTOU) gaps
+- [ ] CS-4: Lock ordering consistent (if multiple locks)
 
 **Red flag:** "It's probably fine" or "Python GIL handles it"
 
@@ -63,11 +63,11 @@ For each dimension: detect if it applies, then verify.
 - Parsing/deserialization
 
 **If YES, verify:**
-- [ ] Each failure point has explicit handling OR propagates
-- [ ] No bare `except:` or `except Exception: pass`
-- [ ] Error messages actionable (what failed, why, how to fix)
-- [ ] Partial failures handled (rollback, cleanup, consistent state)
-- [ ] No error path silently continues as if nothing happened (catch-log-continue, default returns on failure, swallowed callbacks all create silent failures — each error path either surfaces to the caller or is observable via logs/metrics/alerts)
+- [ ] EH-1: Each failure point has explicit handling OR propagates
+- [ ] EH-2: No bare `except:` or `except Exception: pass`
+- [ ] EH-3: Error messages actionable (what failed, why, how to fix)
+- [ ] EH-4: Partial failures handled (rollback, cleanup, consistent state)
+- [ ] EH-5: No error path silently continues as if nothing happened (catch-log-continue, default returns on failure, swallowed callbacks all create silent failures — each error path either surfaces to the caller or is observable via logs/metrics/alerts)
 
 **Red flag:** "Errors are rare" or "caller handles it" without checking caller
 
@@ -83,11 +83,11 @@ For each dimension: detect if it applies, then verify.
 - Background threads/processes
 
 **If YES, verify:**
-- [ ] Every acquire has corresponding release
-- [ ] Release happens in finally/context manager/destructor
-- [ ] Release happens on error paths too
-- [ ] No resource leaks on repeated calls
-- [ ] Bounded growth (caches have limits, queues have limits)
+- [ ] RM-1: Every acquire has corresponding release
+- [ ] RM-2: Release happens in finally/context manager/destructor
+- [ ] RM-3: Release happens on error paths too
+- [ ] RM-4: No resource leaks on repeated calls
+- [ ] RM-5: Bounded growth (caches have limits, queues have limits)
 
 **Red flag:** "It cleans up eventually" or daemon threads without shutdown
 
@@ -102,11 +102,11 @@ For each dimension: detect if it applies, then verify.
 - Optional/nullable values
 
 **If YES, verify:**
-- [ ] Empty input: What happens with `[]`, `""`, `None`, `0`?
-- [ ] Single item: Edge case often different from N items
-- [ ] Maximum size: What if input is huge? Memory? Time?
-- [ ] Invalid values: Negative numbers, NaN, special characters?
-- [ ] Type boundaries: int overflow, float precision?
+- [ ] BC-1: Empty input: What happens with `[]`, `""`, `None`, `0`?
+- [ ] BC-2: Single item: Edge case often different from N items
+- [ ] BC-3: Maximum size: What if input is huge? Memory? Time?
+- [ ] BC-4: Invalid values: Negative numbers, NaN, special characters?
+- [ ] BC-5: Type boundaries: int overflow, float precision?
 
 **Red flag:** "Nobody would pass that" or "that's an edge case"
 
@@ -121,17 +121,17 @@ For each dimension: detect if it applies, then verify.
 - Data that becomes SQL, shell, HTML, or code
 
 **If YES, verify:**
-- [ ] Input validated before use
-- [ ] No string concatenation for SQL/shell/HTML (use parameterized)
-- [ ] Path traversal prevented (no `../` exploitation)
-- [ ] Secrets not logged or exposed in errors
-- [ ] Auth/authz checked before action, not after
+- [ ] SE-1: Input validated before use
+- [ ] SE-2: No string concatenation for SQL/shell/HTML (use parameterized)
+- [ ] SE-3: Path traversal prevented (no `../` exploitation)
+- [ ] SE-4: Secrets not logged or exposed in errors
+- [ ] SE-5: Auth/authz checked before action, not after
 
 **Red flag:** "It's internal only" (internals get exposed)
 
 ---
 
-Detailed per-dimension checklists: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
+**CHECKER:** every ID'd item above is a checklist item. The Output Format below is the report — one PASS/FAIL/N/A line per dimension with the evidence lines it asks for; individual items appear under their dimension only when they fail (`ID — evidence — location`); close with one line `N items checked, M pass, K n/a`.
 
 ---
 
@@ -165,27 +165,9 @@ When verifying, output:
 ### Security: [PASS/FAIL/N/A]
 - Untrusted input: [list]
 - Validation: [approach]
+- FAIL items only: [ID — evidence — location]   (same line under every dimension that has failures)
+
+N items checked, M pass, K n/a
 
 **Verdict:** [DONE / NOT DONE - list blockers]
 ```
-
----
-
-## Relationship to Other Skills
-
-| Skill | Focus | When |
-|-------|-------|------|
-| **aposd-designing-deep-modules** | Design quality | FIRST—during design |
-| **aposd-verifying-correctness** | Actual correctness | BEFORE "done" |
-| **cc-quality-practices** | Testing | Throughout |
-
-**Order:** Design → Implement → Verify (this skill) → Done
-
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| All dimensions pass | Done (pre-commit gate) |

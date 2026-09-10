@@ -127,12 +127,3 @@ Rationale: [Why this wins, what's sacrificed]
 - Hidden details: [list]
 - Common case complexity: [simple/moderate/complex]
 ```
-
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Design chosen | `Skill(code-foundations:cc-pseudocode-programming)` |

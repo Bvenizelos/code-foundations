@@ -47,3 +47,34 @@ skills/aposd-simplifying-complexity/SKILL.md	## Red Flags
 skills/cc-quality-practices/SKILL.md	they live there, not here
 skills/cc-debugging/checklists.md	then brute force, once quick guesses fail
 skills/cc-debugging/checklists.md	/*"/**/
+# --- Phase 3: conditional handoffs that survive Chain-table deletion as prose; CHECKER output shape
+skills/cc-debugging/SKILL.md	Skill(code-foundations:welc-legacy-code)
+skills/cc-debugging/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/cc-refactoring-guidance/SKILL.md	Skill(code-foundations:welc-legacy-code)
+skills/ca-architecture-boundaries/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/performance-optimization/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/welc-legacy-code/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/aposd-reviewing-module-design/SKILL.md	Skill(code-foundations:aposd-simplifying-complexity)
+skills/clarify/SKILL.md	re-enter this loop
+skills/cc-defensive-programming/SKILL.md	N items checked, M pass, K n/a
+skills/cc-routine-and-class-design/SKILL.md	N items checked, M pass, K n/a
+skills/cc-quality-practices/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-verifying-correctness/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-verifying-correctness/SKILL.md	EH-5
+skills/aposd-simplifying-complexity/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-reviewing-module-design/SKILL.md	N items checked, M pass, K n/a
+skills/performance-optimization/SKILL.md	N items checked, M pass, K n/a
+skills/performance-optimization/SKILL.md	~1000x a memory access
+skills/cc-quality-practices/SKILL.md	Skill(code-foundations:cc-routine-and-class-design)
+skills/cc-refactoring-guidance/SKILL.md	Skill(code-foundations:aposd-reviewing-module-design)
+skills/aposd-reviewing-module-design/checklists.md	IH-5
+skills/cc-defensive-programming/SKILL.md	the ID'd checklist is the item set
+skills/cc-routine-and-class-design/SKILL.md	the ID'd checklist is the item set
+skills/cc-quality-practices/SKILL.md	the ID'd checklist is the item set
+skills/performance-optimization/SKILL.md	the ID'd checklist is the item set
+skills/aposd-reviewing-module-design/SKILL.md	the ID'd checklist is the item set
+skills/aposd-simplifying-complexity/SKILL.md	the ID'd checklist is the item set
+skills/performance-optimization/checklists.md	DS-1
+skills/performance-optimization/checklists.md	DS-2
+skills/performance-optimization/checklists.md	DS-3
+skills/performance-optimization/checklists.md	DS-4

@@ -472,10 +472,3 @@ If changes requested: update plan (Status stays `draft`). Structural changes -> 
 2. **Tell me what to do** -- Numbered manual steps
 
 **Question style:** See [adaptive-questioning.md](${CLAUDE_PLUGIN_ROOT}/references/adaptive-questioning.md). The "Recommended" tag on Build now is the confirmatory cue — keep it there.
-
----
-
-## Chain
-
-- **Receives from:** plan command (router dispatch)
-- **Chains to:** build (via saved plan file)

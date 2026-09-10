@@ -171,6 +171,15 @@ for (row = 0; row < MAX_ROWS; row++)
 
 ---
 
+## Design-Level Symptoms
+
+- [ ] DS-1: "Is the slowness spread across many small inefficiencies with no single hot spot?" → Death by a thousand cuts — fix at the design level (critical path redesign), not one tuning at a time
+- [ ] DS-2: "Do methods pass through to another with the same signature?" → Unnecessary layer crossing — remove the pass-through
+- [ ] DS-3: "Do several layers provide the same abstraction?" → Shallow layers — collapse them
+- [ ] DS-4: "Are the same special-case conditions checked in more than one place?" → Consolidate the checks on the critical path
+
+---
+
 ## After Making Changes
 
 - [ ] AM-1: Re-measured — measurable performance difference confirmed

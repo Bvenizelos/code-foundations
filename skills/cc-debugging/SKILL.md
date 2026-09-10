@@ -61,6 +61,8 @@ Fix the root cause, not the symptom.
 - Rule out competing hypotheses before committing to the diagnosis.
 - Make one change at a time; keep the original source.
 
+If the defect sits in untested legacy code, get it under test before fixing: `Skill(code-foundations:welc-legacy-code)`. If the fix needs structural refactoring, separate it from the fix: `Skill(code-foundations:cc-refactoring-guidance)`.
+
 ### Step 6: TEST
 
 Verify the fix actually works.
@@ -101,13 +103,3 @@ When quick checks fail and the systematic method stalls, the brute-force techniq
 ## Confessional debugging
 
 Explain the problem out loud, to a person or a rubber duck. Articulation frequently reveals the bug before the listener responds.
-
----
-
-## Chain
-
-| After | Next |
-|---|---|
-| Root cause found | Fix + add regression test (Steps 6–7 above) |
-| Defect is in untested legacy code | `Skill(code-foundations:welc-legacy-code)` — get it under test first |
-| Fix requires structural refactoring | `Skill(code-foundations:cc-refactoring-guidance)` |

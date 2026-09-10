@@ -1,0 +1,17 @@
+# file	heading substring that must exist (checked by evals/validate-structure.mjs check E)
+commands/build.md	Effort Alignment
+commands/build.md	Skill Resolution
+commands/build.md	Batch REVIEW
+commands/build.md	Commit After Phase
+commands/build.md	Gate Failure Protocol
+commands/build.md	Parallel Waves
+commands/build.md	VERIFY
+commands/build.md	REPORT
+references/gate-failure-protocol.md	Batch Failures
+references/gate-failure-protocol.md	Wave Failures
+references/commit-format.md	Wave-Member Variant
+references/commit-format.md	Execution Log Entry
+references/trust-report.md	Report Template
+references/plan-integration.md	Thinking Effort Doctrine
+agents/post-gate-agent.md	Verdict Rules
+agents/build-agent.md	Baseline Discipline

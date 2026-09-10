@@ -1,0 +1,22 @@
+# file	phrase that must appear verbatim in that file (validator check I). One row per load-bearing or relocated rule.
+# --- deliberate duplicate (docs/code-standards.md): the REVIEW debias rule lives in both the orchestrator and the template
+commands/build.md	intent-framing
+references/dispatch-templates.md	intent-framing
+# --- build workflow invariants the lightening must not lose
+commands/build.md	floored at sonnet
+commands/build.md	THREE independent REVIEW agents
+commands/build.md	un-reviewed set
+commands/build.md	silently retry
+commands/build.md	Security-sensitive:** yes
+references/commit-format.md	deferred (batch pending)
+references/gate-failure-protocol.md	Batch Failures
+references/trust-report.md	Covered by batch review
+agents/post-gate-agent.md	### Verdict Rules
+agents/post-gate-agent.md	execution evidence
+agents/build-agent.md	passing set only GROWS
+agents/build-agent.md	UPDATE_PLAN
+# --- skill rules
+skills/cc-debugging/SKILL.md	STABILIZE
+skills/cc-defensive-programming/SKILL.md	Internal team API
+skills/cc-defensive-programming/checklists.md	SM-3
+skills/cc-defensive-programming/checklists.md	SA-1

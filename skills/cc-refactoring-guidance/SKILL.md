@@ -28,7 +28,7 @@ Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_
 
 ## Before refactoring: identify the target pattern
 
-Refactor *toward* something, not just away from bad code. Find the best examples of the target pattern in this codebase, the module's conventions, and how similar refactorings were structured; match the existing pattern exactly, or — if none exists — be deliberate about the precedent you're setting. Full gate: `Read(${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)`.
+Refactor *toward* something, not just away from bad code. Find the best examples of the target pattern in this codebase, the module's conventions, and how similar refactorings were structured; match the existing pattern exactly, or — if none exists — be deliberate about the precedent you're setting.
 
 ## Core patterns
 

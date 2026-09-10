@@ -41,8 +41,6 @@ DISCOVER runs **after** the plan command's shared steps (code-standards scan, cl
 
 The code-standards scan already ran in the plan command's shared step 1 — `docs/code-standards.md` exists. Do **not** reload the code-standards skill. Deepen the research instead: how similar problems are solved here, existing libraries/patterns to reuse, and patterns intentionally omitted (check git history).
 
-**See also:** [pattern-reuse-gate.md](${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)
-
 ### 1b: Re-confirm Problem Statement (only on contradiction)
 
 A confirmed problem statement already arrives from the plan command's shared step — clarification ran there, under its 5-round cap. Do **not** reload the clarify skill or re-clarify from scratch. Only if deeper research contradicts or materially broadens the stated problem do you re-confirm (see Output below).

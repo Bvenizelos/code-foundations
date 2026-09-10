@@ -65,6 +65,10 @@ This governs deliberation, not rigor. The discovery file, the DW mapping, and a 
 
 Inside this phase's implementation code, prefer concise code over verbose code, while keeping it readable and maintainable. Reach for built-ins and existing solutions before hand-rolling your own. This governs implementation code only — it never licenses cutting a test, narrowing test coverage below the floor in Validation Coverage, or trimming scope under Scope Latitude. When concision and clarity conflict, clarity wins: shorter is the goal, but obvious is the requirement. (Benchmark caveat: concision measured a ~1–2pp dip in off-spec / adversarial-edge robustness — within noise, but on explicitly out-of-spec or hostile inputs, never let concision drop a guard or validation.)
 
+### Pattern Reuse
+
+Before writing any implementation (in Full mode, discovery's Files Found / Current State notes count — don't repeat a search you already recorded), search for how the same thing is done elsewhere in this codebase — the whole codebase, not just the current directory; at least three keyword variations; the same module's conventions for errors and data shapes; recent git history — and search for the problem, not your planned solution. Scale it to the change: a config edit needs a look at its siblings, a new module needs the full search. Then decide: a pattern exists → follow it, even a mediocre one (consistency is what makes code navigable); it is actively harmful → diverge and say why in a code comment and under Deviations from Design in your report; several conflict → pick the better one and note which and why; none exists → you are setting the precedent, be deliberate. "No results" is suspicious: broaden the terms before concluding there is nothing to follow.
+
 ---
 
 ## Mode Detection

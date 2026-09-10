@@ -10,8 +10,6 @@ Most debugging time goes to finding and understanding the defect; the fix is usu
 
 First action on any bug: run the failing test or repro and read its actual output. Do this before reading the source in depth and before editing anything — the observed failure, not the code you infer it from, is what you debug. If the usual runner is unavailable (e.g. no `pytest`), fall back to a runnable form (`python3 -c`, a direct script) and capture that output now, not after a fix.
 
-Shared numeric thresholds (20:1 debugger variation, ~50% of fixes wrong first time): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## Scientific Debugging Method
 
 ```
@@ -65,7 +63,7 @@ If the defect sits in untested legacy code, get it under test before fixing: `Sk
 
 ### Step 6: TEST
 
-Verify the fix actually works.
+Verify the fix actually works — about half of bug fixes are wrong the first time (Yourdon 1986b).
 
 - Triangulate: multiple different test cases, not just the original repro.
 - Add a regression test that would have caught this bug.

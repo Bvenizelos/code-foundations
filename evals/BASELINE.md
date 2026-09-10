@@ -66,3 +66,10 @@ Descriptions are untouched by the lightening; these are re-run at the end as a r
 
 ## inventory (validator check J)
 `evals/inventory.mjs main` extracted 1,696 checklist item IDs and section headings from the pre-cut tree into `evals/inventory-baseline.tsv`; every one must survive in place or be accounted for in `evals/inventory-dropped.tsv`.
+
+## After Phase 4 — existing behavioral suite re-runs (docs/code-standards.md verification gate 3)
+| suite | result |
+|---|---|
+| .skill-audit/cc-debugging bulk-reserve-pressure, with_skill ×3, sonnet | 3/3 COMPLIANT, 6/6 expectations each ($0.69) — baseline in AUDIT-REPORT was 1/2 NON_COMPLIANT before the 2026-06 fixes |
+| CHECKER A/B (evals/checker-eval iteration-3): with_skill (trimmed, after Phases 1–4) vs old_skill (main worktree), sonnet, N=3 per arm | trimmed: 2 graded runs 9/9, 1 run hit the harness max-turns cap ungraded; old: 2 graded runs 9/9, 1 run hit max-turns ungraded. Both max-turns transcripts had already touched all seven planted sites. **Verdict rule (no planted violation missed in ≥2 of 3 trimmed runs but caught by the old arm): PASS — no recall difference detectable at this N.** Cost $1.99 |
+| .skill-audit/cc-refactoring-guidance fix-vs-refactor-pressure, sonnet, N=3 per arm | trimmed (with_skill): 1 graded run 4/5 (missed "ran tests for a green baseline before editing"), 2 runs hit the turn cap; pre-trim (old_skill, main worktree): 2 graded runs 4/5 (same expectation missed), 1 run hit the turn cap. **Identical pass rate and identical failing expectation across arms; the 2026-06 audit already recorded this eval hitting the turn cap. No regression attributable to the trim.** Cost $2.94 |

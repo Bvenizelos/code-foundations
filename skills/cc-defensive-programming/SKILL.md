@@ -15,8 +15,6 @@ Defensive code keeps small failures from compounding into silent, hard-to-diagno
 | External input validated at entry | Unvalidated input is security vulnerabilities and data corruption |
 | Assertions for bugs only | Anticipated runtime errors need handling, not assertions (which are disabled in production) |
 
-Shared thresholds and the information-hiding rationale: `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## Two rules that override the textbook
 
 - **"Internal team API" is still external.** Any data crossing a network or process boundary is external input — validate it, even from a service your own team owns.
@@ -41,7 +39,7 @@ Execute the defensive-programming, assertion, and exception checklists against t
 
 ### APPLIER
 
-Produce assertion placement, error-handling strategy, barricade architecture, and validation implementations. Search the codebase for the existing error-handling pattern (exception vs return code vs Result type, custom exception classes, logging conventions) and follow it — consistency in error handling is what makes failures debuggable. Full gate: `Read(${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)`.
+Produce assertion placement, error-handling strategy, barricade architecture, and validation implementations. Search the codebase for the existing error-handling pattern (exception vs return code vs Result type, custom exception classes, logging conventions) and follow it — consistency in error handling is what makes failures debuggable.
 
 ## Assertion vs error handling
 

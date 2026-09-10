@@ -78,3 +78,21 @@ skills/performance-optimization/checklists.md	DS-1
 skills/performance-optimization/checklists.md	DS-2
 skills/performance-optimization/checklists.md	DS-3
 skills/performance-optimization/checklists.md	DS-4
+# --- Phase 4
+agents/build-agent.md	### Pattern Reuse
+agents/build-agent.md	No results
+agents/build-agent.md	diverge and say why
+agents/build-agent.md	Deviations from Design
+commands/debug.md	follow the existing fix pattern
+skills/cc-refactoring-guidance/SKILL.md	match the existing pattern exactly
+skills/cc-defensive-programming/SKILL.md	Search the codebase for the existing error-handling pattern
+skills/cc-debugging/SKILL.md	about half of bug fixes are wrong
+agents/build-agent.md	several conflict
+agents/build-agent.md	at least three keyword variations
+references/cc-foundations.md	## Cohesion Spectrum
+references/cc-foundations.md	## Coupling Criteria
+references/cc-foundations.md	## Key Metrics
+references/cc-foundations.md	without using "and"
+references/cc-foundations.md	Fan-out
+skills/cc-routine-and-class-design/SKILL.md	cc-foundations.md
+skills/cc-refactoring-guidance/SKILL.md	cc-foundations.md

@@ -10,8 +10,6 @@ Improving quality reduces development cost. No single defect-detection technique
 
 For active bug diagnosis (an actual failing test or repro to chase down), hand off: `Skill(code-foundations:cc-debugging)`. This skill is for QA planning and process design. When its CHECKER surfaces a design smell, hand off to `Skill(code-foundations:cc-routine-and-class-design)`; when a fix needs restructuring, to `Skill(code-foundations:cc-refactoring-guidance)`.
 
-Shared CC vocabulary and thresholds (cohesion spectrum, coupling, key metrics): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## External vs internal quality
 
 - **External** (users care): correctness, usability, efficiency, reliability, integrity, robustness.

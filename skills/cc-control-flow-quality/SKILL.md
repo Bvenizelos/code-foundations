@@ -16,8 +16,6 @@ user-invocable: false
 | Loop-with-exit comprehension | 25% better than top/bottom test | Soloway 1983 |
 | Mental entity limit | 5–9 items | Miller 1956 |
 
-Shared numeric thresholds and the cohesion/coupling vocabulary: `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 The full audit checklists (conditionals, structure, loops, tables): `Read(${CLAUDE_SKILL_DIR}/checklists/conditionals-and-structure.md)` and `Read(${CLAUDE_SKILL_DIR}/checklists/loops-and-advanced.md)`.
 
 **Principles:**

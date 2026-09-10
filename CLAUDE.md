@@ -184,8 +184,8 @@ proven drift).
 
 **CC Skills (7 total):** cc-control-flow-quality, cc-debugging, cc-defensive-programming,
 cc-pseudocode-programming, cc-quality-practices, cc-refactoring-guidance, cc-routine-and-class-design.
-All 7 CC skills reference `references/cc-foundations.md` for shared vocabulary (cohesion spectrum,
-coupling criteria, key metrics, routine-length thresholds).
+Two of them (cc-routine-and-class-design, cc-refactoring-guidance) read `references/cc-foundations.md` for the
+shared vocabulary (cohesion spectrum, coupling criteria, key metrics); the rest state their thresholds inline.
 
 - `cc-debugging` — scientific debugging: STABILIZE → LOCATE → HYPOTHESIZE → EXPERIMENT → FIX → TEST → SEARCH
 

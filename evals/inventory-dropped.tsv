@@ -350,3 +350,20 @@ skills/aposd-verifying-correctness/checklists.md	item	SE-5	SKILL.md § Dimension
 skills/aposd-verifying-correctness/SKILL.md	heading	Relationship to Other Skills	dropped: the description's "not for X (use Y)" clauses carry the disambiguation; Design → Implement → Verify ordering is the planner's
 skills/performance-optimization/SKILL.md	heading	Quick Reference	dropped: restated the four thresholds already stated with sources under § Measure First and § 7-Step Decision Tree
 # note (Phase 3): performance-optimization DS-4 is a new checklist item promoting the pre-existing SKILL.md Red Flags row "Repeated Special Cases" — not a pre-cut ID, recorded here for the audit trail
+# --- Phase 4: pattern-reuse-gate folded into build-agent Baseline Discipline; cc-foundations trimmed to the tables CC skills cite
+references/cc-foundations.md	heading	Software's Primary Technical Imperative	dropped: textbook framing; the information-hiding rule lives in aposd-designing-deep-modules § Information Hiding Checklist
+references/cc-foundations.md	heading	Information Hiding Principles	dropped: textbook (secrets/interface/barriers); aposd-designing-deep-modules carries what-to-hide in its own vocabulary, and the one citer (cc-defensive-programming's barricade section) is self-contained
+references/cc-foundations.md	heading	Design Heuristics	dropped: restated Key Metrics (composition, depth <3) and APOSD principles carried by the aposd skills
+references/cc-foundations.md	heading	CC ↔ APOSD Concept Mapping	dropped: a cross-reference table between the two vocabularies; no rule, each concept lives in its own skill
+references/cc-foundations.md	heading	Quick Reference	dropped: restated the three tables above
+references/pattern-reuse-gate.md	heading	The Gate	agents/build-agent.md § Pattern Reuse (search → identify → follow-or-document-divergence)
+references/pattern-reuse-gate.md	heading	Search Checklist	agents/build-agent.md § Pattern Reuse (several keyword variations, recent history, search for the problem not the solution, "no results" is suspicious)
+references/pattern-reuse-gate.md	heading	Search Quality Requirements	agents/build-agent.md § Pattern Reuse
+references/pattern-reuse-gate.md	heading	Decision Matrix	agents/build-agent.md § Pattern Reuse (follow / follow-anyway / document divergence / pick between conflicting patterns / set precedent)
+references/pattern-reuse-gate.md	heading	Examples	dropped: three BAD/GOOD example pairs (format-anchoring only)
+references/pattern-reuse-gate.md	heading	Example 1: Adding Error Handling	dropped: example
+references/pattern-reuse-gate.md	heading	Example 2: Adding a New Component	dropped: example
+references/pattern-reuse-gate.md	heading	Example 3: Fixing a Bug	dropped: example
+references/pattern-reuse-gate.md	heading	Integration Points	dropped: the four call sites now state the rule inline (cc-defensive-programming APPLIER, cc-refactoring-guidance § Before refactoring, planning 1a, commands/debug.md)
+references/pattern-reuse-gate.md	heading	Workflow Position	dropped: ASCII "YOU ARE HERE" diagram
+references/cc-foundations.md	note	Debugging Performance figures	the ~50%-of-fixes-wrong figure moved to cc-debugging Step 6; the 20:1 debugger-variation figure is dropped (a motivational statistic, not a rule)

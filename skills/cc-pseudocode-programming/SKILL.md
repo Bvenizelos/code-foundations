@@ -17,8 +17,6 @@ Design a routine in pseudocode before writing it. Iterating on intent is cheaper
 
 If the user asks to skip pseudocode, comply or surface the tradeoff once (the routine will likely cost more in debugging) — don't refuse.
 
-Shared CC vocabulary and thresholds (cohesion, parameters, routine length): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## When the routine is exempt
 
 Skip the process only when one of these holds:

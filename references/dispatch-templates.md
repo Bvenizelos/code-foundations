@@ -47,8 +47,8 @@ Agent tool:
     [paste the Context section from the plan file — the 2-3 sentence problem statement]
 
     ## Progress
-    [For Phase 1: "This is the first phase."]
-    [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary from execution log]. Phase 2: ..."]
+    [If no phase has committed yet: "This is the first phase."]
+    [Otherwise: "Completed: Phase X: [name] — [1 sentence summary from execution log]. ..." — committed phases, in commit order]
     Current: Phase N of M
 
     [if the plan's ## Decided During Build log has rows that are not `open`, include:]
@@ -123,7 +123,7 @@ Agent tool:
     [paste the Context section from the plan file]
 
     ## Progress
-    [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary]. Phase 2: ..."]
+    [If any phase has committed: "Completed: Phase X: [name] — [1 sentence summary]. ..." in commit order]
     Current: Phase N of M
 
     [if the plan's ## Decided During Build log has rows that are not `open`, include:]

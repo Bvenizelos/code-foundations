@@ -7,7 +7,7 @@ Used by the orchestrator (`commands/build.md` Phase 3: EXECUTE) when committing 
 ## Commit Recipe
 
 ```bash
-git add .
+git add . ':(exclude).code-foundations/wave-worktrees'   # a held wave worktree must not land as an embedded repo
 git commit -m "[prefix]([scope]): [description]
 
 [WHY this phase exists — goal, key decisions, constraints that shaped implementation]
@@ -31,7 +31,7 @@ The trailer records the review state **at the moment of the commit**, and for de
 | `fail->pass (N attempts)` | Blocking REVIEW failed N times, then passed, all before this commit |
 | `deferred (batch pending)` | Standard or Minimal phase committing on a green suite; a batch REVIEW will cover it |
 | `batch fail->pass (attempt K)` | A fix-forward commit answering batch review findings (see gate-failure-protocol.md → Batch Failures) |
-| `verify-fix (review pending)` | A `fix(phase-N): verification fixes` commit made at VERIFY on a Full or security-sensitive phase; its blocking re-review (`<plan>-phase-N-review-verify.md`) is the record. A VERIFY fix on a Standard/Minimal phase uses `deferred (batch pending)` like any deferred phase |
+| `verify-fix (review pending)` | A `fix(phase-N): verification fixes` or `fix(phase-N): apply user decision #K` commit on a Full or security-sensitive phase; its blocking re-review (`<plan>-phase-N-review-verify.md`, or `-review-user-K.md`) is the record. The same fix on a Standard/Minimal phase uses `deferred (batch pending)` like any deferred phase |
 
 **Reading the history:** `deferred (batch pending)` on a phase commit does not mean the phase went unreviewed — it means the review is recorded elsewhere. The pairing evidence is the execution-log addendum line naming the batch that covered it, and the trust report resolves the two at REPORT time. A phase with a `deferred` trailer and no addendum is the one real anomaly to look for.
 

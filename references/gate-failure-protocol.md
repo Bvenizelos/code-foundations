@@ -28,7 +28,7 @@ Track the number of times each gate has returned FAIL for the current phase.
 |---------|--------|
 | 1st FAIL | Fix issues, re-dispatch |
 | 2nd FAIL | Fix issues, re-dispatch. Note: if the same issues recur, the fix approach is wrong. |
-| 3rd FAIL | **STOP.** Do not re-dispatch. Present findings to user (template below). |
+| 3rd FAIL | **STOP.** Do not re-dispatch. Present findings to user (template below). A 3rd BUILD BLOCKED instead becomes an `open` question holding only that phase and its dependents (checkpoint.md → Clarify) — the template is used when it is asked. |
 
 **On the 3rd FAIL — present this to the user:**
 

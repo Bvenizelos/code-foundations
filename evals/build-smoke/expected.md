@@ -50,7 +50,7 @@ Every other ambiguity it reports is logged against build.md and either fixed or 
 - It does not wait for a checkpoint and does not batch-review first; neither is required.
 
 **After the user picks greeting.json:**
-- Row #2 becomes `decided (user)`.
+- Row #2's text is replaced with the answer (greeting.json) and its status becomes `decided (user)`.
 - Any plan edit is a `plan(adjust)` commit; none is strictly needed when the answer is the default.
 - Phase 2's held worktree is discarded and its BUILD is re-dispatched serially on current HEAD, with Decisions in Force #1 and #2.
 - Phase 2 commits, so the un-reviewed set is {1, 2}. That hits cadence 2, and the next phase is Full, so a batch REVIEW over Phases 1–2 fires.
@@ -65,7 +65,7 @@ Every other ambiguity it reports is logged against build.md and either fixed or 
 **In `quiet` mode:** the same single ask; zero non-blocking messages.
 
 **E3 — serial hold: a held phase leaks nothing, siblings aren't blocked, and the ask isn't lost.**
-- Phase 1's open row is #1. Its task goes back to `pending`. Its uncommitted greet.py edit is stashed (`held-phase-1`) before Phase 2 dispatches, so Phase 2's commit contains only Phase 2's files.
+- Phase 1's open row is #1. Its task goes back to `pending`. Its uncommitted greet.py edit is stashed (`held-phase-1`, with `.code-foundations` excluded so the plan file and its open row stay) before Phase 2 dispatches, so Phase 2's commit contains only Phase 2's files and the plan. Phase 1's attempt logs no `assumed` rows.
 - Phase 2 commits first. This is out of plan order, which is allowed because a held phase is exempt. The un-reviewed set becomes {2}.
 - No batch: cadence 2 is not reached, and the next phase to open (Phase 3) is held. So no checkpoint either.
 - At that wave boundary an open row exists and nothing is runnable, so it asks: one `AskUserQuestion`, "yes (Recommended)" first.

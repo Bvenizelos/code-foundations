@@ -15,6 +15,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 - **One wave at a time** — phases run in parallel only when Wave Derivation's co-scheduling rule holds, each in its own phase worktree. The commit is the phase boundary.
 - **Every phase is reviewed; not every phase blocks on it** — Full-gate and security-sensitive phases review before their commit; Standard and Minimal phases commit on green tests and are covered by a later batch REVIEW. The batch fires at the cadence, before any Full phase, and at VERIFY if anything is still un-reviewed. Nothing reaches the trust report unreviewed.
 - **Mark complete only when gates pass; keep the execution log current** — it debugs failed builds and anchors later phases.
+- **Quiet by default** — the user talked in research and planning. Agents decide what the plan leaves open and record it; only a one-way door becomes a question, it holds only its own phase and that phase's dependents, and the build ends its turn to ask only when nothing else can run.
 
 ---
 
@@ -24,7 +25,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 
 **Worktree gate — immediately, it needs the plan filename.** Read `${CLAUDE_PLUGIN_ROOT}/references/worktree-gate.md` and clear it before any other work (workspace-mode detection, worktree or feature-branch creation, dependency setup, record-keeping for REPORT). "Build worktree" below means the workspace this gate produced.
 
-**Parse the plan.** Context (goal anchoring for BUILD prompts); phases with their `**Done when:**` items (passed verbatim to build and review agents), `**Model:**`, `**Gate:**` (plus optional `**Pipeline:**` override), `**Depends on:**` and optional `**File scope:**` (wave derivation), `**Skills:**`, optional `**Security-sensitive:** yes` (immediate 3-sample REVIEW, never deferred) and `**Edge cases:**`; the Assumptions table with its `Verify Before Phase` timing; Test Coverage and Test Plan; `**Review cadence:** N` in the header (missing or unparseable → 3; clamped to 1–5; either noted in SETUP's table).
+**Parse the plan.** Context (goal anchoring for BUILD prompts); phases with their `**Done when:**` items (passed verbatim to build and review agents), `**Model:**`, `**Gate:**` (plus optional `**Pipeline:**` override), `**Depends on:**` and optional `**File scope:**` (wave derivation), `**Skills:**`, optional `**Security-sensitive:** yes` (immediate 3-sample REVIEW, never deferred) and `**Edge cases:**`; the Assumptions table with its `Verify Before Phase` timing; Test Coverage and Test Plan; `**Review cadence:** N` in the header (missing or unparseable → 3; clamped to 1–5; either noted in SETUP's table); `**Check-ins:**` in the header (`quiet` | `checkpoints` | `per-phase`; missing or unrecognized → `checkpoints`, noted in the table); the `## Decided During Build` log (add the section if absent).
 
 **Required fields:** every phase must carry `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a list, `none -- [reason]`, or bare `none`). Any missing → stop and tell the user to re-run `/code-foundations:plan`; the planner always emits them. Missing Test Coverage → default to 100%, noted in SETUP's table.
 
@@ -34,7 +35,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 |---|---|
 | `draft`, missing, or unrecognized | **Stop.** The user never confirmed the plan — the planner flips draft → ready on approval. Send them back to `/code-foundations:plan` |
 | `ready` | Proceed |
-| `in-progress` | Resume: derive completed phases from the execution log + commit trailers, re-run SETUP for the remainder, continue from the first incomplete phase |
+| `in-progress` | Resume: derive completed phases from the execution log + commit trailers, re-run SETUP for the remainder, continue from the first incomplete phase; `open` rows in Decided During Build still hold their phases — ask them first if nothing else is runnable |
 | `complete` | Ask: re-execute or archive? |
 | `blocked` | Show the blockers as a short list, ask how to proceed |
 
@@ -107,7 +108,7 @@ Waves are derived here, never stored in the plan.
 ### The Resolution Table (the only SETUP output)
 
 ```
-Review cadence: 3 (defaulted)        Test Coverage: 100% (defaulted)
+Review cadence: 3 (defaulted)        Test Coverage: 100% (defaulted)        Check-ins: checkpoints (defaulted)
 | Phase | Model | REVIEW model | Gate | Security | Review timing | Skills | Wave | Notes |
 |-------|-------|--------------|------|----------|---------------|--------|------|-------|
 | 1 | sonnet | sonnet | Standard | — | deferred (batch) | cc-defensive-programming | 1 | |
@@ -115,7 +116,7 @@ Review cadence: 3 (defaulted)        Test Coverage: 100% (defaulted)
 | 3 | haiku | sonnet | Full | — | blocking | none -- docs only | 3 (alone) | ⚠ haiku + Full: mechanical effort on high-risk work |
 ```
 
-The two header lines are always printed; a cadence default or clamp and a defaulted Test Coverage are annotated there. `Security: yes` sets REVIEW model fable, timing blocking (3-sample), wave alone; a Full phase is also `(alone)`. Notes carries effort warnings, a bare `none`, and pipeline overrides.
+The header's three values are always printed; a cadence default or clamp, a defaulted Test Coverage, and a defaulted Check-ins are annotated there. `Security: yes` sets REVIEW model fable, timing blocking (3-sample), wave alone; a Full phase is also `(alone)`. Notes carries effort warnings, a bare `none`, and pipeline overrides.
 
 ### Create Phase Tasks Upfront
 
@@ -159,7 +160,8 @@ Execute wave by wave. Single-phase waves run the serial flow; parallel waves add
 5. FAIL/BLOCKED → not completed → Gate Failure Protocol
 6. Success → TaskUpdate completed → if this was the phase's last task, commit;
    if the phase's review is deferred, add it to the un-reviewed set
-7. At the wave boundary, evaluate the batch trigger (Batch REVIEW) before opening the next wave
+7. At the wave boundary, evaluate the batch trigger (Batch REVIEW), then run any due Checkpoint,
+   before opening the next wave
 ```
 
 ### Parallel Waves (2–3 phases)
@@ -174,8 +176,10 @@ Isolation is what makes a wave sound: agents run the suite as their evidence, an
    inside <worktree-root>; run all commands from there. End with exactly ONE commit:
    wip(phase-N): <name> — squash if you made more. Report the worktree path and wip sha."
 3. Statuses: DONE → step 4. SKIP → mark completed, append the SKIP log entry, remove the
-   worktree (settled for step 8). UPDATE_PLAN or BLOCKED → let siblings finish, hold their
-   worktrees uncommitted, pause for the user.
+   worktree (settled for step 8). UPDATE_PLAN → log the open question (After BUILD returns),
+   keep that member's worktree uncommitted (settled for step 8). BLOCKED → siblings still
+   integrate, then pause for the user. Siblings never wait on a held member: same-wave
+   phases share no dependency and no files, by construction.
 4. Members are deferred-review phases by construction; DONE with a green suite is the
    integration signal — no REVIEW runs in a phase worktree.
 5. Integrate DONE phases strictly in plan order (an earlier phase still working holds later
@@ -195,7 +199,7 @@ Isolation is what makes a wave sound: agents run the suite as their evidence, an
 
 Dispatch templates: `${CLAUDE_PLUGIN_ROOT}/references/dispatch-templates.md` — read once per build; its Substitution rules govern every placeholder. Full and Standard phases use `§ FULL_BUILD` (discovery file `.code-foundations/build/<plan-name>-phase-N-discovery.md`; only the review timing differs between the two gates); Minimal uses `§ MINIMAL_BUILD` (no discovery).
 
-**After BUILD returns:** SKIP → mark completed, skip any REVIEW task, append a SKIP execution-log entry (the `### Phase N` entry from commit-format.md with a single `- [x] SKIPPED — [reason]` line, no commit hash), next phase. UPDATE_PLAN → pause and ask the user: the requested change plus the agent's one-sentence reason. BLOCKED → Gate Failure Protocol (the 3-retry cap applies). DONE → completed; deferred review → commit now and add the phase to the un-reviewed set; blocking review → REVIEW.
+**After BUILD returns:** first append each line of its `### Decisions` to the plan's `## Decided During Build` log as an `assumed` row (they reach later BUILD prompts as Decisions in Force, never a reviewer). SKIP → mark completed, skip any REVIEW task, append a SKIP execution-log entry (the `### Phase N` entry from commit-format.md with a single `- [x] SKIPPED — [reason]` line, no commit hash), next phase. UPDATE_PLAN → log an `open` row (question, proposed default, blocked DW items); the phase and its dependents are held (their tasks stay pending) and every other runnable phase continues; the question is raised per Checkpoint → Clarify. BLOCKED → Gate Failure Protocol (the 3-retry cap applies). DONE → completed; deferred review → commit now and add the phase to the un-reviewed set; blocking review → REVIEW.
 
 ### Sub-Phase N.2: REVIEW (blocking — Full gate and security-sensitive phases only)
 
@@ -215,6 +219,10 @@ Triggers, evaluated at wave boundaries: the set has reached the cadence; the nex
 
 PASS → empty the set and append a dated `Covered by batch review (phases X–Y)` line to each covered phase's execution-log entry. FAIL → Gate Failure Protocol → Batch Failures: fixes land as forward commits; the set stays non-empty until a batch PASS.
 
+### Checkpoint (Inspect → Adjust → Clarify)
+
+The loop's turn: after a batch REVIEW PASS, before VERIFY, and — when `**Check-ins:** per-phase` — after every phase commit, read `${CLAUDE_PLUGIN_ROOT}/references/checkpoint.md` (once per build) and run it: inspect whether the rest of the plan still fits the code that exists, fix misfits in the remaining plan within its bounds as `plan(adjust)` commits, then message the user only if something changed or needs them. It never removes or weakens a DW item on its own, and it ends the turn to ask only when an open question leaves nothing runnable.
+
 ### Commit After Phase
 
 You commit directly, per `${CLAUDE_PLUGIN_ROOT}/references/commit-format.md` (read once per build: recipe, message rules, wave-member cherry-pick variant, execution-log entry). Required trailers: `Phase:`, `Plan:`, `AI-Model:`, `AI-Epistemic-Status:`, `Gate-Policy:`, `Review:`. Then append the phase's execution-log entry; its Summary line feeds later dispatches' `## Progress` block — write it as goal anchoring, not telemetry. Say: "Phase N complete. Committed."
@@ -227,7 +235,7 @@ On REVIEW FAIL or BUILD BLOCKED, read `${CLAUDE_PLUGIN_ROOT}/references/gate-fai
 
 ## Phase 4: VERIFY (Close the Review Set, One Suite on HEAD)
 
-1. **Trailing batch REVIEW** if the un-reviewed set is non-empty (see Batch REVIEW).
+1. **Trailing batch REVIEW** if the un-reviewed set is non-empty (see Batch REVIEW), then the final Checkpoint — VERIFY starts with no `open` row left.
 2. **One suite on integrated HEAD** — tests, typecheck, lint; the commands the reviewers run. **Delta rule:** skip it iff a full-suite run already executed in the build worktree on the code that is now HEAD (the trailing batch, the final phase's blocking REVIEW, or the wave-integration run) and `git status` is clean apart from the plan file and `.code-foundations/` artifacts — then cite that run. Otherwise run it once. Red (any failing test, typecheck or lint error) → attribute each failure to the phase whose files it exercises, re-dispatch that phase's build agent with the failures, commit the fix as `fix(phase-N): verification fixes` (`Review:` per commit-format.md), then review it the way that phase is reviewed: Full or security-sensitive → its blocking REVIEW again (review path `<plan>-phase-N-review-verify[-sample-K].md`), then back to step 2; Standard or Minimal absent a security flag → the un-reviewed set, back to step 1. No task bookkeeping — the execution log's fix line is the record. The Gate Failure Protocol's caps apply, counted together with the phase's own gate (see its VERIFY row). Lint warnings are reported as they are. No runnable suite → `not run: [reason]` in the trust report; never invent a command.
 3. **Test Plan items the suite does not cover** (integration or manual): run what can be run; record the rest under Manual Testing Steps.
 
@@ -239,7 +247,7 @@ Coverage is enforced by the reviewers (post-gate Step 2 fails a gap against the 
 
 ## Phase 5: REPORT
 
-Set `**Status:** complete`, `**Completed:** YYYY-MM-DD HH:MM`, `**Duration:**`. If VERIFY changed anything or the plan file changed, commit: `chore(build): verification fixes + plan completion`, standard trailers. Then write the **trust report** per `${CLAUDE_PLUGIN_ROOT}/references/trust-report.md` (trailer-dump commands; Build & Test Summary — suite on HEAD, coverage, review shape — Manual Testing Steps, Follow-up, Merge Instructions).
+Set `**Status:** complete`, `**Completed:** YYYY-MM-DD HH:MM`, `**Duration:**`. If VERIFY changed anything or the plan file changed, commit: `chore(build): verification fixes + plan completion`, standard trailers. Then write the **trust report** per `${CLAUDE_PLUGIN_ROOT}/references/trust-report.md` (trailer-dump commands; Build & Test Summary — suite on HEAD, coverage, review shape — Decided During Build, Manual Testing Steps, Follow-up, Merge Instructions).
 
 ---
 

@@ -46,6 +46,20 @@ git commit -m "..."   # identical message + trailers as the standard recipe
 
 A cherry-pick conflict means the phase's File scope declaration was violated — treat as a gate failure (build.md → Parallel Waves step 5), not something to resolve by hand. After committing: copy the phase's discovery/review artifacts into the build worktree's `.code-foundations/build/`, then `git worktree remove` the phase worktree.
 
+## Plan Adjustments
+
+A checkpoint's edit to the remaining plan (checkpoint.md → Adjust) is its own commit, containing only the plan file:
+
+```bash
+git add .code-foundations/plans/[plan-file].md
+git commit -m "plan(adjust): [what changed]
+
+[the observation that forced it — which review Note, decision, or report]
+
+Plan: .code-foundations/plans/[plan-file].md
+AI-Model: [orchestrator model]"
+```
+
 ## Message Rules
 
 - **Subject**: Conventional Commits prefix (`feat`, `fix`, `refactor`, `chore`, etc.) + scope + description

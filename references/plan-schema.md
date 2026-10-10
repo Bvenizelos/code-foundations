@@ -8,6 +8,7 @@ The one home for what a plan file looks like and how its per-phase fields are as
 - Model assignment
 - Gate assignment
 - Review cadence
+- Check-ins
 - Dependencies and file scope
 - Skills validation
 
@@ -21,6 +22,7 @@ The one home for what a plan file looks like and how its per-phase fields are as
 **Status:** draft   <- flipped to `ready` when the user confirms the presented plan; build refuses a draft plan
 **Complexity:** [simple/medium/complex]
 **Review cadence:** 3   <- un-reviewed phases allowed before a batch REVIEW fires; 1-5
+**Check-ins:** checkpoints   <- quiet | checkpoints | per-phase; how often build talks to the user
 ---
 ## Context
 [Confirmed problem statement]
@@ -56,11 +58,15 @@ The one home for what a plan file looks like and how its per-phase fields are as
 ## Notes
 - [edge cases, gotchas, open questions -- omit if none]
 ---
+## Decided During Build
+_Filled by /code-foundations:build — one row per decision an agent made or question it raised:_
+| # | Phase | Decision or question | Source | Status |
+---
 ## Execution Log
 _To be filled during /code-foundations:build_
 ```
 
-Build hard-requires, on every phase, `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a list or `none -- [reason]`) and stops with "re-run /code-foundations:plan" when any is missing; a `**Status:**` that is not `ready` stops it too; a missing `**Review cadence:**` is defaulted to 3 (write it anyway). These rules mirror `commands/build.md` LOAD and Gate Policy. Do not commit the plan — it is a working document; build copies it into its worktree.
+Build hard-requires, on every phase, `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a list or `none -- [reason]`) and stops with "re-run /code-foundations:plan" when any is missing; a `**Status:**` that is not `ready` stops it too; a missing `**Review cadence:**` is defaulted to 3 and a missing `**Check-ins:**` to `checkpoints` (write both anyway). These rules mirror `commands/build.md` LOAD and Gate Policy. Do not commit the plan — it is a working document; build copies it into its worktree.
 
 ---
 
@@ -110,6 +116,20 @@ How many un-reviewed phases may accumulate before a batch REVIEW fires. **Defaul
 | Phases genuinely independent (disjoint `File scope`, few shared seams) | 4–5 |
 
 Build clamps to 1–5: a batch reviewer must verify every DW item across every covered phase, and per-item recall degrades as that list grows. Pick the cadence from the plan's coupling, not from how risky the feature feels overall — per-phase risk is what `**Gate:**` is for.
+
+---
+
+## Check-ins (`**Check-ins:**` — one field in the header)
+
+How often build talks to the user while it runs. Research and planning are where the conversation happens; build is quiet by default. **Default `checkpoints`; write it explicitly.**
+
+| Value | Build behavior |
+|---|---|
+| `quiet` | No status messages. Stops only when an open question leaves nothing else runnable; everything else lands in the trust report |
+| `checkpoints` (default) | One short message per batch-review boundary, and only when something was adjusted, assumed, or needs the user |
+| `per-phase` | The same message after every phase commit, for users who want to steer closely |
+
+Pick `per-phase` only when the user asks to follow along; the value never changes which phases are reviewed or when.
 
 ---
 

@@ -66,7 +66,7 @@ Open (holds phase 6 only; 4–5 continue): #4 Purge or keep deleted users' notif
 
 Then **keep working** — the message does not end your turn. A reply arrives as the user's next message and is handled under User replies.
 
-**The ask** — end the turn and ask only when an open question leaves nothing runnable (every remaining phase is held by it or depends on one that is). Use `AskUserQuestion`, one question per open row (up to four), the agent's proposed default first and marked "(Recommended)". This is the same in every Check-ins mode, and it is the only point at which `quiet` speaks. On the answer, set the row to `decided (user)`, apply it as an adjustment (the bounds no longer apply — the user decided), and resume.
+**The ask** — end the turn and ask only when an open question leaves nothing runnable (every remaining phase is held by it or depends on one that is). Use `AskUserQuestion`, one question per open row (up to four), the agent's proposed default first and marked "(Recommended)". This is the same in every Check-ins mode, and it is the only point at which `quiet` speaks. On the answer, set the row to `decided (user)`, apply it to the remaining plan as an adjustment (the bounds no longer apply — the user decided), then re-dispatch the held phase's BUILD with the answer in its Decisions in Force. A held wave worktree is discarded; the phase now runs serially on current HEAD.
 
 ---
 

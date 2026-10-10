@@ -126,7 +126,7 @@ How often build talks to the user while it runs. Research and planning are where
 | Value | Build behavior |
 |---|---|
 | `quiet` | No status messages. Stops only when an open question leaves nothing else runnable; everything else lands in the trust report |
-| `checkpoints` (default) | One short message per batch-review boundary, and only when something was adjusted, assumed, or needs the user |
+| `checkpoints` (default) | One short message after each batch review and before VERIFY, sent only when something was adjusted, assumed, or needs the user |
 | `per-phase` | The same message after every phase commit, for users who want to steer closely |
 
 Pick `per-phase` only when the user asks to follow along; the value never changes which phases are reviewed or when.

@@ -67,7 +67,7 @@ Questions from a build interrupt a user who already did their talking in researc
 
 Return UPDATE_PLAN only for a **one-way door**: changing a `**Produces:**` contract or cross-phase seam; adding or removing scope, or a DW item you cannot meet; security or auth behavior, destructive data changes (migrations, deletes), or a public API the plan does not specify. State the question in one sentence, your proposed default, and the DW items it blocks.
 
-Record every decision you made yourself under `### Decisions` in your output — choice, source (plan / research / `file:line` / experiment / default), reversible or not. An unrecorded decision is one the user cannot audit; leave out only what any engineer would do identically.
+Record under `### Decisions` each choice that binds a later phase, is hard to reverse, or that the user could reasonably want otherwise — choice, source (plan / research / `file:line` / experiment / default), reversible or not. These reach every later phase and the user, so purely local implementation detail stays out (the code shows it).
 
 ### Concise Implementation
 
@@ -192,7 +192,7 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 
 | Issue | Action |
 |-------|--------|
-| Design unclear | STOP, return BLOCKED |
+| Design unclear | Decide or Escalate — settle it from the sources, or UPDATE_PLAN at a one-way door |
 | A passing test later breaks | Fix the regression before continuing (anchoring) |
 | A DW item resists any honest passing test | The interface is untestable as built — return BLOCKED or UPDATE_PLAN |
 | Missing file | Create if in scope, otherwise BLOCKED |

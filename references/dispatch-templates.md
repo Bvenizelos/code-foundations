@@ -51,10 +51,10 @@ Agent tool:
     [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary from execution log]. Phase 2: ..."]
     Current: Phase N of M
 
-    [if the plan's ## Decided During Build log has decided rows, include:]
+    [if the plan's ## Decided During Build log has rows that are not `open`, include:]
     ## Decisions in Force
     Earlier phases settled these where the plan was silent — follow them:
-    [paste each decided row: "#K (Phase N): [decision]"]
+    [paste each such row: "#K (Phase N): [decision]"]
 
     ## Phase N: [name]
     [paste phase description and file list from plan]
@@ -82,8 +82,9 @@ Agent tool:
     ## Assumption Verification
     Before proceeding with discovery, verify these assumptions from the plan:
     - [assumption text] (Confidence: [level])
-    If any assumption is wrong, return UPDATE_PLAN with the invalidated assumption
-    and what you found instead.
+    If an assumption is wrong, apply its Fallback If Wrong and record it under
+    ### Decisions; return UPDATE_PLAN only if there is no fallback and the gap is a
+    one-way door.
 
     [ONLY on a gate-failure re-dispatch after a REVIEW FAIL, include:]
     ## Review Findings to Fix
@@ -125,10 +126,10 @@ Agent tool:
     [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary]. Phase 2: ..."]
     Current: Phase N of M
 
-    [if the plan's ## Decided During Build log has decided rows, include:]
+    [if the plan's ## Decided During Build log has rows that are not `open`, include:]
     ## Decisions in Force
     Earlier phases settled these where the plan was silent — follow them:
-    [paste each decided row: "#K (Phase N): [decision]"]
+    [paste each such row: "#K (Phase N): [decision]"]
 
     [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills

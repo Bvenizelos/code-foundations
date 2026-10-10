@@ -15,7 +15,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 - **One wave at a time** — phases run in parallel only when Wave Derivation's co-scheduling rule holds, each in its own phase worktree. The commit is the phase boundary.
 - **Every phase is reviewed; not every phase blocks on it** — Full-gate and security-sensitive phases review before their commit; Standard and Minimal phases commit on green tests and are covered by a later batch REVIEW. The batch fires at the cadence, before any Full phase, and at VERIFY if anything is still un-reviewed. Nothing reaches the trust report unreviewed.
 - **Mark complete only when gates pass; keep the execution log current** — it debugs failed builds and anchors later phases.
-- **Quiet by default** — the user talked in research and planning. Agents decide what the plan leaves open and record it; only a one-way door becomes a question, it holds only its own phase and that phase's dependents, and the build ends its turn to ask only when nothing else can run.
+- **Quiet by default** — the user talked in research and planning. Agents settle what the plan leaves open; a one-way door becomes a question that holds only its own phase and that phase's dependents, and the build ends its turn to ask only when nothing else can run.
 
 ---
 
@@ -35,7 +35,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 |---|---|
 | `draft`, missing, or unrecognized | **Stop.** The user never confirmed the plan — the planner flips draft → ready on approval. Send them back to `/code-foundations:plan` |
 | `ready` | Proceed |
-| `in-progress` | Resume: derive completed phases from the execution log + commit trailers, re-run SETUP for the remainder, continue from the first incomplete phase; `open` rows in Decided During Build still hold their phases — ask them first if nothing else is runnable |
+| `in-progress` | Resume: derive completed phases from the execution log + commit trailers, re-run SETUP for the remainder, continue from the first incomplete phase; `open` rows in Decided During Build still hold their phases (discard any held wave worktree or stash; they re-dispatch serially) — ask them first if nothing else is runnable |
 | `complete` | Ask: re-execute or archive? |
 | `blocked` | Show the blockers as a short list, ask how to proceed |
 
@@ -161,6 +161,7 @@ Execute wave by wave. Single-phase waves run the serial flow; parallel waves add
 6. Success → TaskUpdate completed → if this was the phase's last task, commit;
    if the phase's review is deferred, add it to the un-reviewed set
 7. At the wave boundary, evaluate the batch trigger (Batch REVIEW), then run any due Checkpoint,
+   then — if an `open` row exists and nothing is runnable — ask (checkpoint.md → the ask),
    before opening the next wave
 ```
 
@@ -177,13 +178,13 @@ Isolation is what makes a wave sound: agents run the suite as their evidence, an
    wip(phase-N): <name> — squash if you made more. Report the worktree path and wip sha."
 3. Statuses: DONE → step 4. SKIP → mark completed, append the SKIP log entry, remove the
    worktree (settled for step 8). UPDATE_PLAN → log the open question (After BUILD returns),
-   keep that member's worktree uncommitted (settled for step 8). BLOCKED → siblings still
-   integrate, then pause for the user. Siblings never wait on a held member: same-wave
-   phases share no dependency and no files, by construction.
+   keep that member's worktree uncommitted (settled for step 8). BLOCKED → the same, with its
+   obstacle as the question (a wave member is not auto-retried). Siblings never wait on a held
+   member: same-wave phases share no dependency and no files, by construction.
 4. Members are deferred-review phases by construction; DONE with a green suite is the
    integration signal — no REVIEW runs in a phase worktree.
 5. Integrate DONE phases strictly in plan order (an earlier phase still working holds later
-   finishers): git cherry-pick -n <latest wip-sha> in the build worktree → real commit per
+   finishers; a held phase does not — it commits whenever its question is answered): git cherry-pick -n <latest wip-sha> in the build worktree → real commit per
    commit-format.md → execution-log entry → copy discovery artifacts into
    .code-foundations/build/ → git worktree remove. A cherry-pick conflict means File scope
    was violated: drop that WIP, re-dispatch its BUILD serially on current HEAD.
@@ -199,7 +200,7 @@ Isolation is what makes a wave sound: agents run the suite as their evidence, an
 
 Dispatch templates: `${CLAUDE_PLUGIN_ROOT}/references/dispatch-templates.md` — read once per build; its Substitution rules govern every placeholder. Full and Standard phases use `§ FULL_BUILD` (discovery file `.code-foundations/build/<plan-name>-phase-N-discovery.md`; only the review timing differs between the two gates); Minimal uses `§ MINIMAL_BUILD` (no discovery).
 
-**After BUILD returns:** first append each line of its `### Decisions` to the plan's `## Decided During Build` log as an `assumed` row (they reach later BUILD prompts as Decisions in Force, never a reviewer). SKIP → mark completed, skip any REVIEW task, append a SKIP execution-log entry (the `### Phase N` entry from commit-format.md with a single `- [x] SKIPPED — [reason]` line, no commit hash), next phase. UPDATE_PLAN → log an `open` row (question, proposed default, blocked DW items); the phase and its dependents are held (their tasks stay pending) and every other runnable phase continues. If nothing else is runnable, ask now (checkpoint.md → Clarify, the ask); otherwise the question waits for the next Checkpoint. BLOCKED → Gate Failure Protocol (the 3-retry cap applies). DONE → completed; deferred review → commit now and add the phase to the un-reviewed set; blocking review → REVIEW.
+**After BUILD returns:** first append each line of its `### Decisions` to the plan's `## Decided During Build` log as an `assumed` row (they reach later BUILD prompts as Decisions in Force, never a reviewer). SKIP → mark completed, skip any REVIEW task, append a SKIP execution-log entry (the `### Phase N` entry from commit-format.md with a single `- [x] SKIPPED — [reason]` line, no commit hash), next phase. UPDATE_PLAN → log an `open` row (question, proposed default, blocked DW items); the phase and its dependents are held — set its task back to `pending` (a task whose phase has an `open` row is not runnable), and in serial mode `git stash push -u -m held-phase-N` its uncommitted changes so the next phase starts clean — and every other runnable phase continues. Once the current wave has settled, if nothing else is runnable, ask (checkpoint.md → the ask); otherwise the question waits for the next Checkpoint. BLOCKED → Gate Failure Protocol (the 3-retry cap applies). DONE → completed; deferred review → commit now and add the phase to the un-reviewed set; blocking review → REVIEW.
 
 ### Sub-Phase N.2: REVIEW (blocking — Full gate and security-sensitive phases only)
 
@@ -215,7 +216,7 @@ Dispatch `code-foundations:post-gate-agent` with `§ REVIEW`, only after the BUI
 
 The primary review path for Standard and Minimal phases, run against **committed** code. **The un-reviewed set:** every phase that commits with a deferred review joins it; a batch PASS empties it; phases reviewed at their own gate never enter it.
 
-Triggers, evaluated at wave boundaries: the set has reached the cadence; the next phase is Full (it should build on reviewed ground); VERIFY is next and the set is non-empty. Triggers coalesce — one batch fires. Insert it as a task and make the next phase's BUILD blockedBy it. Dispatch `§ BATCH_REVIEW` (model rule in its header) over **every** phase in the set — the cross-phase coherence check is the point.
+Triggers, evaluated at wave boundaries: the set has reached the cadence; the next phase to open is Full (it should build on reviewed ground); VERIFY is next and the set is non-empty. Triggers coalesce — one batch fires. Insert it as a task and make the next phase's BUILD blockedBy it. Dispatch `§ BATCH_REVIEW` (model rule in its header) over **every** phase in the set — the cross-phase coherence check is the point.
 
 PASS → empty the set and append a dated `Covered by batch review (phases X–Y)` line to each covered phase's execution-log entry. FAIL → Gate Failure Protocol → Batch Failures: fixes land as forward commits; the set stays non-empty until a batch PASS.
 
@@ -225,7 +226,7 @@ The loop's turn: after a batch REVIEW PASS, before VERIFY, and — when `**Check
 
 ### Commit After Phase
 
-You commit directly, per `${CLAUDE_PLUGIN_ROOT}/references/commit-format.md` (read once per build: recipe, message rules, wave-member cherry-pick variant, execution-log entry). Required trailers: `Phase:`, `Plan:`, `AI-Model:`, `AI-Epistemic-Status:`, `Gate-Policy:`, `Review:`. Then append the phase's execution-log entry; its Summary line feeds later dispatches' `## Progress` block — write it as goal anchoring, not telemetry. Say: "Phase N complete. Committed."
+You commit directly, per `${CLAUDE_PLUGIN_ROOT}/references/commit-format.md` (read once per build: recipe, message rules, wave-member cherry-pick variant, execution-log entry). Required trailers: `Phase:`, `Plan:`, `AI-Model:`, `AI-Epistemic-Status:`, `Gate-Policy:`, `Review:`. Then append the phase's execution-log entry; its Summary line feeds later dispatches' `## Progress` block — write it as goal anchoring, not telemetry. Say nothing to the user — the Checkpoint is the only status message.
 
 ### Gate Failure Protocol
 

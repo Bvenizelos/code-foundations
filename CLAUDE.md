@@ -69,7 +69,7 @@ Three-stage pattern for feature development:
   → DECOMPOSE matches skills per phase against the available-skills register (internal + external), reading each skill's description
   → SAVE emits per-phase **Model:** (fable | sonnet | haiku), **Gate:** (Full | Standard | Minimal),
     **Depends on:**, and optional **File scope:** (wave-parallelism opt-in), plus the plan-header
-    **Review cadence:** (default 3)
+    **Review cadence:** (default 3) and **Check-ins:** (quiet | checkpoints | per-phase, default checkpoints)
   → Save to .code-foundations/plans/YYYY-MM-DD-<topic>.md with **Status:** draft
   → Plan presented as end-turn conversation markdown; user confirms free-form → Status: ready
 
@@ -83,8 +83,11 @@ Three-stage pattern for feature development:
     opus only as explicit override); REVIEW one tier below BUILD (floored at sonnet — never haiku), security REVIEW on fable
   → Per-phase commits: after REVIEW passes (Full, security-sensitive) or on a green suite
     (Standard, Minimal — review deferred to a batch every `Review cadence` phases)
+  → Quiet loop: agents settle what the plan leaves open and record it; only one-way doors
+    become questions, each holding just its phase; checkpoints adjust the remaining plan
+    (plan(adjust) commits) and message the user only when something changed or needs them
   → VERIFY: trailing batch REVIEW if anything is un-reviewed, one suite on integrated HEAD (delta rule),
-    Test Plan items the suite doesn't cover, then the trust report
+    Test Plan items the suite doesn't cover, then the trust report (incl. Decided During Build)
 ```
 
 **When to use each:**
@@ -128,6 +131,18 @@ also what buys the cross-phase coherence check that isolated per-phase reviews c
 Commits record `Review: deferred (batch pending)`, paired with a `Covered by batch review`
 addendum in the execution log; a deferred trailer with no addendum is a build defect the trust
 report must catch.
+
+**Build loop (v6.5.0):** build runs Understand → Act → Inspect → Clarify → Adjust → Act again,
+and stays quiet because the user already talked in research and planning. Clarify: a BUILD agent
+settles anything the plan leaves open (from the plan, the research doc, the codebase, an experiment,
+then the most reversible default) and records it under `### Decisions`. Those rows go into the plan's
+`## Decided During Build` log and reach later BUILD prompts as Decisions in Force, never a reviewer.
+UPDATE_PLAN is reserved for one-way doors (contracts, scope, security, destructive data, public API);
+the question holds only that phase and its dependents, and the build ends its turn to ask only when
+nothing else is runnable. Adjust (`references/checkpoint.md`), after each batch PASS and before VERIFY:
+the orchestrator fixes misfits in the remaining plan as `plan(adjust)` commits. It may add, split,
+reorder or tighten, and never removes or weakens a DW item or changes a contract on its own.
+`**Check-ins:**` sets how often the user hears from the build.
 
 **Checkpoint doctrine:** content the user must review (plan summaries, skeletons, approach
 comparisons, problem statements) is presented as the turn's final conversation markdown and

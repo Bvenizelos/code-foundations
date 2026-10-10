@@ -63,3 +63,11 @@ Every other ambiguity it reports is logged against build.md and either fixed or 
 **Trust report:** a `Decided During Build` section, with #1 under "Confirm or override:" and #2 as a user decision, plus any `plan(adjust)` commits.
 
 **In `quiet` mode:** the same single ask; zero non-blocking messages.
+
+**E3 — serial hold: a held phase leaks nothing, siblings aren't blocked, and the ask isn't lost.**
+- Phase 1's open row is #1. Its task goes back to `pending`. Its uncommitted greet.py edit is stashed (`held-phase-1`) before Phase 2 dispatches, so Phase 2's commit contains only Phase 2's files.
+- Phase 2 commits first. This is out of plan order, which is allowed because a held phase is exempt. The un-reviewed set becomes {2}.
+- No batch: cadence 2 is not reached, and the next phase to open (Phase 3) is held. So no checkpoint either.
+- At that wave boundary an open row exists and nothing is runnable, so it asks: one `AskUserQuestion`, "yes (Recommended)" first.
+- After the answer, the stash is discarded and Phase 1 re-dispatches serially on current HEAD.
+- **Turn-ends to ask:** 1.

@@ -188,7 +188,7 @@ agents/build-agent.md	### Decisions
 commands/build.md	holds only its own phase
 commands/build.md	Quiet by default
 references/checkpoint.md	never remove or weaken a DW item
-references/checkpoint.md	leaves nothing runnable
+references/checkpoint.md	nothing is runnable
 references/checkpoint.md	plan(adjust)
 references/dispatch-templates.md	no Decisions in Force
 references/plan-schema.md	**Check-ins:**

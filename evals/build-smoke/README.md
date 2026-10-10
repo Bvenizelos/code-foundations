@@ -8,6 +8,8 @@
 - **E1:** Phase 1 returns `Status: DONE`, all DW items covered, with `### Decisions`: "greet() strips surrounding whitespace from name — default — reversible yes".
 - **E2:** Phase 2 returns `Status: UPDATE_PLAN`, with "Question: the repo already has project/settings.toml read by project/settings.py; should Phase 3 read punctuation from it instead of a new greeting.json? This changes the config seam Phase 3 consumes. · Proposed default: greeting.json · Blocks: DW-2.1, DW-2.2". The user, when asked, picks the default.
 
+- **E3 (separate run):** suppose Phase 1 had no `File scope`, so Phases 1 and 2 run serially in plan order. Phase 1 returns UPDATE_PLAN with "Question: should greet() accept non-Latin names, which changes its public contract? · Proposed default: yes · Blocks: DW-1.2" after editing project/greet.py. Phase 2 then returns DONE with no decisions. Narrate until the user is asked.
+
 Compare against expected.md → Scripted events.
 
 **What it cannot see:** real subagent dispatch, template substitution, batch trigger evaluation at a live wave boundary, gate failures, cherry-pick integration, the trust report's git-trailer dump. Those are exercised only by a real build.

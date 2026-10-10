@@ -15,8 +15,6 @@ Defensive code keeps small failures from compounding into silent, hard-to-diagno
 | External input validated at entry | Unvalidated input is security vulnerabilities and data corruption |
 | Assertions for bugs only | Anticipated runtime errors need handling, not assertions (which are disabled in production) |
 
-Shared thresholds and the information-hiding rationale: `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## Two rules that override the textbook
 
 - **"Internal team API" is still external.** Any data crossing a network or process boundary is external input — validate it, even from a service your own team owns.
@@ -37,11 +35,11 @@ Security-critical code (authentication, authorization, cryptographic operations,
 
 ### CHECKER
 
-Execute the defensive-programming, assertion, and exception checklists against the code: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. Output one row per item: `| Item | Status | Evidence | Location |`, status ∈ VIOLATION (missing validation, empty catch, side-effecting assertion) / WARNING (inconsistent handling, missing docs) / PASS.
+Execute the defensive-programming, assertion, and exception checklists against the code: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`. VIOLATION = missing validation, empty catch, side-effecting assertion; WARNING = inconsistent handling, missing docs. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.
 
 ### APPLIER
 
-Produce assertion placement, error-handling strategy, barricade architecture, and validation implementations. Search the codebase for the existing error-handling pattern (exception vs return code vs Result type, custom exception classes, logging conventions) and follow it — consistency in error handling is what makes failures debuggable. Full gate: `Read(${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)`.
+Produce assertion placement, error-handling strategy, barricade architecture, and validation implementations. Search the codebase for the existing error-handling pattern (exception vs return code vs Result type, custom exception classes, logging conventions) and follow it — consistency in error handling is what makes failures debuggable.
 
 ## Assertion vs error handling
 
@@ -107,16 +105,3 @@ Synchronous exception propagation assumes a synchronous call stack; these patter
 ## Offensive programming (development builds)
 
 Make errors loud during development so they're found early; make them unobtrusive with graceful recovery in production. Techniques: make asserts abort, fill allocated memory and freed objects with junk, fail hard on default/else clauses, email error logs to yourself.
-
-## Evidence
-
-- "Garbage in, garbage out" is obsolete — production software must validate or reject [McConnell p.188].
-- Error handling is an architectural decision, enforced consistently [McConnell p.197].
-- Bugs cost ~100x more to fix in production than at design time [IBM Systems Sciences Institute].
-- Mars Climate Orbiter was lost to a unit mismatch [NASA 1999] — nine months of success does not mean code is safe.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Validation complete | `Skill(code-foundations:cc-control-flow-quality)` |

@@ -29,6 +29,7 @@ Source: A Philosophy of Software Design (Ousterhout), Chapters 2, 4, 5, 7, 9
 - [ ] IH-2: "Does structure mirror execution order rather than knowledge?" → Medium severity: Temporal Decomposition
 - [ ] IH-3: "Is there shared knowledge not visible in interfaces?" → High severity: Back-Door Leakage
 - [ ] IH-4: "Does common use force learning rare features?" → Medium severity: Overexposure
+- [ ] IH-5: "Does the module swallow errors, return defaults, or hide failure states from callers?" → High severity: Silent Failure
 
 ---
 

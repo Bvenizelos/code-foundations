@@ -33,13 +33,13 @@ Source: Code Complete 2nd Edition, Chapter 24
 
 - [ ] CS-1: "Has duplicated code been detected and flagged for extraction?" → Red flag: copy-paste inheritance
 - [ ] CS-2: "Is any routine too long to be easily readable?" (100-200 lines acceptable per cc-foundations.md; flag > 200 lines)
-- [ ] CS-3: "Is any loop too long or too deeply nested?" (Good: 1-2 levels, Bad: 4+ levels)
+- [ ] CS-3: "Is any loop or conditional too long or too deeply nested?" (Good: 1-2 levels, Bad: 4+ levels) → Extract methods, invert conditions
 - [ ] CS-4: "Does any class have poor cohesion?" → Red flag: classes doing unrelated things
 - [ ] CS-5: "Does any interface fail to provide consistent level of abstraction?" (Good: all high-level or all low-level, Bad: mixed)
-- [ ] CS-6: "Does any parameter list have too many parameters?" (Good: ≤ 7, Bad: > 7)
-- [ ] CS-7: "Do changes require parallel modifications in multiple places?" → Red flag: shotgun surgery pattern
+- [ ] CS-6: "Does any parameter list have too many parameters?" (Good: ≤ 7, Bad: > 7) → Introduce a parameter object
+- [ ] CS-7: "Do changes require parallel modifications in multiple places?" → Red flag: shotgun surgery pattern — extract the common abstraction
 - [ ] CS-8: "Are related data items not organized into a class?" (Good: cohesive structures, Bad: parallel arrays/loose primitives)
-- [ ] CS-9: "Does any routine use more features of another class than its own?" → Red flag: feature envy
+- [ ] CS-9: "Does any routine use more features of another class than its own?" → Red flag: feature envy — move the method to the class whose data it uses
 - [ ] CS-10: "Is setup/takedown code required around routine calls?" (Good: encapsulated, Bad: manual caller responsibility)
 - [ ] CS-11: "Is tramp data passed through routine chains?" → Red flag: middle-man parameters
 
@@ -51,20 +51,3 @@ Source: Code Complete 2nd Edition, Chapter 24
 - [ ] SC-2: "Has the change been reviewed, even for 1-line changes?" (Good: all changes reviewed, Bad: "too small to review" mindset)
 - [ ] SC-3: "Have regression tests been run?"
 - [ ] SC-4: "Has the same rigor been applied as for larger changes?" → Red flag: relaxed process for "quick fixes"
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Refactoring without version control?" - No safety net for rollback → Commit before starting
-- [ ] RF-2: "Big refactoring sessions?" - Multi-day/week efforts → Break into incremental steps
-- [ ] RF-3: "Mixing refactoring and fixing?" - Behavior changes during restructuring → Separate concerns completely
-- [ ] RF-4: "Shotgun surgery pattern?" - Same change repeated across files → Extract common abstraction
-- [ ] RF-5: "Copy-paste inheritance?" - Duplicated blocks with minor variations → Extract method/class
-- [ ] RF-6: "Feature envy detected?" - Routine uses another class's data more than its own → Move method to proper class
-- [ ] RF-7: "Skipping tests after refactoring?" - No verification of behavior preservation → Run full regression suite
-- [ ] RF-8: "Deep nesting (4+ levels)?" - Loops/conditionals nested deeply → Extract methods, invert conditions
-- [ ] RF-9: "Parameter lists > 7?" - Too many inputs to routine → Introduce parameter object
-- [ ] RF-10: "Tramp data chains?" - Parameters passed through multiple layers → Use object context or remove middle layers
-
----

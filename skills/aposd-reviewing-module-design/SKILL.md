@@ -125,6 +125,8 @@ When reporting findings, use:
 
 ---
 
+This skill assesses only. To transform what it flagged, hand off to `Skill(code-foundations:aposd-simplifying-complexity)`; if the fix needs a plan, flag it for `/code-foundations:plan`.
+
 ## Before Flagging a Problem
 
 Before reporting any red flag, validate:
@@ -166,14 +168,4 @@ Ask before concluding:
 
 ---
 
-Detailed per-dimension checklists: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Issues found, transformation needed | `Skill(code-foundations:aposd-simplifying-complexity)` (transformation vs assessment) |
-| Issues found, plan needed | Flag for /code-foundations:plan |
-| No issues | Done |
+CHECKER: run the ID'd checklist `Read(${CLAUDE_SKILL_DIR}/checklists.md)` against the code. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`. The Evaluation Output Format above is the assessment that wraps that report.

@@ -22,3 +22,5 @@ benchmarks/concise-doctrine/_live-smoke/
 benchmarks/model-tiers/.venv/
 benchmarks/model-tiers/*-workspace/
 benchmarks/model-tiers/__pycache__/
+
+evals/checker-eval/workspace/

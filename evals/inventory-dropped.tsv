@@ -1,0 +1,411 @@
+# file	kind	id	now carried by (item/section/file) — or "dropped: <reason>"   (validator check J)
+# --- Phase 1
+references/aposd-foundations.md	heading	Complexity Definition	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Three Symptoms of Complexity	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Two Causes of Complexity	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Key Relationships	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Counterintuitive Insight	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Quick Reference	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/aposd-foundations.md	heading	Cross-References to Code Complete	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Why This Exists	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Action Types	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Decision Flow	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Confidence Anchors	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Output Format	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Fix	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Investigate	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Plan	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Decide	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Epistemic Humility	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/assessment-framework.md	heading	Workflow	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Tag → Reviewer Mapping	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Output Format	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Multi-Tag Examples	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+references/triage-tags.md	heading	Tag Selection Guidelines	dropped: file linked from nowhere since the review system was removed (3fa8bde); no live file depends on its content
+skills/cc-defensive-programming/checklists.md	heading	Priority Groups	dropped: restated the tier headings (Critical/High/Standard) above
+skills/cc-defensive-programming/checklists.md	heading	Quick Reference: Priority by Situation	dropped: situation→tier routing with human-time bounds; tiers stay as headings
+skills/cc-defensive-programming/checklists.md	heading	Red Flags	body items (mapping per RF row below)
+skills/cc-defensive-programming/checklists.md	item	RF-1	GC-1
+skills/cc-defensive-programming/checklists.md	item	RF-2	EC-3
+skills/cc-defensive-programming/checklists.md	item	RF-3	GH-3
+skills/cc-defensive-programming/checklists.md	item	RF-4	EH-2
+skills/cc-defensive-programming/checklists.md	item	RF-5	SO-4
+skills/cc-defensive-programming/checklists.md	item	RF-6	SO-1
+skills/cc-defensive-programming/checklists.md	item	RF-7	SM-3
+skills/cc-defensive-programming/checklists.md	item	RF-8	SA-1
+skills/cc-defensive-programming/checklists.md	item	RF-9	GC-3
+skills/cc-defensive-programming/checklists.md	item	RF-10	SO-2
+skills/cc-defensive-programming/checklists.md	item	RF-11	EC-4 (new, carried verbatim)
+skills/cc-defensive-programming/checklists.md	item	RF-12	EC-5 (new, carried verbatim)
+skills/aposd-simplifying-complexity/checklists.md	heading	Red Flags	SKILL.md § Red Flags table (identical 7 rows) + body items below
+skills/aposd-simplifying-complexity/checklists.md	item	RF-1	ER-3 + SKILL.md Red Flags
+skills/aposd-simplifying-complexity/checklists.md	item	RF-2	CP-1..CP-3
+skills/aposd-simplifying-complexity/checklists.md	item	RF-3	PD-1..PD-4
+skills/aposd-simplifying-complexity/checklists.md	item	RF-4	ER-1 / DO-1
+skills/aposd-simplifying-complexity/checklists.md	item	RF-5	OP-1
+skills/aposd-simplifying-complexity/checklists.md	item	RF-6	OT-3 / OP-4
+skills/aposd-simplifying-complexity/checklists.md	item	RF-7	VG-5 (new, carried verbatim)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Red Flags	body items below
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-1	LI-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-2	LT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-3	LX-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-4	LX-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-5	conditionals-and-structure.md IT-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-6	RC-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-7	conditionals-and-structure.md CI-13
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-8	GT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-9	AA-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-10	conditionals-and-structure.md CS-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-11	LI-9 (new, carried verbatim)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-12	conditionals-and-structure.md CS-5
+skills/cc-debugging/checklists.md	heading	Red Flags	body items below
+skills/cc-debugging/checklists.md	item	RF-1	GA-2 / GA-5
+skills/cc-debugging/checklists.md	item	RF-2	GA-6
+skills/cc-debugging/checklists.md	item	RF-3	FF-6
+skills/cc-debugging/checklists.md	item	RF-4	FF-4 / FF-8
+skills/cc-debugging/checklists.md	item	RF-5	GA-3
+skills/cc-debugging/checklists.md	item	RF-6	FD-2
+skills/cc-debugging/checklists.md	item	RF-7	FD-9
+skills/cc-debugging/checklists.md	item	RF-8	FF-11
+skills/cc-debugging/checklists.md	item	RF-9	FF-10
+skills/cc-debugging/checklists.md	item	RF-10	FF-2
+skills/cc-pseudocode-programming/checklists.md	heading	Quick Reference: PPP Process Steps	SKILL.md APPLIER steps 1-12 (same 12 steps)
+skills/cc-pseudocode-programming/checklists.md	heading	Warning Signs That PPP Would Help	dropped: symptom list (when to reach for the skill), not rules — the planner assigns the skill; four of eight symptoms survive in SKILL.md's intro + four questions (can't-name / mysterious / no-alternative / compile-debug loop), the other four (coded into a corner, lost train of thought, forgot a part, staring at screen) are intentionally dropped
+skills/cc-pseudocode-programming/checklists.md	heading	Minimum Viable PPP (Time-Constrained)	dropped: human-time bounds (banned by code-standards); its 4 checks are SKILL.md's four questions
+skills/cc-pseudocode-programming/checklists.md	heading	Red Flags	body items below
+skills/cc-pseudocode-programming/checklists.md	item	RF-1	DQ-1 + SKILL.md four questions
+skills/cc-pseudocode-programming/checklists.md	item	RF-2	SKILL.md intro (compile-debug loops) / UN-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-3	UN-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-4	DQ-1
+skills/cc-pseudocode-programming/checklists.md	item	RF-5	PQ-4
+skills/cc-pseudocode-programming/checklists.md	item	RF-6	IM-3
+skills/cc-pseudocode-programming/checklists.md	item	RF-7	IM-1
+skills/cc-pseudocode-programming/checklists.md	item	RF-8	IM-4
+skills/cc-pseudocode-programming/checklists.md	item	RF-9	DQ-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-10	DQ-3
+skills/cc-pseudocode-programming/checklists.md	item	RF-11	DQ-5 (new, carried verbatim)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Quick Reference: Which Checklist When?	dropped: routing table restating each section's "Use when" line; debugging rows → Skill(cc-debugging) handoff in SKILL.md
+skills/cc-refactoring-guidance/checklists.md	heading	Red Flags	body items below
+skills/cc-refactoring-guidance/checklists.md	item	RF-1	SR-1
+skills/cc-refactoring-guidance/checklists.md	item	RF-2	RP-5
+skills/cc-refactoring-guidance/checklists.md	item	RF-3	RP-3
+skills/cc-refactoring-guidance/checklists.md	item	RF-4	CS-7
+skills/cc-refactoring-guidance/checklists.md	item	RF-5	CS-1
+skills/cc-refactoring-guidance/checklists.md	item	RF-6	CS-9
+skills/cc-refactoring-guidance/checklists.md	item	RF-7	SR-7
+skills/cc-refactoring-guidance/checklists.md	item	RF-8	CS-3
+skills/cc-refactoring-guidance/checklists.md	item	RF-9	CS-6
+skills/cc-refactoring-guidance/checklists.md	item	RF-10	CS-11
+skills/cc-routine-and-class-design/checklists.md	heading	Red Flags	body items below
+skills/cc-routine-and-class-design/checklists.md	item	RF-1	CQ-3 / CQ-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-2	CQ-6
+skills/cc-routine-and-class-design/checklists.md	item	RF-3	CQ-7
+skills/cc-routine-and-class-design/checklists.md	item	RF-4	CQ-8
+skills/cc-routine-and-class-design/checklists.md	item	RF-5	RP-6
+skills/cc-routine-and-class-design/checklists.md	item	RF-6	RP-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-7	PP-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-8	PP-7
+skills/cc-routine-and-class-design/checklists.md	item	RF-9	CQ-9
+skills/cc-routine-and-class-design/checklists.md	item	RF-10	DP-1
+skills/cc-routine-and-class-design/checklists.md	item	RF-11	PP-9 (new, carried verbatim)
+skills/code-clarity-and-docs/checklists.md	heading	Red Flags	body items + SKILL.md § Red Flags (Code Clarity) table
+skills/code-clarity-and-docs/checklists.md	item	RF-1	CQ-3
+skills/code-clarity-and-docs/checklists.md	item	RF-2	SKILL.md Red Flags table
+skills/code-clarity-and-docs/checklists.md	item	RF-3	SKILL.md Red Flags table / NP-*
+skills/code-clarity-and-docs/checklists.md	item	RF-4	NM-1
+skills/code-clarity-and-docs/checklists.md	item	RF-5	IC-2 / IC-4
+skills/code-clarity-and-docs/checklists.md	item	RF-6	IC-4
+skills/code-clarity-and-docs/checklists.md	item	RF-7	PC-1
+skills/code-clarity-and-docs/checklists.md	item	RF-8	PC-2 / DD-5
+skills/code-clarity-and-docs/checklists.md	item	RF-9	RR-5
+skills/code-clarity-and-docs/checklists.md	item	RF-10	CL-2
+skills/code-clarity-and-docs/checklists.md	item	RF-11	DD-3
+skills/code-clarity-and-docs/checklists.md	item	RF-12	AI-7 / DD-6
+skills/code-clarity-and-docs/checklists.md	item	RF-13	CL-5
+skills/performance-optimization/checklists.md	heading	Red Flags	body items + SKILL.md § Red Flags table
+skills/performance-optimization/checklists.md	item	RF-1	M-2
+skills/performance-optimization/checklists.md	item	RF-2	M-3 / DT-8
+skills/performance-optimization/checklists.md	item	RF-3	AM-3 / AM-4
+skills/performance-optimization/checklists.md	item	RF-4	DT-4
+skills/performance-optimization/checklists.md	item	RF-5	SO-5 / SS-6
+skills/performance-optimization/checklists.md	item	RF-6	M-4 / AM-1
+skills/performance-optimization/checklists.md	item	RF-7	DS-1 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-8	DS-2 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-9	DS-3 + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-10	AM-3 / AM-4 (back out anything that is neither faster nor simpler) + SKILL.md Red Flags table
+skills/performance-optimization/checklists.md	item	RF-11	DT-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Emergency Minimum (Crisis Mode)	dropped: crisis block with a human-time bound (banned by code-standards); EM-1→loops LI-6, EM-2→loops LT-1, EM-3→code-clarity-and-docs naming items, EM-4→dropped (crisis-comment habit, not a control-flow rule)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	NEVER Skip (regardless of circumstances)	dropped: shouting block; NS-1→loops LI-6, NS-2→loops LT-1, NS-3→loops LX-4, NS-4→loops LT-3, NS-5→loops RC-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-1	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-2	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-3	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-4	see Emergency Minimum heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-1	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-2	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-3	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-4	see NEVER Skip heading row
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-5	see NEVER Skip heading row
+skills/cc-defensive-programming/checklists.md	heading	Critical (Crisis Triage)	renamed to `### Critical` (the crisis set was defined only by the deleted Priority Groups tail)
+# --- Phase 2: cc-quality-practices/checklists/debugging.md deleted — its debugging items duplicate cc-debugging/checklists.md; its two tables and five QA/inspection red flags map as noted; qa-and-testing.md moved to checklists.md
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Finding Defects (p.559)	cc-debugging § Techniques for Finding Defects
+skills/cc-quality-practices/checklists/debugging.md	heading	Gather Data	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Narrow the Search	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Use Tools and Techniques	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Get Help	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Time Management	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Syntax Errors (p.557-558)	cc-debugging § Techniques for Syntax Errors
+skills/cc-quality-practices/checklists/debugging.md	heading	Common Misleading Errors	dropped: textbook compiler-message table; rows 1 and 3 (line-number distrust, fix the first error) are SE-1/SE-3; rows 2 and 4 (typo/scope, error in the imported file) are dropped as textbook knowledge
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Fixing Defects (p.560)	cc-debugging § Techniques for Fixing Defects
+skills/cc-quality-practices/checklists/debugging.md	heading	Before Fixing	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	The Fix	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	After Fixing	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Brute-Force Debugging Techniques (p.552-553)	cc-debugging § Brute-Force Techniques Checklist
+skills/cc-quality-practices/checklists/debugging.md	heading	Code Review Approaches	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Build Configuration	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Testing Approaches	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Instrumentation	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Environment	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	General Debugging Approach (p.560)	cc-debugging § General Approach to Debugging
+skills/cc-quality-practices/checklists/debugging.md	heading	Mindset	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Method	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Verification	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Tools	grouping only
+skills/cc-quality-practices/checklists/debugging.md	heading	Inspection Roles Reference	cc-quality-practices SKILL.md § When advising a human team's review process (moderator/reader/scribe/author roles inline) + checklists.md EI-3 (author never moderates) + EI-8 (author does not defend) + SKILL.md step 3 (reader is not the author)
+skills/cc-quality-practices/checklists/debugging.md	heading	Red Flags	mapped per RF row
+skills/cc-quality-practices/checklists/debugging.md	item	FD-1	cc-debugging FD-1
+skills/cc-quality-practices/checklists/debugging.md	item	FD-2	cc-debugging FD-2
+skills/cc-quality-practices/checklists/debugging.md	item	FD-3	cc-debugging FD-5
+skills/cc-quality-practices/checklists/debugging.md	item	FD-4	cc-debugging FD-6
+skills/cc-quality-practices/checklists/debugging.md	item	FD-5	cc-debugging FD-7
+skills/cc-quality-practices/checklists/debugging.md	item	FD-6	cc-debugging FD-3
+skills/cc-quality-practices/checklists/debugging.md	item	FD-7	cc-debugging FD-10
+skills/cc-quality-practices/checklists/debugging.md	item	FD-8	cc-debugging FD-11
+skills/cc-quality-practices/checklists/debugging.md	item	FD-9	cc-debugging FD-12
+skills/cc-quality-practices/checklists/debugging.md	item	FD-10	cc-debugging FD-13
+skills/cc-quality-practices/checklists/debugging.md	item	FD-11	cc-debugging FD-4
+skills/cc-quality-practices/checklists/debugging.md	item	FD-12	cc-debugging FD-14
+skills/cc-quality-practices/checklists/debugging.md	item	FD-13	cc-debugging FD-15
+skills/cc-quality-practices/checklists/debugging.md	item	FD-14	cc-debugging FD-8
+skills/cc-quality-practices/checklists/debugging.md	item	FD-15	cc-debugging FD-9
+skills/cc-quality-practices/checklists/debugging.md	item	FD-16	cc-debugging FD-16
+skills/cc-quality-practices/checklists/debugging.md	item	FD-17	cc-debugging FD-17
+skills/cc-quality-practices/checklists/debugging.md	item	FD-18	cc-debugging FD-18
+skills/cc-quality-practices/checklists/debugging.md	item	SE-1	cc-debugging SE-1 (reworded to cover lines before and after)
+skills/cc-quality-practices/checklists/debugging.md	item	SE-2	cc-debugging SE-2
+skills/cc-quality-practices/checklists/debugging.md	item	SE-3	cc-debugging SE-3
+skills/cc-quality-practices/checklists/debugging.md	item	SE-4	cc-debugging SE-4
+skills/cc-quality-practices/checklists/debugging.md	item	SE-5	cc-debugging SE-5 (the `/*"/**/` unbalanced-quote trick carried into it)
+skills/cc-quality-practices/checklists/debugging.md	item	FX-1	cc-debugging FF-1
+skills/cc-quality-practices/checklists/debugging.md	item	FX-2	cc-debugging FF-2
+skills/cc-quality-practices/checklists/debugging.md	item	FX-3	cc-debugging FF-3
+skills/cc-quality-practices/checklists/debugging.md	item	FX-4	cc-debugging FF-4
+skills/cc-quality-practices/checklists/debugging.md	item	FX-5	cc-debugging FF-5
+skills/cc-quality-practices/checklists/debugging.md	item	FX-6	cc-debugging FF-6
+skills/cc-quality-practices/checklists/debugging.md	item	FX-7	cc-debugging FF-7
+skills/cc-quality-practices/checklists/debugging.md	item	FX-8	cc-debugging FF-8
+skills/cc-quality-practices/checklists/debugging.md	item	FX-9	cc-debugging GA-2 (no trial-and-error) / FF-7 (change only for good reason) / SKILL.md intro (every action tests a hypothesis)
+skills/cc-quality-practices/checklists/debugging.md	item	FX-10	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	FX-11	cc-debugging FF-10
+skills/cc-quality-practices/checklists/debugging.md	item	FX-12	cc-debugging FF-11
+skills/cc-quality-practices/checklists/debugging.md	item	BF-1	cc-debugging BF-1
+skills/cc-quality-practices/checklists/debugging.md	item	BF-2	cc-debugging BF-2
+skills/cc-quality-practices/checklists/debugging.md	item	BF-3	cc-debugging BF-3
+skills/cc-quality-practices/checklists/debugging.md	item	BF-4	cc-debugging BF-4
+skills/cc-quality-practices/checklists/debugging.md	item	BF-5	cc-debugging BF-5
+skills/cc-quality-practices/checklists/debugging.md	item	BF-6	cc-debugging BF-10
+skills/cc-quality-practices/checklists/debugging.md	item	BF-7	cc-debugging BF-11
+skills/cc-quality-practices/checklists/debugging.md	item	BF-8	cc-debugging BF-6
+skills/cc-quality-practices/checklists/debugging.md	item	BF-9	cc-debugging BF-7
+skills/cc-quality-practices/checklists/debugging.md	item	BF-10	cc-debugging BF-8
+skills/cc-quality-practices/checklists/debugging.md	item	BF-11	cc-debugging BF-9
+skills/cc-quality-practices/checklists/debugging.md	item	BF-12	cc-debugging BF-12
+skills/cc-quality-practices/checklists/debugging.md	item	BF-13	cc-debugging BF-13
+skills/cc-quality-practices/checklists/debugging.md	item	BF-14	cc-debugging BF-14
+skills/cc-quality-practices/checklists/debugging.md	item	GD-1	cc-debugging GA-1
+skills/cc-quality-practices/checklists/debugging.md	item	GD-2	cc-debugging GA-2
+skills/cc-quality-practices/checklists/debugging.md	item	GD-3	cc-debugging GA-3
+skills/cc-quality-practices/checklists/debugging.md	item	GD-4	cc-debugging GA-4
+skills/cc-quality-practices/checklists/debugging.md	item	GD-5	cc-debugging GA-5
+skills/cc-quality-practices/checklists/debugging.md	item	GD-6	cc-debugging GA-6
+skills/cc-quality-practices/checklists/debugging.md	item	GD-7	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	GD-8	cc-debugging FF-11 / SKILL.md Step 7 SEARCH
+skills/cc-quality-practices/checklists/debugging.md	item	GD-9	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-10	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-11	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-12	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	GD-13	cc-debugging GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	RF-1	cc-quality-practices checklists.md QA-5
+skills/cc-quality-practices/checklists/debugging.md	item	RF-2	cc-quality-practices checklists.md EI-3
+skills/cc-quality-practices/checklists/debugging.md	item	RF-3	cc-quality-practices checklists.md EI-2
+skills/cc-quality-practices/checklists/debugging.md	item	RF-4	cc-quality-practices checklists.md TC-9..TC-13
+skills/cc-quality-practices/checklists/debugging.md	item	RF-5	cc-quality-practices checklists.md TC-5
+skills/cc-quality-practices/checklists/debugging.md	item	RF-6	cc-debugging GA-2
+skills/cc-quality-practices/checklists/debugging.md	item	RF-7	cc-debugging GA-7
+skills/cc-quality-practices/checklists/debugging.md	item	RF-8	cc-debugging BF-5 / GA-8
+skills/cc-quality-practices/checklists/debugging.md	item	RF-9	cc-debugging FD-18
+skills/cc-quality-practices/checklists/debugging.md	item	RF-10	cc-debugging FF-10
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	A Quality-Assurance Plan (p.603-644)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Inspections (p.485-492)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Before the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	During the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	After the Inspection	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-9	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-10	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-11	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Pair Programming (p.483-484)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Cases (p.532-533)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Requirements and Design Coverage	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Code Coverage	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Boundary Testing	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Dirty Tests (aim for 5:1 ratio vs clean tests)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-9	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-10	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-11	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-12	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-13	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Clean Tests	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-14	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-15	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-16	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-17	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Quality	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-18	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-19	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-20	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Data-Flow Anomaly Patterns (p.509-510)	moved to skills/cc-quality-practices/checklists.md (same heading)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-1	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-2	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-3	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-4	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-5	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-6	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-7	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-8	moved to skills/cc-quality-practices/checklists.md (same item)
+skills/cc-debugging/checklists.md	heading	Debugging Time Limits	dropped: human-time bounds (banned by code-standards); row 1 (cap quick-and-dirty, go systematic, then brute force) is FD-18; row 2 (stalled hypothesis → generate new ones) is FD-8/GA-6; row 3 (stalled → break, talk to someone) is FD-16/FD-17; row 4 (days on one bug → consider rewrite) is BF-2/BF-3/FD-19
+# --- Phase 3: Chain/Evidence sections (excluded from the inventory by design) removed; aposd-verifying-correctness's checklist folded into its SKILL.md with the same IDs inline (the other two APOSD checklists stay — their SKILL.md tables are teaching tables, not checkable items)
+skills/aposd-verifying-correctness/checklists.md	heading	1. Requirements Coverage	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	RC-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RC-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	2. Concurrency Safety	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	CS-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	CS-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	3. Error Handling	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	EH-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	EH-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	4. Resource Management	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	RM-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	RM-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	5. Boundary Conditions	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	BC-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	BC-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	heading	6. Security (if applicable)	SKILL.md § Dimension Detection & Checks (section kept in SKILL.md)
+skills/aposd-verifying-correctness/checklists.md	item	SE-1	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-2	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-3	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-4	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/checklists.md	item	SE-5	SKILL.md § Dimension Detection & Checks (same ID inline)
+skills/aposd-verifying-correctness/SKILL.md	heading	Relationship to Other Skills	dropped: the description's "not for X (use Y)" clauses carry the disambiguation; Design → Implement → Verify ordering is the planner's
+skills/performance-optimization/SKILL.md	heading	Quick Reference	dropped: restated the four thresholds already stated with sources under § Measure First and § 7-Step Decision Tree
+# note (Phase 3): performance-optimization DS-4 is a new checklist item promoting the pre-existing SKILL.md Red Flags row "Repeated Special Cases" — not a pre-cut ID, recorded here for the audit trail
+# --- Phase 4: pattern-reuse-gate folded into build-agent Baseline Discipline; cc-foundations trimmed to the tables CC skills cite
+references/cc-foundations.md	heading	Software's Primary Technical Imperative	dropped: textbook framing; the information-hiding rule lives in aposd-designing-deep-modules § Information Hiding Checklist
+references/cc-foundations.md	heading	Information Hiding Principles	dropped: textbook (secrets/interface/barriers); aposd-designing-deep-modules carries what-to-hide in its own vocabulary, and the one citer (cc-defensive-programming's barricade section) is self-contained
+references/cc-foundations.md	heading	Design Heuristics	dropped: restated Key Metrics (composition, depth <3) and APOSD principles carried by the aposd skills
+references/cc-foundations.md	heading	CC ↔ APOSD Concept Mapping	dropped: a cross-reference table between the two vocabularies; no rule, each concept lives in its own skill
+references/cc-foundations.md	heading	Quick Reference	dropped: restated the three tables above
+references/pattern-reuse-gate.md	heading	The Gate	agents/build-agent.md § Pattern Reuse (search → identify → follow-or-document-divergence)
+references/pattern-reuse-gate.md	heading	Search Checklist	agents/build-agent.md § Pattern Reuse (several keyword variations, recent history, search for the problem not the solution, "no results" is suspicious)
+references/pattern-reuse-gate.md	heading	Search Quality Requirements	agents/build-agent.md § Pattern Reuse
+references/pattern-reuse-gate.md	heading	Decision Matrix	agents/build-agent.md § Pattern Reuse (follow / follow-anyway / document divergence / pick between conflicting patterns / set precedent)
+references/pattern-reuse-gate.md	heading	Examples	dropped: three BAD/GOOD example pairs (format-anchoring only)
+references/pattern-reuse-gate.md	heading	Example 1: Adding Error Handling	dropped: example
+references/pattern-reuse-gate.md	heading	Example 2: Adding a New Component	dropped: example
+references/pattern-reuse-gate.md	heading	Example 3: Fixing a Bug	dropped: example
+references/pattern-reuse-gate.md	heading	Integration Points	dropped: the four call sites now state the rule inline (cc-defensive-programming APPLIER, cc-refactoring-guidance § Before refactoring, planning 1a, commands/debug.md)
+references/pattern-reuse-gate.md	heading	Workflow Position	dropped: ASCII "YOU ARE HERE" diagram
+references/cc-foundations.md	note	Debugging Performance figures	the ~50%-of-fixes-wrong figure moved to cc-debugging Step 6; the 20:1 debugger-variation figure is dropped (a motivational statistic, not a rule)
+# --- Phase 5: agents + dispatch templates
+agents/build-agent.md	heading	Status: DONE | UPDATE_PLAN | BLOCKED	merged into the single Output template ("SKIP is a Full-mode status only — Minimal returns DONE | UPDATE_PLAN | BLOCKED")
+# --- Phase 6: build.md SETUP collapse
+commands/build.md	heading	Phase 2: SETUP (Initialize Tracking)	renamed "SETUP (Resolve, Print One Table)" — same section
+commands/build.md	heading	Skill Resolution (One-Time Task)	renamed "Skill Resolution (name validation only)"; the re-matching steps and the plan-file edit (and therefore the re-read warning) are dropped deliberately — the planner's DECOMPOSE matched with the phase bodies in hand; unknown-name stop kept
+commands/build.md	heading	Gate Policy Detection	renamed "Gate Policy" — same table, rationale compressed to one sentence; the "State the resolved gate level" narration is replaced by the Resolution Table
+# --- Phase 7: build.md VERIFY collapse
+commands/build.md	heading	Phase 4: VERIFY (Full Test Suite)	renamed "Phase 4: VERIFY (Close the Review Set, One Suite on HEAD)"
+commands/build.md	heading	Trailing Batch REVIEW (first — before anything else in VERIFY)	VERIFY step 1 (same rule: fire if the set is non-empty, an un-reviewed phase must not reach the trust report)
+commands/build.md	heading	Load Skills	dropped: performance-optimization and cc-refactoring-guidance were loaded with no defined output; the skills are assigned per phase by the planner where they apply
+commands/build.md	heading	Test Coverage Check	moved: post-gate-agent Step 2 + a new Verdict Rule fail any gap against the Test Coverage Level the review prompt now carries with its definition (the four levels are defined inline in every BUILD and REVIEW prompt); VERIFY reports the level in the trust report's Coverage line; Coverage: None keeps its one-line warning
+commands/build.md	heading	Run Test Plan + Clean Build	VERIFY steps 2–3 (suite = tests + typecheck + lint on HEAD under the delta rule; Test Plan items the suite doesn't cover are run or recorded under Manual Testing Steps); the git-stash warning delta is dropped — new lint warnings are reported in the trust report instead
+commands/build.md	heading	Verification Gate	dropped: its rows map to VERIFY step 2 (red → fix, re-run under the retry cap), the Coverage: None line, and the per-phase coverage enforcement; "no unsanctioned skips" is now checked at REPORT: trust-report.md requires every SKIPped phase to have its SKIP execution-log entry (a phase with neither a commit nor a SKIP entry is unaccounted for)
+# --- Phase 8: plan schema + field rules single-homed in references/plan-schema.md
+skills/planning/SKILL.md	heading	Model Detection + Gate Assignment + Skill Validation	references/plan-schema.md §§ Model assignment / Gate assignment / Review cadence / Dependencies and file scope / Skills validation (same rules, one home); SAVE now reads it
+skills/planning/SKILL.md	heading	Context	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Constraints	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Chosen Approach	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Rejected Approaches	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Implementation Phases	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Test Coverage	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Assumptions	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Decision Log	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+skills/planning/SKILL.md	heading	Execution Log	references/plan-schema.md § Plan file schema (the schema block moved; a comment defining the four coverage levels for the planner was added inside it)
+# --- Phase 9: build.md rewritten for size — every decision rule kept; subsection headings folded into their phase sections
+commands/build.md	heading	Phase 1: LOAD (Read Plan File)	renamed "Phase 1: LOAD"
+commands/build.md	heading	Locate Plan	LOAD paragraph "Locate the plan"
+commands/build.md	heading	Worktree Gate (immediately after the plan is located — it needs the plan filename)	LOAD paragraph "Worktree gate — immediately"
+commands/build.md	heading	Parse Plan Structure	LOAD paragraph "Parse the plan"
+commands/build.md	heading	Verify Plan is Ready	LOAD "Plan status" table
+commands/build.md	heading	Update Plan Status	SETUP opening line
+commands/build.md	heading	Phase 3: EXECUTE (Implement Sections)	renamed "Phase 3: EXECUTE"
+commands/build.md	heading	The Orchestrator Dispatches; Agents Do the Work	EXECUTE opening paragraph "You dispatch; agents do the work"
+commands/build.md	heading	Agent Types Per Sub-Phase	EXECUTE agent table
+commands/build.md	heading	Parallel Waves (2-3 phases)	renamed "Parallel Waves (2–3 phases)"
+commands/build.md	heading	Sub-Phase N.1: BUILD (Discovery + Design + Implementation)	renamed "Sub-Phase N.1: BUILD"
+commands/build.md	heading	Sub-Phase N.2: REVIEW (Blocking — Full gate and security-sensitive phases only)	renamed "Sub-Phase N.2: REVIEW (blocking — Full gate and security-sensitive phases only)"
+commands/build.md	heading	Commit After Phase (Orchestrator Handles Directly)	renamed "Commit After Phase"
+commands/build.md	heading	Phase 5: REPORT (Update Plan + Summarize)	renamed "Phase 5: REPORT"
+commands/build.md	heading	Update Plan File	REPORT paragraph (status fields)
+commands/build.md	heading	Final Commit	REPORT paragraph (chore(build) commit)
+commands/build.md	heading	Summary Output (Trust Report)	REPORT paragraph (trust report per trust-report.md)

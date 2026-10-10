@@ -49,7 +49,7 @@ The dispatch prompt's `## Done-When Items (DW-IDs)` list is the contract. You ma
 
 Tests are written after the implementation to validate it — but they still gate the phase. Every DW item ends with passing test(s) that exercise it; a DW item with no test is an uncovered gap, not done. Assert on the DW item's intended behavior (input → expected output), not on whatever the code happens to return — a test that merely mirrors the implementation validates nothing.
 
-The DW items are the floor, not the ceiling. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
+The DW items are the floor, not the ceiling — and the dispatch prompt's `## Test Coverage Level` is the contract the reviewer holds you to (100% = a unit test for every new or changed routine plus the Test Plan's integration tests; Targeted = the named layers), not only the DW list. Implementing the code surfaces behavior the plan never enumerated — edge cases, error paths, boundary conditions, integration seams. Test what you judge actually matters, not only what carries a DW-ID. A phase whose tests stop exactly at the DW list has almost certainly left real behavior unverified.
 
 ### Test Anchoring
 
@@ -65,16 +65,15 @@ This governs deliberation, not rigor. The discovery file, the DW mapping, and a 
 
 Inside this phase's implementation code, prefer concise code over verbose code, while keeping it readable and maintainable. Reach for built-ins and existing solutions before hand-rolling your own. This governs implementation code only — it never licenses cutting a test, narrowing test coverage below the floor in Validation Coverage, or trimming scope under Scope Latitude. When concision and clarity conflict, clarity wins: shorter is the goal, but obvious is the requirement. (Benchmark caveat: concision measured a ~1–2pp dip in off-spec / adversarial-edge robustness — within noise, but on explicitly out-of-spec or hostile inputs, never let concision drop a guard or validation.)
 
+### Pattern Reuse
+
+Before writing any implementation (in Full mode, discovery's Files Found / Current State notes count — don't repeat a search you already recorded), search for how the same thing is done elsewhere in this codebase — the whole codebase, not just the current directory; at least three keyword variations; the same module's conventions for errors and data shapes; recent git history — and search for the problem, not your planned solution. Scale it to the change: a config edit needs a look at its siblings, a new module needs the full search. Then decide: a pattern exists → follow it, even a mediocre one (consistency is what makes code navigable); it is actively harmful → diverge and say why in a code comment and under Deviations from Design in your report; several conflict → pick the better one and note which and why; none exists → you are setting the precedent, be deliberate. "No results" is suspicious: broaden the terms before concluding there is nothing to follow.
+
 ---
 
 ## Mode Detection
 
-Check the dispatch prompt for mode:
-
-| Prompt says | Mode | What to do |
-|------------|------|-----------|
-| "minimal gate" | **Minimal** | Skip Phase 1, go directly to Phase 2 (Implementation) |
-| Everything else | **Full** | Run all phases below |
+A dispatch prompt that says "minimal gate" runs in **Minimal** mode: skip Phase 1 and go straight to Phase 2 (Implementation). Everything else is **Full** mode: run both phases.
 
 ---
 
@@ -197,8 +196,6 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 
 ## Output
 
-**Full mode** (discovery + design + implementation):
-
 ```markdown
 ## BUILD Complete
 
@@ -212,10 +209,10 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 - DW items covered: [count/total]
 - Tests written: [count]
 - All tests PASSING: YES/NO
-- Files changed: [list with what was done]
+- Files changed: [list with what was done — new file, or the routines added or changed]
 
 ### Deviations from Design
-[List any places where implementation differs from discovery design notes and WHY, or "None"]
+[Where the implementation differs from the discovery design notes or from an existing codebase pattern, and WHY — or "None"]
 
 ### Skills Loaded
 [List skills loaded, or "None assigned"]
@@ -226,28 +223,6 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 ### Status: DONE | SKIP | UPDATE_PLAN | BLOCKED
 ```
 
-**Minimal mode** (no discovery — Discovery+Design fields collapse, no discovery artifact):
-
-```markdown
-## BUILD Complete
-
-### Discovery + Design
-- Recommendation: N/A (minimal gate — no discovery)
-- Code standards: [applied | not found]
-
-### Implementation
-- DW items covered: [count/total]
-- Tests written: [count]
-- All tests PASSING: YES/NO
-- Files changed: [list with what was done]
-
-### Skills Loaded
-[List skills loaded, or "None assigned"]
-
-### Artifacts
-- none (minimal gate)
-
-### Status: DONE | UPDATE_PLAN | BLOCKED
-```
+**Minimal mode** uses the same template with these substitutions: Recommendation reads `N/A (minimal gate — no discovery)`; Files found and Gaps identified are omitted; Deviations from Design is kept only if you diverged from an existing codebase pattern (Pattern Reuse), otherwise omitted; Artifacts reads `none (minimal gate)`; Status omits SKIP — SKIP is discovery's recommendation and Minimal mode has no discovery, so Minimal returns DONE | UPDATE_PLAN | BLOCKED.
 
 **Status DONE requires ALL DW items COVERED, ALL tests PASSING, and test anchoring intact.**

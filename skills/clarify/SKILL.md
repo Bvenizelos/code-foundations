@@ -173,6 +173,10 @@ Don't collapse these. Deciding to clarify and blurting out the first question th
 
 ---
 
+### Re-entry
+
+When shared understanding is reached, return to the calling skill with goal, scope, constraints, and approach. If a new ambiguity surfaces later in the work, re-enter this loop for that gap only.
+
 ## Anti-Patterns
 
 | Pattern | Problem | Instead |
@@ -186,12 +190,3 @@ Don't collapse these. Deciding to clarify and blurting out the first question th
 | Leading questions | Biases response, masks intent | Open-ended, or balanced options |
 | One round and done | Complex requests need iteration | Continue until hypotheses converge |
 | Asking when outcomes are equivalent | Unnecessary friction | Favor direct action on ties |
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Ambiguity resolved, shared understanding reached | Return to calling skill with goal/scope/constraints/approach |
-| New ambiguity surfaces during work | Re-enter clarify loop |

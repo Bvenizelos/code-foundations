@@ -28,6 +28,7 @@ Source: Code Complete 2nd Edition, Chapters 16-18 + Modern Additions
 - [ ] LI-6: "Is nesting limited to three levels or less?" → Red flag: 4+ levels
 - [ ] LI-7: "Have long loop contents been moved to their own routine?"
 - [ ] LI-8: "If the loop is long, is it especially clear?"
+- [ ] LI-9: "If an error inside the loop is caught and `continue`d, is each failure logged with context and counted, and does the batch fail past a threshold?" → Red flag: failed items silently skipped
 
 ### Loop Indexes
 
@@ -99,20 +100,3 @@ Source: Code Complete 2nd Edition, Chapters 16-18 + Modern Additions
 - [ ] FP-1: "Are map/filter/reduce preferred over explicit loops for simple transformations?"
 - [ ] FP-2: "Is early exit needed? (If yes, use explicit loop instead)"
 - [ ] FP-3: "Does the pipeline read clearly left-to-right or top-to-bottom?"
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Deep nesting (4+ levels)?" - Code unreadable → Extract methods, use early returns, flatten structure
-- [ ] RF-2: "Infinite loop possible?" - Missing/unreachable exit condition → Add safety counter, verify all paths exit
-- [ ] RF-3: "Loop index modification inside loop?" - Unpredictable iteration → Use while loop or extract to function
-- [ ] RF-4: "Floating-point loop index?" - Precision errors cause bugs → Use integer index, compute float in body
-- [ ] RF-5: "Reversed if/else logic?" - Normal case in else clause → Swap branches, put normal case first
-- [ ] RF-6: "Missing recursion base case?" - Stack overflow risk → Add explicit termination condition + safety counter
-- [ ] RF-7: ">10 decision points in routine?" - Too complex to understand → Decompose into smaller routines or use table-driven method
-- [ ] RF-8: "goto usage?" - Spaghetti code risk → Restructure with proper loops/conditionals or extract routine
-- [ ] RF-9: "Unhandled promise rejection?" - Silent failure in async code → Add try/catch or .catch() handler
-- [ ] RF-10: "switch fall-through without comment?" - Likely bug → Add break or explicit fall-through comment
-- [ ] RF-11: "Silent catch-continue in loop?" - Error inside loop caught and `continue`d, failed items silently skipped → Log each failure with context, track failure count, fail the batch if threshold exceeded
-- [ ] RF-12: "Default/else branch does nothing?" - `default:` case or final `else` is empty or just breaks on unexpected values → Unexpected cases should log or throw, not pass silently

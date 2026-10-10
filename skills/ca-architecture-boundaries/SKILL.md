@@ -119,11 +119,4 @@ grep -r "@Entity\|@Table\|@Column" src/domain/
 grep -r "instanceof\|getType()\|typeof.*===" src/domain/ src/entities/
 ```
 
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Boundaries drawn | aposd-designing-deep-modules (module-level design) |
-| SOLID violations found | cc-refactoring-guidance (safe restructuring) |
+Fixing a detected violation in an existing system is a refactor — stage it with `Skill(code-foundations:cc-refactoring-guidance)`.

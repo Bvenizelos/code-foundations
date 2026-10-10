@@ -11,23 +11,18 @@ Subagent dispatch prompts used by the orchestrator (`commands/build.md`) when di
 | `§ REVIEW` | **Blocking** REVIEW — Full gate phases and security-sensitive phases at any gate |
 | `§ BATCH_REVIEW` | **Deferred** REVIEW — the primary review path for Standard and Minimal phases, covering the whole un-reviewed set in one dispatch |
 
-Keeping these here instead of inline in `build.md`:
-- Keeps the orchestrator's hot path lean
-- Lets templates evolve without touching orchestration logic
-- Makes the dispatch surface a single auditable file
-
 **Substitution rules (orchestrator):**
-- `[bracketed]` placeholders → phase-specific values. Each placeholder names its source (plan section, agent report, project config); conditional blocks (`[if plan phase has ...]`) are emitted only when the condition holds, with items pasted verbatim.
-- `## Additional Skills` blocks: for EACH skill assigned to the phase, emit one `Skill(<plugin:name>)` line — this plugin's own skills as `Skill(code-foundations:<name>)`, skills from other installed plugins as `Skill(<plugin>:<name>)`. All assigned skills are real, model-invocable skills; the build subagent invokes them via the Skill tool (an explicit `Skill(...)` line in the dispatch prompt invokes the skill even though subagents don't inherit the register). The Skill tool loads the SKILL.md body, and each skill self-loads its own checklists via `${CLAUDE_SKILL_DIR}` once invoked — so emit NO separate checklist `Read()` lines. Do not Read-inject SKILL.md text; that was the old workaround for non-invocable skills.
-- **Skills propagate BUILD → REVIEW:** if the BUILD agent's `### Skills Loaded` output reports skills beyond the plan's assignment, add those as `Skill(<plugin:name>)` lines to the REVIEW dispatch's `## Additional Skills` block too. The reviewer needs the same skill context to verify against.
-- Test/typecheck/lint command placeholders → resolve from project config (package.json scripts, Makefile, Cargo.toml, etc.) — exact runnable commands, not descriptions.
-- **Wave mode (parallel phases only):** when a phase runs in its own phase worktree (build.md → Parallel Waves), every path in the prompt is rooted at that worktree and the BUILD prompt gains: "Work ONLY inside `<worktree-root>`; run all commands from there. End with exactly ONE commit: `wip(phase-N): <name>` — squash if you made more. Report the worktree path and wip sha in your output." Serial phases omit this. No REVIEW template needs a wave variant — wave members are deferred-review phases by construction, and their batch REVIEW runs later against the integrated build worktree.
+- `[bracketed]` placeholders → phase-specific values; each names its source. Conditional blocks (`[if …]`) are emitted only when the condition holds, items pasted verbatim.
+- `## Additional Skills`: emitted only when the phase's `**Skills:**` lists at least one skill (a `none` / `none -- [reason]` phase gets no block). One `Skill(<plugin:name>)` line per skill — this plugin's as `Skill(code-foundations:<name>)`, other plugins' as `Skill(<plugin>:<name>)`. An explicit `Skill(...)` line invokes the skill even though subagents don't inherit the register, and each skill self-loads its own checklists — emit no checklist `Read()` lines and never Read-inject SKILL.md text.
+- **Skills propagate BUILD → REVIEW:** skills the BUILD agent's `### Skills Loaded` reports beyond the plan's assignment are added to the REVIEW dispatch's block too.
+- Test/typecheck/lint command placeholders → exact runnable commands resolved from project config (package.json scripts, Makefile, Cargo.toml…), not descriptions.
+- **Wave mode:** when a phase runs in its own phase worktree (build.md → Parallel Waves), every path is rooted at that worktree and the BUILD prompt gains: "Work ONLY inside `<worktree-root>`; run all commands from there. End with exactly ONE commit: `wip(phase-N): <name>` — squash if you made more. Report the worktree path and wip sha." No REVIEW template needs a wave variant — wave members are batch-reviewed later against the integrated build worktree.
 
 ---
 
 ## § FULL_BUILD
 
-Use for **Full gate** and **Standard gate** phases. The build agent runs discovery + design + implementation in one pass.
+Full and Standard gate phases (discovery + design + implementation in one pass).
 
 ```
 Agent tool:
@@ -68,7 +63,10 @@ Agent tool:
     - [ ] DW-N.2: [done-when item 2]
     - [ ] DW-N.X: [done-when item N...]
 
-    [if plan phase has **Skills:** field, include:]
+    ## Test Coverage Level
+    [paste the plan's level — 100% / Targeted: <layers> / Per-phase / None]
+
+    [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
     Invoke EVERY Skill() below, in order, BEFORE starting work:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
@@ -93,18 +91,13 @@ Agent tool:
 
     ## Output Files
     - Discovery + Design: .code-foundations/build/<plan-name>-phase-N-discovery.md
-
-    Match the discovery file's length to what this phase actually needs. It is
-    a working artifact for the implementation that follows it, not a deliverable:
-    record the files, the gaps, the DW mapping, and the design decisions, and
-    skip filler sections, restated plan text, and summaries of your own process.
 ```
 
 ---
 
 ## § MINIMAL_BUILD
 
-Use for **Minimal gate** phases. Skips discovery — implements directly from plan description: stub, implement, then validate with tests.
+Minimal gate phases: no discovery — stub, implement, validate from the plan description.
 
 ```
 Agent tool:
@@ -112,7 +105,7 @@ Agent tool:
 - model: [from plan's **Model:** field — required; a plan without it stops the build at LOAD]
 - description: "BUILD Phase N (minimal)"
 - prompt: |
-    Answer directly without deliberating — this is trivial, mechanical work.
+    [Depth per build's Effort Alignment: if the phase Model is haiku, open with "Answer directly without deliberating — this is trivial, mechanical work."; otherwise open with "This task involves multi-step reasoning. Think carefully before responding."]
 
     Build Phase N of the build plan. This phase uses minimal gate
     policy — skip discovery, implement directly from the plan
@@ -126,7 +119,7 @@ Agent tool:
     [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary]. Phase 2: ..."]
     Current: Phase N of M
 
-    [if plan phase has **Skills:** field, include:]
+    [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
     Invoke EVERY Skill() below, in order, BEFORE starting work:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
@@ -145,6 +138,9 @@ Agent tool:
     - [ ] DW-N.2: [done-when item 2]
     - [ ] DW-N.X: [done-when item N...]
 
+    ## Test Coverage Level
+    [paste the plan's level — 100% / Targeted: <layers> / Per-phase / None]
+
     ## Inputs
     - Plan file: .code-foundations/plans/<plan-name>.md
     - Phase: N - [name]
@@ -154,11 +150,11 @@ Agent tool:
 
 ## § REVIEW
 
-Use for **blocking** REVIEW sub-phases — Full gate phases, and security-sensitive phases at any gate. Standard and Minimal phases go through `§ BATCH_REVIEW` instead. Always uses `code-foundations:post-gate-agent`.
+Blocking REVIEW — Full gate phases and security-sensitive phases at any gate (Standard and Minimal go through `§ BATCH_REVIEW`).
 
-**Debiasing rules (do not violate):** the reviewer must receive NO intent-framing. Do NOT include the plan's Context/problem statement, progress summaries ("Completed Phase…"), the discovery file, or any account of what the build agent did or intended. Requirements + files + commands only.
+**Debiasing rules (do not violate):** the reviewer receives NO intent-framing — no plan Context, no progress summary, no discovery file, no account of what the build agent did or intended (per-file change notes — which routines were added or changed — are not intent). Requirements + files + commands only.
 
-**Security-sensitive (3-sample):** if the phase is marked `**Security-sensitive:** yes` in the plan, dispatch THREE independent copies of this prompt as three Agent calls **in a single message** (they run concurrently — independence is contextual, not temporal) on **fable**, and take the majority verdict. The copies are identical EXCEPT for the per-sample review path: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md`. Without this the three samples race and overwrite a single review file. Each sample writes its own scratch artifacts (coverage output, temp files) under a sample-unique directory and runs no mutating commands (no `lint --fix`, no dependency installs). If the suite uses shared mutable resources (DB, ports, docker services, on-disk fixtures), run the three samples sequentially instead. For a non-sampled (single) review, drop the `-sample-K` suffix (review → `<plan-name>-phase-N-review.md`).
+**Security-sensitive (3-sample):** the procedure is in `commands/build.md` → Sub-Phase N.2: REVIEW. The template's part: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md` (otherwise the samples overwrite one file); each sample uses a sample-unique scratch directory and runs no mutating commands (no `lint --fix`, no dependency installs). A single review drops the suffix.
 
 ```
 Agent tool:
@@ -194,10 +190,12 @@ Agent tool:
     [paste the phase's Edge cases verbatim]
 
     ## Test Coverage Level
-    [paste the plan's Test Coverage level, e.g. "100%"]
+    [paste the plan's level — 100% / Targeted: <layers> / Per-phase / None]
 
     ## Files to review
-    [implementation + test file paths from the BUILD agent's report — paths only, no commentary]
+    [implementation + test file paths from the BUILD agent's report, each with its
+    "what was done" note (new file / routines added or changed) — paths and change
+    notes only, no rationale; "new or changed routines" under 100% means these]
 
     ## How to run the suite
     [exact test command + typecheck/lint commands for this project]
@@ -209,23 +207,11 @@ Agent tool:
     Phase N consumes [interface X] defined in [file:line]. Treat its contract
     as given; do not re-review it, but flag if this phase misuses it.
 
-    [if plan phase has **Skills:** field OR BUILD agent reported additional skills, include:]
+    [if the phase's **Skills:** lists at least one skill (not `none -- [reason]`) OR the BUILD agent reported additional skills, include:]
     ## Additional Skills
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name from plan -- this plugin's own skills as code-foundations:<name>])
     [repeat the Skill() line for each skill; also include skills from BUILD's "Skills Loaded" output not already listed]
-
-    ## Reporting bar
-    Report every issue you find, including ones you are uncertain about or
-    consider low-severity, each with a confidence level and an estimated
-    severity. Do not filter for importance at this stage — the verdict rules
-    are the filter, and they sort demonstrated defects (FAIL) from everything
-    else (Notes). It is better to surface a finding that lands in Notes than
-    to silently drop a real bug.
-
-    Match the review file's length to the evidence: cover every requirement
-    and every finding, and skip filler sections, restated requirements, and
-    summaries of what you are about to say.
 
     ## Output
     Write review to: [review path — `.code-foundations/build/<plan-name>-phase-N-review.md`,
@@ -237,13 +223,11 @@ Agent tool:
 
 ## § BATCH_REVIEW
 
-The primary review path for Standard and Minimal phases. Inserted dynamically when a batch trigger fires (build.md → Batch REVIEW): the un-reviewed set reaches the cadence, a Full phase is about to open, or VERIFY is next. Covers **every** phase in the un-reviewed set in one dispatch — reviewing them together is what buys the cross-phase coherence check that per-phase reviews structurally cannot produce.
+The review path for Standard and Minimal phases, inserted when a batch trigger fires (build.md → Batch REVIEW), covering **every** phase in the un-reviewed set in one dispatch — the cross-phase coherence check is the point. Same debiasing rules as § REVIEW.
 
-Same debiasing rules as § REVIEW: no plan Context, no progress narrative, no discovery files.
+**Model:** the highest resolved REVIEW model among the covered phases (ranking fable > opus > sonnet > haiku); when the batch fires ahead of a Full phase, the higher of that and the Full phase's REVIEW model.
 
-**Model:** the highest resolved REVIEW model among the covered phases (each phase's BUILD model downgraded one tier, floored at sonnet, per the orchestrator's Model Resolution). When the batch fires ahead of a Full phase, take the higher of that value and the upcoming Full phase's resolved REVIEW model.
-
-**One structural difference from § REVIEW:** this review runs against **committed** code. Say nothing about that in the prompt — a reviewer told the code already shipped reviews it more leniently, and the whole point of the debiasing rules is that the reviewer knows nothing about the code's history. The orchestrator handles the consequences (fix-forward) on its side.
+This review runs against **committed** code. Say nothing about that in the prompt — a reviewer told the code already shipped reviews it more leniently.
 
 ```
 Agent tool:
@@ -271,7 +255,8 @@ Agent tool:
     Requirements (fill the template per item; PASS requires execution evidence):
     - DW-X.1: [item]
       PREMISE: ___  EVIDENCE (file:line): ___  TRACE (input→output): ___  VERDICT: ___
-    Files: [implementation + test file paths]
+    Files: [implementation + test file paths, each with the BUILD report's "what was done"
+    note — new or changed routines are the ones it names]
 
     [if the phase has **Edge cases:** in the plan, include them here — same
     verdict standing as the DW items, exactly as in § REVIEW:]
@@ -282,10 +267,10 @@ Agent tool:
     Requirements:
     - DW-Y.1: [item]
       PREMISE: ___  EVIDENCE (file:line): ___  TRACE (input→output): ___  VERDICT: ___
-    Files: [implementation + test file paths]
+    Files: [paths with their "what was done" notes, as for Phase X]
 
     ## Test Coverage Level
-    [paste the plan's Test Coverage level, e.g. "100%"]
+    [paste the plan's level — 100% / Targeted: <layers> / Per-phase / None]
 
     ## How to run the suite
     [exact test command + typecheck/lint commands]
@@ -299,20 +284,11 @@ Agent tool:
     - Each phase uses the interfaces the earlier phases actually expose, not
       the ones it assumes they expose
 
-    [if any covered phase has a **Skills:** field OR its BUILD agent reported
-    additional skills, include the union across all covered phases:]
+    [if any covered phase lists at least one skill (not `none -- [reason]`) OR its
+    BUILD agent reported additional skills, include the union across all covered phases:]
     ## Additional Skills
     Invoke EVERY Skill() below BEFORE reviewing:
     - Skill([plugin:name -- this plugin's own skills as code-foundations:<name>])
-
-    ## Reporting bar
-    Report every issue you find, including ones you are uncertain about or
-    consider low-severity, each with a confidence level and an estimated
-    severity. Do not filter for importance at this stage — the verdict rules
-    are the filter. Attribute each finding to the phase whose files it lives in.
-
-    Match the review file's length to the evidence: cover every requirement
-    and every finding, and skip filler sections and restated requirements.
 
     ## Output
     Write review to: .code-foundations/build/<plan-name>-batch-phases-X-Y-review.md

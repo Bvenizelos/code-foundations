@@ -2,7 +2,7 @@
 
 **AI that codes like a senior engineer.** Checklists, quality gates, and verification built into every workflow.
 
-> **Active development** - Installed via the marketplace below (currently v6.4.0); no tagged GitHub releases yet. The build workflow and skills are benchmark-validated, but subagent orchestration is still being tuned — expect changes.
+> **Active development** - Installed via the marketplace below (currently v6.5.0); no tagged GitHub releases yet. The build workflow and skills are benchmark-validated, but subagent orchestration is still being tuned — expect changes.
 
 ---
 
@@ -120,6 +120,8 @@ User: "/code-foundations:build .code-foundations/plans/2026-01-30-notifications.
 | VERIFY | — (no skills) | Trailing batch REVIEW over any un-reviewed phases, one suite (tests + typecheck + lint) on integrated HEAD, Test Plan items the suite doesn't cover |
 
 Gate policy is adaptive, and what it adapts is review *timing* — every phase is reviewed. Full (BUILD + blocking REVIEW, always runs alone) and security-sensitive phases (3-sample majority vote on fable) hold their commit until the reviewer returns PASS. Standard and Minimal phases commit on a green suite and are covered by a **batch REVIEW** that fires every `Review cadence` phases (default 3), before any Full phase, and at VERIFY if anything is still un-reviewed. Batching costs a window of un-reviewed HEAD and buys reviewer context: seeing several phases together surfaces cross-phase incoherence that isolated reviews structurally cannot. A batch FAIL is fixed forward against the committed code.
+
+**Quiet by default.** Build agents settle what the plan leaves open themselves and log each choice; only a one-way door (a contract, scope, security, destructive data, a public API) becomes a question, and it holds only its own phase while the rest keeps building. After each batch review, the orchestrator checks the remaining plan against the code that now exists and fixes misfits as `plan(adjust)` commits; it never drops a requirement. The plan's `**Check-ins:**` header (`quiet` | `checkpoints` | `per-phase`) sets how often you hear from it, and every choice made on your behalf is listed in the trust report under *Decided During Build*.
 
 Skills matched per phase at plan's DECOMPOSE step and validated at SAVE — gates load only those skills; each agent carries its own protocol. Independent Standard/Minimal phases (no dependency, disjoint `File scope`) build in parallel waves, each in its own worktree, integrated by cherry-pick in plan order.
 

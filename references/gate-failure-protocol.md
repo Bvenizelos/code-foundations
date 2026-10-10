@@ -28,7 +28,7 @@ Track the number of times each gate has returned FAIL for the current phase.
 |---------|--------|
 | 1st FAIL | Fix issues, re-dispatch |
 | 2nd FAIL | Fix issues, re-dispatch. Note: if the same issues recur, the fix approach is wrong. |
-| 3rd FAIL | **STOP.** Do not re-dispatch. Present findings to user (template below). |
+| 3rd FAIL | **STOP.** Do not re-dispatch. Present findings to user (template below). A 3rd BUILD BLOCKED instead becomes an `open` question holding only that phase and its dependents (checkpoint.md → Clarify) — the template is used when it is asked. |
 
 **On the 3rd FAIL — present this to the user:**
 
@@ -72,9 +72,9 @@ When one member of a parallel wave fails its gate while siblings pass:
 
 Wave members are deferred-review phases by construction (Full gates and security-sensitive phases run alone), so the failure surface inside a wave is BUILD and integration only — their review arrives later, through Batch Failures above, against the integrated build worktree.
 
-- **Wave BLOCKED is the deliberate exception to the retry cap:** a BUILD member returning BLOCKED (or UPDATE_PLAN) does not auto-retry — in-flight siblings finish, their worktrees are held uncommitted, and the orchestrator pauses for the user (build.md → Parallel Waves step 3). Auto-retrying one member while its siblings are held would burn the cap on a problem that usually needs plan-level intervention.
+- **Wave BLOCKED is the deliberate exception to the retry cap:** a BUILD member returning BLOCKED does not auto-retry — auto-retrying would burn the cap on a problem that usually needs plan-level intervention. Like an UPDATE_PLAN member, it becomes an `open` question that holds only that member; siblings finish and integrate (they share no dependency or files with it) (build.md → Parallel Waves step 3, checkpoint.md → Clarify).
 - **A member whose own suite is red never integrates** — it is quarantined in its own worktree, and its broken state never touches the build worktree. Fix and re-run there under the same 3-retry cap; fixes are squashed into a fresh `wip(phase-N)` commit whose sha supersedes the one originally reported, and integration cherry-picks the latest.
-- **Commits stay in plan order.** A plan-order-earlier failer holds later passers' integration — their worktrees simply wait. The barrier applies to commits, not just wave opening: never commit out of plan order, because the execution-log Summary chain that anchors later dispatches assumes it.
+- **Commits stay in plan order** (a phase held by an `open` question is the exception — it commits when answered). A plan-order-earlier failer holds later passers' integration — their worktrees simply wait. The barrier applies to commits, not just wave opening: never commit out of plan order, because the execution-log Summary chain that anchors later dispatches assumes it.
 - **Post-integration wave-suite failure** (members green in isolation, red together): a gate failure attributed to the last-integrated member — fix forward under the normal retry cap; do not revert committed siblings.
 - **3rd FAIL on a wave member:** the standard escalation template above, plus one extra user option: "Drop this phase — mark it blocked (blocks only its dependents; committed siblings stand)."
-- **The next wave opens only when every member is committed, SKIPped, or escalated.**
+- **The next wave opens only when every member is committed, SKIPped, held, or escalated.**

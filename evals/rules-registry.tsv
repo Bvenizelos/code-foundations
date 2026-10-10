@@ -182,3 +182,14 @@ references/plan-integration.md	references/plan-schema.md
 docs/code-standards.md	no `## Priority Groups`
 docs/code-standards.md	node evals/validate-structure.mjs
 CLAUDE.md	evals/validate-structure.mjs
+# --- build loop (v6.5.0): quiet escalation, bounded plan adjustment, blind reviewer
+agents/build-agent.md	one-way door
+agents/build-agent.md	### Decisions
+commands/build.md	holds only its own phase
+commands/build.md	Quiet by default
+references/checkpoint.md	never remove or weaken a DW item
+references/checkpoint.md	nothing is runnable
+references/checkpoint.md	plan(adjust)
+references/dispatch-templates.md	no Decisions in Force
+references/plan-schema.md	**Check-ins:**
+references/trust-report.md	Decided During Build

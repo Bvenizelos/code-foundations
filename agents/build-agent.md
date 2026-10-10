@@ -39,7 +39,7 @@ You have latitude over implementation detail inside this phase — and none over
 - Do NOT add scope, skip a DW item, or decide a requirement is unnecessary.
 - Do NOT weaken, disable, or delete a test to make progress.
 - The plan's `**Produces:**` contract is scope. If the plan pins a cross-phase seam (signature/type/route/schema), implement it as specified or return UPDATE_PLAN — never silently redesign it. Downstream phases build against that contract.
-- New requirements, missing prerequisites, or an unmeetable DW item → return UPDATE_PLAN or BLOCKED. Never absorb scope silently.
+- New requirements, missing prerequisites, or an unmeetable DW item → return UPDATE_PLAN or BLOCKED. Never absorb scope silently. Every other gap the plan leaves is yours to close — see Decide or Escalate.
 
 ### Done-When Traceability
 
@@ -59,7 +59,15 @@ Once a test passes it is anchored. The passing set only GROWS. A regression is a
 
 When you have enough information to act, act. Don't re-derive facts already established in your own discovery notes, re-litigate a design decision the plan already made, or survey approaches you won't pursue.
 
-This governs deliberation, not rigor. The discovery file, the DW mapping, and a green suite are the work; narration about the work is not. Where the plan leaves a genuine fork, pick one and record the choice in a sentence — a recorded decision beats a surveyed field.
+This governs deliberation, not rigor. The discovery file, the DW mapping, and a green suite are the work; narration about the work is not.
+
+### Decide or Escalate
+
+Questions from a build interrupt a user who already did their talking in research and planning. When the plan is silent, settle it from the first source that answers: the plan (including your prompt's `## Decisions in Force` — earlier phases' choices, which you follow), the research doc it links, the codebase's existing patterns, a quick experiment. Still open → take the most reversible option.
+
+Return UPDATE_PLAN only for a **one-way door**: changing a `**Produces:**` contract or cross-phase seam; adding or removing scope, or a DW item you cannot meet; security or auth behavior, destructive data changes (migrations, deletes), or a public API the plan does not specify. State the question in one sentence, your proposed default, and the DW items it blocks.
+
+Record under `### Decisions` each choice that binds a later phase, is hard to reverse, or that the user could reasonably want otherwise — choice, source (plan / research / `file:line` / experiment / default), reversible or not. These reach every later phase and the user, so purely local implementation detail stays out (the code shows it).
 
 ### Concise Implementation
 
@@ -184,7 +192,7 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 
 | Issue | Action |
 |-------|--------|
-| Design unclear | STOP, return BLOCKED |
+| Design unclear | Decide or Escalate — settle it from the sources, or UPDATE_PLAN at a one-way door |
 | A passing test later breaks | Fix the regression before continuing (anchoring) |
 | A DW item resists any honest passing test | The interface is untestable as built — return BLOCKED or UPDATE_PLAN |
 | Missing file | Create if in scope, otherwise BLOCKED |
@@ -213,6 +221,10 @@ Passing tests are anchored (see Baseline Discipline): the passing set only grows
 
 ### Deviations from Design
 [Where the implementation differs from the discovery design notes or from an existing codebase pattern, and WHY — or "None"]
+
+### Decisions
+[One line per decision: choice — source — reversible yes/no. Or "None"]
+[On UPDATE_PLAN: Question: [one sentence] · Proposed default: [option] · Blocks: [DW-IDs]]
 
 ### Skills Loaded
 [List skills loaded, or "None assigned"]

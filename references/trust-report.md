@@ -42,6 +42,12 @@ The trust report text output focuses on what commit trailers can't capture (buil
 - **Coverage:** [plan level] — 100% and Targeted are enforced by the reviewers (each blocking and batch review fails a gap against them); Per-phase adds nothing beyond per-DW evidence; [or "None — per-DW evidence only; technical debt noted"]
 - **Review shape:** P phases reviewed at their gate, Q by batch review ([batch verdicts]); S phases SKIPped, each with its execution-log entry
 
+## Decided During Build
+[From the plan's `## Decided During Build` log — every row, newest last: `#K (Phase N) [decision] — [source] — [status]`.
+List `assumed` rows first under "Confirm or override:" — these are the choices agents made where the plan was silent,
+and the reader should see them before trusting the build. Then the user's decisions, then
+`git log --oneline --grep='^plan(adjust)' first-commit..HEAD` as "Plan adjustments:". If the log is empty: "None — the plan answered everything."]
+
 ## Manual Testing Steps
 [If the plan includes manual testing steps, or if the feature involves UI/UX,
 user-facing behavior, or interactions that automated tests cannot fully cover:]

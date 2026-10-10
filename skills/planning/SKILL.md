@@ -294,7 +294,7 @@ The file already exists from DECOMPOSE, with bodies and cross-cut sections fille
 
 ### Save
 
-The file was created at DECOMPOSE (`mkdir -p .code-foundations/plans` already done). Ensure every phase has `**Model:**`, `**Gate:**`, `**Skills:**`, and `**Depends on:**` populated, the header carries `**Status:** draft` and `**Review cadence:**`, and the schema is complete — build hard-requires these fields. **Do not commit** — the plan is a working document; build copies it into its worktree.
+The file was created at DECOMPOSE (`mkdir -p .code-foundations/plans` already done). Ensure every phase has `**Model:**`, `**Gate:**`, `**Skills:**`, and `**Depends on:**` populated, the header carries `**Status:** draft`, `**Review cadence:**`, and `**Check-ins:**`, and the schema is complete — build hard-requires these fields. **Do not commit** — the plan is a working document; build copies it into its worktree.
 
 ---
 
@@ -327,6 +327,8 @@ Checklist:
   serializing the build around it
 - Review cadence: header carries **Review cadence:** with a value of 1-5, and it fits the plan's
   coupling (tightly coupled phases -> 1-2; independent phases -> 4-5)
+- Check-ins: header carries **Check-ins:** (quiet | checkpoints | per-phase; checkpoints unless the
+  user asked to follow along or to be left alone)
 - Models: every phase has Model field populated (fable/sonnet/haiku -- opus only as an
   explicit user-requested override; never omitted)
 - Dependencies: every phase has Depends on populated and referenced phases exist; a phase
@@ -345,7 +347,7 @@ After return: PASS -> proceed. FINDINGS -> fix; **structural fixes (phase bounda
 
 End the turn with the full plan summary rendered as markdown in conversation, closing with "Does this look right? Anything to add or change?" The user replies in their own words.
 
-**Shape:** one table for the phases (goal, model, gate, dependencies, skills — this is the part the user scans first), then a short bullet list below it — constraint → phase mapping, test coverage level, review cadence, seams, CHECK results — one line per bullet, not a paragraph each. The review-cadence bullet states it in plain terms ("Review cadence 3 — phases 1-3 commit on green tests, then get reviewed together; phase 5 blocks on its own review"), because it is the line that tells the user how much unreviewed code will exist at any moment. Summarize CHECK's outcome ("PASS" or "N findings, fixed"), never the verbatim finding text. If a seam or guardrail needs more than one line to state, it belongs in the plan file, not the summary; point to the phase instead of re-explaining it there. A doctrine deviation (e.g., skipping a re-CHECK after a fix) gets one sentence on what and why, then the ask — not a justification paragraph.
+**Shape:** one table for the phases (goal, model, gate, dependencies, skills — this is the part the user scans first), then a short bullet list below it — constraint → phase mapping, test coverage level, review cadence, check-ins, seams, CHECK results — one line per bullet, not a paragraph each. The review-cadence bullet states it in plain terms ("Review cadence 3 — phases 1-3 commit on green tests, then get reviewed together; phase 5 blocks on its own review"), because it is the line that tells the user how much unreviewed code will exist at any moment. The check-ins bullet likewise says what the user will hear during the build ("Check-ins: checkpoints — build messages you only when it adjusts the plan, assumes something, or needs a decision"). Summarize CHECK's outcome ("PASS" or "N findings, fixed"), never the verbatim finding text. If a seam or guardrail needs more than one line to state, it belongs in the plan file, not the summary; point to the phase instead of re-explaining it there. A doctrine deviation (e.g., skipping a re-CHECK after a fix) gets one sentence on what and why, then the ask — not a justification paragraph.
 
 Two rules make this checkpoint structural:
 

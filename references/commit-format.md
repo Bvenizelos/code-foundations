@@ -7,7 +7,7 @@ Used by the orchestrator (`commands/build.md` Phase 3: EXECUTE) when committing 
 ## Commit Recipe
 
 ```bash
-git add .
+git add . ':(exclude).code-foundations/wave-worktrees'   # a held wave worktree must not land as an embedded repo
 git commit -m "[prefix]([scope]): [description]
 
 [WHY this phase exists — goal, key decisions, constraints that shaped implementation]
@@ -31,7 +31,7 @@ The trailer records the review state **at the moment of the commit**, and for de
 | `fail->pass (N attempts)` | Blocking REVIEW failed N times, then passed, all before this commit |
 | `deferred (batch pending)` | Standard or Minimal phase committing on a green suite; a batch REVIEW will cover it |
 | `batch fail->pass (attempt K)` | A fix-forward commit answering batch review findings (see gate-failure-protocol.md → Batch Failures) |
-| `verify-fix (review pending)` | A `fix(phase-N): verification fixes` commit made at VERIFY on a Full or security-sensitive phase; its blocking re-review (`<plan>-phase-N-review-verify.md`) is the record. A VERIFY fix on a Standard/Minimal phase uses `deferred (batch pending)` like any deferred phase |
+| `verify-fix (review pending)` | A `fix(phase-N): verification fixes` or `fix(phase-N): apply user decision #K` commit on a Full or security-sensitive phase; its blocking re-review (`<plan>-phase-N-review-verify.md`, or `-review-user-K.md`) is the record. The same fix on a Standard/Minimal phase uses `deferred (batch pending)` like any deferred phase |
 
 **Reading the history:** `deferred (batch pending)` on a phase commit does not mean the phase went unreviewed — it means the review is recorded elsewhere. The pairing evidence is the execution-log addendum line naming the batch that covered it, and the trust report resolves the two at REPORT time. A phase with a `deferred` trailer and no addendum is the one real anomaly to look for.
 
@@ -45,6 +45,20 @@ git commit -m "..."   # identical message + trailers as the standard recipe
 ```
 
 A cherry-pick conflict means the phase's File scope declaration was violated — treat as a gate failure (build.md → Parallel Waves step 5), not something to resolve by hand. After committing: copy the phase's discovery/review artifacts into the build worktree's `.code-foundations/build/`, then `git worktree remove` the phase worktree.
+
+## Plan Adjustments
+
+A checkpoint's edit to the remaining plan (checkpoint.md → Adjust) is its own commit, containing only the plan file:
+
+```bash
+git add .code-foundations/plans/[plan-file].md
+git commit -m "plan(adjust): [what changed]
+
+[the observation that forced it — which review Note, decision, or report]
+
+Plan: .code-foundations/plans/[plan-file].md
+AI-Model: [orchestrator model]"
+```
 
 ## Message Rules
 

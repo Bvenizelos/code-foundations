@@ -39,16 +39,22 @@ Agent tool:
     Write discovery file before implementing.
 
     The phase body and its skills carry the design reasoning — implement steadily
-    within them; when the plan doesn't fit reality, return UPDATE_PLAN rather than
-    re-architecting on your own.
+    within them. When the plan is silent, decide and record it (Decide or Escalate);
+    when the plan doesn't fit reality at a one-way door, return UPDATE_PLAN rather
+    than re-architecting on your own.
 
     ## Plan Context
     [paste the Context section from the plan file — the 2-3 sentence problem statement]
 
     ## Progress
-    [For Phase 1: "This is the first phase."]
-    [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary from execution log]. Phase 2: ..."]
+    [If no phase has committed yet: "This is the first phase."]
+    [Otherwise: "Completed: Phase X: [name] — [1 sentence summary from execution log]. ..." — committed phases, in commit order]
     Current: Phase N of M
+
+    [if the plan's ## Decided During Build log has rows that are not `open`, include:]
+    ## Decisions in Force
+    Earlier phases settled these where the plan was silent — follow them:
+    [paste each such row: "#K (Phase N): [decision]"]
 
     ## Phase N: [name]
     [paste phase description and file list from plan]
@@ -76,8 +82,9 @@ Agent tool:
     ## Assumption Verification
     Before proceeding with discovery, verify these assumptions from the plan:
     - [assumption text] (Confidence: [level])
-    If any assumption is wrong, return UPDATE_PLAN with the invalidated assumption
-    and what you found instead.
+    If an assumption is wrong, apply its Fallback If Wrong and record it under
+    ### Decisions; return UPDATE_PLAN only if there is no fallback and the gap is a
+    one-way door.
 
     [ONLY on a gate-failure re-dispatch after a REVIEW FAIL, include:]
     ## Review Findings to Fix
@@ -116,8 +123,13 @@ Agent tool:
     [paste the Context section from the plan file]
 
     ## Progress
-    [For Phase N>1: "Completed: Phase 1: [name] — [1 sentence summary]. Phase 2: ..."]
+    [If any phase has committed: "Completed: Phase X: [name] — [1 sentence summary]. ..." in commit order]
     Current: Phase N of M
+
+    [if the plan's ## Decided During Build log has rows that are not `open`, include:]
+    ## Decisions in Force
+    Earlier phases settled these where the plan was silent — follow them:
+    [paste each such row: "#K (Phase N): [decision]"]
 
     [if the phase's **Skills:** lists at least one skill — not `none` / `none -- [reason]` — include:]
     ## Additional Skills
@@ -152,7 +164,7 @@ Agent tool:
 
 Blocking REVIEW — Full gate phases and security-sensitive phases at any gate (Standard and Minimal go through `§ BATCH_REVIEW`).
 
-**Debiasing rules (do not violate):** the reviewer receives NO intent-framing — no plan Context, no progress summary, no discovery file, no account of what the build agent did or intended (per-file change notes — which routines were added or changed — are not intent). Requirements + files + commands only.
+**Debiasing rules (do not violate):** the reviewer receives NO intent-framing — no plan Context, no progress summary, no Decisions in Force, no discovery file, no account of what the build agent did or intended (per-file change notes — which routines were added or changed — are not intent). Requirements + files + commands only.
 
 **Security-sensitive (3-sample):** the procedure is in `commands/build.md` → Sub-Phase N.2: REVIEW. The template's part: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md` (otherwise the samples overwrite one file); each sample uses a sample-unique scratch directory and runs no mutating commands (no `lint --fix`, no dependency installs). A single review drops the suffix.
 

@@ -100,7 +100,7 @@ Corrections → update and re-confirm. If the response raises new open questions
    - [ ] DW-N.1: [Verifiable criterion]
    ```
 
-   Assign by the reference's rules: `**Model:**`, `**Gate:**`, and `**Depends on:**` on every phase (build stops on a plan that omits any of them), `**File scope:**` where knowable (the wave opt-in — omitting it is allowed), and `**Review cadence:**` in the header (defaulted to 3 by build if absent, so write it). On the Quick track, `File scope` stands in for the model rule's file-hint counts. A phase doing auth/crypto/secrets/deserialization/untrusted-input work also gets `**Security-sensitive:** yes`; a destructive or irreversible one gets `**Rollback:**`.
+   Assign by the reference's rules: `**Model:**`, `**Gate:**`, and `**Depends on:**` on every phase (build stops on a plan that omits any of them), `**File scope:**` where knowable (the wave opt-in — omitting it is allowed), and `**Review cadence:**` and `**Check-ins:**` in the header (build defaults them to 3 and `checkpoints` if absent, so write them). On the Quick track, `File scope` stands in for the model rule's file-hint counts. A phase doing auth/crypto/secrets/deserialization/untrusted-input work also gets `**Security-sensitive:** yes`; a destructive or irreversible one gets `**Rollback:**`.
 
 4. **Cross-cut.** Derive the test plan from the done-when items, plus at least one dirty test (error path or boundary from Edge cases) per code-touching phase; record the test coverage level (ask user or default to 100%).
 
@@ -130,7 +130,8 @@ Corrections → update and re-confirm. If the response raises new open questions
      consuming another's Produces depends on it; phases declared independent have
      disjoint **File scope:** globs
    - Header: **Status:** is present and reads `draft` (step 7 flips it to `ready`);
-     **Review cadence:** is present with a value of 1-5 fitting the plan's coupling
+     **Review cadence:** is present with a value of 1-5 fitting the plan's coupling;
+     **Check-ins:** is present (quiet | checkpoints | per-phase)
 
    Output: PASS or FINDINGS with specific fix recommendations.
    ```

@@ -221,7 +221,7 @@ For each phase task, in DAG order:
 **Depends on:** [none | Phase X] | **Unlocks:** [Phase Y]
 **File scope:** [globs this phase may touch, e.g. `src/auth/**, tests/auth/**` -- enables wave parallelism during build; omit if unknowable, and the phase then never runs in parallel]
 **Produces:** [what downstream consumes -- carried from skeleton. If the seam is code, state the contract: signature / type / route / schema -- not prose]
-**Security-sensitive:** [yes -- ONLY if the phase touches auth, crypto, secrets, deserialization, or untrusted input; omit otherwise. Triggers 3-sample majority-vote REVIEW during build.]
+**Security-sensitive:** [yes -- ONLY if the phase touches auth, crypto, secrets, deserialization, or untrusted input; omit otherwise. Triggers one blocking REVIEW before the commit during build.]
 **Rollback:** [required if the phase performs destructive or irreversible actions (data deletion, prod deploy, migration): the compensating action, or "point of no return -- [mitigation]"; omit otherwise]
 
 [Medium/Complex only]
@@ -286,7 +286,7 @@ The file already exists from DECOMPOSE, with bodies and cross-cut sections fille
 
 ### Model, Gate, Cadence, Dependencies, Skills — assign by the shared rules
 
-`Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` — it holds the model keyword rules (fable / sonnet default / haiku; opus only as an explicit override), the gate risk table (Full / Standard / Minimal — the gate decides review timing, not review existence), the review-cadence table, the dependency and file-scope validation, and the skills validation (every phase populated, real names, no pipeline skills, `none` justified). Apply them to every phase now, with the risk context in hand. Skill presence does not decide the gate.
+`Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` — it holds the model rule (sonnet default, haiku for small mechanical phases; fable or opus only on the user's request), the gate table (Standard default, Minimal for docs/config, Full only on the user's request — the gate decides review timing, not review existence), the review-cadence table, the dependency and file-scope validation, and the skills validation (every phase populated, real names, no pipeline skills, `none` justified). Apply them to every phase now, with the risk context in hand. Skill presence does not decide the gate.
 
 ### Plan File Schema
 
@@ -300,10 +300,10 @@ The file was created at DECOMPOSE (`mkdir -p .code-foundations/plans` already do
 
 ## Step 8: CHECK
 
-**ALL tracks:** Dispatch subagent to review saved plan with fresh eyes. Never skip — independent review catches blind spots regardless of task size. The reviewer runs on **fable**: the plan is the highest-leverage artifact in the pipeline, and one fable pass here is cheap insurance.
+**ALL tracks:** Dispatch subagent to review saved plan with fresh eyes. Never skip — independent review catches blind spots regardless of task size. The reviewer runs on **sonnet**.
 
 ```
-Agent: fable, "Review plan"
+Agent: sonnet, "Review plan"
 Prompt: Review .code-foundations/plans/<plan>.md for structural issues.
 
 Checklist:
@@ -320,17 +320,15 @@ Checklist:
 - Skills: every phase has Skills field (not omitted), skills match work type,
   each skill name matches a real available skill in the available-skills register — internal or external (reject typos/nonexistent names),
   code-writing phases with `none` justify why no skill's triggers match
-- Gates: every phase has a Gate field populated (Full/Standard/Minimal), matching its risk
-  (Full for security/auth/payment or new cross-phase seams; Minimal for docs/config-only; Standard otherwise).
-  Full is what makes a review block its commit — flag any phase whose defects would cascade
-  into later phases but which is only Standard, and any Full phase whose risk doesn't justify
-  serializing the build around it
+- Gates: every phase has a Gate field populated (Full/Standard/Minimal): Minimal for
+  docs/config-only, Standard otherwise; Full only where the user asked for a phase to be
+  reviewed before it commits — flag any Full the user did not ask for
 - Review cadence: header carries **Review cadence:** with a value of 1-5, and it fits the plan's
   coupling (tightly coupled phases -> 1-2; independent phases -> 4-5)
 - Check-ins: header carries **Check-ins:** (quiet | checkpoints | per-phase; checkpoints unless the
   user asked to follow along or to be left alone)
-- Models: every phase has Model field populated (fable/sonnet/haiku -- opus only as an
-  explicit user-requested override; never omitted)
+- Models: every phase has Model field populated (sonnet, or haiku for small mechanical
+  phases; fable/opus only where the user asked; never omitted)
 - Dependencies: every phase has Depends on populated and referenced phases exist; a phase
   consuming another's Produces depends on it; phases declared independent have disjoint
   File scope globs (File scope absent is valid -- it just opts the phase out of waves)
@@ -347,7 +345,7 @@ After return: PASS -> proceed. FINDINGS -> fix; **structural fixes (phase bounda
 
 End the turn with the full plan summary rendered as markdown in conversation, closing with "Does this look right? Anything to add or change?" The user replies in their own words.
 
-**Shape:** one table for the phases (goal, model, gate, dependencies, skills — this is the part the user scans first), then a short bullet list below it — constraint → phase mapping, test coverage level, review cadence, check-ins, seams, CHECK results — one line per bullet, not a paragraph each. The review-cadence bullet states it in plain terms ("Review cadence 3 — phases 1-3 commit on green tests, then get reviewed together; phase 5 blocks on its own review"), because it is the line that tells the user how much unreviewed code will exist at any moment. The check-ins bullet likewise says what the user will hear during the build ("Check-ins: checkpoints — build messages you only when it adjusts the plan, assumes something, or needs a decision"). Summarize CHECK's outcome ("PASS" or "N findings, fixed"), never the verbatim finding text. If a seam or guardrail needs more than one line to state, it belongs in the plan file, not the summary; point to the phase instead of re-explaining it there. A doctrine deviation (e.g., skipping a re-CHECK after a fix) gets one sentence on what and why, then the ask — not a justification paragraph.
+**Shape:** one table for the phases — goal and dependencies only; this is the part the user scans. Then one-line bullets for **only what the user owns or would be surprised by**: decisions the plan made on their behalf, anything with production or data effect, scope boundaries, and any phase that waits on them. Process settings (model, gate, review cadence, check-ins, skills, test coverage) stay in the plan file and get a bullet only when they differ from the defaults (sonnet, Standard, cadence 3, checkpoints, 100%) — e.g., "Phase 2 is reviewed before it commits, because it handles card data." Summarize CHECK's outcome in a few words ("PASS" or "N findings, fixed"), never the finding text. If a seam or guardrail needs more than one line to state, it belongs in the plan file, not the summary; point to the phase instead of re-explaining it there. A doctrine deviation (e.g., skipping a re-CHECK after a fix) gets one sentence on what and why, then the ask — not a justification paragraph.
 
 Two rules make this checkpoint structural:
 

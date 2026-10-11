@@ -72,36 +72,32 @@ Build hard-requires, on every phase, `**Model:**`, `**Gate:**`, `**Depends on:**
 
 ## Model assignment (`**Model:**` — every phase)
 
-Rules are evaluated **top-down, first match wins**, against the phase's name + Goal (keywords) and its DW list + file hints (counts; on the Quick track `File scope` stands in); an "area" is a distinct top-level directory:
+Two models, decided per phase against its name + Goal (keywords) and its DW list + file hints (counts; on the Quick track `File scope` stands in); an "area" is a distinct top-level directory:
 
 ```
-FABLE_KEYWORDS = [refactor, architect, migrate, redesign, rewrite, overhaul,
-                  new abstraction, novel pattern, system design]
 HAIKU_KEYWORDS = [config, rename, typo, bump, cleanup, delete, remove,
                   backfill, data fix, sql update, doc update]
 
-1. **Security-sensitive:** yes OR any FABLE_KEYWORD
-   OR (DW items >= 6 AND file hints >= 4 areas)                  -> fable
-2. DW items <= 2 AND file hints <= 1 area AND any HAIKU_KEYWORD  -> haiku
-3. Otherwise                                                     -> sonnet
+1. not Security-sensitive AND DW items <= 2 AND file hints <= 1 area
+   AND any HAIKU_KEYWORD                                         -> haiku
+2. Otherwise                                                     -> sonnet
 ```
 
-The fable rule sits first so a security-sensitive "auth config cleanup" can never fall through to haiku on its mechanical keywords. **sonnet is the default, never omit:** omit means inherit the session model, which may be fable and would then propagate to every subagent; most code-touching phases are well-specified translation work that Sonnet 5 runs faster and cheaper. **opus** stays valid only as an explicit user-requested override (e.g. when fable is unavailable). Build resolves the REVIEW model by downgrading one tier, floored at sonnet (fable→sonnet, opus→sonnet, sonnet→sonnet, haiku→sonnet — never haiku: haiku's planted-defect recall proved unreliable on review-shaped tasks in the round-2 model-tier benchmark).
+**sonnet is the default — never omit the field:** omit means inherit the session model, which then propagates to every subagent. Never assign fable or opus yourself; either is valid only when the user asks for it on a phase. Build reviews every phase on sonnet (never haiku: haiku's planted-defect recall proved unreliable on review-shaped tasks in the round-2 model-tier benchmark).
 
 ---
 
 ## Gate assignment (`**Gate:**` — every phase)
 
-Build consumes the field verbatim — `Full`, `Standard`, or `Minimal`. The gate decides review **timing**, not whether a review happens: Full and security-sensitive phases block their commit on a passing REVIEW; Standard and Minimal phases commit on a green suite and are covered by a later batch REVIEW. So the per-phase question is "would a defect here be cheaper to catch before the commit than a few phases later?" — cascading blast radius, a seam every later phase builds on, or security exposure earn a Full.
+Build consumes the field verbatim — `Full`, `Standard`, or `Minimal`. The gate decides review **timing**, not whether a review happens: Standard and Minimal phases commit on a green suite and are covered by a later batch REVIEW (one reviewer over several phases); a Full phase blocks its commit on its own REVIEW.
 
-| Risk signal in the phase | Gate |
+| Signal in the phase | Gate |
 |---|---|
-| Security / auth / payment work (matches `**Security-sensitive:**`) | Full |
-| Multi-file change introducing new cross-phase seams | Full |
 | Docs-only or config-only change | Minimal |
-| (none of the above) | Standard |
+| The user asked for this phase to be reviewed before it commits | Full |
+| (everything else — including payment, auth, and cross-phase seams) | Standard |
 
-A phase doing auth/crypto/secrets/deserialization/untrusted-input work also gets `**Security-sensitive:** yes` (a 3-sample fable REVIEW during build, at any gate) and, if it performs destructive or irreversible actions, a `**Rollback:**` line (the compensating action, or "point of no return -- [mitigation]"). Skill presence does not decide the gate; the gate is keyed off the risk of the work itself.
+Do not assign Full on your own: the batch review already covers every phase, and a blocking review on every phase multiplies agents for little gain. A phase doing auth/crypto/secrets/deserialization/untrusted-input work gets `**Security-sensitive:** yes` instead — one blocking REVIEW before its commit, at any gate — and, if it performs destructive or irreversible actions, a `**Rollback:**` line (the compensating action, or "point of no return -- [mitigation]"). Skill presence does not decide the gate.
 
 ---
 

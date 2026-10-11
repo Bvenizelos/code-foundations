@@ -67,7 +67,7 @@ Three-stage pattern for feature development:
   → [Quick: plan → check → present]
   → [Standard/Full: classify → explore → detail → save → check → confirm]
   → DECOMPOSE matches skills per phase against the available-skills register (internal + external), reading each skill's description
-  → SAVE emits per-phase **Model:** (fable | sonnet | haiku), **Gate:** (Full | Standard | Minimal),
+  → SAVE emits per-phase **Model:** (sonnet | haiku), **Gate:** (Standard | Minimal | Full on request),
     **Depends on:**, and optional **File scope:** (wave-parallelism opt-in), plus the plan-header
     **Review cadence:** (default 3) and **Check-ins:** (quiet | checkpoints | per-phase, default checkpoints)
   → Save to .code-foundations/plans/YYYY-MM-DD-<topic>.md with **Status:** draft
@@ -79,8 +79,8 @@ Three-stage pattern for feature development:
   → Feature branch required; refuses plans whose Status isn't ready
   → Waves derived from Depends on + File scope: independent Standard/Minimal phases
     build in parallel (own phase worktrees), integrated by cherry-pick in plan order
-  → Model per phase from plan (fable judgment-heavy / sonnet default / haiku mechanical;
-    opus only as explicit override); REVIEW one tier below BUILD (floored at sonnet — never haiku), security REVIEW on fable
+  → Model per phase from plan (sonnet default / haiku mechanical; fable or opus only on the
+    user's request); every REVIEW runs on sonnet, one reviewer
   → Per-phase commits: after REVIEW passes (Full, security-sensitive) or on a green suite
     (Standard, Minimal — review deferred to a batch every `Review cadence` phases)
   → Quiet loop: agents settle what the plan leaves open and record it; only one-way doors
@@ -106,7 +106,7 @@ BUILD:   baseline discipline (DW→test traceability, stub → implement → val
          skill self-loads its own checklists.
          (discovery + design → implementation: stub → implement → validate, in one agent)
 REVIEW:  debiased review protocol (execute-first, per-DW evidence + trace, anti-overcorrection)
-         Blocking for Full gates and security-sensitive phases (3-sample majority vote);
+         Blocking for security-sensitive phases and Full gates (Full only on the user's request);
          deferred into a batch REVIEW for Standard and Minimal, which fires every N phases
          (Review cadence, default 3), before any Full phase, and at VERIFY if anything is un-reviewed
 COMMIT:  Orchestrator commits directly — after REVIEW passes for blocking phases,
@@ -116,10 +116,11 @@ COMMIT:  Orchestrator commits directly — after REVIEW passes for blocking phas
 **Gate policy:** each phase in the plan carries a `**Gate:**` field (Full | Standard | Minimal) —
 required, like `**Model:**`, `**Depends on:**`, and `**Skills:**`; build stops and asks for a re-plan when any
 is missing (there are no legacy plans). The gate decides review **timing**, not whether a review
-happens — every phase is reviewed. Full = BUILD + blocking REVIEW + COMMIT (the commit waits for
-PASS; always runs alone, never in a wave). Standard = BUILD + COMMIT, review deferred to the next
-batch. Minimal = BUILD (no discovery) + COMMIT, same deferral. `**Security-sensitive:** yes`
-forces an immediate 3-sample REVIEW at any gate — never deferred.
+happens — every phase is reviewed. Standard (the default) = BUILD + COMMIT, review deferred to the
+next batch. Minimal = BUILD (no discovery) + COMMIT, same deferral. Full = BUILD + blocking REVIEW +
+COMMIT, assigned only when the user asks (always runs alone, never in a wave). `**Security-sensitive:** yes`
+forces one immediate blocking REVIEW at any gate — never deferred. The planner never picks fable or
+Full on its own (v6.6.0): batch review already covers every phase, and one reviewer is enough.
 
 **Review cadence:** the plan header carries `**Review cadence:** N` (default 3, clamped to 1–5).
 Standard and Minimal phases commit on a green suite and join an un-reviewed set; a batch REVIEW

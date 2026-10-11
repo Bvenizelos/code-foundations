@@ -79,7 +79,7 @@ Corrections → update and re-confirm. If the response raises new open questions
    ```markdown
    ### Phase N: [Name]
    **Skills:** [matched skills, or `none -- [reason]`]
-   **Model:** [fable | sonnet | haiku]
+   **Model:** [sonnet | haiku]
    **Gate:** [Full | Standard | Minimal]
    **Depends on:** [none | Phase N]
    **File scope:** [globs the phase may touch, e.g. src/auth/**, tests/auth/** -- omit only if unknowable]
@@ -108,10 +108,10 @@ Corrections → update and re-confirm. If the response raises new open questions
 
    `Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` for the schema; a Quick plan is that schema minus every `[Medium/Complex only]` section and marker (Chosen Approach, Rejected Approaches, Assumptions, Decision Log, the Integration + Manual test items), with `**Complexity:** simple`.
 
-6. **Check** — dispatch a fable subagent to review the saved plan with fresh eyes (the plan is the highest-leverage artifact in the pipeline; one fable pass here is cheap insurance):
+6. **Check** — dispatch a sonnet subagent to review the saved plan with fresh eyes:
 
    ```
-   Agent: fable, "Review plan"
+   Agent: sonnet, "Review plan"
    Prompt: Review .code-foundations/plans/<plan>.md for structural issues.
 
    Checklist:
@@ -121,9 +121,9 @@ Corrections → update and re-confirm. If the response raises new open questions
      code seams in Produces stated as contracts (signature/type/route)
    - Tests: test plan covers DW items + at least one dirty test per code-touching phase
    - Skills: every phase has Skills field, skills match work type, skills actually available
-   - Model: every phase has a **Model:** field (fable/sonnet/haiku; opus only as an explicit
-     user-requested override) matching its difficulty
-   - Gate: every phase has a **Gate:** field (Full/Standard/Minimal) matching its risk;
+   - Model: every phase has a **Model:** field (sonnet, or haiku for small mechanical work;
+     fable/opus only where the user asked)
+   - Gate: every phase has a **Gate:** field (Standard; Minimal for docs/config; Full only where the user asked);
      auth/crypto/secrets/deserialization/untrusted-input phases carry **Security-sensitive:** yes;
      destructive/irreversible phases carry **Rollback:**
    - Dependencies: every phase has **Depends on:** and referenced phases exist; a phase
@@ -138,7 +138,7 @@ Corrections → update and re-confirm. If the response raises new open questions
 
    PASS -> proceed. FINDINGS -> fix; **structural fixes (phase boundaries, DW set, Produces seams) -> re-run CHECK**; minor fixes -> proceed.
 
-7. **Present and ask.** End the turn with the full plan summary rendered as markdown in conversation, closing with "Build it, adjust it, or tell me what to do?" The user replies in their own words. **Shape:** one table for the phases (goal, model, gate, dependencies — the part the user scans first), then one-line bullets below it for test coverage and CHECK's outcome (summarized — "PASS" or "N findings, fixed," never the verbatim finding text). No restating steps 1-6. The summary must be the turn's **final message, with no tool calls after it**: the conversation is the only surface that renders a multi-phase plan in full (dialog previews truncate it, and the collapsed Write output doesn't count as presentation). Parse the reply — "build it" and equivalents proceed to step 8; "tell me what to do" is also a confirmation (flip the status, then give numbered manual steps instead of running build); anything else is an adjustment or a question, handle it and re-present.
+7. **Present and ask.** End the turn with the full plan summary rendered as markdown in conversation, closing with "Build it, adjust it, or tell me what to do?" The user replies in their own words. **Shape:** one table for the phases (goal and dependencies — the part the user scans first), then one-line bullets only for what the user owns or would be surprised by (decisions made for them, production or data effects, anything that waits on them). Model, gate, cadence, check-ins, skills, and coverage stay in the plan file unless they differ from the defaults (sonnet, Standard, 3, checkpoints, 100%). CHECK's outcome in a few words ("PASS" or "N findings, fixed"). No restating steps 1-6. The summary must be the turn's **final message, with no tool calls after it**: the conversation is the only surface that renders a multi-phase plan in full (dialog previews truncate it, and the collapsed Write output doesn't count as presentation). Parse the reply — "build it" and equivalents proceed to step 8; "tell me what to do" is also a confirmation (flip the status, then give numbered manual steps instead of running build); anything else is an adjustment or a question, handle it and re-present.
 
    **On any confirmation, flip `**Status:** draft` → `**Status:** ready` in the plan file.** Build refuses to execute a plan whose Status isn't `ready`, so the confirmed presentation is a structural gate, not a convention — a plan the user never saw cannot build.
 

@@ -27,7 +27,6 @@ The trailer records the review state **at the moment of the commit**, and for de
 | Value | When |
 |---|---|
 | `pass` | Blocking REVIEW returned PASS before this commit (Full gate) |
-| `pass (3-sample)` | Security-sensitive phase; majority PASS across three samples |
 | `fail->pass (N attempts)` | Blocking REVIEW failed N times, then passed, all before this commit |
 | `deferred (batch pending)` | Standard or Minimal phase committing on a green suite; a batch REVIEW will cover it |
 | `batch fail->pass (attempt K)` | A fix-forward commit answering batch review findings (see gate-failure-protocol.md → Batch Failures) |

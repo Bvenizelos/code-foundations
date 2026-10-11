@@ -12,7 +12,7 @@ Review cadence: 2        Test Coverage: 100%        Check-ins: checkpoints (defa
 | 3     | haiku  | sonnet       | Full     | —        | blocking           | cc-defensive-programming, cc-control-flow-quality   | 2 (alone) | ⚠ haiku + Full: mechanical effort on high-risk work |
 ```
 
-Why: Phases 1 and 2 have no dependency between them, disjoint File scopes, both Standard, neither security-sensitive, and the plan's Notes say the tests share no fixtures or state → one wave of two (wave width ≤ 3). Skills print as the plan writes them (bare names; Phase 2's cell is its `none -- reason` verbatim). Phase 3 depends on both and is Full → its own wave. REVIEW model is one tier below BUILD floored at sonnet (fable→sonnet would apply if any phase were fable; haiku→sonnet floor here). Phase 2's `none -- reason` is accepted as planned. Test Coverage 100% is stated, not defaulted, so its header line carries no "(defaulted)". The fixture has no `**Check-ins:**` line, so it defaults to `checkpoints` and is annotated.
+Why: Phases 1 and 2 have no dependency between them, disjoint File scopes, both Standard, neither security-sensitive, and the plan's Notes say the tests share no fixtures or state → one wave of two (wave width ≤ 3). Skills print as the plan writes them (bare names; Phase 2's cell is its `none -- reason` verbatim). Phase 3 depends on both and is Full → its own wave. REVIEW model is always sonnet. Phase 2's `none -- reason` is accepted as planned. Test Coverage 100% is stated, not defaulted, so its header line carries no "(defaulted)". The fixture has no `**Check-ins:**` line, so it defaults to `checkpoints` and is annotated.
 
 ## Tasks created upfront
 - Phase 1.1 BUILD (deferred review), Phase 2.1 BUILD (deferred review) — no edges between them

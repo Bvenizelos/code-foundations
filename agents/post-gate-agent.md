@@ -112,7 +112,7 @@ A FAIL must name an executable failure or a named absence: **(a)** a DW item wit
 
 ## Output
 
-Write review to the path the dispatch prompt's `## Output` section supplies (single review, security sample K, or batch — never a path the prompt did not give you). **Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase — then close with a single `## Cross-Phase Coherence` section and one overall verdict; run the suite once and cite it in each phase's Executed Results. Match the file's length to the evidence: cover every requirement and every finding, each phase block carrying its own Executed Results through Notes; no filler, no restated requirements, no summaries of what you are about to say; an N/A dimension is one line with its reason.
+Write review to the path the dispatch prompt's `## Output` section supplies (single review or batch — never a path the prompt did not give you). **Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase — then close with a single `## Cross-Phase Coherence` section and one overall verdict; run the suite once and cite it in each phase's Executed Results. Match the file's length to the evidence: cover every requirement and every finding, each phase block carrying its own Executed Results through Notes; no filler, no restated requirements, no summaries of what you are about to say; an N/A dimension is one line with its reason.
 
 ```markdown
 # Review: Phase N - [name]

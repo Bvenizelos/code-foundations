@@ -25,7 +25,7 @@ description: "Execute an approved plan through gated phases (BUILD → REVIEW �
 
 **Worktree gate — immediately, it needs the plan filename.** Read `${CLAUDE_PLUGIN_ROOT}/references/worktree-gate.md` and clear it before any other work (workspace-mode detection, worktree or feature-branch creation, dependency setup, record-keeping for REPORT). "Build worktree" below means the workspace this gate produced.
 
-**Parse the plan.** Context (goal anchoring for BUILD prompts); phases with their `**Done when:**` items (passed verbatim to build and review agents), `**Model:**`, `**Gate:**` (plus optional `**Pipeline:**` override), `**Depends on:**` and optional `**File scope:**` (wave derivation), `**Skills:**`, optional `**Security-sensitive:** yes` (immediate 3-sample REVIEW, never deferred) and `**Edge cases:**`; the Assumptions table with its `Verify Before Phase` timing; Test Coverage and Test Plan; `**Review cadence:** N` in the header (missing or unparseable → 3; clamped to 1–5; either noted in SETUP's table); `**Check-ins:**` in the header (`quiet` | `checkpoints` | `per-phase`; missing or unrecognized → `checkpoints`, noted in the table); the `## Decided During Build` log (add the section if absent).
+**Parse the plan.** Context (goal anchoring for BUILD prompts); phases with their `**Done when:**` items (passed verbatim to build and review agents), `**Model:**`, `**Gate:**` (plus optional `**Pipeline:**` override), `**Depends on:**` and optional `**File scope:**` (wave derivation), `**Skills:**`, optional `**Security-sensitive:** yes` (immediate blocking REVIEW, never deferred) and `**Edge cases:**`; the Assumptions table with its `Verify Before Phase` timing; Test Coverage and Test Plan; `**Review cadence:** N` in the header (missing or unparseable → 3; clamped to 1–5; either noted in SETUP's table); `**Check-ins:**` in the header (`quiet` | `checkpoints` | `per-phase`; missing or unrecognized → `checkpoints`, noted in the table); the `## Decided During Build` log (add the section if absent).
 
 **Required fields:** every phase must carry `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**Skills:**` (a list, `none -- [reason]`, or bare `none`). Any missing → stop and tell the user to re-run `/code-foundations:plan`; the planner always emits them. Missing Test Coverage → default to 100%, noted in SETUP's table.
 
@@ -57,14 +57,7 @@ The planner matched skills with the phase bodies in hand; build validates names 
 
 ### Model Resolution
 
-BUILD uses the phase's `**Model:**`. REVIEW runs one tier below, **floored at sonnet** (haiku's planted-defect recall proved unreliable on review-shaped tasks; a reviewer that misses defects is false insurance):
-
-| BUILD model | REVIEW model |
-|---|---|
-| fable / opus | sonnet |
-| sonnet / haiku | sonnet (floor) |
-
-For a sonnet-built phase the reviewer is the same tier; independence comes from the intent-stripped dispatch, not the tier gap. **Exception:** security-sensitive phases run their 3-sample REVIEW on **fable** regardless.
+BUILD uses the phase's `**Model:**` (sonnet or haiku; fable or opus only where the user asked). **REVIEW always runs on sonnet** — never haiku, whose planted-defect recall proved unreliable on review-shaped tasks. Independence comes from the intent-stripped dispatch, not a tier gap.
 
 ### Gate Policy
 
@@ -72,12 +65,12 @@ The gate decides BUILD rigor and **whether REVIEW blocks the commit or is deferr
 
 | Level | Sub-phases | Review timing | When |
 |---|---|---|---|
-| **Full** | BUILD → REVIEW → commit | **Blocking** — commit waits for PASS | High-risk work where errors cascade |
-| **Standard** | BUILD → commit | **Deferred** — next batch REVIEW | Medium work; tests gate the commit |
+| **Full** | BUILD → REVIEW → commit | **Blocking** — commit waits for PASS | Only where the user asked for it |
+| **Standard** | BUILD → commit | **Deferred** — next batch REVIEW | The default; tests gate the commit |
 | **Minimal** | BUILD (no discovery) → commit | **Deferred** — next batch REVIEW | Trivial docs/config work |
 | **Batch** | REVIEW over every un-reviewed committed phase | — | At the cadence, before any Full phase, at VERIFY if the set is non-empty |
 
-`**Security-sensitive:** yes` overrides the timing: immediate 3-sample REVIEW before the commit, at any gate. A batch runs against committed code, so its FAIL is fixed forward (Gate Failure Protocol → Batch Failures) — the trade that buys the cross-phase coherence check.
+`**Security-sensitive:** yes` overrides the timing: one blocking REVIEW before the commit, at any gate. A batch runs against committed code, so its FAIL is fixed forward (Gate Failure Protocol → Batch Failures) — the trade that buys the cross-phase coherence check.
 
 **Resolution order:** `**Pipeline:** full` forces Full and `**Pipeline:** direct` forces Minimal; otherwise the phase's `**Gate:**` field verbatim.
 
@@ -112,11 +105,11 @@ Review cadence: 3 (defaulted)        Test Coverage: 100% (defaulted)        Chec
 | Phase | Model | REVIEW model | Gate | Security | Review timing | Skills | Wave | Notes |
 |-------|-------|--------------|------|----------|---------------|--------|------|-------|
 | 1 | sonnet | sonnet | Standard | — | deferred (batch) | cc-defensive-programming | 1 | |
-| 2 | sonnet | fable | Standard | yes | blocking (3-sample) | cc-defensive-programming | 2 (alone) | security-sensitive overrides gate timing |
+| 2 | sonnet | sonnet | Standard | yes | blocking | cc-defensive-programming | 2 (alone) | security-sensitive overrides gate timing |
 | 3 | haiku | sonnet | Full | — | blocking | none -- docs only | 3 (alone) | ⚠ haiku + Full: mechanical effort on high-risk work |
 ```
 
-The header's three values are always printed; a cadence default or clamp, a defaulted Test Coverage, and a defaulted Check-ins are annotated there. `Security: yes` sets REVIEW model fable, timing blocking (3-sample), wave alone; a Full phase is also `(alone)`. Notes carries effort warnings, a bare `none`, and pipeline overrides.
+The header's three values are always printed; a cadence default or clamp, a defaulted Test Coverage, and a defaulted Check-ins are annotated there. `Security: yes` sets timing blocking and wave alone; a Full phase is also `(alone)`. Notes carries effort warnings, a bare `none`, and pipeline overrides.
 
 ### Create Phase Tasks Upfront
 
@@ -208,9 +201,7 @@ Dispatch `code-foundations:post-gate-agent` with `§ REVIEW`, only after the BUI
 
 **The reviewer is a debiased independent critic — give it NO intent-framing.** No plan Context, no Progress block, no discovery file, no account of what the BUILD agent did or intended (per-file change notes are not intent) — intent-framing collapses defect detection. Requirements + files + commands only.
 
-**Security-sensitive phases:** dispatch THREE independent REVIEW agents on **fable** as three Agent calls in one message (independence is contextual, not temporal). The prompts are identical except the review path: substitute `K`=1,2,3 so each writes `<plan>-phase-N-review-sample-K.md` — otherwise they race and overwrite one file. Each sample uses a sample-unique scratch dir and runs no mutating commands. If the suite uses shared mutable resources (DB, ports, docker, on-disk fixtures), run the samples sequentially. Take the majority verdict; all three files are the record; the commit records `Review: pass (3-sample)`.
-
-**After REVIEW:** PASS (2-of-3 when sampled) → completed → commit. FAIL → not completed → Gate Failure Protocol.
+**After REVIEW:** PASS → completed → commit. FAIL → not completed → Gate Failure Protocol.
 
 ### Batch REVIEW (inserted dynamically)
 
@@ -237,7 +228,7 @@ On REVIEW FAIL or BUILD BLOCKED, read `${CLAUDE_PLUGIN_ROOT}/references/gate-fai
 ## Phase 4: VERIFY (Close the Review Set, One Suite on HEAD)
 
 1. **Trailing batch REVIEW** if the un-reviewed set is non-empty (see Batch REVIEW), then the final Checkpoint — VERIFY starts with no `open` row left.
-2. **One suite on integrated HEAD** — tests, typecheck, lint; the commands the reviewers run. **Delta rule:** skip it iff a full-suite run already executed in the build worktree on the code that is now HEAD (the trailing batch, the final phase's blocking REVIEW, or the wave-integration run) and `git status` is clean apart from the plan file and `.code-foundations/` artifacts — then cite that run. Otherwise run it once. Red (any failing test, typecheck or lint error) → attribute each failure to the phase whose files it exercises, re-dispatch that phase's build agent with the failures, commit the fix as `fix(phase-N): verification fixes` (`Review:` per commit-format.md), then review it the way that phase is reviewed: Full or security-sensitive → its blocking REVIEW again (review path `<plan>-phase-N-review-verify[-sample-K].md`), then back to step 2; Standard or Minimal absent a security flag → the un-reviewed set, back to step 1. No task bookkeeping — the execution log's fix line is the record. The Gate Failure Protocol's caps apply, counted together with the phase's own gate (see its VERIFY row). Lint warnings are reported as they are. No runnable suite → `not run: [reason]` in the trust report; never invent a command.
+2. **One suite on integrated HEAD** — tests, typecheck, lint; the commands the reviewers run. **Delta rule:** skip it iff a full-suite run already executed in the build worktree on the code that is now HEAD (the trailing batch, the final phase's blocking REVIEW, or the wave-integration run) and `git status` is clean apart from the plan file and `.code-foundations/` artifacts — then cite that run. Otherwise run it once. Red (any failing test, typecheck or lint error) → attribute each failure to the phase whose files it exercises, re-dispatch that phase's build agent with the failures, commit the fix as `fix(phase-N): verification fixes` (`Review:` per commit-format.md), then review it the way that phase is reviewed: Full or security-sensitive → its blocking REVIEW again (review path `<plan>-phase-N-review-verify.md`), then back to step 2; Standard or Minimal absent a security flag → the un-reviewed set, back to step 1. No task bookkeeping — the execution log's fix line is the record. The Gate Failure Protocol's caps apply, counted together with the phase's own gate (see its VERIFY row). Lint warnings are reported as they are. No runnable suite → `not run: [reason]` in the trust report; never invent a command.
 3. **Test Plan items the suite does not cover** (integration or manual): run what can be run; record the rest under Manual Testing Steps.
 
 Coverage is enforced by the reviewers (post-gate Step 2 fails a gap against the plan's level); VERIFY reports it. `Coverage: None` → one report line: "Coverage: None — per-DW evidence only; technical debt noted."

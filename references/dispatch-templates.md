@@ -166,12 +166,12 @@ Blocking REVIEW — Full gate phases and security-sensitive phases at any gate (
 
 **Debiasing rules (do not violate):** the reviewer receives NO intent-framing — no plan Context, no progress summary, no Decisions in Force, no discovery file, no account of what the build agent did or intended (per-file change notes — which routines were added or changed — are not intent). Requirements + files + commands only.
 
-**Security-sensitive (3-sample):** the procedure is in `commands/build.md` → Sub-Phase N.2: REVIEW. The template's part: substitute `K`=1,2,3 so each sample's review path is `<plan-name>-phase-N-review-sample-K.md` (otherwise the samples overwrite one file); each sample uses a sample-unique scratch directory and runs no mutating commands (no `lint --fix`, no dependency installs). A single review drops the suffix.
+The reviewer verifies; it never edits — it runs no mutating commands (no `lint --fix`, no dependency installs).
 
 ```
 Agent tool:
 - subagent_type: "code-foundations:post-gate-agent"
-- model: [resolved REVIEW model per the orchestrator's Model Resolution — the phase's BUILD model downgraded one tier, floored at sonnet (fable→sonnet, opus→sonnet, sonnet→sonnet, never haiku); fable for security-sensitive samples]
+- model: sonnet [per the orchestrator's Model Resolution — every REVIEW runs on sonnet]
 - description: "REVIEW Phase N"
 - prompt: |
     This task involves multi-step reasoning. Think carefully before responding.
@@ -226,9 +226,7 @@ Agent tool:
     [repeat the Skill() line for each skill; also include skills from BUILD's "Skills Loaded" output not already listed]
 
     ## Output
-    Write review to: [review path — `.code-foundations/build/<plan-name>-phase-N-review.md`,
-    or `.code-foundations/build/<plan-name>-phase-N-review-sample-K.md` for
-    security-sensitive sample K]
+    Write review to: .code-foundations/build/<plan-name>-phase-N-review.md
 ```
 
 ---
@@ -237,14 +235,14 @@ Agent tool:
 
 The review path for Standard and Minimal phases, inserted when a batch trigger fires (build.md → Batch REVIEW), covering **every** phase in the un-reviewed set in one dispatch — the cross-phase coherence check is the point. Same debiasing rules as § REVIEW.
 
-**Model:** the highest resolved REVIEW model among the covered phases (ranking fable > opus > sonnet > haiku); when the batch fires ahead of a Full phase, the higher of that and the Full phase's REVIEW model.
+**Model:** sonnet, like every REVIEW.
 
 This review runs against **committed** code. Say nothing about that in the prompt — a reviewer told the code already shipped reviews it more leniently.
 
 ```
 Agent tool:
 - subagent_type: "code-foundations:post-gate-agent"
-- model: [highest resolved REVIEW model among covered phases]
+- model: sonnet
 - description: "Batch REVIEW for Phases X-Y"
 - prompt: |
     This task involves multi-step reasoning. Think carefully before responding.

@@ -61,13 +61,13 @@ Parallelism also exists *within* one build: phases with no dependency between th
 
 ## Plan File Model Syntax
 
-Every phase carries `**Model:**` (fable / sonnet / haiku; opus only as an explicit override) — the assignment rules and the REVIEW downgrade (one tier below, floored at sonnet, fable for security-sensitive samples) live in `references/plan-schema.md` and `commands/build.md` Model Resolution.
+Every phase carries `**Model:**` (sonnet default, haiku for small mechanical phases; fable or opus only on the user's request) — the assignment rule lives in `references/plan-schema.md`; every REVIEW runs on sonnet (`commands/build.md` Model Resolution).
 
 ```markdown
 ### Phase 1: Simple Config
 **Model:** haiku
 ### Phase 2: Complex Engine
-**Model:** fable
+**Model:** sonnet
 ```
 
 Model facts worth knowing when assigning (as of 2026-07 — re-verify via the claude-api skill when this feels stale):
@@ -83,7 +83,7 @@ Model facts worth knowing when assigning (as of 2026-07 — re-verify via the cl
 
 Effort follows where the reasoning lives:
 
-- **Planning: high.** The plan is the highest-leverage artifact — decomposition, seam contracts, and gate/model assignment are judgment work. This is where deep thinking pays.
+- **Planning: high.** The plan is the highest-leverage artifact — decomposition and seam contracts are judgment work. This is where deep thinking pays.
 - **Building: low for all-serial plans, default when any phase carries `**File scope:**`** (wave-eligible — the plan never stores waves; build derives them). The plan already contains the strategic reasoning; serial orchestration is dispatch work. Wave builds keep default effort because the orchestrator retains real judgment (integration failures, wave-failure handling). The subagents think in their own contexts either way — orchestrator effort doesn't cascade to them.
 - **Subagent depth (BUILD/REVIEW agents): derived from the phase, not the orchestrator.** The Agent tool has no `effort` parameter, so depth is steered by the wording-sensitive phrases below, injected by build's Effort Alignment (`commands/build.md`): BUILD agents get "Think carefully" unless the phase `**Model:**` is haiku (mechanical → "Answer directly"); REVIEW agents always get "Think carefully" — a reviewer that skims misses defects, mirroring the sonnet REVIEW floor. This holds for batch REVIEW too, which carries more per-dispatch load than any single-phase review. When a phase's `**Model:**` (effort) and `**Gate:**` (rigor) disagree (haiku + Full, fable/opus + Minimal), build prints a one-line warning in its resolution table and continues — it never stops for it.
 

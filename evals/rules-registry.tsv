@@ -3,8 +3,7 @@
 commands/build.md	intent-framing
 references/dispatch-templates.md	intent-framing
 # --- build workflow invariants the lightening must not lose
-commands/build.md	floored at sonnet
-commands/build.md	THREE independent REVIEW agents
+commands/build.md	REVIEW always runs on sonnet
 commands/build.md	un-reviewed set
 commands/build.md	re-dispatch at most 3 times, then stop and escalate
 commands/build.md	Security-sensitive:** yes
@@ -102,7 +101,7 @@ agents/build-agent.md	"minimal gate"
 agents/post-gate-agent.md	grouped by criterion rather than one row per checklist ID
 agents/post-gate-agent.md	does not govern this table
 agents/post-gate-agent.md	Batch reviews repeat the body per phase
-references/dispatch-templates.md	-sample-K
+references/dispatch-templates.md	every REVIEW runs on sonnet
 references/dispatch-templates.md	no mutating commands
 references/dispatch-templates.md	Independently verify the implementation
 references/dispatch-templates.md	Cross-Phase Coherence
@@ -163,8 +162,8 @@ agents/post-gate-agent.md	except the two named absences
 references/commit-format.md	verify-fix (review pending)
 references/trust-report.md	Per-phase adds nothing beyond per-DW evidence
 # --- Phase 8
-references/plan-schema.md	FABLE_KEYWORDS
-references/plan-schema.md	sonnet is the default, never omit
+references/plan-schema.md	Never assign fable or opus yourself
+references/plan-schema.md	sonnet is the default — never omit
 references/plan-schema.md	Docs-only or config-only change
 references/plan-schema.md	Default 3; write it explicitly
 references/plan-schema.md	never runs in parallel
@@ -175,7 +174,7 @@ skills/planning/SKILL.md	references/plan-schema.md
 commands/build.md	Triggers coalesce
 commands/build.md	blockedBy it
 commands/build.md	never invent a command
-references/dispatch-templates.md	fable > opus > sonnet > haiku
+references/plan-schema.md	Do not assign Full on your own
 commands/plan.md	omitting it is allowed
 references/plan-integration.md	references/plan-schema.md
 # --- Phase 10
@@ -193,3 +192,4 @@ references/checkpoint.md	plan(adjust)
 references/dispatch-templates.md	no Decisions in Force
 references/plan-schema.md	**Check-ins:**
 references/trust-report.md	Decided During Build
+# --- v6.6.0: fewer reviews — single sonnet reviewer; Full and fable only on the user's request (replaced 3-sample/fable pins above)

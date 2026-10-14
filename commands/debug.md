@@ -11,7 +11,7 @@ For the full method — the STABILIZE → LOCATE → HYPOTHESIZE → EXPERIMENT 
 
 `Skill(code-foundations:cc-debugging)`
 
-Before forming a hypothesis, check whether this bug or its pattern has been fixed before in this codebase: `Read(${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)`.
+Before forming a hypothesis, search this codebase for how this bug or its pattern was fixed before (`git log -S`, grep the error text and a few variations) and follow the existing fix pattern rather than inventing one.
 
 Mode:
 - Auditing whether a debugging session followed the method → CHECKER behavior (assess each step against the captured transcript).

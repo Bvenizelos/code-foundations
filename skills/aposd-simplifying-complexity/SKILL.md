@@ -192,12 +192,4 @@ If a criterion legitimately cannot be satisfied, present the code with the faile
 
 ---
 
-Detailed checklists: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Simplification done | `Skill(code-foundations:aposd-verifying-correctness)` — verify interface simplified |
+CHECKER: run the ID'd checklist `Read(${CLAUDE_SKILL_DIR}/checklists.md)` against the code. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.

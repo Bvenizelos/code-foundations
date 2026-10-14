@@ -1,0 +1,1697 @@
+# extracted by evals/inventory.mjs from main @ 6ce37b9 (the pre-cut tree). Do NOT regenerate against a later ref — that would erase the guard. Regenerate only with: node evals/inventory.mjs 6ce37b9
+agents/build-agent.md	heading	First — Load Phase Skills
+agents/build-agent.md	heading	Then — Read Input Files
+agents/build-agent.md	heading	Baseline Discipline (always on)
+agents/build-agent.md	heading	Scope Latitude
+agents/build-agent.md	heading	Done-When Traceability
+agents/build-agent.md	heading	Validation Coverage
+agents/build-agent.md	heading	Test Anchoring
+agents/build-agent.md	heading	Working Cadence
+agents/build-agent.md	heading	Concise Implementation
+agents/build-agent.md	heading	Mode Detection
+agents/build-agent.md	heading	Phase 1: Discovery + Design
+agents/build-agent.md	heading	Scope the Phase
+agents/build-agent.md	heading	DW Verification
+agents/build-agent.md	heading	Design Decisions
+agents/build-agent.md	heading	Write Discovery + Design
+agents/build-agent.md	heading	Files Found
+agents/build-agent.md	heading	Current State
+agents/build-agent.md	heading	Gaps
+agents/build-agent.md	heading	Code Standards
+agents/build-agent.md	heading	Test Infrastructure
+agents/build-agent.md	heading	DW Verification
+agents/build-agent.md	heading	Design Decisions
+agents/build-agent.md	heading	Prerequisites
+agents/build-agent.md	heading	Recommendation
+agents/build-agent.md	heading	Phase 2: Implementation
+agents/build-agent.md	heading	1. Stub the Interface
+agents/build-agent.md	heading	2. Implement
+agents/build-agent.md	heading	3. Validate
+agents/build-agent.md	heading	Severity Guide
+agents/build-agent.md	heading	Output
+agents/build-agent.md	heading	BUILD Complete
+agents/build-agent.md	heading	Discovery + Design
+agents/build-agent.md	heading	Implementation
+agents/build-agent.md	heading	Deviations from Design
+agents/build-agent.md	heading	Skills Loaded
+agents/build-agent.md	heading	Artifacts
+agents/build-agent.md	heading	Status: DONE | SKIP | UPDATE_PLAN | BLOCKED
+agents/build-agent.md	heading	BUILD Complete
+agents/build-agent.md	heading	Discovery + Design
+agents/build-agent.md	heading	Implementation
+agents/build-agent.md	heading	Skills Loaded
+agents/build-agent.md	heading	Artifacts
+agents/build-agent.md	heading	Status: DONE | UPDATE_PLAN | BLOCKED
+agents/post-gate-agent.md	heading	Reviewer Stance (read first)
+agents/post-gate-agent.md	heading	First — Load Phase Skills
+agents/post-gate-agent.md	heading	Then — Read Input Files
+agents/post-gate-agent.md	heading	Two Review Shapes
+agents/post-gate-agent.md	heading	Review Protocol
+agents/post-gate-agent.md	heading	Step 0 — Execute First
+agents/post-gate-agent.md	heading	Step 1 — Requirement Fulfillment (per DW item)
+agents/post-gate-agent.md	heading	Step 2 — Test-DW Coverage
+agents/post-gate-agent.md	heading	Step 3 — Dead Code
+agents/post-gate-agent.md	heading	Step 4 — Correctness Dimensions (execution-grounded)
+agents/post-gate-agent.md	heading	Anti-Overcorrection Rules
+agents/post-gate-agent.md	heading	Output
+agents/post-gate-agent.md	heading	Executed Results (Step 0)
+agents/post-gate-agent.md	heading	Requirement Fulfillment
+agents/post-gate-agent.md	heading	DW-N.1
+agents/post-gate-agent.md	heading	DW-N.2
+agents/post-gate-agent.md	heading	Test-DW Coverage
+agents/post-gate-agent.md	heading	Dead Code
+agents/post-gate-agent.md	heading	Correctness Dimensions
+agents/post-gate-agent.md	heading	Loaded-Skill Criteria
+agents/post-gate-agent.md	heading	Notes (non-blocking)
+agents/post-gate-agent.md	heading	Issues (if FAIL)
+agents/post-gate-agent.md	heading	Verdict Rules
+commands/build.md	heading	Invariants
+commands/build.md	heading	Phase 1: LOAD (Read Plan File)
+commands/build.md	heading	Locate Plan
+commands/build.md	heading	Worktree Gate (immediately after the plan is located — it needs the plan filename)
+commands/build.md	heading	Parse Plan Structure
+commands/build.md	heading	Verify Plan is Ready
+commands/build.md	heading	Phase 2: SETUP (Initialize Tracking)
+commands/build.md	heading	Update Plan Status
+commands/build.md	heading	Skill Resolution (One-Time Task)
+commands/build.md	heading	Model Resolution
+commands/build.md	heading	Gate Policy Detection
+commands/build.md	heading	Review Cadence
+commands/build.md	heading	Effort Alignment
+commands/build.md	heading	Wave Derivation
+commands/build.md	heading	Create Phase Tasks Upfront
+commands/build.md	heading	Phase 3: EXECUTE (Implement Sections)
+commands/build.md	heading	The Orchestrator Dispatches; Agents Do the Work
+commands/build.md	heading	Agent Types Per Sub-Phase
+commands/build.md	heading	Execution Loop
+commands/build.md	heading	Parallel Waves (2-3 phases)
+commands/build.md	heading	Sub-Phase N.1: BUILD (Discovery + Design + Implementation)
+commands/build.md	heading	Sub-Phase N.2: REVIEW (Blocking — Full gate and security-sensitive phases only)
+commands/build.md	heading	Batch REVIEW (inserted dynamically)
+commands/build.md	heading	Commit After Phase (Orchestrator Handles Directly)
+commands/build.md	heading	Gate Failure Protocol
+commands/build.md	heading	Phase 4: VERIFY (Full Test Suite)
+commands/build.md	heading	Trailing Batch REVIEW (first — before anything else in VERIFY)
+commands/build.md	heading	Load Skills
+commands/build.md	heading	Test Coverage Check
+commands/build.md	heading	Run Test Plan + Clean Build
+commands/build.md	heading	Verification Gate
+commands/build.md	heading	Phase 5: REPORT (Update Plan + Summarize)
+commands/build.md	heading	Update Plan File
+commands/build.md	heading	Final Commit
+commands/build.md	heading	Summary Output (Trust Report)
+commands/build.md	heading	Error Handling
+commands/build.md	heading	Integration with /code-foundations:plan
+commands/plan.md	heading	Read the Input First
+commands/plan.md	heading	Quick Classification
+commands/plan.md	heading	Before Planning (All Tracks)
+commands/plan.md	heading	1. Codebase Scan
+commands/plan.md	heading	2. Clarify Intent
+commands/plan.md	heading	3. Problem Statement
+commands/plan.md	heading	Quick Track (default for simple tasks)
+commands/plan.md	heading	Standard / Full Track
+commands/research.md	heading	How You Talk
+commands/research.md	heading	How It Works
+commands/research.md	heading	Starting
+commands/research.md	heading	Progressive Narrowing
+commands/research.md	heading	When to Research
+commands/research.md	heading	Reflecting Back
+commands/research.md	heading	Knowing When to Stop
+commands/research.md	heading	Saving
+commands/research.md	heading	Verification (optional, before confirming)
+commands/research.md	heading	The Grill
+commands/research.md	heading	The Cold Read
+commands/research.md	heading	What Comes Next
+references/adaptive-questioning.md	heading	Channel Selection: Dialog vs Conversation
+references/adaptive-questioning.md	heading	Two Modes
+references/adaptive-questioning.md	heading	When to Switch
+references/adaptive-questioning.md	heading	Inside `AskUserQuestion`
+references/adaptive-questioning.md	heading	Honest Caveat
+references/adaptive-questioning.md	heading	Anti-Patterns
+references/aposd-foundations.md	heading	Complexity Definition
+references/aposd-foundations.md	heading	Three Symptoms of Complexity
+references/aposd-foundations.md	heading	Two Causes of Complexity
+references/aposd-foundations.md	heading	Key Relationships
+references/aposd-foundations.md	heading	Counterintuitive Insight
+references/aposd-foundations.md	heading	Quick Reference
+references/aposd-foundations.md	heading	Cross-References to Code Complete
+references/assessment-framework.md	heading	Why This Exists
+references/assessment-framework.md	heading	Action Types
+references/assessment-framework.md	heading	Decision Flow
+references/assessment-framework.md	heading	Confidence Anchors
+references/assessment-framework.md	heading	Output Format
+references/assessment-framework.md	heading	Fix
+references/assessment-framework.md	heading	Investigate
+references/assessment-framework.md	heading	Plan
+references/assessment-framework.md	heading	Decide
+references/assessment-framework.md	heading	Epistemic Humility
+references/assessment-framework.md	heading	Workflow
+references/build-failure-resume.md	heading	Build Failure Protocol
+references/build-failure-resume.md	heading	Resume Protocol
+references/cc-foundations.md	heading	Software's Primary Technical Imperative
+references/cc-foundations.md	heading	Cohesion Spectrum
+references/cc-foundations.md	heading	Coupling Criteria
+references/cc-foundations.md	heading	Key Metrics
+references/cc-foundations.md	heading	Information Hiding Principles
+references/cc-foundations.md	heading	Design Heuristics
+references/cc-foundations.md	heading	CC ↔ APOSD Concept Mapping
+references/cc-foundations.md	heading	Quick Reference
+references/commit-format.md	heading	Commit Recipe
+references/commit-format.md	heading	The `Review:` Trailer
+references/commit-format.md	heading	Wave-Member Variant (parallel phases only)
+references/commit-format.md	heading	Message Rules
+references/commit-format.md	heading	Execution Log Entry (per phase, written at commit time)
+references/commit-format.md	heading	Phase N: [Name] (Gate: [Full/Standard/Minimal])
+references/dispatch-templates.md	heading	Contents
+references/dispatch-templates.md	heading	§ FULL_BUILD
+references/dispatch-templates.md	heading	§ MINIMAL_BUILD
+references/dispatch-templates.md	heading	§ REVIEW
+references/dispatch-templates.md	heading	§ BATCH_REVIEW
+references/gate-failure-protocol.md	heading	Per-Failure Action
+references/gate-failure-protocol.md	heading	Retry Cap (max 3 failures per gate)
+references/gate-failure-protocol.md	heading	Batch Failures (deferred REVIEW over committed phases)
+references/gate-failure-protocol.md	heading	Wave Failures (parallel phases)
+references/merge-instructions.md	heading	Worktree Mode
+references/merge-instructions.md	heading	Feature Branch Mode
+references/pattern-reuse-gate.md	heading	The Gate
+references/pattern-reuse-gate.md	heading	Search Checklist
+references/pattern-reuse-gate.md	heading	Search Quality Requirements
+references/pattern-reuse-gate.md	heading	Decision Matrix
+references/pattern-reuse-gate.md	heading	Examples
+references/pattern-reuse-gate.md	heading	Example 1: Adding Error Handling
+references/pattern-reuse-gate.md	heading	Example 2: Adding a New Component
+references/pattern-reuse-gate.md	heading	Example 3: Fixing a Bug
+references/pattern-reuse-gate.md	heading	Integration Points
+references/pattern-reuse-gate.md	heading	Workflow Position
+references/plan-integration.md	heading	Expected Flow (Single Build)
+references/plan-integration.md	heading	Expected Flow (Parallel Builds)
+references/plan-integration.md	heading	Intra-Build Waves
+references/plan-integration.md	heading	Plan File Model Syntax
+references/plan-integration.md	heading	Phase 1: Simple Config
+references/plan-integration.md	heading	Phase 2: Complex Engine
+references/plan-integration.md	heading	Thinking Effort Doctrine
+references/triage-tags.md	heading	Tag → Reviewer Mapping
+references/triage-tags.md	heading	Output Format
+references/triage-tags.md	heading	Multi-Tag Examples
+references/triage-tags.md	heading	Tag Selection Guidelines
+references/trust-report.md	heading	Trailer Dump Commands
+references/trust-report.md	heading	Report Template
+references/trust-report.md	heading	Build & Test Summary
+references/trust-report.md	heading	Manual Testing Steps
+references/trust-report.md	heading	Follow-up
+references/trust-report.md	heading	Merge Instructions
+references/worktree-gate.md	heading	Determine Workspace Mode
+references/worktree-gate.md	heading	If Worktree
+references/worktree-gate.md	heading	If Feature Branch
+references/worktree-gate.md	heading	Record Workspace Mode
+references/worktree-gate.md	heading	Dependency Setup (Worktree Mode Only)
+skills/aposd-designing-deep-modules/SKILL.md	heading	Before Implementing — the design-it-twice gate
+skills/aposd-designing-deep-modules/SKILL.md	heading	Design-It-Twice Workflow
+skills/aposd-designing-deep-modules/SKILL.md	heading	Depth Evaluation
+skills/aposd-designing-deep-modules/SKILL.md	heading	Three Questions Framework
+skills/aposd-designing-deep-modules/SKILL.md	heading	Information Hiding Checklist
+skills/aposd-designing-deep-modules/SKILL.md	heading	Generality Sweet Spot
+skills/aposd-designing-deep-modules/SKILL.md	heading	Red Flags
+skills/aposd-designing-deep-modules/SKILL.md	heading	Mandatory Output Format
+skills/aposd-designing-deep-modules/SKILL.md	heading	Design: [Component Name]
+skills/aposd-designing-deep-modules/SKILL.md	heading	Approaches Considered
+skills/aposd-designing-deep-modules/SKILL.md	heading	Comparison
+skills/aposd-designing-deep-modules/SKILL.md	heading	Choice: [A/B/C/Hybrid]
+skills/aposd-designing-deep-modules/SKILL.md	heading	Depth Check
+skills/aposd-reviewing-module-design/SKILL.md	heading	Review Is Systematic, Not Intuitive
+skills/aposd-reviewing-module-design/SKILL.md	heading	Evaluation Checklist
+skills/aposd-reviewing-module-design/SKILL.md	heading	1. Complexity Symptoms (Ch2)
+skills/aposd-reviewing-module-design/SKILL.md	heading	2. Module Depth (Ch4)
+skills/aposd-reviewing-module-design/SKILL.md	heading	3. Information Hiding (Ch5)
+skills/aposd-reviewing-module-design/SKILL.md	heading	4. Layer Abstraction (Ch7)
+skills/aposd-reviewing-module-design/SKILL.md	heading	5. Together/Apart (Ch9)
+skills/aposd-reviewing-module-design/SKILL.md	heading	Together/Apart Decision Procedure
+skills/aposd-reviewing-module-design/SKILL.md	heading	Depth vs Length Rule
+skills/aposd-reviewing-module-design/SKILL.md	heading	Evaluation Output Format
+skills/aposd-reviewing-module-design/SKILL.md	heading	Design Review: [Component Name]
+skills/aposd-reviewing-module-design/SKILL.md	heading	Critical Issues (Must Address)
+skills/aposd-reviewing-module-design/SKILL.md	heading	Moderate Issues (Should Address)
+skills/aposd-reviewing-module-design/SKILL.md	heading	Observations (Consider)
+skills/aposd-reviewing-module-design/SKILL.md	heading	Positive Patterns
+skills/aposd-reviewing-module-design/SKILL.md	heading	Before Flagging a Problem
+skills/aposd-reviewing-module-design/SKILL.md	heading	Cross-Module Analysis
+skills/aposd-reviewing-module-design/SKILL.md	heading	Pattern Consistency Check
+skills/aposd-reviewing-module-design/SKILL.md	heading	When Principles Conflict
+skills/aposd-reviewing-module-design/checklists.md	heading	Complexity Symptoms (Ch 2)
+skills/aposd-reviewing-module-design/checklists.md	item	CS-1
+skills/aposd-reviewing-module-design/checklists.md	item	CS-2
+skills/aposd-reviewing-module-design/checklists.md	item	CS-3
+skills/aposd-reviewing-module-design/checklists.md	heading	Module Depth (Ch 4)
+skills/aposd-reviewing-module-design/checklists.md	item	MD-1
+skills/aposd-reviewing-module-design/checklists.md	item	MD-2
+skills/aposd-reviewing-module-design/checklists.md	item	MD-3
+skills/aposd-reviewing-module-design/checklists.md	item	MD-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Information Hiding (Ch 5)
+skills/aposd-reviewing-module-design/checklists.md	item	IH-1
+skills/aposd-reviewing-module-design/checklists.md	item	IH-2
+skills/aposd-reviewing-module-design/checklists.md	item	IH-3
+skills/aposd-reviewing-module-design/checklists.md	item	IH-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Layer Abstraction (Ch 7)
+skills/aposd-reviewing-module-design/checklists.md	item	LA-1
+skills/aposd-reviewing-module-design/checklists.md	item	LA-2
+skills/aposd-reviewing-module-design/checklists.md	item	LA-3
+skills/aposd-reviewing-module-design/checklists.md	heading	Together/Apart (Ch 9)
+skills/aposd-reviewing-module-design/checklists.md	item	TA-1
+skills/aposd-reviewing-module-design/checklists.md	item	TA-2
+skills/aposd-reviewing-module-design/checklists.md	item	TA-3
+skills/aposd-reviewing-module-design/checklists.md	item	TA-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Together/Apart Decision Procedure
+skills/aposd-reviewing-module-design/checklists.md	item	TAD-1
+skills/aposd-reviewing-module-design/checklists.md	item	TAD-2
+skills/aposd-reviewing-module-design/checklists.md	item	TAD-3
+skills/aposd-reviewing-module-design/checklists.md	item	TAD-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Depth vs Length
+skills/aposd-reviewing-module-design/checklists.md	item	DL-1
+skills/aposd-reviewing-module-design/checklists.md	item	DL-2
+skills/aposd-reviewing-module-design/checklists.md	item	DL-3
+skills/aposd-reviewing-module-design/checklists.md	item	DL-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Steel-Man Validation (Before Flagging)
+skills/aposd-reviewing-module-design/checklists.md	item	SM-1
+skills/aposd-reviewing-module-design/checklists.md	item	SM-2
+skills/aposd-reviewing-module-design/checklists.md	item	SM-3
+skills/aposd-reviewing-module-design/checklists.md	item	SM-4
+skills/aposd-reviewing-module-design/checklists.md	heading	Principle Conflicts
+skills/aposd-reviewing-module-design/checklists.md	item	PC-1
+skills/aposd-reviewing-module-design/checklists.md	item	PC-2
+skills/aposd-reviewing-module-design/checklists.md	item	PC-3
+skills/aposd-simplifying-complexity/SKILL.md	heading	Error Reduction Hierarchy
+skills/aposd-simplifying-complexity/SKILL.md	heading	Pull Complexity Downward
+skills/aposd-simplifying-complexity/SKILL.md	heading	Decision Procedure
+skills/aposd-simplifying-complexity/SKILL.md	heading	Configuration Parameters
+skills/aposd-simplifying-complexity/SKILL.md	heading	Error Reduction Hierarchy
+skills/aposd-simplifying-complexity/SKILL.md	heading	Error Reduction Decision Procedure
+skills/aposd-simplifying-complexity/SKILL.md	heading	When NOT to Apply Hierarchy
+skills/aposd-simplifying-complexity/SKILL.md	heading	Validation Gates
+skills/aposd-simplifying-complexity/SKILL.md	heading	Define-Out Appropriateness Test
+skills/aposd-simplifying-complexity/SKILL.md	heading	Obviousness Techniques
+skills/aposd-simplifying-complexity/SKILL.md	heading	Three Ways to Make Code Obvious
+skills/aposd-simplifying-complexity/SKILL.md	heading	Obviousness Test
+skills/aposd-simplifying-complexity/SKILL.md	heading	Common Obviousness Problems
+skills/aposd-simplifying-complexity/SKILL.md	heading	Output Gate
+skills/aposd-simplifying-complexity/SKILL.md	heading	Principle Conflict Resolution
+skills/aposd-simplifying-complexity/SKILL.md	heading	Red Flags
+skills/aposd-simplifying-complexity/checklists.md	heading	Pull Complexity Downward - Decision
+skills/aposd-simplifying-complexity/checklists.md	item	PD-1
+skills/aposd-simplifying-complexity/checklists.md	item	PD-2
+skills/aposd-simplifying-complexity/checklists.md	item	PD-3
+skills/aposd-simplifying-complexity/checklists.md	item	PD-4
+skills/aposd-simplifying-complexity/checklists.md	heading	Configuration Parameters
+skills/aposd-simplifying-complexity/checklists.md	item	CP-1
+skills/aposd-simplifying-complexity/checklists.md	item	CP-2
+skills/aposd-simplifying-complexity/checklists.md	item	CP-3
+skills/aposd-simplifying-complexity/checklists.md	heading	Error Reduction Hierarchy (Apply in Order)
+skills/aposd-simplifying-complexity/checklists.md	item	ER-1
+skills/aposd-simplifying-complexity/checklists.md	item	ER-2
+skills/aposd-simplifying-complexity/checklists.md	item	ER-3
+skills/aposd-simplifying-complexity/checklists.md	item	ER-4
+skills/aposd-simplifying-complexity/checklists.md	item	ER-5
+skills/aposd-simplifying-complexity/checklists.md	heading	When NOT to Apply Hierarchy
+skills/aposd-simplifying-complexity/checklists.md	item	NA-1
+skills/aposd-simplifying-complexity/checklists.md	item	NA-2
+skills/aposd-simplifying-complexity/checklists.md	item	NA-3
+skills/aposd-simplifying-complexity/checklists.md	item	NA-4
+skills/aposd-simplifying-complexity/checklists.md	heading	Validation Gates
+skills/aposd-simplifying-complexity/checklists.md	item	VG-1
+skills/aposd-simplifying-complexity/checklists.md	item	VG-2
+skills/aposd-simplifying-complexity/checklists.md	item	VG-3
+skills/aposd-simplifying-complexity/checklists.md	item	VG-4
+skills/aposd-simplifying-complexity/checklists.md	heading	Define-Out Appropriateness Test
+skills/aposd-simplifying-complexity/checklists.md	item	DO-1
+skills/aposd-simplifying-complexity/checklists.md	item	DO-2
+skills/aposd-simplifying-complexity/checklists.md	item	DO-3
+skills/aposd-simplifying-complexity/checklists.md	heading	Obviousness Techniques
+skills/aposd-simplifying-complexity/checklists.md	item	OT-1
+skills/aposd-simplifying-complexity/checklists.md	item	OT-2
+skills/aposd-simplifying-complexity/checklists.md	item	OT-3
+skills/aposd-simplifying-complexity/checklists.md	heading	Common Obviousness Problems
+skills/aposd-simplifying-complexity/checklists.md	item	OP-1
+skills/aposd-simplifying-complexity/checklists.md	item	OP-2
+skills/aposd-simplifying-complexity/checklists.md	item	OP-3
+skills/aposd-simplifying-complexity/checklists.md	item	OP-4
+skills/aposd-simplifying-complexity/checklists.md	heading	Transformation Checklist (Mandatory Gate)
+skills/aposd-simplifying-complexity/checklists.md	item	TC-4
+skills/aposd-simplifying-complexity/checklists.md	item	TC-5
+skills/aposd-simplifying-complexity/checklists.md	item	TC-6
+skills/aposd-simplifying-complexity/checklists.md	item	TC-7
+skills/aposd-simplifying-complexity/checklists.md	item	TC-8
+skills/aposd-simplifying-complexity/checklists.md	heading	Red Flags
+skills/aposd-simplifying-complexity/checklists.md	item	RF-1
+skills/aposd-simplifying-complexity/checklists.md	item	RF-2
+skills/aposd-simplifying-complexity/checklists.md	item	RF-3
+skills/aposd-simplifying-complexity/checklists.md	item	RF-4
+skills/aposd-simplifying-complexity/checklists.md	item	RF-5
+skills/aposd-simplifying-complexity/checklists.md	item	RF-6
+skills/aposd-simplifying-complexity/checklists.md	item	RF-7
+skills/aposd-verifying-correctness/SKILL.md	heading	Before "Done" — scope check
+skills/aposd-verifying-correctness/SKILL.md	heading	Dimension Detection & Checks
+skills/aposd-verifying-correctness/SKILL.md	heading	1. Requirements Coverage
+skills/aposd-verifying-correctness/SKILL.md	heading	2. Concurrency Safety
+skills/aposd-verifying-correctness/SKILL.md	heading	3. Error Handling
+skills/aposd-verifying-correctness/SKILL.md	heading	4. Resource Management
+skills/aposd-verifying-correctness/SKILL.md	heading	5. Boundary Conditions
+skills/aposd-verifying-correctness/SKILL.md	heading	6. Security (if applicable)
+skills/aposd-verifying-correctness/SKILL.md	heading	Output Format
+skills/aposd-verifying-correctness/SKILL.md	heading	Correctness Verification
+skills/aposd-verifying-correctness/SKILL.md	heading	Requirements: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Concurrency: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Errors: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Resources: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Boundaries: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Security: [PASS/FAIL/N/A]
+skills/aposd-verifying-correctness/SKILL.md	heading	Relationship to Other Skills
+skills/aposd-verifying-correctness/checklists.md	heading	1. Requirements Coverage
+skills/aposd-verifying-correctness/checklists.md	item	RC-1
+skills/aposd-verifying-correctness/checklists.md	item	RC-2
+skills/aposd-verifying-correctness/checklists.md	item	RC-3
+skills/aposd-verifying-correctness/checklists.md	item	RC-4
+skills/aposd-verifying-correctness/checklists.md	heading	2. Concurrency Safety
+skills/aposd-verifying-correctness/checklists.md	item	CS-1
+skills/aposd-verifying-correctness/checklists.md	item	CS-2
+skills/aposd-verifying-correctness/checklists.md	item	CS-3
+skills/aposd-verifying-correctness/checklists.md	item	CS-4
+skills/aposd-verifying-correctness/checklists.md	heading	3. Error Handling
+skills/aposd-verifying-correctness/checklists.md	item	EH-1
+skills/aposd-verifying-correctness/checklists.md	item	EH-2
+skills/aposd-verifying-correctness/checklists.md	item	EH-3
+skills/aposd-verifying-correctness/checklists.md	item	EH-4
+skills/aposd-verifying-correctness/checklists.md	item	EH-5
+skills/aposd-verifying-correctness/checklists.md	heading	4. Resource Management
+skills/aposd-verifying-correctness/checklists.md	item	RM-1
+skills/aposd-verifying-correctness/checklists.md	item	RM-2
+skills/aposd-verifying-correctness/checklists.md	item	RM-3
+skills/aposd-verifying-correctness/checklists.md	item	RM-4
+skills/aposd-verifying-correctness/checklists.md	item	RM-5
+skills/aposd-verifying-correctness/checklists.md	heading	5. Boundary Conditions
+skills/aposd-verifying-correctness/checklists.md	item	BC-1
+skills/aposd-verifying-correctness/checklists.md	item	BC-2
+skills/aposd-verifying-correctness/checklists.md	item	BC-3
+skills/aposd-verifying-correctness/checklists.md	item	BC-4
+skills/aposd-verifying-correctness/checklists.md	item	BC-5
+skills/aposd-verifying-correctness/checklists.md	heading	6. Security (if applicable)
+skills/aposd-verifying-correctness/checklists.md	item	SE-1
+skills/aposd-verifying-correctness/checklists.md	item	SE-2
+skills/aposd-verifying-correctness/checklists.md	item	SE-3
+skills/aposd-verifying-correctness/checklists.md	item	SE-4
+skills/aposd-verifying-correctness/checklists.md	item	SE-5
+skills/ca-architecture-boundaries/SKILL.md	heading	SRP Is About Actors, Not "Doing One Thing"
+skills/ca-architecture-boundaries/SKILL.md	heading	DRY Within Actor Boundaries Only
+skills/ca-architecture-boundaries/SKILL.md	heading	Dependency Rule
+skills/ca-architecture-boundaries/SKILL.md	heading	Separate Business Rules from Infrastructure
+skills/ca-architecture-boundaries/SKILL.md	heading	Integration Checklist
+skills/ca-architecture-boundaries/SKILL.md	heading	Phase 1: Identify
+skills/ca-architecture-boundaries/SKILL.md	heading	Phase 2: Draw Boundaries
+skills/ca-architecture-boundaries/SKILL.md	heading	Phase 3: Verify
+skills/ca-architecture-boundaries/SKILL.md	heading	Boundary Violation Detection
+skills/cc-control-flow-quality/SKILL.md	heading	Thresholds
+skills/cc-control-flow-quality/SKILL.md	heading	Core patterns
+skills/cc-control-flow-quality/SKILL.md	heading	Deep nesting → guard clauses
+skills/cc-control-flow-quality/SKILL.md	heading	Complex boolean → named intermediate variables
+skills/cc-control-flow-quality/SKILL.md	heading	Meaningless loop indexes → descriptive names
+skills/cc-control-flow-quality/SKILL.md	heading	Single-use test → named boolean function
+skills/cc-control-flow-quality/SKILL.md	heading	Number-line ordering and zero comparisons
+skills/cc-control-flow-quality/SKILL.md	heading	Loop-with-exit avoids duplication
+skills/cc-control-flow-quality/SKILL.md	heading	Decision guidance
+skills/cc-control-flow-quality/SKILL.md	heading	Loop selection
+skills/cc-control-flow-quality/SKILL.md	heading	Nesting reduction (least to most invasive — choose by fit, not strict order)
+skills/cc-control-flow-quality/SKILL.md	heading	Table-driven methods
+skills/cc-control-flow-quality/SKILL.md	heading	McCabe complexity
+skills/cc-control-flow-quality/SKILL.md	heading	Modern equivalents
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Emergency Minimum (Crisis Mode)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	EM-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	NEVER Skip (regardless of circumstances)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	NS-5
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Organizing Sequential Code (Ch 14)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-5
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-7
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	SC-8
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Using Conditionals (Ch 15)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	if-then Statements
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-5
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IT-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	if-then-else-if Chains
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IC-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IC-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IC-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	IC-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	case Statements
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-5
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CS-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	heading	Control-Structure Issues (Ch 19)
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-1
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-2
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-3
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-4
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-5
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-6
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-7
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-8
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-9
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-10
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-11
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-12
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	item	CI-13
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Controlling Loops (Ch 16)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Loop Selection and Creation
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LS-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LS-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Entering the Loop
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LE-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LE-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LE-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LE-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Inside the Loop
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-5
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-7
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LI-8
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Loop Indexes
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LX-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LX-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LX-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LX-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LX-5
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Exiting the Loop
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LT-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LT-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	LT-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Unusual Control Structures (Ch 17)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	return
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RT-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Recursion
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RC-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RC-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RC-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RC-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RC-5
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	goto
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	GT-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	GT-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	GT-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	GT-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	GT-5
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Table-Driven Methods (Ch 18)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	TD-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	TD-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	TD-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	TD-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Modern Control Flow (Beyond Code Complete)
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Async/Await
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	AA-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	AA-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	AA-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Pattern Matching
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	PM-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	PM-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	PM-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Functional Pipelines
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	FP-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	FP-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	FP-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	heading	Red Flags
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-1
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-2
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-3
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-4
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-5
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-6
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-7
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-8
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-9
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-10
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-11
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	item	RF-12
+skills/cc-debugging/SKILL.md	heading	Scientific Debugging Method
+skills/cc-debugging/SKILL.md	heading	Step 1: STABILIZE
+skills/cc-debugging/SKILL.md	heading	Step 2: LOCATE
+skills/cc-debugging/SKILL.md	heading	Step 3: HYPOTHESIZE
+skills/cc-debugging/SKILL.md	heading	Step 4: EXPERIMENT
+skills/cc-debugging/SKILL.md	heading	Step 5: FIX
+skills/cc-debugging/SKILL.md	heading	Step 6: TEST
+skills/cc-debugging/SKILL.md	heading	Step 7: SEARCH
+skills/cc-debugging/SKILL.md	heading	Common Defects Quick Check
+skills/cc-debugging/SKILL.md	heading	Confessional debugging
+skills/cc-debugging/checklists.md	heading	Techniques for Finding Defects
+skills/cc-debugging/checklists.md	item	FD-1
+skills/cc-debugging/checklists.md	item	FD-2
+skills/cc-debugging/checklists.md	item	FD-3
+skills/cc-debugging/checklists.md	item	FD-4
+skills/cc-debugging/checklists.md	item	FD-5
+skills/cc-debugging/checklists.md	item	FD-6
+skills/cc-debugging/checklists.md	item	FD-7
+skills/cc-debugging/checklists.md	item	FD-8
+skills/cc-debugging/checklists.md	item	FD-9
+skills/cc-debugging/checklists.md	item	FD-10
+skills/cc-debugging/checklists.md	item	FD-11
+skills/cc-debugging/checklists.md	item	FD-12
+skills/cc-debugging/checklists.md	item	FD-13
+skills/cc-debugging/checklists.md	item	FD-14
+skills/cc-debugging/checklists.md	item	FD-15
+skills/cc-debugging/checklists.md	item	FD-16
+skills/cc-debugging/checklists.md	item	FD-17
+skills/cc-debugging/checklists.md	item	FD-18
+skills/cc-debugging/checklists.md	item	FD-19
+skills/cc-debugging/checklists.md	heading	Techniques for Syntax Errors
+skills/cc-debugging/checklists.md	item	SE-1
+skills/cc-debugging/checklists.md	item	SE-2
+skills/cc-debugging/checklists.md	item	SE-3
+skills/cc-debugging/checklists.md	item	SE-4
+skills/cc-debugging/checklists.md	item	SE-5
+skills/cc-debugging/checklists.md	heading	Techniques for Fixing Defects
+skills/cc-debugging/checklists.md	item	FF-1
+skills/cc-debugging/checklists.md	item	FF-2
+skills/cc-debugging/checklists.md	item	FF-3
+skills/cc-debugging/checklists.md	item	FF-4
+skills/cc-debugging/checklists.md	item	FF-5
+skills/cc-debugging/checklists.md	item	FF-6
+skills/cc-debugging/checklists.md	item	FF-7
+skills/cc-debugging/checklists.md	item	FF-8
+skills/cc-debugging/checklists.md	item	FF-9
+skills/cc-debugging/checklists.md	item	FF-10
+skills/cc-debugging/checklists.md	item	FF-11
+skills/cc-debugging/checklists.md	heading	General Approach to Debugging
+skills/cc-debugging/checklists.md	item	GA-1
+skills/cc-debugging/checklists.md	item	GA-2
+skills/cc-debugging/checklists.md	item	GA-3
+skills/cc-debugging/checklists.md	item	GA-4
+skills/cc-debugging/checklists.md	item	GA-5
+skills/cc-debugging/checklists.md	item	GA-6
+skills/cc-debugging/checklists.md	item	GA-7
+skills/cc-debugging/checklists.md	item	GA-8
+skills/cc-debugging/checklists.md	heading	Scientific Debugging Steps
+skills/cc-debugging/checklists.md	heading	Brute-Force Techniques Checklist
+skills/cc-debugging/checklists.md	item	BF-1
+skills/cc-debugging/checklists.md	item	BF-2
+skills/cc-debugging/checklists.md	item	BF-3
+skills/cc-debugging/checklists.md	item	BF-4
+skills/cc-debugging/checklists.md	item	BF-5
+skills/cc-debugging/checklists.md	item	BF-6
+skills/cc-debugging/checklists.md	item	BF-7
+skills/cc-debugging/checklists.md	item	BF-8
+skills/cc-debugging/checklists.md	item	BF-9
+skills/cc-debugging/checklists.md	item	BF-10
+skills/cc-debugging/checklists.md	item	BF-11
+skills/cc-debugging/checklists.md	item	BF-12
+skills/cc-debugging/checklists.md	item	BF-13
+skills/cc-debugging/checklists.md	item	BF-14
+skills/cc-debugging/checklists.md	heading	Common Defect Checklist
+skills/cc-debugging/checklists.md	item	CD-1
+skills/cc-debugging/checklists.md	item	CD-2
+skills/cc-debugging/checklists.md	item	CD-3
+skills/cc-debugging/checklists.md	item	CD-4
+skills/cc-debugging/checklists.md	item	CD-5
+skills/cc-debugging/checklists.md	item	CD-6
+skills/cc-debugging/checklists.md	item	CD-7
+skills/cc-debugging/checklists.md	item	CD-8
+skills/cc-debugging/checklists.md	item	CD-9
+skills/cc-debugging/checklists.md	item	CD-10
+skills/cc-debugging/checklists.md	item	CD-11
+skills/cc-debugging/checklists.md	item	CD-12
+skills/cc-debugging/checklists.md	heading	Debugging Time Limits
+skills/cc-debugging/checklists.md	heading	Red Flags
+skills/cc-debugging/checklists.md	item	RF-1
+skills/cc-debugging/checklists.md	item	RF-2
+skills/cc-debugging/checklists.md	item	RF-3
+skills/cc-debugging/checklists.md	item	RF-4
+skills/cc-debugging/checklists.md	item	RF-5
+skills/cc-debugging/checklists.md	item	RF-6
+skills/cc-debugging/checklists.md	item	RF-7
+skills/cc-debugging/checklists.md	item	RF-8
+skills/cc-debugging/checklists.md	item	RF-9
+skills/cc-debugging/checklists.md	item	RF-10
+skills/cc-defensive-programming/SKILL.md	heading	Two rules that override the textbook
+skills/cc-defensive-programming/SKILL.md	heading	When NOT to apply
+skills/cc-defensive-programming/SKILL.md	heading	Modes
+skills/cc-defensive-programming/SKILL.md	heading	CHECKER
+skills/cc-defensive-programming/SKILL.md	heading	APPLIER
+skills/cc-defensive-programming/SKILL.md	heading	Assertion vs error handling
+skills/cc-defensive-programming/SKILL.md	heading	Correctness vs robustness
+skills/cc-defensive-programming/SKILL.md	heading	Barricade design
+skills/cc-defensive-programming/SKILL.md	heading	Error-handling strategy options
+skills/cc-defensive-programming/SKILL.md	heading	Modern error propagation
+skills/cc-defensive-programming/SKILL.md	heading	Offensive programming (development builds)
+skills/cc-defensive-programming/checklists.md	heading	General (p.211)
+skills/cc-defensive-programming/checklists.md	heading	Critical (Crisis Triage)
+skills/cc-defensive-programming/checklists.md	item	GC-1
+skills/cc-defensive-programming/checklists.md	item	GC-2
+skills/cc-defensive-programming/checklists.md	item	GC-3
+skills/cc-defensive-programming/checklists.md	heading	High Priority
+skills/cc-defensive-programming/checklists.md	item	GH-1
+skills/cc-defensive-programming/checklists.md	item	GH-2
+skills/cc-defensive-programming/checklists.md	item	GH-3
+skills/cc-defensive-programming/checklists.md	heading	Standard
+skills/cc-defensive-programming/checklists.md	item	GS-1
+skills/cc-defensive-programming/checklists.md	item	GS-2
+skills/cc-defensive-programming/checklists.md	item	GS-3
+skills/cc-defensive-programming/checklists.md	item	GS-4
+skills/cc-defensive-programming/checklists.md	heading	Exceptions (p.211-212)
+skills/cc-defensive-programming/checklists.md	heading	High Priority
+skills/cc-defensive-programming/checklists.md	item	EH-1
+skills/cc-defensive-programming/checklists.md	item	EH-2
+skills/cc-defensive-programming/checklists.md	item	EH-3
+skills/cc-defensive-programming/checklists.md	item	EH-4
+skills/cc-defensive-programming/checklists.md	heading	Critical
+skills/cc-defensive-programming/checklists.md	item	EC-1
+skills/cc-defensive-programming/checklists.md	item	EC-2
+skills/cc-defensive-programming/checklists.md	item	EC-3
+skills/cc-defensive-programming/checklists.md	heading	Security Issues (p.212 + Modern Additions)
+skills/cc-defensive-programming/checklists.md	heading	Critical - Original (McConnell)
+skills/cc-defensive-programming/checklists.md	item	SO-1
+skills/cc-defensive-programming/checklists.md	item	SO-2
+skills/cc-defensive-programming/checklists.md	item	SO-3
+skills/cc-defensive-programming/checklists.md	item	SO-4
+skills/cc-defensive-programming/checklists.md	heading	Critical - Modern Threats (2020s additions)
+skills/cc-defensive-programming/checklists.md	item	SM-1
+skills/cc-defensive-programming/checklists.md	item	SM-2
+skills/cc-defensive-programming/checklists.md	item	SM-3
+skills/cc-defensive-programming/checklists.md	item	SM-4
+skills/cc-defensive-programming/checklists.md	item	SM-5
+skills/cc-defensive-programming/checklists.md	item	SM-6
+skills/cc-defensive-programming/checklists.md	heading	High Priority - Async/Modern Patterns
+skills/cc-defensive-programming/checklists.md	item	SA-1
+skills/cc-defensive-programming/checklists.md	item	SA-2
+skills/cc-defensive-programming/checklists.md	item	SA-3
+skills/cc-defensive-programming/checklists.md	item	SA-4
+skills/cc-defensive-programming/checklists.md	heading	Priority Groups
+skills/cc-defensive-programming/checklists.md	heading	Quick Reference: Priority by Situation
+skills/cc-defensive-programming/checklists.md	heading	Red Flags
+skills/cc-defensive-programming/checklists.md	item	RF-1
+skills/cc-defensive-programming/checklists.md	item	RF-2
+skills/cc-defensive-programming/checklists.md	item	RF-3
+skills/cc-defensive-programming/checklists.md	item	RF-4
+skills/cc-defensive-programming/checklists.md	item	RF-5
+skills/cc-defensive-programming/checklists.md	item	RF-6
+skills/cc-defensive-programming/checklists.md	item	RF-7
+skills/cc-defensive-programming/checklists.md	item	RF-8
+skills/cc-defensive-programming/checklists.md	item	RF-9
+skills/cc-defensive-programming/checklists.md	item	RF-10
+skills/cc-defensive-programming/checklists.md	item	RF-11
+skills/cc-defensive-programming/checklists.md	item	RF-12
+skills/cc-pseudocode-programming/SKILL.md	heading	When the routine is exempt
+skills/cc-pseudocode-programming/SKILL.md	heading	Modes
+skills/cc-pseudocode-programming/SKILL.md	heading	APPLIER
+skills/cc-pseudocode-programming/SKILL.md	heading	CHECKER
+skills/cc-pseudocode-programming/checklists.md	heading	Prerequisites
+skills/cc-pseudocode-programming/checklists.md	item	PR-1
+skills/cc-pseudocode-programming/checklists.md	item	PR-2
+skills/cc-pseudocode-programming/checklists.md	heading	Design Quality
+skills/cc-pseudocode-programming/checklists.md	item	DQ-1
+skills/cc-pseudocode-programming/checklists.md	item	DQ-2
+skills/cc-pseudocode-programming/checklists.md	item	DQ-3
+skills/cc-pseudocode-programming/checklists.md	item	DQ-4
+skills/cc-pseudocode-programming/checklists.md	heading	Pseudocode Quality
+skills/cc-pseudocode-programming/checklists.md	item	PQ-1
+skills/cc-pseudocode-programming/checklists.md	item	PQ-2
+skills/cc-pseudocode-programming/checklists.md	item	PQ-3
+skills/cc-pseudocode-programming/checklists.md	item	PQ-4
+skills/cc-pseudocode-programming/checklists.md	heading	Implementation
+skills/cc-pseudocode-programming/checklists.md	item	IM-1
+skills/cc-pseudocode-programming/checklists.md	item	IM-2
+skills/cc-pseudocode-programming/checklists.md	item	IM-3
+skills/cc-pseudocode-programming/checklists.md	item	IM-4
+skills/cc-pseudocode-programming/checklists.md	heading	Understanding
+skills/cc-pseudocode-programming/checklists.md	item	UN-1
+skills/cc-pseudocode-programming/checklists.md	item	UN-2
+skills/cc-pseudocode-programming/checklists.md	heading	Quick Reference: PPP Process Steps
+skills/cc-pseudocode-programming/checklists.md	heading	Warning Signs That PPP Would Help
+skills/cc-pseudocode-programming/checklists.md	heading	Minimum Viable PPP (Time-Constrained)
+skills/cc-pseudocode-programming/checklists.md	heading	Red Flags
+skills/cc-pseudocode-programming/checklists.md	item	RF-1
+skills/cc-pseudocode-programming/checklists.md	item	RF-2
+skills/cc-pseudocode-programming/checklists.md	item	RF-3
+skills/cc-pseudocode-programming/checklists.md	item	RF-4
+skills/cc-pseudocode-programming/checklists.md	item	RF-5
+skills/cc-pseudocode-programming/checklists.md	item	RF-6
+skills/cc-pseudocode-programming/checklists.md	item	RF-7
+skills/cc-pseudocode-programming/checklists.md	item	RF-8
+skills/cc-pseudocode-programming/checklists.md	item	RF-9
+skills/cc-pseudocode-programming/checklists.md	item	RF-10
+skills/cc-pseudocode-programming/checklists.md	item	RF-11
+skills/cc-quality-practices/SKILL.md	heading	External vs internal quality
+skills/cc-quality-practices/SKILL.md	heading	Defect-detection techniques (detection rate)
+skills/cc-quality-practices/SKILL.md	heading	Modes
+skills/cc-quality-practices/SKILL.md	heading	CHECKER
+skills/cc-quality-practices/SKILL.md	heading	APPLIER
+skills/cc-quality-practices/SKILL.md	heading	Choosing a review method
+skills/cc-quality-practices/SKILL.md	heading	When advising a human team's review process
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Finding Defects (p.559)
+skills/cc-quality-practices/checklists/debugging.md	heading	Gather Data
+skills/cc-quality-practices/checklists/debugging.md	item	FD-1
+skills/cc-quality-practices/checklists/debugging.md	item	FD-2
+skills/cc-quality-practices/checklists/debugging.md	item	FD-3
+skills/cc-quality-practices/checklists/debugging.md	item	FD-4
+skills/cc-quality-practices/checklists/debugging.md	item	FD-5
+skills/cc-quality-practices/checklists/debugging.md	heading	Narrow the Search
+skills/cc-quality-practices/checklists/debugging.md	item	FD-6
+skills/cc-quality-practices/checklists/debugging.md	item	FD-7
+skills/cc-quality-practices/checklists/debugging.md	item	FD-8
+skills/cc-quality-practices/checklists/debugging.md	item	FD-9
+skills/cc-quality-practices/checklists/debugging.md	item	FD-10
+skills/cc-quality-practices/checklists/debugging.md	heading	Use Tools and Techniques
+skills/cc-quality-practices/checklists/debugging.md	item	FD-11
+skills/cc-quality-practices/checklists/debugging.md	item	FD-12
+skills/cc-quality-practices/checklists/debugging.md	item	FD-13
+skills/cc-quality-practices/checklists/debugging.md	heading	Get Help
+skills/cc-quality-practices/checklists/debugging.md	item	FD-14
+skills/cc-quality-practices/checklists/debugging.md	item	FD-15
+skills/cc-quality-practices/checklists/debugging.md	item	FD-16
+skills/cc-quality-practices/checklists/debugging.md	item	FD-17
+skills/cc-quality-practices/checklists/debugging.md	heading	Time Management
+skills/cc-quality-practices/checklists/debugging.md	item	FD-18
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Syntax Errors (p.557-558)
+skills/cc-quality-practices/checklists/debugging.md	item	SE-1
+skills/cc-quality-practices/checklists/debugging.md	item	SE-2
+skills/cc-quality-practices/checklists/debugging.md	item	SE-3
+skills/cc-quality-practices/checklists/debugging.md	item	SE-4
+skills/cc-quality-practices/checklists/debugging.md	item	SE-5
+skills/cc-quality-practices/checklists/debugging.md	heading	Common Misleading Errors
+skills/cc-quality-practices/checklists/debugging.md	heading	Techniques for Fixing Defects (p.560)
+skills/cc-quality-practices/checklists/debugging.md	heading	Before Fixing
+skills/cc-quality-practices/checklists/debugging.md	item	FX-1
+skills/cc-quality-practices/checklists/debugging.md	item	FX-2
+skills/cc-quality-practices/checklists/debugging.md	item	FX-3
+skills/cc-quality-practices/checklists/debugging.md	item	FX-4
+skills/cc-quality-practices/checklists/debugging.md	item	FX-5
+skills/cc-quality-practices/checklists/debugging.md	heading	The Fix
+skills/cc-quality-practices/checklists/debugging.md	item	FX-6
+skills/cc-quality-practices/checklists/debugging.md	item	FX-7
+skills/cc-quality-practices/checklists/debugging.md	item	FX-8
+skills/cc-quality-practices/checklists/debugging.md	item	FX-9
+skills/cc-quality-practices/checklists/debugging.md	heading	After Fixing
+skills/cc-quality-practices/checklists/debugging.md	item	FX-10
+skills/cc-quality-practices/checklists/debugging.md	item	FX-11
+skills/cc-quality-practices/checklists/debugging.md	item	FX-12
+skills/cc-quality-practices/checklists/debugging.md	heading	Brute-Force Debugging Techniques (p.552-553)
+skills/cc-quality-practices/checklists/debugging.md	heading	Code Review Approaches
+skills/cc-quality-practices/checklists/debugging.md	item	BF-1
+skills/cc-quality-practices/checklists/debugging.md	item	BF-2
+skills/cc-quality-practices/checklists/debugging.md	item	BF-3
+skills/cc-quality-practices/checklists/debugging.md	heading	Build Configuration
+skills/cc-quality-practices/checklists/debugging.md	item	BF-4
+skills/cc-quality-practices/checklists/debugging.md	item	BF-5
+skills/cc-quality-practices/checklists/debugging.md	item	BF-6
+skills/cc-quality-practices/checklists/debugging.md	item	BF-7
+skills/cc-quality-practices/checklists/debugging.md	heading	Testing Approaches
+skills/cc-quality-practices/checklists/debugging.md	item	BF-8
+skills/cc-quality-practices/checklists/debugging.md	item	BF-9
+skills/cc-quality-practices/checklists/debugging.md	item	BF-10
+skills/cc-quality-practices/checklists/debugging.md	heading	Instrumentation
+skills/cc-quality-practices/checklists/debugging.md	item	BF-11
+skills/cc-quality-practices/checklists/debugging.md	item	BF-12
+skills/cc-quality-practices/checklists/debugging.md	heading	Environment
+skills/cc-quality-practices/checklists/debugging.md	item	BF-13
+skills/cc-quality-practices/checklists/debugging.md	item	BF-14
+skills/cc-quality-practices/checklists/debugging.md	heading	General Debugging Approach (p.560)
+skills/cc-quality-practices/checklists/debugging.md	heading	Mindset
+skills/cc-quality-practices/checklists/debugging.md	item	GD-1
+skills/cc-quality-practices/checklists/debugging.md	item	GD-2
+skills/cc-quality-practices/checklists/debugging.md	item	GD-3
+skills/cc-quality-practices/checklists/debugging.md	heading	Method
+skills/cc-quality-practices/checklists/debugging.md	item	GD-4
+skills/cc-quality-practices/checklists/debugging.md	item	GD-5
+skills/cc-quality-practices/checklists/debugging.md	item	GD-6
+skills/cc-quality-practices/checklists/debugging.md	heading	Verification
+skills/cc-quality-practices/checklists/debugging.md	item	GD-7
+skills/cc-quality-practices/checklists/debugging.md	item	GD-8
+skills/cc-quality-practices/checklists/debugging.md	heading	Tools
+skills/cc-quality-practices/checklists/debugging.md	item	GD-9
+skills/cc-quality-practices/checklists/debugging.md	item	GD-10
+skills/cc-quality-practices/checklists/debugging.md	item	GD-11
+skills/cc-quality-practices/checklists/debugging.md	item	GD-12
+skills/cc-quality-practices/checklists/debugging.md	item	GD-13
+skills/cc-quality-practices/checklists/debugging.md	heading	Inspection Roles Reference
+skills/cc-quality-practices/checklists/debugging.md	heading	Red Flags
+skills/cc-quality-practices/checklists/debugging.md	item	RF-1
+skills/cc-quality-practices/checklists/debugging.md	item	RF-2
+skills/cc-quality-practices/checklists/debugging.md	item	RF-3
+skills/cc-quality-practices/checklists/debugging.md	item	RF-4
+skills/cc-quality-practices/checklists/debugging.md	item	RF-5
+skills/cc-quality-practices/checklists/debugging.md	item	RF-6
+skills/cc-quality-practices/checklists/debugging.md	item	RF-7
+skills/cc-quality-practices/checklists/debugging.md	item	RF-8
+skills/cc-quality-practices/checklists/debugging.md	item	RF-9
+skills/cc-quality-practices/checklists/debugging.md	item	RF-10
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Quick Reference: Which Checklist When?
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	A Quality-Assurance Plan (p.603-644)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-1
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-2
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-3
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-4
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-5
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-6
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	QA-7
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Inspections (p.485-492)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Before the Inspection
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-1
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-2
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-3
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-4
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	During the Inspection
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-5
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-6
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-7
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-8
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	After the Inspection
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-9
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-10
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	EI-11
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Effective Pair Programming (p.483-484)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-1
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-2
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-3
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-4
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-5
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-6
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	PP-7
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Cases (p.532-533)
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Requirements and Design Coverage
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-1
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-2
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Code Coverage
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-3
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-4
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-5
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-6
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Boundary Testing
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-7
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-8
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Dirty Tests (aim for 5:1 ratio vs clean tests)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-9
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-10
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-11
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-12
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-13
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Clean Tests
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-14
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-15
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-16
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-17
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Test Quality
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-18
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-19
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	TC-20
+skills/cc-quality-practices/checklists/qa-and-testing.md	heading	Data-Flow Anomaly Patterns (p.509-510)
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-1
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-2
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-3
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-4
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-5
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-6
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-7
+skills/cc-quality-practices/checklists/qa-and-testing.md	item	DF-8
+skills/cc-refactoring-guidance/SKILL.md	heading	Before refactoring: identify the target pattern
+skills/cc-refactoring-guidance/SKILL.md	heading	Core patterns
+skills/cc-refactoring-guidance/SKILL.md	heading	Modes
+skills/cc-refactoring-guidance/SKILL.md	heading	APPLIER
+skills/cc-refactoring-guidance/SKILL.md	heading	TRANSFORMER
+skills/cc-refactoring-guidance/SKILL.md	heading	Recovering from a violation
+skills/cc-refactoring-guidance/checklists.md	heading	Safe Refactoring Process (pp. 579-581)
+skills/cc-refactoring-guidance/checklists.md	item	SR-1
+skills/cc-refactoring-guidance/checklists.md	item	SR-2
+skills/cc-refactoring-guidance/checklists.md	item	SR-3
+skills/cc-refactoring-guidance/checklists.md	item	SR-4
+skills/cc-refactoring-guidance/checklists.md	item	SR-5
+skills/cc-refactoring-guidance/checklists.md	item	SR-6
+skills/cc-refactoring-guidance/checklists.md	item	SR-7
+skills/cc-refactoring-guidance/checklists.md	item	SR-8
+skills/cc-refactoring-guidance/checklists.md	item	SR-9
+skills/cc-refactoring-guidance/checklists.md	item	SR-10
+skills/cc-refactoring-guidance/checklists.md	heading	Refactoring Preconditions (derived from pp. 563-565)
+skills/cc-refactoring-guidance/checklists.md	item	RP-1
+skills/cc-refactoring-guidance/checklists.md	item	RP-2
+skills/cc-refactoring-guidance/checklists.md	item	RP-3
+skills/cc-refactoring-guidance/checklists.md	item	RP-4
+skills/cc-refactoring-guidance/checklists.md	item	RP-5
+skills/cc-refactoring-guidance/checklists.md	heading	Code Smell Detection (pp. 564-569)
+skills/cc-refactoring-guidance/checklists.md	item	CS-1
+skills/cc-refactoring-guidance/checklists.md	item	CS-2
+skills/cc-refactoring-guidance/checklists.md	item	CS-3
+skills/cc-refactoring-guidance/checklists.md	item	CS-4
+skills/cc-refactoring-guidance/checklists.md	item	CS-5
+skills/cc-refactoring-guidance/checklists.md	item	CS-6
+skills/cc-refactoring-guidance/checklists.md	item	CS-7
+skills/cc-refactoring-guidance/checklists.md	item	CS-8
+skills/cc-refactoring-guidance/checklists.md	item	CS-9
+skills/cc-refactoring-guidance/checklists.md	item	CS-10
+skills/cc-refactoring-guidance/checklists.md	item	CS-11
+skills/cc-refactoring-guidance/checklists.md	heading	Small Change Discipline (p. 571)
+skills/cc-refactoring-guidance/checklists.md	item	SC-1
+skills/cc-refactoring-guidance/checklists.md	item	SC-2
+skills/cc-refactoring-guidance/checklists.md	item	SC-3
+skills/cc-refactoring-guidance/checklists.md	item	SC-4
+skills/cc-refactoring-guidance/checklists.md	heading	Red Flags
+skills/cc-refactoring-guidance/checklists.md	item	RF-1
+skills/cc-refactoring-guidance/checklists.md	item	RF-2
+skills/cc-refactoring-guidance/checklists.md	item	RF-3
+skills/cc-refactoring-guidance/checklists.md	item	RF-4
+skills/cc-refactoring-guidance/checklists.md	item	RF-5
+skills/cc-refactoring-guidance/checklists.md	item	RF-6
+skills/cc-refactoring-guidance/checklists.md	item	RF-7
+skills/cc-refactoring-guidance/checklists.md	item	RF-8
+skills/cc-refactoring-guidance/checklists.md	item	RF-9
+skills/cc-refactoring-guidance/checklists.md	item	RF-10
+skills/cc-routine-and-class-design/SKILL.md	heading	When NOT to apply
+skills/cc-routine-and-class-design/SKILL.md	heading	Modes
+skills/cc-routine-and-class-design/SKILL.md	heading	CHECKER
+skills/cc-routine-and-class-design/SKILL.md	heading	APPLIER
+skills/cc-routine-and-class-design/SKILL.md	heading	Parameter thresholds
+skills/cc-routine-and-class-design/SKILL.md	heading	LSP
+skills/cc-routine-and-class-design/SKILL.md	heading	Inheritance vs containment decision
+skills/cc-routine-and-class-design/SKILL.md	heading	Functional cohesion
+skills/cc-routine-and-class-design/SKILL.md	heading	Cohesion classification (best to worst — stop at the first match)
+skills/cc-routine-and-class-design/SKILL.md	heading	Improving cohesion
+skills/cc-routine-and-class-design/SKILL.md	heading	Pattern-specific guidance
+skills/cc-routine-and-class-design/checklists.md	heading	Design in Construction - Design Practices (p.118)
+skills/cc-routine-and-class-design/checklists.md	item	DP-1
+skills/cc-routine-and-class-design/checklists.md	item	DP-2
+skills/cc-routine-and-class-design/checklists.md	item	DP-3
+skills/cc-routine-and-class-design/checklists.md	item	DP-4
+skills/cc-routine-and-class-design/checklists.md	item	DP-5
+skills/cc-routine-and-class-design/checklists.md	item	DP-6
+skills/cc-routine-and-class-design/checklists.md	item	DP-7
+skills/cc-routine-and-class-design/checklists.md	heading	Design in Construction - Design Goals (p.119)
+skills/cc-routine-and-class-design/checklists.md	item	DG-1
+skills/cc-routine-and-class-design/checklists.md	item	DG-2
+skills/cc-routine-and-class-design/checklists.md	item	DG-3
+skills/cc-routine-and-class-design/checklists.md	item	DG-4
+skills/cc-routine-and-class-design/checklists.md	item	DG-5
+skills/cc-routine-and-class-design/checklists.md	item	DG-6
+skills/cc-routine-and-class-design/checklists.md	item	DG-7
+skills/cc-routine-and-class-design/checklists.md	item	DG-8
+skills/cc-routine-and-class-design/checklists.md	item	DG-9
+skills/cc-routine-and-class-design/checklists.md	item	DG-10
+skills/cc-routine-and-class-design/checklists.md	heading	Class Quality (Ch 6, derived from boundaries/skill actions)
+skills/cc-routine-and-class-design/checklists.md	item	CQ-1
+skills/cc-routine-and-class-design/checklists.md	item	CQ-2
+skills/cc-routine-and-class-design/checklists.md	item	CQ-3
+skills/cc-routine-and-class-design/checklists.md	item	CQ-4
+skills/cc-routine-and-class-design/checklists.md	item	CQ-5
+skills/cc-routine-and-class-design/checklists.md	item	CQ-6
+skills/cc-routine-and-class-design/checklists.md	item	CQ-7
+skills/cc-routine-and-class-design/checklists.md	item	CQ-8
+skills/cc-routine-and-class-design/checklists.md	item	CQ-9
+skills/cc-routine-and-class-design/checklists.md	heading	High-Quality Routines - Big-Picture Issues (p.181)
+skills/cc-routine-and-class-design/checklists.md	item	RP-1
+skills/cc-routine-and-class-design/checklists.md	item	RP-2
+skills/cc-routine-and-class-design/checklists.md	item	RP-3
+skills/cc-routine-and-class-design/checklists.md	item	RP-4
+skills/cc-routine-and-class-design/checklists.md	item	RP-5
+skills/cc-routine-and-class-design/checklists.md	item	RP-6
+skills/cc-routine-and-class-design/checklists.md	item	RP-7
+skills/cc-routine-and-class-design/checklists.md	item	RP-8
+skills/cc-routine-and-class-design/checklists.md	heading	High-Quality Routines - Parameter-Passing Issues (p.182)
+skills/cc-routine-and-class-design/checklists.md	item	PP-1
+skills/cc-routine-and-class-design/checklists.md	item	PP-2
+skills/cc-routine-and-class-design/checklists.md	item	PP-3
+skills/cc-routine-and-class-design/checklists.md	item	PP-4
+skills/cc-routine-and-class-design/checklists.md	item	PP-5
+skills/cc-routine-and-class-design/checklists.md	item	PP-6
+skills/cc-routine-and-class-design/checklists.md	item	PP-7
+skills/cc-routine-and-class-design/checklists.md	item	PP-8
+skills/cc-routine-and-class-design/checklists.md	heading	Red Flags
+skills/cc-routine-and-class-design/checklists.md	item	RF-1
+skills/cc-routine-and-class-design/checklists.md	item	RF-2
+skills/cc-routine-and-class-design/checklists.md	item	RF-3
+skills/cc-routine-and-class-design/checklists.md	item	RF-4
+skills/cc-routine-and-class-design/checklists.md	item	RF-5
+skills/cc-routine-and-class-design/checklists.md	item	RF-6
+skills/cc-routine-and-class-design/checklists.md	item	RF-7
+skills/cc-routine-and-class-design/checklists.md	item	RF-8
+skills/cc-routine-and-class-design/checklists.md	item	RF-9
+skills/cc-routine-and-class-design/checklists.md	item	RF-10
+skills/cc-routine-and-class-design/checklists.md	item	RF-11
+skills/clarify/SKILL.md	heading	Classifying What's Unclear
+skills/clarify/SKILL.md	heading	Fault Types
+skills/clarify/SKILL.md	heading	Ambiguity Direction
+skills/clarify/SKILL.md	heading	For Coding Tasks Specifically
+skills/clarify/SKILL.md	heading	Generating Questions
+skills/clarify/SKILL.md	heading	Think in Hypotheses
+skills/clarify/SKILL.md	heading	Select for Information Gain
+skills/clarify/SKILL.md	heading	Concrete Over Abstract
+skills/clarify/SKILL.md	heading	Five Clarification Strategies
+skills/clarify/SKILL.md	heading	Question Quality
+skills/clarify/SKILL.md	heading	Attributes
+skills/clarify/SKILL.md	heading	Effort Awareness
+skills/clarify/SKILL.md	heading	Managing the Conversation
+skills/clarify/SKILL.md	heading	Track Intent State
+skills/clarify/SKILL.md	heading	Decouple the Decisions
+skills/clarify/SKILL.md	heading	Short-Circuit Rules
+skills/clarify/SKILL.md	heading	Anti-Patterns
+skills/code-clarity-and-docs/SKILL.md	heading	The Obviousness Rule
+skills/code-clarity-and-docs/SKILL.md	heading	Comments-First Workflow
+skills/code-clarity-and-docs/SKILL.md	heading	Comment Types and When to Use Them
+skills/code-clarity-and-docs/SKILL.md	heading	Interface vs Implementation Comments
+skills/code-clarity-and-docs/SKILL.md	heading	The "Different Words" Test
+skills/code-clarity-and-docs/SKILL.md	heading	Comment Anti-Patterns
+skills/code-clarity-and-docs/SKILL.md	heading	Patterns That Add Value
+skills/code-clarity-and-docs/SKILL.md	heading	Variable Comment Checklist
+skills/code-clarity-and-docs/SKILL.md	heading	Naming Principles
+skills/code-clarity-and-docs/SKILL.md	heading	Two Required Properties
+skills/code-clarity-and-docs/SKILL.md	heading	Naming Procedure
+skills/code-clarity-and-docs/SKILL.md	heading	Common Naming Mistakes
+skills/code-clarity-and-docs/SKILL.md	heading	Red Flags (Code Clarity)
+skills/code-clarity-and-docs/SKILL.md	heading	README Accuracy Checklist
+skills/code-clarity-and-docs/SKILL.md	heading	Changelog Update Checklist
+skills/code-clarity-and-docs/SKILL.md	heading	AI Documentation Audit
+skills/code-clarity-and-docs/SKILL.md	heading	Severity Guide
+skills/code-clarity-and-docs/checklists.md	heading	New Code Documentation
+skills/code-clarity-and-docs/checklists.md	item	CF-1
+skills/code-clarity-and-docs/checklists.md	item	CF-2
+skills/code-clarity-and-docs/checklists.md	item	CF-4
+skills/code-clarity-and-docs/checklists.md	item	CF-5
+skills/code-clarity-and-docs/checklists.md	item	CF-6
+skills/code-clarity-and-docs/checklists.md	heading	What Counts as New Code
+skills/code-clarity-and-docs/checklists.md	item	NC-1
+skills/code-clarity-and-docs/checklists.md	item	NC-2
+skills/code-clarity-and-docs/checklists.md	item	NC-3
+skills/code-clarity-and-docs/checklists.md	item	NC-4
+skills/code-clarity-and-docs/checklists.md	item	NC-5
+skills/code-clarity-and-docs/checklists.md	item	NC-6
+skills/code-clarity-and-docs/checklists.md	item	NC-7
+skills/code-clarity-and-docs/checklists.md	heading	Comment Quality
+skills/code-clarity-and-docs/checklists.md	item	CQ-1
+skills/code-clarity-and-docs/checklists.md	item	CQ-2
+skills/code-clarity-and-docs/checklists.md	item	CQ-3
+skills/code-clarity-and-docs/checklists.md	item	CQ-4
+skills/code-clarity-and-docs/checklists.md	item	CQ-5
+skills/code-clarity-and-docs/checklists.md	item	CQ-6
+skills/code-clarity-and-docs/checklists.md	heading	Variable Comments
+skills/code-clarity-and-docs/checklists.md	item	VC-1
+skills/code-clarity-and-docs/checklists.md	item	VC-2
+skills/code-clarity-and-docs/checklists.md	item	VC-3
+skills/code-clarity-and-docs/checklists.md	item	VC-4
+skills/code-clarity-and-docs/checklists.md	item	VC-5
+skills/code-clarity-and-docs/checklists.md	heading	Naming - Precision
+skills/code-clarity-and-docs/checklists.md	item	NP-1
+skills/code-clarity-and-docs/checklists.md	item	NP-2
+skills/code-clarity-and-docs/checklists.md	item	NP-3
+skills/code-clarity-and-docs/checklists.md	item	NP-4
+skills/code-clarity-and-docs/checklists.md	heading	Naming - Consistency
+skills/code-clarity-and-docs/checklists.md	item	NK-1
+skills/code-clarity-and-docs/checklists.md	item	NK-2
+skills/code-clarity-and-docs/checklists.md	item	NK-3
+skills/code-clarity-and-docs/checklists.md	heading	Common Naming Mistakes
+skills/code-clarity-and-docs/checklists.md	item	NM-1
+skills/code-clarity-and-docs/checklists.md	item	NM-2
+skills/code-clarity-and-docs/checklists.md	item	NM-3
+skills/code-clarity-and-docs/checklists.md	item	NM-4
+skills/code-clarity-and-docs/checklists.md	item	NM-5
+skills/code-clarity-and-docs/checklists.md	item	NM-6
+skills/code-clarity-and-docs/checklists.md	heading	Interface vs Implementation Comments
+skills/code-clarity-and-docs/checklists.md	item	IC-1
+skills/code-clarity-and-docs/checklists.md	item	IC-2
+skills/code-clarity-and-docs/checklists.md	item	IC-3
+skills/code-clarity-and-docs/checklists.md	item	IC-4
+skills/code-clarity-and-docs/checklists.md	heading	Pre-Commit Documentation Check
+skills/code-clarity-and-docs/checklists.md	item	PC-1
+skills/code-clarity-and-docs/checklists.md	item	PC-2
+skills/code-clarity-and-docs/checklists.md	item	PC-3
+skills/code-clarity-and-docs/checklists.md	item	PC-4
+skills/code-clarity-and-docs/checklists.md	heading	README Review
+skills/code-clarity-and-docs/checklists.md	item	RR-1
+skills/code-clarity-and-docs/checklists.md	item	RR-2
+skills/code-clarity-and-docs/checklists.md	item	RR-3
+skills/code-clarity-and-docs/checklists.md	item	RR-4
+skills/code-clarity-and-docs/checklists.md	item	RR-5
+skills/code-clarity-and-docs/checklists.md	heading	Changelog Review
+skills/code-clarity-and-docs/checklists.md	item	CL-1
+skills/code-clarity-and-docs/checklists.md	item	CL-2
+skills/code-clarity-and-docs/checklists.md	item	CL-3
+skills/code-clarity-and-docs/checklists.md	item	CL-4
+skills/code-clarity-and-docs/checklists.md	item	CL-5
+skills/code-clarity-and-docs/checklists.md	item	CL-6
+skills/code-clarity-and-docs/checklists.md	heading	AI Documentation Review
+skills/code-clarity-and-docs/checklists.md	item	AI-1
+skills/code-clarity-and-docs/checklists.md	item	AI-2
+skills/code-clarity-and-docs/checklists.md	item	AI-3
+skills/code-clarity-and-docs/checklists.md	item	AI-4
+skills/code-clarity-and-docs/checklists.md	item	AI-5
+skills/code-clarity-and-docs/checklists.md	item	AI-6
+skills/code-clarity-and-docs/checklists.md	item	AI-7
+skills/code-clarity-and-docs/checklists.md	heading	Documentation Debt Detection
+skills/code-clarity-and-docs/checklists.md	item	DD-1
+skills/code-clarity-and-docs/checklists.md	item	DD-2
+skills/code-clarity-and-docs/checklists.md	item	DD-3
+skills/code-clarity-and-docs/checklists.md	item	DD-4
+skills/code-clarity-and-docs/checklists.md	item	DD-5
+skills/code-clarity-and-docs/checklists.md	item	DD-6
+skills/code-clarity-and-docs/checklists.md	item	DD-7
+skills/code-clarity-and-docs/checklists.md	heading	Documentation Coverage
+skills/code-clarity-and-docs/checklists.md	item	DC-1
+skills/code-clarity-and-docs/checklists.md	item	DC-2
+skills/code-clarity-and-docs/checklists.md	item	DC-3
+skills/code-clarity-and-docs/checklists.md	item	DC-4
+skills/code-clarity-and-docs/checklists.md	heading	Red Flags
+skills/code-clarity-and-docs/checklists.md	item	RF-1
+skills/code-clarity-and-docs/checklists.md	item	RF-2
+skills/code-clarity-and-docs/checklists.md	item	RF-3
+skills/code-clarity-and-docs/checklists.md	item	RF-4
+skills/code-clarity-and-docs/checklists.md	item	RF-5
+skills/code-clarity-and-docs/checklists.md	item	RF-6
+skills/code-clarity-and-docs/checklists.md	item	RF-7
+skills/code-clarity-and-docs/checklists.md	item	RF-8
+skills/code-clarity-and-docs/checklists.md	item	RF-9
+skills/code-clarity-and-docs/checklists.md	item	RF-10
+skills/code-clarity-and-docs/checklists.md	item	RF-11
+skills/code-clarity-and-docs/checklists.md	item	RF-12
+skills/code-clarity-and-docs/checklists.md	item	RF-13
+skills/code-standards/SKILL.md	heading	Workflow
+skills/code-standards/SKILL.md	heading	1. Detect
+skills/code-standards/SKILL.md	heading	2. Decide: Skip, Update, or Generate
+skills/code-standards/SKILL.md	heading	3. Scan
+skills/code-standards/SKILL.md	heading	4. Write
+skills/code-standards/SKILL.md	heading	5. Verify
+skills/code-standards/SKILL.md	heading	Sections
+skills/code-standards/references/section-templates.md	heading	Contents
+skills/code-standards/references/section-templates.md	heading	Section Name
+skills/code-standards/references/section-templates.md	heading	1. Forbidden Patterns
+skills/code-standards/references/section-templates.md	heading	Forbidden Patterns
+skills/code-standards/references/section-templates.md	heading	2. Code Examples
+skills/code-standards/references/section-templates.md	heading	Code Examples
+skills/code-standards/references/section-templates.md	heading	API Route Handler
+skills/code-standards/references/section-templates.md	heading	3. Error Handling
+skills/code-standards/references/section-templates.md	heading	Error Handling
+skills/code-standards/references/section-templates.md	heading	4. Imports & Dependency Direction
+skills/code-standards/references/section-templates.md	heading	Imports & Dependency Direction
+skills/code-standards/references/section-templates.md	heading	5. Testing Patterns
+skills/code-standards/references/section-templates.md	heading	Testing Patterns
+skills/code-standards/references/section-templates.md	heading	6. Naming Conventions
+skills/code-standards/references/section-templates.md	heading	Naming Conventions
+skills/code-standards/references/section-templates.md	heading	7. File Organization
+skills/code-standards/references/section-templates.md	heading	File Organization
+skills/code-standards/references/section-templates.md	heading	8. Technology Decisions
+skills/code-standards/references/section-templates.md	heading	Technology Decisions
+skills/code-standards/references/section-templates.md	heading	Technology Decisions
+skills/code-standards/references/section-templates.md	heading	9. Exemplar Files
+skills/code-standards/references/section-templates.md	heading	Exemplar Files
+skills/code-standards/references/section-templates.md	heading	Format Rules
+skills/gof-design-patterns/SKILL.md	heading	Pick by Symptom
+skills/gof-design-patterns/SKILL.md	heading	Pick by Goal
+skills/gof-design-patterns/SKILL.md	heading	Choosing Between Similar Patterns
+skills/gof-design-patterns/SKILL.md	heading	Pattern Categories
+skills/gof-design-patterns/SKILL.md	heading	When NOT to Apply a Pattern
+skills/gof-design-patterns/SKILL.md	heading	Reference Files
+skills/gof-design-patterns/references/foundations.md	heading	"Program to an interface, not an implementation"
+skills/gof-design-patterns/references/foundations.md	heading	"Favor object composition over class inheritance"
+skills/gof-design-patterns/references/foundations.md	heading	Encapsulate What Varies
+skills/gof-design-patterns/references/foundations.md	heading	When NOT to Apply a Pattern
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	INTENT
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	Benefits
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	React Example
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	Spring (Java) Example
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	TRIGGER
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	ACTION
+skills/gof-design-patterns/references/gof-abstract-factory.md	heading	COUNTER-INDICATOR
+skills/gof-design-patterns/references/gof-adapter.md	heading	INTENT
+skills/gof-design-patterns/references/gof-adapter.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-adapter.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-adapter.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-adapter.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-adapter.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-adapter.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-adapter.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-adapter.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-adapter.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-bridge.md	heading	INTENT
+skills/gof-design-patterns/references/gof-bridge.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-bridge.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-bridge.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-bridge.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-bridge.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-bridge.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-bridge.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-bridge.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-bridge.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-builder.md	heading	INTENT
+skills/gof-design-patterns/references/gof-builder.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-builder.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-builder.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-builder.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-builder.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-builder.md	heading	Benefits
+skills/gof-design-patterns/references/gof-builder.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-builder.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-builder.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-builder.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-builder.md	heading	TypeScript Example - Form Builder
+skills/gof-design-patterns/references/gof-builder.md	heading	React Example - Component Builder
+skills/gof-design-patterns/references/gof-builder.md	heading	Spring Boot Example - Request Builder
+skills/gof-design-patterns/references/gof-builder.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-builder.md	heading	TRIGGER
+skills/gof-design-patterns/references/gof-builder.md	heading	ACTION
+skills/gof-design-patterns/references/gof-builder.md	heading	COUNTER-INDICATOR
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	INTENT
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-chain-of-responsibility.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-command.md	heading	INTENT
+skills/gof-design-patterns/references/gof-command.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-command.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-command.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-command.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-command.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-command.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-command.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-command.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-command.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-composite.md	heading	INTENT
+skills/gof-design-patterns/references/gof-composite.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-composite.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-composite.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-composite.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-composite.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-composite.md	heading	Benefits
+skills/gof-design-patterns/references/gof-composite.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-composite.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-composite.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-composite.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-composite.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-composite.md	heading	React Example
+skills/gof-design-patterns/references/gof-composite.md	heading	Spring Example
+skills/gof-design-patterns/references/gof-composite.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-decorator.md	heading	INTENT
+skills/gof-design-patterns/references/gof-decorator.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-decorator.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-decorator.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-decorator.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-decorator.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-decorator.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-decorator.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-decorator.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-decorator.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-facade.md	heading	INTENT
+skills/gof-design-patterns/references/gof-facade.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-facade.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-facade.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-facade.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-facade.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-facade.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-facade.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-facade.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-facade.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	INTENT
+skills/gof-design-patterns/references/gof-factory-method.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-factory-method.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-factory-method.md	heading	Benefits
+skills/gof-design-patterns/references/gof-factory-method.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-factory-method.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-factory-method.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-factory-method.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-factory-method.md	heading	React Example
+skills/gof-design-patterns/references/gof-factory-method.md	heading	Spring Framework Example
+skills/gof-design-patterns/references/gof-factory-method.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-factory-method.md	heading	TRIGGER
+skills/gof-design-patterns/references/gof-factory-method.md	heading	ACTION
+skills/gof-design-patterns/references/gof-factory-method.md	heading	COUNTER-INDICATOR
+skills/gof-design-patterns/references/gof-flyweight.md	heading	INTENT
+skills/gof-design-patterns/references/gof-flyweight.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-flyweight.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-flyweight.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-flyweight.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-flyweight.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-flyweight.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-flyweight.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-flyweight.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-flyweight.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-interpreter.md	heading	INTENT
+skills/gof-design-patterns/references/gof-interpreter.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-interpreter.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-interpreter.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-interpreter.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-interpreter.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-interpreter.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-interpreter.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-interpreter.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-interpreter.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-interpreter.md	heading	React Example (Query Builder DSL)
+skills/gof-design-patterns/references/gof-interpreter.md	heading	Spring Example (Specification Pattern as Interpreter)
+skills/gof-design-patterns/references/gof-interpreter.md	heading	Modern Use Cases
+skills/gof-design-patterns/references/gof-interpreter.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-iterator.md	heading	INTENT
+skills/gof-design-patterns/references/gof-iterator.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-iterator.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-iterator.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-iterator.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-iterator.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-iterator.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-iterator.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-iterator.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-iterator.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-mediator.md	heading	INTENT
+skills/gof-design-patterns/references/gof-mediator.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-mediator.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-mediator.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-mediator.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-mediator.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-mediator.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-mediator.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-mediator.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-mediator.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-memento.md	heading	INTENT
+skills/gof-design-patterns/references/gof-memento.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-memento.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-memento.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-memento.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-memento.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-memento.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-memento.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-memento.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-memento.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-observer.md	heading	INTENT
+skills/gof-design-patterns/references/gof-observer.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-observer.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-observer.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-observer.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-observer.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-observer.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-observer.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-observer.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-observer.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-prototype.md	heading	INTENT
+skills/gof-design-patterns/references/gof-prototype.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-prototype.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-prototype.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-prototype.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-prototype.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-prototype.md	heading	Benefits
+skills/gof-design-patterns/references/gof-prototype.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-prototype.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-prototype.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-prototype.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-prototype.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-prototype.md	heading	React Example
+skills/gof-design-patterns/references/gof-prototype.md	heading	Spring/Java Example
+skills/gof-design-patterns/references/gof-prototype.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-prototype.md	heading	TRIGGER
+skills/gof-design-patterns/references/gof-prototype.md	heading	ACTION
+skills/gof-design-patterns/references/gof-prototype.md	heading	COUNTER-INDICATOR
+skills/gof-design-patterns/references/gof-proxy.md	heading	INTENT
+skills/gof-design-patterns/references/gof-proxy.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-proxy.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-proxy.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-proxy.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-proxy.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-proxy.md	heading	Benefits
+skills/gof-design-patterns/references/gof-proxy.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-proxy.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-proxy.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-proxy.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-proxy.md	heading	TypeScript: Virtual Proxy with Lazy Loading
+skills/gof-design-patterns/references/gof-proxy.md	heading	React: Protection Proxy with Access Control
+skills/gof-design-patterns/references/gof-proxy.md	heading	Spring: Remote Proxy with REST Client
+skills/gof-design-patterns/references/gof-proxy.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-proxy.md	heading	TRIGGER
+skills/gof-design-patterns/references/gof-proxy.md	heading	ACTION
+skills/gof-design-patterns/references/gof-proxy.md	heading	COUNTER-INDICATOR
+skills/gof-design-patterns/references/gof-singleton.md	heading	INTENT
+skills/gof-design-patterns/references/gof-singleton.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-singleton.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-singleton.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-singleton.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-singleton.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-singleton.md	heading	Benefits
+skills/gof-design-patterns/references/gof-singleton.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-singleton.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-singleton.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-singleton.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-singleton.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-singleton.md	heading	React Example (Context-based Singleton)
+skills/gof-design-patterns/references/gof-singleton.md	heading	Spring Framework Example
+skills/gof-design-patterns/references/gof-singleton.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-singleton.md	heading	Action 1: Identify Singleton Candidates
+skills/gof-design-patterns/references/gof-singleton.md	heading	Action 2: Implement Thread-Safe Singleton
+skills/gof-design-patterns/references/gof-singleton.md	heading	Action 3: Singleton with Subclassing
+skills/gof-design-patterns/references/gof-state.md	heading	INTENT
+skills/gof-design-patterns/references/gof-state.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-state.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-state.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-state.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-state.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-state.md	heading	Benefits
+skills/gof-design-patterns/references/gof-state.md	heading	Liabilities
+skills/gof-design-patterns/references/gof-state.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-state.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-state.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-state.md	heading	TypeScript Example
+skills/gof-design-patterns/references/gof-state.md	heading	React Example (useReducer as State Machine)
+skills/gof-design-patterns/references/gof-state.md	heading	Spring State Machine Example
+skills/gof-design-patterns/references/gof-state.md	heading	XState (Modern State Machine Library)
+skills/gof-design-patterns/references/gof-state.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-state.md	heading	Action 1: Identify State Pattern Candidates
+skills/gof-design-patterns/references/gof-state.md	heading	Action 2: Implement State Transition Logic
+skills/gof-design-patterns/references/gof-state.md	heading	Action 3: Optimize State Object Lifecycle
+skills/gof-design-patterns/references/gof-strategy.md	heading	INTENT
+skills/gof-design-patterns/references/gof-strategy.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-strategy.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-strategy.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-strategy.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-strategy.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-strategy.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-strategy.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-strategy.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-strategy.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-template-method.md	heading	INTENT
+skills/gof-design-patterns/references/gof-template-method.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-template-method.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-template-method.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-template-method.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-template-method.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-template-method.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-template-method.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-template-method.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-template-method.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/gof-visitor.md	heading	INTENT
+skills/gof-design-patterns/references/gof-visitor.md	heading	ALSO KNOWN AS
+skills/gof-design-patterns/references/gof-visitor.md	heading	PROBLEM INDICATORS
+skills/gof-design-patterns/references/gof-visitor.md	heading	KEY INSIGHT
+skills/gof-design-patterns/references/gof-visitor.md	heading	PARTICIPANTS
+skills/gof-design-patterns/references/gof-visitor.md	heading	CONSEQUENCES
+skills/gof-design-patterns/references/gof-visitor.md	heading	WHEN NOT TO USE
+skills/gof-design-patterns/references/gof-visitor.md	heading	RELATED PATTERNS
+skills/gof-design-patterns/references/gof-visitor.md	heading	MODERN CONTEXT
+skills/gof-design-patterns/references/gof-visitor.md	heading	SKILL ACTIONS
+skills/gof-design-patterns/references/techniques.md	heading	1. Master Pattern Table
+skills/gof-design-patterns/references/techniques.md	heading	2. Creational Patterns (5)
+skills/gof-design-patterns/references/techniques.md	heading	3. Structural Patterns (7)
+skills/gof-design-patterns/references/techniques.md	heading	4. Behavioral Patterns (11)
+skills/gof-design-patterns/references/techniques.md	heading	5. Pattern Relationships
+skills/gof-design-patterns/references/techniques.md	heading	Patterns That Work Together
+skills/gof-design-patterns/references/techniques.md	heading	Alternative Patterns (Choose One)
+skills/gof-design-patterns/references/techniques.md	heading	6. Quick Lookup by Problem
+skills/gof-design-patterns/references/techniques.md	heading	7. Pattern Selection Guide
+skills/gof-design-patterns/references/techniques.md	heading	By Design Goal
+skills/gof-design-patterns/references/techniques.md	heading	Quick Reference Notes
+skills/gof-design-patterns/references/techniques.md	heading	Creational Pattern Selection
+skills/gof-design-patterns/references/techniques.md	heading	Structural Pattern Selection
+skills/gof-design-patterns/references/techniques.md	heading	Behavioral Pattern Selection
+skills/performance-optimization/SKILL.md	heading	Measure First — the gate every optimization passes through
+skills/performance-optimization/SKILL.md	heading	Scope Limitations
+skills/performance-optimization/SKILL.md	heading	The Simplicity-Performance Relationship
+skills/performance-optimization/SKILL.md	heading	Primary Workflow: 7-Step Decision Tree
+skills/performance-optimization/SKILL.md	heading	Step 2 Detail: Measurement
+skills/performance-optimization/SKILL.md	heading	Step 4 Detail: Fundamental Fixes (APOSD Stage 2)
+skills/performance-optimization/SKILL.md	heading	Step 4 Extended: Critical Path Redesign (APOSD Stage 3)
+skills/performance-optimization/SKILL.md	heading	Code Tuning Procedure (ordered — each step's evidence feeds the next)
+skills/performance-optimization/SKILL.md	heading	Technique Priority by Category
+skills/performance-optimization/SKILL.md	heading	After Making Changes
+skills/performance-optimization/SKILL.md	heading	Red Flags
+skills/performance-optimization/SKILL.md	heading	Quick Reference
+skills/performance-optimization/SKILL.md	heading	Checker
+skills/performance-optimization/checklists.md	heading	Expensive Operations Reference
+skills/performance-optimization/checklists.md	heading	Code Tuning Patterns (empirical data — only after profiling confirms <4% hot path)
+skills/performance-optimization/checklists.md	heading	Sentinel Value in Search Loop (23-65% faster)
+skills/performance-optimization/checklists.md	heading	Loop Unswitching (19-28% faster)
+skills/performance-optimization/checklists.md	heading	Strength Reduction (90-99.9% faster)
+skills/performance-optimization/checklists.md	heading	Page Fault Loop Ordering (up to 1000x faster)
+skills/performance-optimization/checklists.md	heading	Gate: Measurement First (MANDATORY)
+skills/performance-optimization/checklists.md	item	M-1
+skills/performance-optimization/checklists.md	item	M-2
+skills/performance-optimization/checklists.md	item	M-3
+skills/performance-optimization/checklists.md	item	M-4
+skills/performance-optimization/checklists.md	item	M-5
+skills/performance-optimization/checklists.md	item	M-6
+skills/performance-optimization/checklists.md	heading	Decision Tree Gates (Steps 3-6)
+skills/performance-optimization/checklists.md	item	DT-1
+skills/performance-optimization/checklists.md	item	DT-2
+skills/performance-optimization/checklists.md	item	DT-3
+skills/performance-optimization/checklists.md	item	DT-4
+skills/performance-optimization/checklists.md	item	DT-5
+skills/performance-optimization/checklists.md	item	DT-6
+skills/performance-optimization/checklists.md	item	DT-7
+skills/performance-optimization/checklists.md	item	DT-8
+skills/performance-optimization/checklists.md	heading	Fundamental Fixes (APOSD Stage 2)
+skills/performance-optimization/checklists.md	item	FF-1
+skills/performance-optimization/checklists.md	item	FF-2
+skills/performance-optimization/checklists.md	item	FF-3
+skills/performance-optimization/checklists.md	item	FF-4
+skills/performance-optimization/checklists.md	item	FF-5
+skills/performance-optimization/checklists.md	heading	Critical Path Redesign (APOSD Stage 3)
+skills/performance-optimization/checklists.md	item	CR-1
+skills/performance-optimization/checklists.md	item	CR-2
+skills/performance-optimization/checklists.md	item	CR-3
+skills/performance-optimization/checklists.md	item	CR-4
+skills/performance-optimization/checklists.md	item	CR-5
+skills/performance-optimization/checklists.md	item	CR-6
+skills/performance-optimization/checklists.md	item	CR-7
+skills/performance-optimization/checklists.md	heading	Consolidation Techniques
+skills/performance-optimization/checklists.md	item	CT-1
+skills/performance-optimization/checklists.md	item	CT-2
+skills/performance-optimization/checklists.md	item	CT-3
+skills/performance-optimization/checklists.md	item	CT-4
+skills/performance-optimization/checklists.md	heading	Code Tuning Procedure
+skills/performance-optimization/checklists.md	item	TP-1
+skills/performance-optimization/checklists.md	item	TP-2
+skills/performance-optimization/checklists.md	item	TP-3
+skills/performance-optimization/checklists.md	item	TP-4
+skills/performance-optimization/checklists.md	item	TP-5
+skills/performance-optimization/checklists.md	heading	Speed and Size Improvements
+skills/performance-optimization/checklists.md	item	SS-1
+skills/performance-optimization/checklists.md	item	SS-2
+skills/performance-optimization/checklists.md	item	SS-3
+skills/performance-optimization/checklists.md	item	SS-4
+skills/performance-optimization/checklists.md	item	SS-5
+skills/performance-optimization/checklists.md	item	SS-6
+skills/performance-optimization/checklists.md	item	SS-7
+skills/performance-optimization/checklists.md	heading	Speed-Only Improvements
+skills/performance-optimization/checklists.md	item	SO-1
+skills/performance-optimization/checklists.md	item	SO-2
+skills/performance-optimization/checklists.md	item	SO-3
+skills/performance-optimization/checklists.md	item	SO-4
+skills/performance-optimization/checklists.md	item	SO-5
+skills/performance-optimization/checklists.md	item	SO-6
+skills/performance-optimization/checklists.md	item	SO-7
+skills/performance-optimization/checklists.md	item	SO-8
+skills/performance-optimization/checklists.md	item	SO-9
+skills/performance-optimization/checklists.md	item	SO-10
+skills/performance-optimization/checklists.md	item	SO-11
+skills/performance-optimization/checklists.md	item	SO-12
+skills/performance-optimization/checklists.md	heading	After Making Changes
+skills/performance-optimization/checklists.md	item	AM-1
+skills/performance-optimization/checklists.md	item	AM-2
+skills/performance-optimization/checklists.md	item	AM-3
+skills/performance-optimization/checklists.md	item	AM-4
+skills/performance-optimization/checklists.md	heading	Red Flags
+skills/performance-optimization/checklists.md	item	RF-1
+skills/performance-optimization/checklists.md	item	RF-2
+skills/performance-optimization/checklists.md	item	RF-3
+skills/performance-optimization/checklists.md	item	RF-4
+skills/performance-optimization/checklists.md	item	RF-5
+skills/performance-optimization/checklists.md	item	RF-6
+skills/performance-optimization/checklists.md	item	RF-7
+skills/performance-optimization/checklists.md	item	RF-8
+skills/performance-optimization/checklists.md	item	RF-9
+skills/performance-optimization/checklists.md	item	RF-10
+skills/performance-optimization/checklists.md	item	RF-11
+skills/planning/SKILL.md	heading	Create Progress Tasks
+skills/planning/SKILL.md	heading	Step 1: DISCOVER
+skills/planning/SKILL.md	heading	1a: Deepen Codebase Research
+skills/planning/SKILL.md	heading	1b: Re-confirm Problem Statement (only on contradiction)
+skills/planning/SKILL.md	heading	Gate (internal check, not narrated to the user) — proceed to CLASSIFY only when all three hold
+skills/planning/SKILL.md	heading	Output: Problem Statement
+skills/planning/SKILL.md	heading	Step 2: CLASSIFY
+skills/planning/SKILL.md	heading	Step 3: EXPLORE
+skills/planning/SKILL.md	heading	Load Design Vocabulary
+skills/planning/SKILL.md	heading	Research (Medium/Complex)
+skills/planning/SKILL.md	heading	Generate Alternatives
+skills/planning/SKILL.md	heading	Pre-Mortem (Complex Only)
+skills/planning/SKILL.md	heading	Recommendation + Decision Gate
+skills/planning/SKILL.md	heading	Step 4: DECOMPOSE
+skills/planning/SKILL.md	heading	The Plan Is a Contract
+skills/planning/SKILL.md	heading	Define the Phases as a DAG
+skills/planning/SKILL.md	heading	Match Skills per Phase
+skills/planning/SKILL.md	heading	YAGNI Gate + Phase Sizing
+skills/planning/SKILL.md	heading	Skeleton Checkpoint
+skills/planning/SKILL.md	heading	Skeleton: N phases
+skills/planning/SKILL.md	heading	Write the Skeleton to the File
+skills/planning/SKILL.md	heading	Step 5: DETAIL
+skills/planning/SKILL.md	heading	Per-Phase Loop
+skills/planning/SKILL.md	heading	Phase Template
+skills/planning/SKILL.md	heading	Phase N: [Name]
+skills/planning/SKILL.md	heading	Approach Notes
+skills/planning/SKILL.md	heading	Step 6: CROSS-CUT
+skills/planning/SKILL.md	heading	Test Coverage (ask first — the level gates how much you derive next)
+skills/planning/SKILL.md	heading	Test Plan
+skills/planning/SKILL.md	heading	Assumptions + Decision Log (Medium/Complex)
+skills/planning/SKILL.md	heading	Notes
+skills/planning/SKILL.md	heading	Step 7: SAVE
+skills/planning/SKILL.md	heading	File Location
+skills/planning/SKILL.md	heading	Model Detection + Gate Assignment + Skill Validation
+skills/planning/SKILL.md	heading	Plan File Schema
+skills/planning/SKILL.md	heading	Context
+skills/planning/SKILL.md	heading	Constraints
+skills/planning/SKILL.md	heading	Chosen Approach
+skills/planning/SKILL.md	heading	Rejected Approaches
+skills/planning/SKILL.md	heading	Implementation Phases
+skills/planning/SKILL.md	heading	Test Coverage
+skills/planning/SKILL.md	heading	Test Plan
+skills/planning/SKILL.md	heading	Assumptions
+skills/planning/SKILL.md	heading	Decision Log
+skills/planning/SKILL.md	heading	Notes
+skills/planning/SKILL.md	heading	Execution Log
+skills/planning/SKILL.md	heading	Save
+skills/planning/SKILL.md	heading	Step 8: CHECK
+skills/planning/SKILL.md	heading	Step 9: CONFIRM
+skills/planning/SKILL.md	heading	Corrections
+skills/planning/SKILL.md	heading	Step 10: HANDOFF
+skills/welc-legacy-code/SKILL.md	heading	Quick Reference
+skills/welc-legacy-code/SKILL.md	heading	The Legacy Code Change Algorithm
+skills/welc-legacy-code/SKILL.md	heading	Sprout/Wrap Techniques (Time Pressure)
+skills/welc-legacy-code/SKILL.md	heading	Characterization Tests
+skills/welc-legacy-code/SKILL.md	heading	Effect Sketching and Pinch Points
+skills/welc-legacy-code/SKILL.md	heading	Dependency-Breaking Catalog
+skills/welc-legacy-code/SKILL.md	heading	Decision Trees
+skills/welc-legacy-code/SKILL.md	heading	Can't Instantiate Class?
+skills/welc-legacy-code/SKILL.md	heading	Can't Call Method?
+skills/welc-legacy-code/SKILL.md	heading	Under Time Pressure?
+skills/welc-legacy-code/SKILL.md	heading	Key Principles

@@ -17,8 +17,6 @@ Design a routine in pseudocode before writing it. Iterating on intent is cheaper
 
 If the user asks to skip pseudocode, comply or surface the tradeoff once (the routine will likely cost more in debugging) — don't refuse.
 
-Shared CC vocabulary and thresholds (cohesion, parameters, routine length): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 ## When the routine is exempt
 
 Skip the process only when one of these holds:
@@ -79,16 +77,3 @@ Verify the produced pseudocode and resulting routine. Checklist: `Read(${CLAUDE_
 - Does at least one alternative approach appear to have been weighed?
 - Can the routine's correctness be explained by tracing all paths?
 - Are all compiler warnings eliminated?
-
-## Evidence
-
-- Programmers preferred pseudocode for construction ease and detecting insufficient detail [Ramsey, Atwood, Van Doren 1983]. Modern IDEs catch syntax faster, which makes design errors — what this process prevents — the dominant problem.
-- ~95% of errors are programmer errors, not hardware/compiler/OS [Ostrand and Weyuker 1984].
-- Catch errors at the least-value stage; iterating on pseudocode is cheaper than iterating on code [McConnell pp.220, 225].
-
-## Chain
-
-| After | Next |
-|---|---|
-| Pseudocode complete | `Skill(code-foundations:cc-routine-and-class-design)` |
-| Implementation done | `Skill(code-foundations:cc-defensive-programming)` |

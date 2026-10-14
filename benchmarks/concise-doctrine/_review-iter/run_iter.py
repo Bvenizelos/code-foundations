@@ -21,7 +21,18 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SKILL_CHECKLIST = HERE.parent.parent.parent / "skills" / "aposd-verifying-correctness" / "checklists.md"
+# The checklist was folded into SKILL.md (lighten, 2026-09). Re-runs inject the SKILL.md checklist section instead;
+# they execute, but their numbers are not comparable to the runs recorded in REPORT.harder-tasks.md.
+_SKILL_DIR = HERE.parent.parent.parent / "skills" / "aposd-verifying-correctness"
+SKILL_CHECKLIST = _SKILL_DIR / "checklists.md"
+
+
+def _checklist_text() -> str:
+    if SKILL_CHECKLIST.exists():
+        return SKILL_CHECKLIST.read_text()
+    body = (_SKILL_DIR / "SKILL.md").read_text()
+    start, end = body.find("## Dimension Detection & Checks"), body.find("## Output Format")
+    return body[start:end] if start >= 0 and end > start else body
 
 DW = "- DW-14.1: `read_doc(base_dir, name)` returns the contents of a document that exists in `base_dir`."
 
@@ -51,7 +62,7 @@ def run_once(protocol: str, code: str, tests: str, with_skill: bool) -> str | No
         skill_block = (
             "\n## Additional Skills (loaded for this review — apply its criteria)\n"
             '<skill name="aposd-verifying-correctness">\n'
-            + SKILL_CHECKLIST.read_text() + "\n</skill>\n"
+            + _checklist_text() + "\n</skill>\n"
         )
     prompt = PROMPT_TEMPLATE.format(
         protocol=protocol, skill_block=skill_block,

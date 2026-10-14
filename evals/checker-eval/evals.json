@@ -1,0 +1,24 @@
+{
+  "skill_name": "cc-defensive-programming",
+  "evals": [
+    {
+      "id": "checker-planted-violations",
+      "prompt": "Use the cc-defensive-programming skill in CHECKER mode to audit order_service.py (load the skill before you start). Do not edit the file.",
+      "files": ["fixtures/order_service.py"],
+      "expected_output": "A checker report that flags the empty except in load_config, the executable assertion in evict, the unvalidated external input in handle_create_order, the assertion used for runtime input validation, the shell string concatenation in export_invoice, the None-returning catch in fetch_price, and the stack trace leak in render_error — and does NOT flag compute_total.",
+      "expectations": [
+        "Reports the empty `except Exception: pass` in load_config as a violation (swallowed exception / empty catch)",
+        "Reports the assertion in evict that calls _cache.pop as a violation (executable code / side effect inside an assertion)",
+        "Reports that handle_create_order uses request payload fields (quantity, sku) without validating external input at the entry point",
+        "Reports the `assert quantity > 0` in handle_create_order as a misuse of assertions for an anticipated runtime condition (should be error handling)",
+        "Reports the os.system string concatenation in export_invoice as a command-injection / shell-concatenation violation",
+        "Reports fetch_price returning None from a catch-all except as masking the failure (caller cannot distinguish no-result from error)",
+        "Reports render_error returning a formatted traceback to the user as leaking internal details in an error message",
+        "Does NOT report compute_total as a violation (it validates its inputs correctly)"
+      ],
+      "checks": [
+        { "kind": "trace_includes", "tool": "Skill", "input_pattern": "cc-defensive-programming" }
+      ]
+    }
+  ]
+}

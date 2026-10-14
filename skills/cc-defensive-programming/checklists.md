@@ -2,11 +2,13 @@
 
 Source: Code Complete 2nd Edition, Chapter 8
 
+Tiers: **Critical** — always check, even in a crisis; **High Priority** — check in any code review; **Standard** — full audit.
+
 ---
 
 ## General (p.211)
 
-### Critical (Crisis Triage)
+### Critical
 
 - [ ] GC-1: "Does the routine protect itself from bad input data?" → Red flag: Trusting external input without validation
 - [ ] GC-2: "Have you used assertions to document assumptions, including preconditions and postconditions?" (Good: Assert at entry/exit, Bad: Defensive code everywhere)
@@ -47,6 +49,8 @@ Source: Code Complete 2nd Edition, Chapter 8
 - [ ] EC-1: "Are all exceptions at the appropriate levels of abstraction for the routines that throw them?" (Good: Domain exceptions, Bad: Implementation detail exceptions)
 - [ ] EC-2: "Does each exception include all relevant exception background information?"
 - [ ] EC-3: "Is the code free of empty catch blocks? (Or if an empty catch block truly is appropriate, is it documented?)" → Red flag: Empty catch blocks without explanation
+- [ ] EC-4: "Is the code free of catch-log-continue — an exception caught and logged while execution continues with no indication of failure to the caller?" → Return an error result, re-throw, or set observable error state
+- [ ] EC-5: "Does every fallback on error (`catch { return null }`, `|| default`, `?? fallback`) let the caller distinguish 'no result' from 'operation failed'?" → Red flag: a default value that masks the failure — use a Result type or a distinct error sentinel and log the original error
 
 **Exception for Result types:** Catching generic `Exception` at infrastructure boundaries is acceptable when:
 - Method returns a Result/Either type (sum type, discriminated union, algebraic data type)
@@ -85,46 +89,3 @@ Common names: `Result<T,E>` (Rust/Swift/C#), `Either<L,R>` (Haskell/Scala/vavr),
 - [ ] SA-2: "Do async/await blocks have proper try-catch coverage?"
 - [ ] SA-3: "Are callback errors propagated correctly (error-first pattern)?"
 - [ ] SA-4: "Are error boundaries in place for React/frontend components?"
-
----
-
-## Priority Groups
-
-**CRITICAL (Always check - even in crisis):**
-GC-1 to GC-3 (General Critical), EC-1 to EC-3 (Exceptions Critical), SO-1 to SO-4 (Security Original)
-
-**HIGH (Check when time permits):**
-GH-1 to GH-3 (General High), EH-1 to EH-4 (Exceptions High)
-
-**STANDARD (Full review):**
-GS-1 to GS-4 (General Standard), SM-1 to SM-6 (Security Modern), SA-1 to SA-4 (Security Async)
-
----
-
-## Quick Reference: Priority by Situation
-
-| Situation | Use These Items |
-|-----------|-----------------|
-| **Production crisis (2 min)** | GC-1 to GC-3, EC-1 to EC-3, SO-1 to SO-4 |
-| **Code review (15 min)** | All Critical + High Priority items (GC, GH, EC, EH, SO) |
-| **Architecture review** | GH-1 to GH-3, SM-1 to SM-6 |
-| **Full audit (1 hour)** | All 31 items |
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Trusting external input?" - No validation at boundaries → Add input validation at barricades
-- [ ] RF-2: "Empty catch blocks?" - Swallowing exceptions without documentation → Handle or propagate with context
-- [ ] RF-3: "Error handling scattered everywhere?" - Defensive checks in every routine → Consolidate at boundaries with barricades
-- [ ] RF-4: "Exceptions for control flow?" - Using exceptions as goto → Use return values or Result types
-- [ ] RF-5: "Verbose production errors?" - Stack traces in user-facing messages → Generic message to user, log details internally
-- [ ] RF-6: "Blacklist-based validation?" - Filtering known bad patterns → Allowlist-based validation
-- [ ] RF-7: "String concatenation for shell commands?" - Injection vulnerabilities → Use parameterized APIs
-- [ ] RF-8: "Unhandled promise rejections?" - Silent failures in async code → Add rejection handlers
-- [ ] RF-9: "Assertions for normal error handling?" - Using assert for expected errors → Use proper error handling mechanisms
-- [ ] RF-10: "Ignoring return codes?" - Not checking for failure → Check all return values
-- [ ] RF-11: "Catch-log-continue?" - Exception caught and logged but execution continues with no indication of failure to caller → Return error result, re-throw, or set observable error state
-- [ ] RF-12: "Fallback masking failure?" - Default value substituted on error (`catch { return null }`, `|| default`, `?? fallback`) without distinguishing "no result" from "operation failed" → Use Result type or distinct error sentinel; log the original error
-
----

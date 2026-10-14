@@ -171,27 +171,18 @@ for (row = 0; row < MAX_ROWS; row++)
 
 ---
 
+## Design-Level Symptoms
+
+- [ ] DS-1: "Is the slowness spread across many small inefficiencies with no single hot spot?" → Death by a thousand cuts — fix at the design level (critical path redesign), not one tuning at a time
+- [ ] DS-2: "Do methods pass through to another with the same signature?" → Unnecessary layer crossing — remove the pass-through
+- [ ] DS-3: "Do several layers provide the same abstraction?" → Shallow layers — collapse them
+- [ ] DS-4: "Are the same special-case conditions checked in more than one place?" → Consolidate the checks on the critical path
+
+---
+
 ## After Making Changes
 
 - [ ] AM-1: Re-measured — measurable performance difference confirmed
 - [ ] AM-2: Changes provide significant speedup (with data) → Keep
 - [ ] AM-3: Changes make system simpler AND at least as fast → Keep
 - [ ] AM-4: Neither speedup nor simpler → Back out
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Premature optimization?" Tuning before profiling
-- [ ] RF-2: "Optimizing non-bottlenecks?" 80% time in 20% of code
-- [ ] RF-3: "Sacrificing clarity for unmeasured gains?" Keep readable unless proven bottleneck
-- [ ] RF-4: "I/O in tight loops?" Batch or cache instead
-- [ ] RF-5: "Recalculating invariants?" Move outside loop or cache
-- [ ] RF-6: "No before/after measurements?" Profile both states
-- [ ] RF-7: "Death by thousand cuts?" Many small inefficiencies, no single fix
-- [ ] RF-8: "Pass-through methods?" Unnecessary layer crossing overhead
-- [ ] RF-9: "Shallow layers?" Multiple layers same abstraction
-- [ ] RF-10: "Trading maintainability for <10% gain?" Not worth it
-- [ ] RF-11: "Compiler can do it better?" Trust modern compilers for simple transforms
-
----

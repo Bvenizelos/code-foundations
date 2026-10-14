@@ -16,8 +16,6 @@ user-invocable: false
 | Loop-with-exit comprehension | 25% better than top/bottom test | Soloway 1983 |
 | Mental entity limit | 5–9 items | Miller 1956 |
 
-Shared numeric thresholds and the cohesion/coupling vocabulary: `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
-
 The full audit checklists (conditionals, structure, loops, tables): `Read(${CLAUDE_SKILL_DIR}/checklists/conditionals-and-structure.md)` and `Read(${CLAUDE_SKILL_DIR}/checklists/loops-and-advanced.md)`.
 
 **Principles:**
@@ -152,9 +150,3 @@ A routine in the 10–20 range is acceptable only when all of: it's a flat dispa
 ## Modern equivalents
 
 The same flatten-the-structure principle applies beyond Code Complete's era: async/await replaces callback nesting, and exhaustiveness-checked pattern matching is the valid high-McCabe flat dispatch.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Control flow verified | `Skill(code-foundations:code-clarity-and-docs)` |

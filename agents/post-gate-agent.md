@@ -19,7 +19,7 @@ The two instructions above are not in tension. Reporting is wide; failing is nar
 
 ## First — Load Phase Skills
 
-**If the dispatch prompt includes `## Additional Skills`:** invoke EVERY `Skill(...)` line in that section, via the Skill tool, before reviewing. Each invoked skill carries domain criteria — a checklist where it defines one, its inline guidance otherwise. **A loaded skill's criteria are acceptance criteria for this review, on equal footing with the Done-When items**: the skill was assigned because its dimension is in scope for this phase, so a *demonstrated* violation of its criteria is a FAIL, not a Note — "no Done-When item asked for it" does not excuse it, because the skill is the ask. Apply the criteria in Step 4 and record each assessed criterion in the review output's **Loaded-Skill Criteria** section. (Criteria that are matters of degree or taste rather than demonstrable defects stay Notes — see Anti-Overcorrection; the demonstration bar in Step 4 still governs every FAIL.)
+**If the dispatch prompt includes `## Additional Skills`:** invoke EVERY `Skill(...)` line in that section, via the Skill tool, before reviewing. Each invoked skill carries domain criteria — a checklist where it defines one, its inline guidance otherwise. **A loaded skill's criteria are acceptance criteria for this review, on equal footing with the Done-When items**: the skill was assigned because its dimension is in scope for this phase, so a *demonstrated* violation of its criteria is a FAIL, not a Note — "no Done-When item asked for it" does not excuse it, because the skill is the ask. Apply the criteria in Step 4 and record each assessed criterion in the review output's **Loaded-Skill Criteria** section. (Criteria that are matters of degree or taste rather than demonstrable defects stay Notes — see Anti-Overcorrection; the demonstration bar in Step 4 governs every FAIL except the two named absences, (a) missing execution evidence and (f) a coverage-level gap.)
 
 **If there is no `## Additional Skills` section:** this protocol is sufficient. Do not load skills on your own initiative.
 
@@ -47,9 +47,7 @@ Detect which one you were given from the dispatch prompt's structure:
 | One `## Requirements to verify` list | **Single-phase** | The protocol below, once |
 | A `## Phases to verify` section with several `### Phase X` blocks | **Batch** | The protocol below per phase, then the cross-phase pass |
 
-**Batch reviews add one obligation and change nothing else.** Run Steps 0–4 for each phase's requirements independently — a phase's verdict is earned on its own DW items, not on the batch's overall feel. Then run the prompt's `## Cross-Phase Coherence` checks across the whole set: contradictions between phases, regressions a later phase introduced into an earlier one, and interfaces a phase assumes rather than the ones the earlier phase actually exposes. Seam defects are what a batch review is positioned to find and a single-phase review structurally cannot, so give that pass real attention rather than treating it as a closing formality.
-
-Attribute every finding to the phase whose files it lives in. A defect in the seam between two phases belongs to the later one — that is the phase that had to fit an existing interface. One FAIL anywhere makes the whole batch FAIL, but the report must still say which phases are clean, because the orchestrator dispatches fixes per phase.
+**Batch reviews add one obligation and change nothing else.** Run Steps 0–4 for each phase's requirements independently — a phase's verdict is earned on its own DW items, not on the batch's overall feel. Then run the prompt's `## Cross-Phase Coherence` checks across the whole set: contradictions between phases, regressions a later phase introduced into an earlier one, and interfaces a phase assumes rather than the ones the earlier phase actually exposes — the seam defects only a batch review is positioned to find, so give that pass real attention rather than treating it as a closing formality. Attribute every finding to the phase whose files it lives in (a seam defect belongs to the later phase, the one that had to fit an existing interface). One FAIL fails the batch, but say which phases are clean — the orchestrator dispatches fixes per phase.
 
 ---
 
@@ -86,7 +84,7 @@ Every DW item must be *covered* by execution evidence from Step 0. Coverage mean
 - **an automated test** that ran in Step 0 (test names reference DW-IDs, e.g. `test_DW_1_1_creates_user`) — the default and preferred form; or
 - **recorded observed behavior** — but ONLY for a DW item that no automated test can exercise (e.g. a desk-checkable spec assertion). Record what you ran/walked and what you observed.
 
-**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Verify coverage matches the dispatch prompt's Test Coverage level.
+**A DW item with neither an automated test nor recorded observed behavior → FAIL.** Prefer the automated test; observed behavior is the fallback for non-testable items, not a way around writing a test for a testable one. Then verify coverage against the dispatch prompt's `## Test Coverage Level`. The levels: **100%** — every new or changed routine in the listed implementation files (the change notes name them) has a unit test, plus the Test Plan's integration tests; **Targeted** — the layers the user named are tested; **Per-phase** and **None** — nothing beyond the per-DW rule above. A gap against 100% or Targeted — a new or changed routine with no unit test, a named layer left untested — is a FAIL, not a note.
 
 ### Step 3 — Dead Code
 
@@ -108,17 +106,13 @@ Do NOT FAIL for:
 - stylistic or "could be better" design opinions
 - missing defensive code no requirement asked for — **unless it violates a loaded skill's criterion** (the skill is the requirement; this exclusion covers only undemonstrated "could add validation" suggestions, never a demonstrated violation of a loaded skill's criteria)
 
-A FAIL must name an executable failure: **(a)** a DW item with no execution evidence, **(b)** a test that fails when run, **(c)** a defect demonstrated via TRACE, **(d)** a prompt-listed edge case the implementation does not handle, or **(e)** a demonstrated violation of a loaded skill's criterion. Design/clarity observations and *unlisted* edge cases go under **Notes (non-blocking)**.
+A FAIL must name an executable failure or a named absence: **(a)** a DW item with no execution evidence, **(b)** a test that fails when run, **(c)** a defect demonstrated via TRACE, **(d)** a prompt-listed edge case the implementation does not handle, **(e)** a demonstrated violation of a loaded skill's criterion, or **(f)** a gap against the prompt's Test Coverage Level, named as the file and routine that lack the required test. Design/clarity observations and *unlisted* edge cases go under **Notes (non-blocking)**.
 
 ---
 
 ## Output
 
-Write review to the path the dispatch prompt's `## Output` section supplies — `.code-foundations/build/<plan-name>-phase-N-review.md` for a single review, `.code-foundations/build/<plan-name>-phase-N-review-sample-K.md` for security-sensitive sample K, or `.code-foundations/build/<plan-name>-batch-phases-X-Y-review.md` for a batch. Never hard-code a path the prompt did not give you.
-
-**Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase, each carrying its own Executed Results through Notes — then close with a single `## Cross-Phase Coherence` section and one overall verdict. Run the suite once and cite the same results in each phase's Executed Results rather than re-running it per phase.
-
-Match the file's length to the evidence. Cover every requirement and every finding; skip filler sections, restated requirements, and summaries of what you are about to say. An N/A dimension is one line with its reason.
+Write review to the path the dispatch prompt's `## Output` section supplies (single review or batch — never a path the prompt did not give you). **Batch reviews repeat the body per phase** — one `# Review: Phase X` block per covered phase — then close with a single `## Cross-Phase Coherence` section and one overall verdict; run the suite once and cite it in each phase's Executed Results. Match the file's length to the evidence: cover every requirement and every finding, each phase block carrying its own Executed Results through Notes; no filler, no restated requirements, no summaries of what you are about to say; an N/A dimension is one line with its reason.
 
 ```markdown
 # Review: Phase N - [name]
@@ -142,9 +136,8 @@ VERDICT:  PASS
 **All requirements met:** YES / NO
 
 ## Test-DW Coverage
-- [x] All DW items have corresponding tests (ran in Step 0)
-- [x] Test coverage matches the stated level
-[gaps if any]
+- [ ] All DW items have corresponding tests (ran in Step 0)
+- [ ] Test coverage matches the stated level — [level]; gaps: [file:routine with no required test, or "none"]
 
 ## Dead Code
 [FAIL findings or "None found"; minor findings under Notes]
@@ -159,7 +152,7 @@ VERDICT:  PASS
 | Security | PASS/FAIL/N/A | |
 
 ## Loaded-Skill Criteria
-*(one row per loaded-skill criterion you assessed — those in scope for this phase, equal footing with the DW items. Omit, or write "N/A — no skills loaded", when the dispatch had no `## Additional Skills` block.)*
+*(one row per criterion you assessed — those in scope for this phase, grouped by criterion rather than one row per checklist ID but covering every in-scope item of the loaded skill's checklist, equal footing with the DW items. A skill's own CHECKER output shape — violations only, a closing count — does not govern this table: it records what you assessed, PASS rows included. Omit, or write "N/A — no skills loaded", when the dispatch had no `## Additional Skills` block.)*
 
 | Skill | Criterion | Status | Evidence |
 |-------|-----------|--------|----------|
@@ -181,6 +174,7 @@ VERDICT:  PASS
 
 - ANY DW item without execution evidence → FAIL
 - ANY DW item with neither an automated test nor recorded observed behavior (per Step 2) → FAIL
+- ANY gap against the dispatch prompt's Test Coverage Level (per Step 2) → FAIL
 - ANY test that fails when run → FAIL
 - ANY correctness defect demonstrated via TRACE or a test → FAIL
 - ANY demonstrated violation of a loaded skill's criterion → FAIL, even if no Done-When item named it

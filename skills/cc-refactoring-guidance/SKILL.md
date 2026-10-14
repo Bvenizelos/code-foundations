@@ -18,7 +18,7 @@ Refactoring is behavior-preserving change to *working* code. Three rules govern 
 | First-attempt success | <50% for any change | Yourdon 1986b |
 | Review effect on 1-line changes | 55% → 2% error rate | Freedman and Weinberg 1982 |
 
-Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`. The full 40-item refactoring checklist: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`.
+Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`. The refactoring checklist: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`.
 
 **Definitions:**
 - **small** = ONE structural change (one rename, one extract, one inline). If you describe it with "and", it's not small.
@@ -28,7 +28,7 @@ Shared thresholds (routine length, parameters, cohesion): `Read(${CLAUDE_PLUGIN_
 
 ## Before refactoring: identify the target pattern
 
-Refactor *toward* something, not just away from bad code. Find the best examples of the target pattern in this codebase, the module's conventions, and how similar refactorings were structured; match the existing pattern exactly, or — if none exists — be deliberate about the precedent you're setting. Full gate: `Read(${CLAUDE_PLUGIN_ROOT}/references/pattern-reuse-gate.md)`.
+Refactor *toward* something, not just away from bad code. Find the best examples of the target pattern in this codebase, the module's conventions, and how similar refactorings were structured; match the existing pattern exactly, or — if none exists — be deliberate about the precedent you're setting.
 
 ## Core patterns
 
@@ -69,7 +69,7 @@ If tests fail after a refactoring: don't debug extensively — back out the chan
 
 ### TRANSFORMER
 
-Transform code smells into clean code while preserving all observable behavior (same tests pass before and after): setup/takedown smell → encapsulated interface; tramp data → direct access or restructure; duplicated code → extracted routine; speculative "design ahead" code → remove it. Behavior changes are fixing, not refactoring — fix first.
+Transform code smells into clean code while preserving all observable behavior (same tests pass before and after): setup/takedown smell → encapsulated interface; tramp data → direct access or restructure; duplicated code → extracted routine; speculative "design ahead" code → remove it. Behavior changes are fixing, not refactoring — fix first. To assess whether the result is a better module design, hand off to `Skill(code-foundations:aposd-reviewing-module-design)`.
 
 ## Recovering from a violation
 
@@ -82,11 +82,3 @@ If you skipped review on a small change:
 - After merge: note it and move on.
 
 Fixing a violation post-commit still costs less than the bugs it would otherwise cause.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Refactoring complete | `Skill(code-foundations:cc-control-flow-quality)` |
-| Structure changed | `Skill(code-foundations:cc-routine-and-class-design)` |
-| Reviewing a refactoring | `Skill(code-foundations:aposd-reviewing-module-design)` |

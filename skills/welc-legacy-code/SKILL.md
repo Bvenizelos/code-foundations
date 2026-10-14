@@ -49,6 +49,8 @@ Get code under test before changing it. This is the core principle.
    - Implement the change with test safety net
 ```
 
+Once the code is under test, refactoring follows the ordinary discipline: `Skill(code-foundations:cc-refactoring-guidance)`.
+
 ---
 
 ## Sprout/Wrap Techniques (Time Pressure)
@@ -163,12 +165,3 @@ Can you test the new code in isolation?
 3. **Preserve behavior.** Characterization tests document what IS, not what SHOULD BE.
 4. **Small steps.** Each refactoring should be verifiable.
 5. **Seams enable testing.** A seam is a place where you can alter behavior without editing in that place. Prefer object seams (override via inheritance/interfaces).
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Code under test | `Skill(code-foundations:cc-refactoring-guidance)` (safe refactoring process) |
-| Dependencies broken | Continue with Legacy Code Change Algorithm step 4-5 |

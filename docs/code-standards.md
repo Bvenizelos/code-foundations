@@ -33,6 +33,9 @@ This repo is a Claude Code plugin plus its benchmark harnesses: the "code" is sk
 - One canonical home per fact. Before "deduplicating" commands/build.md, read grug `build-command-progressive-disclosure`: Gate Policy, Model Resolution, Skill Resolution, Execution Loop are **deliberately inline**; the REVIEW debias rule is **deliberately duplicated** (build.md + dispatch-templates § REVIEW); commit recipe lives only in references/commit-format.md.
 - References > 100 lines need a Contents/ToC heading.
 - No stated item counts ("Total items: N") — they drift; 6 of 7 were wrong at audit.
+- Checklist files carry body items only — no `## Priority Groups` / `## Quick Reference` / `## Red Flags` tails restating them (removed 2026-09; an item with no body counterpart goes into its body section instead).
+- CHECKER modes report violations and warnings only and close with `N items checked, M pass, K n/a`; the ID'd checklist is the item set. No `## Chain` tables — a conditional handoff is one line of prose with a qualified `Skill(...)`; the planner sequences skills.
+- One home each, by design: the pattern-reuse rule → `agents/build-agent.md` Baseline Discipline; the plan schema and field rules → `references/plan-schema.md`; the Test Coverage level definitions → `agents/post-gate-agent.md` Step 2, with a one-clause gloss for the builder in `agents/build-agent.md` Validation Coverage (prompts carry the level string only); build's SETUP narration → its single resolution table.
 
 ## Voice and constructs
 
@@ -52,6 +55,7 @@ This repo is a Claude Code plugin plus its benchmark harnesses: the "code" is sk
 1. `validate_skill` on every touched skill dir — zero errors required.
 2. Description changed → re-run `test_triggers` (existing query sets: `.skill-audit/trigger-workspaces/<skill>-workspace/trigger-queries.json`).
 3. Workflow semantics changed → re-run the skill's behavioral eval (`.skill-audit/<skill>/evals.json`).
+4. Any edit under skills/, commands/, agents/, references/, or CLAUDE.md → `node evals/validate-structure.mjs` must report 0 problems (a removed rule needs a `evals/rules-registry.tsv` re-pin or an `evals/inventory-dropped.tsv` row saying where it went), and `evals/wordcount.sh` shows the delta.
 
 ---
 

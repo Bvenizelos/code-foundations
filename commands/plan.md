@@ -74,12 +74,12 @@ Corrections → update and re-confirm. If the response raises new open questions
 
 2. **Skeleton checkpoint.** If 2 phases: render the split as markdown in conversation (each phase's name + goal, the Produces handoff, and the dependency between them) and end the turn asking "Does the split look right?" — the user replies free-form. The skeleton must be the final message of that turn, with no tool calls after it: the conversation is the only surface that renders it in full, and nothing is written to disk yet, so there is nothing to chain into. If 1 phase: skip — nothing to decompose.
 
-3. **Detail each phase**, in order, one short pass each. Start with a one-line reframe — `Phase N: [name]. Consumes: [upstream Produces, or "nothing"]. Must produce: [Produces]. Difficulty: X.` — then load the phase's matched skills if not already loaded (`Skill(code-foundations:<name>)` for this plugin's own, `Skill(<plugin>:<name>)` for external ones — each self-loads its checklists; they inform Edge cases and Done-when), and fill the body in place using this template:
+3. **Detail each phase**, in order, one short pass each. First `Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` — its field rules govern every value below. Start with a one-line reframe — `Phase N: [name]. Consumes: [upstream Produces, or "nothing"]. Must produce: [Produces]. Difficulty: X.` — then load the phase's matched skills if not already loaded (`Skill(code-foundations:<name>)` for this plugin's own, `Skill(<plugin>:<name>)` for external ones — each self-loads its checklists; they inform Edge cases and Done-when), and fill the body in place using this template:
 
    ```markdown
    ### Phase N: [Name]
    **Skills:** [matched skills, or `none -- [reason]`]
-   **Model:** [fable | sonnet | haiku]
+   **Model:** [sonnet | haiku]
    **Gate:** [Full | Standard | Minimal]
    **Depends on:** [none | Phase N]
    **File scope:** [globs the phase may touch, e.g. src/auth/**, tests/auth/** -- omit only if unknowable]
@@ -100,53 +100,18 @@ Corrections → update and re-confirm. If the response raises new open questions
    - [ ] DW-N.1: [Verifiable criterion]
    ```
 
-   **Assign `**Gate:**` per phase** — build consumes this field verbatim (see `commands/build.md` resolution order) and stops on a plan that omits it, so always set it. Risk rules: **Full** for security/auth/payment work or a multi-file change introducing new cross-phase seams; **Minimal** for a docs-only or config-only change; **Standard** otherwise. A phase doing auth/crypto/secrets/deserialization/untrusted-input work also gets `**Security-sensitive:** yes` (triggers the 3-sample fable REVIEW during build) and, if it performs destructive or irreversible actions, a `**Rollback:**` line (compensating action, or "point of no return -- [mitigation]").
-
-   The gate decides review **timing**, not whether a review happens: Full and security-sensitive phases block their commit on a passing REVIEW, while Standard and Minimal phases commit on a green suite and get covered by a later batch REVIEW. Ask per phase whether a defect there would be cheaper to catch before the commit than a few phases later — cascading blast radius and security exposure are what earn a Full.
-
-   **Set `**Review cadence:**` in the header** — how many un-reviewed phases may accumulate before a batch REVIEW fires. **Default 3**, written explicitly; 1-2 when the phases are tightly coupled, 4-5 when they are genuinely independent. Build clamps above 5.
-
-   **Assign `**Model:**` per phase** — **sonnet** is the default (Sonnet 5: fast, cheap, handles well-specified implementation work); **haiku** for purely mechanical phases (config edits, renames, doc moves); **fable** for judgment-heavy phases (novel architecture, security-sensitive design, cross-cutting refactors). **opus** stays a valid override — use it when fable is unavailable or when the user asks for it. Build resolves the REVIEW model by downgrading one tier, floored at sonnet (fable→sonnet, opus→sonnet, sonnet→sonnet) — REVIEW never runs on haiku (round-2 model-tier benchmark: haiku's planted-defect recall proved unreliable).
-
-   **`**Depends on:**` and `**File scope:**`** feed build's wave derivation: phases with no dependency between them and disjoint file scopes run their BUILD agents in parallel. A phase without `File scope` never runs in parallel — omitting it is the opt-out.
+   Assign by the reference's rules: `**Model:**`, `**Gate:**`, and `**Depends on:**` on every phase (build stops on a plan that omits any of them), `**File scope:**` where knowable (the wave opt-in — omitting it is allowed), and `**Review cadence:**` and `**Check-ins:**` in the header (build defaults them to 3 and `checkpoints` if absent, so write them). On the Quick track, `File scope` stands in for the model rule's file-hint counts. A phase doing auth/crypto/secrets/deserialization/untrusted-input work also gets `**Security-sensitive:** yes`; a destructive or irreversible one gets `**Rollback:**`.
 
 4. **Cross-cut.** Derive the test plan from the done-when items, plus at least one dirty test (error path or boundary from Edge cases) per code-touching phase; record the test coverage level (ask user or default to 100%).
 
 5. **Finalize the file.** The plan was built progressively across steps 1-4; ensure it matches the schema. **Do NOT commit it.**
 
-   This is the **full plan-file schema minus the Medium/Complex-only sections** (Chosen Approach, Rejected Approaches, Assumptions, Decision Log). The canonical schema lives in `Skill: planning` Step 7 — **keep this Quick variant in sync with it.** Each phase body carries `**Model:**`, `**Gate:**`, `**Depends on:**`, and `**File scope:**` (see step 3's assignment rules).
+   `Read(${CLAUDE_PLUGIN_ROOT}/references/plan-schema.md)` for the schema; a Quick plan is that schema minus every `[Medium/Complex only]` section and marker (Chosen Approach, Rejected Approaches, Assumptions, Decision Log, the Integration + Manual test items), with `**Complexity:** simple`.
 
-   ```markdown
-   # Plan: [Topic]
-   **Created:** YYYY-MM-DD
-   **Status:** draft
-   **Complexity:** simple
-   **Review cadence:** 3
-   ---
-   ## Context
-   [Problem statement from shared step 3]
-   ## Constraints
-   - [constraints from shared step 3]
-   ---
-   ## Implementation Phases
-   [phase bodies from step 3 -- each carries **Model:**, **Gate:**, **Depends on:**, **File scope:**]
-   ---
-   ## Test Coverage
-   **Level:** [from step 4]
-   ## Test Plan
-   - [ ] [tests from step 4]
-   ---
-   ## Notes
-   - [edge cases, gotchas, open questions surfaced while detailing -- omit if none]
-   ---
-   ## Execution Log
-   _To be filled during /code-foundations:build_
-   ```
-
-6. **Check** — dispatch a fable subagent to review the saved plan with fresh eyes (the plan is the highest-leverage artifact in the pipeline; one fable pass here is cheap insurance):
+6. **Check** — dispatch a sonnet subagent to review the saved plan with fresh eyes:
 
    ```
-   Agent: fable, "Review plan"
+   Agent: sonnet, "Review plan"
    Prompt: Review .code-foundations/plans/<plan>.md for structural issues.
 
    Checklist:
@@ -156,23 +121,24 @@ Corrections → update and re-confirm. If the response raises new open questions
      code seams in Produces stated as contracts (signature/type/route)
    - Tests: test plan covers DW items + at least one dirty test per code-touching phase
    - Skills: every phase has Skills field, skills match work type, skills actually available
-   - Model: every phase has a **Model:** field (fable/sonnet/haiku; opus only as an explicit
-     user-requested override) matching its difficulty
-   - Gate: every phase has a **Gate:** field (Full/Standard/Minimal) matching its risk;
+   - Model: every phase has a **Model:** field (sonnet, or haiku for small mechanical work;
+     fable/opus only where the user asked)
+   - Gate: every phase has a **Gate:** field (Standard; Minimal for docs/config; Full only where the user asked);
      auth/crypto/secrets/deserialization/untrusted-input phases carry **Security-sensitive:** yes;
      destructive/irreversible phases carry **Rollback:**
    - Dependencies: every phase has **Depends on:** and referenced phases exist; a phase
      consuming another's Produces depends on it; phases declared independent have
      disjoint **File scope:** globs
    - Header: **Status:** is present and reads `draft` (step 7 flips it to `ready`);
-     **Review cadence:** is present with a value of 1-5 fitting the plan's coupling
+     **Review cadence:** is present with a value of 1-5 fitting the plan's coupling;
+     **Check-ins:** is present (quiet | checkpoints | per-phase)
 
    Output: PASS or FINDINGS with specific fix recommendations.
    ```
 
    PASS -> proceed. FINDINGS -> fix; **structural fixes (phase boundaries, DW set, Produces seams) -> re-run CHECK**; minor fixes -> proceed.
 
-7. **Present and ask.** End the turn with the full plan summary rendered as markdown in conversation, closing with "Build it, adjust it, or tell me what to do?" The user replies in their own words. **Shape:** one table for the phases (goal, model, gate, dependencies — the part the user scans first), then one-line bullets below it for test coverage and CHECK's outcome (summarized — "PASS" or "N findings, fixed," never the verbatim finding text). No restating steps 1-6. The summary must be the turn's **final message, with no tool calls after it**: the conversation is the only surface that renders a multi-phase plan in full (dialog previews truncate it, and the collapsed Write output doesn't count as presentation). Parse the reply — "build it" and equivalents proceed to step 8; "tell me what to do" is also a confirmation (flip the status, then give numbered manual steps instead of running build); anything else is an adjustment or a question, handle it and re-present.
+7. **Present and ask.** End the turn with the full plan summary rendered as markdown in conversation, closing with "Build it, adjust it, or tell me what to do?" The user replies in their own words. **Shape:** one table for the phases (goal and dependencies — the part the user scans first), then one-line bullets only for what the user owns or would be surprised by (decisions made for them, production or data effects, anything that waits on them). Model, gate, cadence, check-ins, skills, and coverage stay in the plan file unless they differ from the defaults (sonnet, Standard, 3, checkpoints, 100%). CHECK's outcome in a few words ("PASS" or "N findings, fixed"). No restating steps 1-6. The summary must be the turn's **final message, with no tool calls after it**: the conversation is the only surface that renders a multi-phase plan in full (dialog previews truncate it, and the collapsed Write output doesn't count as presentation). Parse the reply — "build it" and equivalents proceed to step 8; "tell me what to do" is also a confirmation (flip the status, then give numbered manual steps instead of running build); anything else is an adjustment or a question, handle it and re-present.
 
    **On any confirmation, flip `**Status:** draft` → `**Status:** ready` in the plan file.** Build refuses to execute a plan whose Status isn't `ready`, so the confirmed presentation is a structural gate, not a convention — a plan the user never saw cannot build.
 
@@ -190,9 +156,3 @@ For Medium and Complex tasks, load the planning pipeline:
 
 **Pass the confirmed problem statement** from shared step 3. The planning pipeline's DISCOVER step deepens codebase research and may refine the problem statement, but does not redo clarification from scratch.
 
----
-
-## Chain
-
-- **Receives from:** User request, feature description, user story
-- **Chains to:** build (via saved plan file)

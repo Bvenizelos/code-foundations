@@ -1,0 +1,195 @@
+# file	phrase that must appear verbatim in that file (validator check I). One row per load-bearing or relocated rule.
+# --- deliberate duplicate (docs/code-standards.md): the REVIEW debias rule lives in both the orchestrator and the template
+commands/build.md	intent-framing
+references/dispatch-templates.md	intent-framing
+# --- build workflow invariants the lightening must not lose
+commands/build.md	REVIEW always runs on sonnet
+commands/build.md	un-reviewed set
+commands/build.md	re-dispatch at most 3 times, then stop and escalate
+commands/build.md	Security-sensitive:** yes
+references/commit-format.md	deferred (batch pending)
+references/gate-failure-protocol.md	Batch Failures
+references/trust-report.md	Covered by batch review
+agents/post-gate-agent.md	### Verdict Rules
+agents/post-gate-agent.md	execution evidence
+agents/build-agent.md	passing set only GROWS
+agents/build-agent.md	UPDATE_PLAN
+# --- skill rules
+skills/cc-debugging/SKILL.md	STABILIZE
+skills/cc-defensive-programming/SKILL.md	Internal team API
+skills/cc-defensive-programming/checklists.md	SM-3
+skills/cc-defensive-programming/checklists.md	SA-1
+# --- Phase 1: checklist tail items carried into body sections (and remedies merged into body items)
+skills/cc-defensive-programming/checklists.md	catch-log-continue
+skills/cc-defensive-programming/checklists.md	distinguish 'no result' from 'operation failed'
+skills/aposd-simplifying-complexity/checklists.md	observability escape hatch
+skills/cc-control-flow-quality/checklists/loops-and-advanced.md	failed items silently skipped
+skills/cc-pseudocode-programming/checklists.md	how callers learn about it
+skills/cc-routine-and-class-design/checklists.md	distinct sentinel
+# --- prose anchors and authoring-standard doctrine the plan promises to keep
+references/dispatch-templates.md	Effort Alignment
+references/plan-integration.md	Effort Alignment
+CLAUDE.md	Effort Alignment
+docs/code-standards.md	deliberately inline
+docs/code-standards.md	deliberately duplicated
+skills/cc-control-flow-quality/checklists/conditionals-and-structure.md	empty `default`/`else`
+skills/cc-refactoring-guidance/checklists.md	extract the common abstraction
+skills/cc-refactoring-guidance/checklists.md	move the method to the class whose data it uses
+skills/cc-refactoring-guidance/checklists.md	Extract methods, invert conditions
+skills/cc-refactoring-guidance/checklists.md	Introduce a parameter object
+skills/cc-routine-and-class-design/checklists.md	add delegation methods
+# --- SKILL.md "Red Flag → Fix" doctrine tables that now carry former checklist tail rows (some rows also map to body items); check J pins the headings, these rows pin them as canonical homes
+skills/code-clarity-and-docs/SKILL.md	## Red Flags (Code Clarity)
+skills/performance-optimization/SKILL.md	## Red Flags
+skills/aposd-simplifying-complexity/SKILL.md	## Red Flags
+# --- Phase 2
+skills/cc-quality-practices/SKILL.md	they live there, not here
+skills/cc-debugging/checklists.md	then brute force, once quick guesses fail
+skills/cc-debugging/checklists.md	/*"/**/
+# --- Phase 3: conditional handoffs that survive Chain-table deletion as prose; CHECKER output shape
+skills/cc-debugging/SKILL.md	Skill(code-foundations:welc-legacy-code)
+skills/cc-debugging/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/cc-refactoring-guidance/SKILL.md	Skill(code-foundations:welc-legacy-code)
+skills/ca-architecture-boundaries/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/performance-optimization/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/welc-legacy-code/SKILL.md	Skill(code-foundations:cc-refactoring-guidance)
+skills/aposd-reviewing-module-design/SKILL.md	Skill(code-foundations:aposd-simplifying-complexity)
+skills/clarify/SKILL.md	re-enter this loop
+skills/cc-defensive-programming/SKILL.md	N items checked, M pass, K n/a
+skills/cc-routine-and-class-design/SKILL.md	N items checked, M pass, K n/a
+skills/cc-quality-practices/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-verifying-correctness/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-verifying-correctness/SKILL.md	EH-5
+skills/aposd-simplifying-complexity/SKILL.md	N items checked, M pass, K n/a
+skills/aposd-reviewing-module-design/SKILL.md	N items checked, M pass, K n/a
+skills/performance-optimization/SKILL.md	N items checked, M pass, K n/a
+skills/performance-optimization/SKILL.md	~1000x a memory access
+skills/cc-quality-practices/SKILL.md	Skill(code-foundations:cc-routine-and-class-design)
+skills/cc-refactoring-guidance/SKILL.md	Skill(code-foundations:aposd-reviewing-module-design)
+skills/aposd-reviewing-module-design/checklists.md	IH-5
+skills/cc-defensive-programming/SKILL.md	the ID'd checklist is the item set
+skills/cc-routine-and-class-design/SKILL.md	the ID'd checklist is the item set
+skills/cc-quality-practices/SKILL.md	the ID'd checklist is the item set
+skills/performance-optimization/SKILL.md	the ID'd checklist is the item set
+skills/aposd-reviewing-module-design/SKILL.md	the ID'd checklist is the item set
+skills/aposd-simplifying-complexity/SKILL.md	the ID'd checklist is the item set
+skills/performance-optimization/checklists.md	DS-1
+skills/performance-optimization/checklists.md	DS-2
+skills/performance-optimization/checklists.md	DS-3
+skills/performance-optimization/checklists.md	DS-4
+# --- Phase 4
+agents/build-agent.md	### Pattern Reuse
+agents/build-agent.md	No results
+agents/build-agent.md	diverge and say why
+agents/build-agent.md	Deviations from Design
+commands/debug.md	follow the existing fix pattern
+skills/cc-refactoring-guidance/SKILL.md	match the existing pattern exactly
+skills/cc-defensive-programming/SKILL.md	Search the codebase for the existing error-handling pattern
+skills/cc-debugging/SKILL.md	about half of bug fixes are wrong
+agents/build-agent.md	several conflict
+agents/build-agent.md	at least three keyword variations
+references/cc-foundations.md	## Cohesion Spectrum
+references/cc-foundations.md	## Coupling Criteria
+references/cc-foundations.md	## Key Metrics
+references/cc-foundations.md	without using "and"
+references/cc-foundations.md	Fan-out
+skills/cc-routine-and-class-design/SKILL.md	cc-foundations.md
+skills/cc-refactoring-guidance/SKILL.md	cc-foundations.md
+# --- Phase 5
+agents/build-agent.md	SKIP is discovery
+agents/build-agent.md	"minimal gate"
+agents/post-gate-agent.md	grouped by criterion rather than one row per checklist ID
+agents/post-gate-agent.md	does not govern this table
+agents/post-gate-agent.md	Batch reviews repeat the body per phase
+references/dispatch-templates.md	every REVIEW runs on sonnet
+references/dispatch-templates.md	no mutating commands
+references/dispatch-templates.md	Independently verify the implementation
+references/dispatch-templates.md	Cross-Phase Coherence
+# --- Phase 5: rules that now live only in post-gate-agent (removed from the prompts)
+agents/post-gate-agent.md	confidence level and an estimated severity
+agents/post-gate-agent.md	Attribute every finding to the phase whose files it lives in
+agents/post-gate-agent.md	not on the batch's overall feel
+agents/post-gate-agent.md	closing formality
+agents/post-gate-agent.md	no summaries of what you are about to say
+agents/build-agent.md	Minimal returns DONE | UPDATE_PLAN | BLOCKED
+references/dispatch-templates.md	no dependency installs
+agents/build-agent.md	next reader is you, ten minutes from now
+agents/post-gate-agent.md	cover every requirement and every finding
+# --- Phase 6
+commands/build.md	name validation only
+commands/build.md	Unknown name → stop and ask the user
+commands/build.md	validates names and edits nothing
+commands/build.md	This never blocks
+commands/build.md	### The Resolution Table
+commands/build.md	Width cap 3
+commands/build.md	A phase without `File scope` never shares a wave
+commands/build.md	Waves are derived here, never stored in the plan
+commands/build.md	clamped to 1–5
+references/plan-integration.md	it never stops for it
+CLAUDE.md	warns (never stops)
+references/dispatch-templates.md	lists at least one skill
+commands/build.md	| Security |
+commands/build.md	no `## Additional Skills` block
+commands/build.md	including Wave Derivation (gate is a wave input)
+commands/build.md	rejected like unknown names
+# --- Phase 7
+commands/build.md	Nothing reaches the trust report unreviewed
+commands/build.md	Delta rule
+commands/build.md	tests, typecheck, lint
+commands/build.md	Test Plan items the suite does not cover
+commands/build.md	per-DW evidence only; technical debt noted
+commands/build.md	VERIFY reports it
+references/trust-report.md	Suite on HEAD
+references/trust-report.md	not run:
+references/trust-report.md	Review shape
+references/trust-report.md	Coverage:
+README.md	one suite (tests + typecheck + lint) on integrated HEAD
+agents/post-gate-agent.md	ANY gap against the dispatch prompt's Test Coverage Level
+agents/post-gate-agent.md	The levels: **100%**
+commands/build.md	**Done when** the set is empty
+references/trust-report.md	SKIP execution-log entry
+references/gate-failure-protocol.md	does not proceed past its trailing-batch step
+agents/post-gate-agent.md	**(f)** a gap against the prompt's Test Coverage Level
+references/dispatch-templates.md	## Test Coverage Level
+commands/build.md	absent a security flag → the un-reviewed set
+references/gate-failure-protocol.md	| VERIFY |
+commands/build.md	review it the way that phase is reviewed
+commands/build.md	counted together with the phase's own gate
+agents/build-agent.md	is the contract the reviewer holds you to
+agents/post-gate-agent.md	or a named absence
+references/dispatch-templates.md	notes only, no rationale
+agents/post-gate-agent.md	except the two named absences
+references/commit-format.md	verify-fix (review pending)
+references/trust-report.md	Per-phase adds nothing beyond per-DW evidence
+# --- Phase 8
+references/plan-schema.md	Never assign fable or opus yourself
+references/plan-schema.md	sonnet is the default — never omit
+references/plan-schema.md	Docs-only or config-only change
+references/plan-schema.md	Default 3; write it explicitly
+references/plan-schema.md	never runs in parallel
+references/plan-schema.md	No workflow commands or pipeline skills
+references/plan-schema.md	Skill presence does not decide the gate
+commands/plan.md	references/plan-schema.md
+skills/planning/SKILL.md	references/plan-schema.md
+commands/build.md	Triggers coalesce
+commands/build.md	blockedBy it
+commands/build.md	never invent a command
+references/plan-schema.md	Do not assign Full on your own
+commands/plan.md	omitting it is allowed
+references/plan-integration.md	references/plan-schema.md
+# --- Phase 10
+docs/code-standards.md	no `## Priority Groups`
+docs/code-standards.md	node evals/validate-structure.mjs
+CLAUDE.md	evals/validate-structure.mjs
+# --- build loop (v6.5.0): quiet escalation, bounded plan adjustment, blind reviewer
+agents/build-agent.md	one-way door
+agents/build-agent.md	### Decisions
+commands/build.md	holds only its own phase
+commands/build.md	Quiet by default
+references/checkpoint.md	never remove or weaken a DW item
+references/checkpoint.md	nothing is runnable
+references/checkpoint.md	plan(adjust)
+references/dispatch-templates.md	no Decisions in Force
+references/plan-schema.md	**Check-ins:**
+references/trust-report.md	Decided During Build
+# --- v6.6.0: fewer reviews — single sonnet reviewer; Full and fable only on the user's request (replaced 3-sample/fable pins above)

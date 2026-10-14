@@ -40,7 +40,7 @@ Source: Code Complete 2nd Edition, Chapters 5, 6, 7
 - [ ] CQ-5: "If using inheritance, does derived class truly 'is-a' base class (LSP)?"
 - [ ] CQ-6: "Is inheritance depth less than 3 levels (and definitely less than 6)?" → Red flag: Deep inheritance hierarchies
 - [ ] CQ-7: "Are there no empty overrides (overriding a routine to do nothing)?" → Red flag: Override to disable behavior
-- [ ] CQ-8: "Does the class avoid chains like object.A().B().C() (Law of Demeter)?" → Red flag: Train wreck method chains
+- [ ] CQ-8: "Does the class avoid chains like object.A().B().C() (Law of Demeter)?" → Red flag: Train wreck method chains — add delegation methods to reduce coupling
 - [ ] CQ-9: "Does the class have 7 or fewer data members?" (Good: ≤7 members, Bad: >7 members)
 
 ---
@@ -68,21 +68,4 @@ Source: Code Complete 2nd Edition, Chapters 5, 6, 7
 - [ ] PP-6: "Is each output parameter used?"
 - [ ] PP-7: "Does the routine avoid using input parameters as working variables?" → Red flag: Modifying input parameters
 - [ ] PP-8: "If the routine is a function, does it return a valid value under all possible circumstances?"
-
----
-
-## Red Flags
-
-- [ ] RF-1: "Protected or public data members?" - Breaks encapsulation → Make private with accessor methods only if needed
-- [ ] RF-2: "Deep inheritance (>3 levels)?" - Excessive coupling and complexity → Favor composition over inheritance
-- [ ] RF-3: "Empty override methods?" - Violates LSP → Rethink inheritance hierarchy or use composition
-- [ ] RF-4: "Method chains (Law of Demeter)?" - `obj.getA().getB().getC()` → Add delegation methods to reduce coupling
-- [ ] RF-5: "Routine does multiple things?" - Weak cohesion → Split into focused, single-purpose routines
-- [ ] RF-6: "Routine name lies?" - Side effects not reflected in name → Rename to describe all effects or refactor
-- [ ] RF-7: "Long parameter lists (>7)?" - High cognitive load → Introduce parameter object or builder pattern
-- [ ] RF-8: "Input parameters modified?" - Confusing control flow → Use separate output variables or return values
-- [ ] RF-9: "Many data members (>7)?" - Class doing too much → Split into cohesive classes with focused responsibilities
-- [ ] RF-10: "First design shipped?" - Missed better alternatives → Always iterate and compare multiple design approaches
-- [ ] RF-11: "Routine hides failure as default?" - Function returns neutral value (null, empty, zero) on error indistinguishable from a valid "no result" → Use Result type, throw, or distinct sentinel so callers can tell success from failure
-
----
+- [ ] PP-9: "If the routine can fail, is failure distinguishable from a valid empty/zero/null result — a Result type, an exception, or a distinct sentinel?" → Red flag: neutral value returned on error that callers cannot tell from 'no result'

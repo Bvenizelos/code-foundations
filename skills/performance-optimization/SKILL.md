@@ -12,7 +12,8 @@ Profile before optimizing — intuition about hot spots is measurably wrong more
 
 - **Correctness before speed** -- make it work, then make it fast
 - **<4% of code causes >50% of runtime** (Knuth 1971) -- find the hot spot before touching anything
-- **>50% of optimizations produce negligible or negative results** -- measurement prevents wasted effort
+- **>50% of optimizations produce negligible or negative results** (CC p.607) -- measurement prevents wasted effort
+- **I/O costs ~1000x a memory access** (CC p.591) -- batch it and keep it out of tight loops
 
 Optimization proceeds only from a measurement — unmeasured "optimizations" are edits with a coin-flip chance of helping.
 
@@ -61,7 +62,7 @@ Each step is a gate — skipping one forfeits the evidence the next step depends
    YES -> Change algorithm. Done.
    NO  -> Continue
 
-6. Can compiler flags help? (40-59% improvement possible)
+6. Can compiler flags help? (40-59% improvement possible, CC p.596)
    YES -> Enable optimizations. Measure.
    NO  -> Continue
 
@@ -156,7 +157,7 @@ Only reached after completing the 7-step decision tree.
 
 Checklist and code examples: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
 
-Re-measure before keeping any change. Keep only if: significant speedup (with data), OR simpler AND at least as fast. Otherwise back it out.
+Re-measure before keeping any change. Keep only if: significant speedup (with data), OR simpler AND at least as fast. Otherwise back it out. If a kept change degraded the structure, restore it as a separate refactor: `Skill(code-foundations:cc-refactoring-guidance)`.
 
 ---
 
@@ -173,34 +174,8 @@ Re-measure before keeping any change. Keep only if: significant speedup (with da
 
 ---
 
-## Quick Reference
-
-| Threshold/Rule | Value | Source |
-|----------------|-------|--------|
-| Hot spot concentration | <4% causes >50% runtime | Knuth 1971 |
-| Failed optimization rate | >50% negligible or negative | CC p.607 |
-| Compiler optimization gains | 40-59% improvement possible | CC p.596 |
-| I/O vs memory | ~1000x difference | CC p.591 |
-
----
-
 ## Checker
 
 Checklist: `Read(${CLAUDE_SKILL_DIR}/checklists.md)`
 
-Output Format:
-  | Item | Status | Evidence | Location |
-  |------|--------|----------|----------|
-  | Measured before tuning? | VIOLATION | No profiler/measurement found | N/A |
-  | Loop unswitching opportunity | WARNING | Invariant `if (debug)` inside loop | app.py:142 |
-
-Severity: VIOLATION (clear anti-pattern), WARNING (needs measurement), PASS (no issues)
-
----
-
-## Chain
-
-| After | Next |
-|-------|------|
-| Optimization complete | Verify design not degraded |
-| Structure degraded | cc-refactoring-guidance |
+VIOLATION = clear anti-pattern; WARNING = needs measurement. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.

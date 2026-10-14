@@ -8,9 +8,7 @@ user-invocable: false
 
 Improving quality reduces development cost. No single defect-detection technique exceeds ~75% effectiveness, so combine techniques — combining nearly doubles detection rates. Mature suites run about 5 dirty tests (error paths, bad data, edge cases) for every 1 clean test (happy path).
 
-For active bug diagnosis (an actual failing test or repro to chase down), hand off: `Skill(code-foundations:cc-debugging)`. This skill is for QA planning and process design.
-
-Shared CC vocabulary and thresholds (cohesion spectrum, coupling, key metrics): `Read(${CLAUDE_PLUGIN_ROOT}/references/cc-foundations.md)`.
+For active bug diagnosis (an actual failing test or repro to chase down), hand off: `Skill(code-foundations:cc-debugging)`. This skill is for QA planning and process design. When its CHECKER surfaces a design smell, hand off to `Skill(code-foundations:cc-routine-and-class-design)`; when a fix needs restructuring, to `Skill(code-foundations:cc-refactoring-guidance)`.
 
 ## External vs internal quality
 
@@ -33,12 +31,9 @@ Internal quality enables external quality: poor maintainability blocks fixing de
 
 ### CHECKER
 
-Execute the quality, review, and testing checklists against the code or process. Checklists:
+Execute the quality, review, and testing checklists against the code or process: `Read(${CLAUDE_SKILL_DIR}/checklists.md)` — QA plan, inspections, pair programming, test cases, data-flow. For debugging checklists (finding, fixing, syntax errors, brute force) invoke `Skill(code-foundations:cc-debugging)` — they live there, not here.
 
-- `Read(${CLAUDE_SKILL_DIR}/checklists/qa-and-testing.md)` — QA plan, inspections, test cases, data-flow.
-- `Read(${CLAUDE_SKILL_DIR}/checklists/debugging.md)` — finding, fixing, brute-force, general approach.
-
-Output one row per item: `| Item | Status | Evidence | Location |`, status ∈ VIOLATION (fails item) / WARNING (partial) / PASS.
+VIOLATION = fails the item; WARNING = partial. **CHECKER output:** the ID'd checklist is the item set (the tables in this SKILL.md explain the items, they are not counted twice). Report each VIOLATION and WARNING as `| Item | Status | Evidence | Location |`; do not list passing or non-applicable items — close with one line `N items checked, M pass, K n/a`.
 
 ### APPLIER
 
@@ -68,15 +63,7 @@ Inspection roles and meeting mechanics apply when designing a review process for
 
 1. PLANNING — moderator distributes materials with line numbers + checklist.
 2. PREPARATION — each reviewer works alone using the checklist (where ~90% of defects are found).
-3. MEETING — reader paraphrases the code; scribe records defects.
+3. MEETING — reader (not the author) paraphrases the code; scribe records defects.
 4. REPORT — moderator lists each defect with type and severity.
 5. REWORK — author fixes defects.
 6. FOLLOW-UP — moderator verifies all fixes complete.
-
-## Chain
-
-| After | Next |
-|---|---|
-| Defect to fix found | `Skill(code-foundations:cc-refactoring-guidance)` |
-| Design issues found | `Skill(code-foundations:cc-routine-and-class-design)` |
-| Active bug to diagnose | `Skill(code-foundations:cc-debugging)` |

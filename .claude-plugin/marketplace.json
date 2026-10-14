@@ -1,0 +1,16 @@
+{
+  "name": "code-foundations",
+  "owner": {
+    "name": "Bvenizelos"
+  },
+  "metadata": {
+    "description": "Single-plugin marketplace for this fork of code-foundations"
+  },
+  "plugins": [
+    {
+      "name": "code-foundations",
+      "source": "./",
+      "description": "Code Complete, APOSD, GoF, and Clean Architecture skills driving a research → plan → build workflow."
+    }
+  ]
+}
